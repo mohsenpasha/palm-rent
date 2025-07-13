@@ -1,9 +1,11 @@
 import Header from "./components/Header";
+import LandingFirstView from "./components/LandingFirstView";
 
 export default function Home() {
   return (
     <>
       <Header />
+      <LandingFirstView/>
     </>
   );
 }
