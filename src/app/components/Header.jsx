@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import {IconArrow, IconGlobal, IconPhone, IconLogin} from "./Icons";
-import { Children } from "react";
 
 export default function Header(){
     return(
-        <header className="shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
-            <div className="p-4 px-6 flex justify-between">
+        <header className="min-h-[80px] flex items-center">
+            <div className="p-4 px-6 flex justify-between fixed z-50 top-0 right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                 <div className="flex items-center">
                     <Link href="#">
                         <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="test"></Image>
@@ -19,7 +18,7 @@ export default function Header(){
                         </li>
                         <li className="relative group p-1 px-6 border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2">
                             شعبه های پالم رنت
-                            <IconArrow className={'mt-2'}/>
+                            <IconArrow/>
                             <DropDown>
                                 <DropDownItem text={'دبی'} href={'#'}/>
                                 <DropDownItem text={'استانبول'} href={'#'}/>
@@ -35,7 +34,7 @@ export default function Header(){
                         </li>
                         <li className="relative group p-1 px-6 border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2">
                             لیست خودرو ها
-                            <IconArrow className={'mt-2'}/>
+                            <IconArrow/>
                             <DropDown>
                                 <DropDownItem text={'دبی'} href={'#'}/>
                                 <DropDownItem text={'استانبول'} href={'#'}/>
@@ -56,7 +55,7 @@ export default function Header(){
                         </li>
                         <li className="relative group p-1 px-6 border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2">
                             تماس با ما
-                            <IconArrow className={'mt-2'}/>
+                            <IconArrow/>
                             <DropDown>
                                 <DropDownItem text={'درباره پالم رنت'} href={'#'}/>
                                 <DropDownItem text={'تماس با ما'} href={'#'}/>
@@ -64,7 +63,7 @@ export default function Header(){
                         </li>
                         <li className="relative group p-1 px-6 underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2">
                             بیشتر
-                            <IconArrow className={'mt-2'}/>
+                            <IconArrow/>
                             <DropDown>
                                 <DropDownItem text={'مجله پالم رنت'} href={'#'}/>
                                 <DropDownItem text={'گالری تصاویر'} href={'#'}/>
@@ -81,7 +80,7 @@ export default function Header(){
                     <div className="relative group p-1 cursor-pointer underline-offset-8 flex items-center gap-2">
                             <IconGlobal/>
                             فارسی
-                            <IconArrow className={'mt-2'}/>
+                            <IconArrow/>
                             <DropDown>
                                 {/* <DropDownItem text={'فارسی'} href={'#'}/> */}
                                 <DropDownItem text={'English'} href={'#'}/>
@@ -103,7 +102,7 @@ export default function Header(){
 
 export function DropDown({ children }){
     return(
-        <div className="absolute hidden translate-y-full group-hover:flex bottom-0 left-1/2 -translate-x-1/2 pt-2">
+        <div className="absolute hidden animate-fade-in translate-y-full group-hover:flex bottom-0 left-1/2 -translate-x-1/2 pt-2">
             <ul className="flex flex-col bg-white min-w-32 rounded-lg border-[1px] border-[#cccccc] p-1 shadow-[0_3px_10px_0_rgba(0,0,0,.12),0_10px_10px_-6px_rgba(0,0,0,.12)]">
                 { children }
             </ul>
