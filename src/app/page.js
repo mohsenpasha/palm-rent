@@ -1,5 +1,6 @@
 import BranchSection from "./components/BranchSection";
 import CommonQuestionSection from "./components/CommonQuestionSection";
+import DescriptionSection from "./components/DescriptionSection";
 import Header from "./components/Header";
 import LandingFirstView from "./components/LandingFirstView";
 import { Why2Section } from "./components/Why2Section";
@@ -14,6 +15,7 @@ export default function Home() {
       <WhySection/>
       <CommonQuestionSection/>
       <Why2Section/>
+      <DescriptionSection/>
     </>
   );
 }
