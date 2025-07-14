@@ -52,7 +52,7 @@ export function QBox(){
         <div className="flex flex-wrap gap-2">
             {qList.map((item,index)=>{
                 return(
-                    <div key={index} className="p-8 border-[1px] border-[#E6E6E6] rounded-2xl w-[calc(50%-8px)] grow-0 h-fit">
+                    <div key={index} className="p-8 border-[1px] border-[#E6E6E6] rounded-2xl w-full lg:w-[calc(50%-8px)] h-fit">
                         <div onClick={()=>toggleQItem(index)} className="flex items-center justify-between cursor-pointer">
                             <span className="text-xl font-bold">
                                 {item.q}
