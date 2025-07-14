@@ -2,7 +2,7 @@
 @config "../../tailwind.config.js";
 
 body{
-  direction: rtl;
+  /* direction: rtl; */
 }
 @font-face {
   font-family: dana;
