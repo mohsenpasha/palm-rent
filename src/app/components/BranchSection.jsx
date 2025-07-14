@@ -8,9 +8,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 export default function BranchSection(){
     return(
-        <section className='my-4 bg-[#F6F6F6] pt-[92px] pb-16'>
+        <section className='my-4 bg-[#F6F6F6] lg:pt-[92px] py-12 md:p-16'>
             <div className='w-[95vw] m-auto'>
-            <div className='text-center pb-12 text-[32px] font-bold text-[#3B82F6]'>
+            <div className='text-center pb-12 lg:text-[32px] md:text-2xl text-lg font-bold text-[#3B82F6]'>
                 شعبه های پالم رنت
             </div>
                 <Slider/>
@@ -21,10 +21,25 @@ export default function BranchSection(){
 export function Slider() {
   return (
     <div className='relative'>
-        <Swiper spaceBetween={10} slidesPerView={5} modules={[Navigation]} loop={true} navigation={{
+        <Swiper spaceBetween={10} slidesPerView={1} modules={[Navigation]} loop={true} navigation={{
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
-            }} >
+            }} 
+            breakpoints={{
+                400: {
+                slidesPerView: 2,
+                },
+                768: {
+                slidesPerView: 3,
+                },
+                1024: {
+                slidesPerView: 4,
+                },
+                1280: {
+                slidesPerView: 5,
+                },
+            }}
+            >
         <SwiperSlide>
             <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
                 <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/dubai.webp' width={218} height={181} alt=''></Image>
@@ -166,10 +181,10 @@ export function Slider() {
             </Link>
         </SwiperSlide>
         </Swiper>
-        <div className="swiper-button-next cursor-pointer custom-arrow absolute top-1/2 left-0 z-10 -translate-y-1/2 -translate-x-1/2 rounded-full bg-white w-8 h-8 flex items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+        <div className="swiper-button-next cursor-pointer custom-arrow absolute top-1/2 left-0 z-10 -translate-y-1/2 lg:-translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <IconArrow className={'rotate-90'}/>
         </div>
-        <div className="swiper-button-prev cursor-pointer custom-arrow absolute top-1/2 right-0 z-10 -translate-y-1/2 translate-x-1/2 rounded-full bg-white w-8 h-8 flex items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+        <div className="swiper-button-prev cursor-pointer custom-arrow absolute top-1/2 right-0 z-10 -translate-y-1/2 lg:translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <IconArrow className={'-rotate-90'}/>
         </div>
     </div>
