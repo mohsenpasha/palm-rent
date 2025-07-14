@@ -52,9 +52,9 @@ export function QBox(){
         <div className="flex flex-wrap gap-2">
             {qList.map((item,index)=>{
                 return(
-                    <div key={index} className="p-8 border-[1px] border-[#E6E6E6] rounded-2xl w-full lg:w-[calc(50%-8px)] h-fit">
+                    <div key={index} className="lg:p-8 p-4 border-[1px] border-[#E6E6E6] lg:rounded-2xl rounded-lg w-full lg:w-[calc(50%-8px)] h-fit">
                         <div onClick={()=>toggleQItem(index)} className="flex items-center justify-between cursor-pointer">
-                            <span className="text-xl font-bold">
+                            <span className="md:text-xl sm:text-lg text-base font-bold">
                                 {item.q}
                             </span>
                             <div className="flex size-11 relative bg-[#F6F6F6] p-3 rounded-lg">
@@ -62,7 +62,7 @@ export function QBox(){
                                 <span className="absolute top-1/2 left-1/2 -translate-1/2 inline-block h-1 w-5 bg-[#545454] rounded-sm rotate-90"></span>
                             </div>
                         </div>
-                        <div className={`${item.toggle ? 'mt-4 max-h-32' : 'max-h-0 mt-0'} overflow-hidden transition-all text-[#545454] w-10/12`}>
+                        <div className={`${item.toggle ? 'mt-4 max-h-32' : 'max-h-0 mt-0'} overflow-hidden transition-all text-[#545454] lg:w-10/12 md:text text-sm`}>
                             {item.a}
                         </div>
                     </div>
