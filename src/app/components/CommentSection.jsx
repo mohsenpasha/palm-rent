@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination  } from 'swiper/modules';
 
 import 'swiper/css';
-import { IconArrow, IconArrowHandle, IconWSOSD } from './Icons';
+import { IconArrow, IconArrowHandle, IconComma, IconWSOSD } from './Icons';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 export default function CommentSection(){
@@ -102,14 +102,17 @@ const [swiperInstance, setSwiperInstance] = useState(null);
 export function SliderSingleComment({image,personName,personFrom,comment}){
     return(
             <div className='bg-white p-7 w-full lg:rounded-4xl md:rounded-2xl rounded-lg md:gap-6 gap-3 flex flex-col'>
-                <div className='flex w-full items-center gap-2'>
-                    <div className='shrink-0'>
-                        <Image className='rounded-full' src={image} width={63} height={63} alt=''></Image>
+                <div className='flex justify-between items-center'>
+                    <div className='flex items-center gap-2'>
+                        <div className='shrink-0'>
+                            <Image className='rounded-full' src={image} width={63} height={63} alt=''></Image>
+                        </div>
+                        <div className='h-full flex flex-col justify-center'>
+                            <div className='md:text-xl sm:text-lg text-base font-bold'>{personName}</div>
+                            <div className='md:text-sm text-xs'>{personFrom}</div>
+                        </div>
                     </div>
-                    <div className='h-full flex flex-col justify-center'>
-                        <div className='md:text-xl sm:text-lg text-base font-bold'>{personName}</div>
-                        <div className='md:text-sm text-xs'>{personFrom}</div>
-                    </div>
+                    <IconComma/>
                 </div>
                 <p className='text-[#363636] sm:text-sm text-xs leading-[180%]'>{comment}</p>
             </div>
