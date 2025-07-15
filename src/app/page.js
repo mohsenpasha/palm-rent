@@ -1,4 +1,5 @@
 import BranchSection from "./components/BranchSection";
+import CommentSection from "./components/CommentSection";
 import CommonQuestionSection from "./components/CommonQuestionSection";
 import DescriptionSection from "./components/DescriptionSection";
 import Header from "./components/Header";
@@ -16,6 +17,7 @@ export default function Home() {
       <CommonQuestionSection/>
       <Why2Section/>
       <DescriptionSection/>
+      <CommentSection/>
     </>
   );
 }

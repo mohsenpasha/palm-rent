@@ -79,3 +79,24 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     background: none;
     display: none;
 }
+
+.swiper-pagination{
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translate(-50%,-50%);
+  display: flex;
+  gap: 12px;
+}
+.swiper-pagination .swiper-pagination-bullet{
+  width: 12px;
+  height: 12px;
+  background-color: #D8D8D8;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color .3s;
+}
+.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background: #4554AF;
+}
+  
