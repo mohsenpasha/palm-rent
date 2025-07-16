@@ -1,4 +1,5 @@
 import BranchSection from "./components/BranchSection";
+import CarCategorySection from "./components/CarCategorySection";
 import CommentSection from "./components/CommentSection";
 import CommonQuestionSection from "./components/CommonQuestionSection";
 import DescriptionSection from "./components/DescriptionSection";
@@ -12,12 +13,13 @@ export default function Home() {
     <>
       <Header />
       <LandingFirstView/>
+      <CarCategorySection/>
       <BranchSection/>
       <WhySection/>
       <CommonQuestionSection/>
+      <CommentSection/>
       <Why2Section/>
       <DescriptionSection/>
-      <CommentSection/>
     </>
   );
 }
