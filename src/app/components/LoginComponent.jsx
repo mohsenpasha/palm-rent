@@ -103,7 +103,7 @@ export function LoginStage2(){
                 </div>
             </div>
             <button ref={submitButton} className="lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] py-3 my-3 rounded-xs md:rounded-lg flex items-center justify-center gap-2">
-                ورود به حساب کاربری
+                تایید
             </button>
         </div>
     )
