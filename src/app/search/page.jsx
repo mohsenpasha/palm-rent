@@ -12,8 +12,25 @@ export default function SearchResultPage(){
                 <RoadMap/>
                 <DateBox/>
                 <SearchBox/>
-                <div className="flex w-[calc(25%-16px)] m-[40px]">
-                    <SingleCar/>
+                <div className="flex flex-wrap gap-4">
+                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                        <SingleCar/>
+                    </div>
+                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                        <SingleCar/>
+                    </div>
+                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                        <SingleCar/>
+                    </div>
+                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                        <SingleCar/>
+                    </div>
+                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                        <SingleCar/>
+                    </div>
+                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                        <SingleCar/>
+                    </div>
                 </div>
             </div>
         </>

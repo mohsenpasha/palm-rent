@@ -3,16 +3,16 @@ import { IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhat
 
 export default function SingleCar(){
     return(
-        <div className="flex w-full flex-col rounded-2xl border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
+        <div className="flex w-full flex-col rounded-2xl md:text-base text-sm border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
             <SingleCarGallery>
-                <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2">
+                <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2 w-full overflow-hidden flex-wrap">
                     <span className="py-1 px-2 rounded-4xl bg-white">بدون دیپوزیت</span>
                     <span className="py-1 px-2 rounded-4xl bg-white">تحویل رایگان</span>
                     <span className="py-1 px-2 rounded-4xl bg-white">بیمه رایگان</span>
                     <span className="py-1 px-2 rounded-4xl bg-white">کیلومتر نامحدود</span>
                 </div>
             </SingleCarGallery>
-            <div className="text-left my-2 text-xl">Audi r8 2022</div>
+            <div className="text-left my-2 lg:text-xl sm:text-lg text-base">Audi r8 2022</div>
             <SingleCarOptions/>
             <SingleCarPriceList/>
             <SingleCarButtonHolder2/>
@@ -74,7 +74,7 @@ export function SingleCarPriceList(){
                     <div>
                         از 1 تا 6 روز
                     </div>
-                    <div className="text-lg flex gap-2">
+                    <div className="lg:text-lg text-base flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
                             140
                         </span>
@@ -88,7 +88,7 @@ export function SingleCarPriceList(){
                     <div>
                         از 1 تا 6 روز
                     </div>
-                    <div className="text-lg flex gap-2">
+                    <div className="lg:text-lg text-base flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
                             140
                         </span>
@@ -102,7 +102,7 @@ export function SingleCarPriceList(){
                     <div>
                         از 1 تا 6 روز
                     </div>
-                    <div className="text-lg flex gap-2">
+                    <div className="lg:text-lg text-base flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
                             140
                         </span>
