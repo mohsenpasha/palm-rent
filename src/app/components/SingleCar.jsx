@@ -1,5 +1,7 @@
+'use client'
 import Image from "next/image";
 import { IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhatsapp } from "./Icons";
+import { useState } from "react";
 
 export default function SingleCar(){
     return(
@@ -21,17 +23,41 @@ export default function SingleCar(){
 }
 
 export function SingleCarGallery({children}){
+    const [hoverList,setHoverList] = useState([true,false,false])
+    function galleryHoverHandler(targetIndex){
+        setHoverList(hoverList.map((item,index)=>{
+            if(index == targetIndex){
+                return true
+            }
+            else{
+                return false
+            }
+        }))
+    }
+    function mouseLeaveHandler(){
+        setHoverList([true,false,false])
+    }
     return(
         <div className="flex relative w-full h-[250px]">
             <div className="flex h-full">
                 <div className="absolute w-full h-full top-0 right-0 rounded-lg -z-10">
-                    <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-1.png'} width={395} height={253} alt=''></Image>
-                    {children}
+                    <Image className={`${hoverList[1] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-1.png'} width={395} height={253} alt=''></Image>
+                    <Image className={`${hoverList[2] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-2.jpg'} width={395} height={253} alt=''></Image>
+                    <Image className={`${hoverList[3] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
                 </div>
+                    <div className="z-50">
+                        {children}
+                    </div>
 
-                <div className="w-full h-full">
-                    <div className="w-full h-2 bg-white rounded-2xl">
-
+                <div className="absolute w-full h-full flex items-end flex-row-reverse p-2 cursor-pointer transition-all opacity-0 hover:opacity-100">
+                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(0)} className="w-full h-full flex items-end group px-1">
+                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
+                    </div>
+                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(1)} className="w-full h-full flex items-end group px-1">
+                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
+                    </div>
+                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(2)} className="w-full h-full flex items-end group px-1">
+                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
                     </div>
                 </div>
             </div>
