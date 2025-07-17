@@ -26,7 +26,7 @@ export default function RoadMap(){
         <div className="sm:flex hidden w-full my-12 justify-center">
             {roadMapList.map((item,index)=>{
                 return(
-                    <div className="flex flex-col items-center justify-center gap-2 w-[200px]">
+                    <div key={index} className="flex flex-col items-center justify-center gap-2 w-[200px]">
                         <div className="relative">
                             <div className="p-2 bg-white">
                                 {item.icon}
