@@ -45,7 +45,7 @@ export function SingleCarGallery({children}){
                     <Image className={`${hoverList[2] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-2.jpg'} width={395} height={253} alt=''></Image>
                     <Image className={`${hoverList[3] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
                 </div>
-                    <div className="z-50">
+                    <div className="z-20">
                         {children}
                     </div>
 
