@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { IconBag, IconGas, IconGearBox, IconPerson, IconPlay } from "./Icons";
+import { IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhatsapp } from "./Icons";
 
 export default function SingleCar(){
     return(
-        <div className="flex w-full flex-col rounded-lg border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
+        <div className="flex w-full flex-col rounded-2xl border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
             <SingleCarGallery>
                 <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2">
                     <span className="py-1 px-2 rounded-4xl bg-white">بدون دیپوزیت</span>
@@ -15,7 +15,7 @@ export default function SingleCar(){
             <div className="text-left my-2 text-xl">Audi r8 2022</div>
             <SingleCarOptions/>
             <SingleCarPriceList/>
-
+            <SingleCarButtonHolder2/>
         </div>
     )
 }
@@ -116,10 +116,30 @@ export function SingleCarPriceList(){
         </div>
     )
 }
-export function SingleCarButtonHolder(){
+export function SingleCarButtonHolder1(){
     return(
-        <div>
-            <button className=""></button>
+        <div className="flex w-full gap-4">
+            <button className="border-[1px] border-[#629BF8] rounded-xl text-[#629BF8] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#629BF8] transition-all hover:text-white hover:border-transparent">
+                <IconSend/>
+                رزرو فوری
+            </button>
+            <button className="border-[1px] border-[#10B981] rounded-xl text-[#10B981] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#10B981] transition-all hover:text-white hover:border-transparent">
+                <IconWhatsapp/>
+                رزرو : واتس اپ
+            </button>
+        </div>
+    )
+}
+export function SingleCarButtonHolder2(){
+    return(
+        <div className="flex w-full gap-2">
+            <button className="rounded-xl py-2 flex justify-center gap-2 w-full cursor-pointer bg-[#3B82F6] text-white">
+                انتخاب خودرو
+            </button>
+            <button className="rounded-xl py-2 flex justify-center gap-2 w-fit text-nowrap px-2 cursor-pointer bg-[#10B981] text-white">
+                <IconWhatsapp/>
+                واتس اپ
+            </button>
         </div>
     )
 }
