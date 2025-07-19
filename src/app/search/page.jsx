@@ -1,10 +1,14 @@
+'use client'
+import { useSelector } from "react-redux";
 import { DateBox } from "../components/DateBox";
 import Header from "../components/Header";
+import PopupReels from "../components/PopupReels";
 import RoadMap from "../components/RoadMap";
 import { SearchBox } from "../components/SearchBox";
 import SingleCar from "../components/SingleCar";
 
 export default function SearchResultPage(){
+    const isReelActive = useSelector((state) => state.reels.isReelActive)
     return(
         <>
             <Header/>
@@ -33,6 +37,9 @@ export default function SearchResultPage(){
                     </div>
                 </div>
             </div>
+            {isReelActive && 
+                <PopupReels/>
+            }
         </>
     )
 }

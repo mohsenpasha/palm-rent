@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhatsapp } from "./Icons";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeReelActive } from "@/redux/slices/reelsSlice";
 
 export default function SingleCar(){
     return(
@@ -23,6 +25,7 @@ export default function SingleCar(){
 }
 
 export function SingleCarGallery({children}){
+    const dispatch = useDispatch()
     const [hoverList,setHoverList] = useState([true,false,false])
     function galleryHoverHandler(targetIndex){
         setHoverList(hoverList.map((item,index)=>{
@@ -36,6 +39,10 @@ export function SingleCarGallery({children}){
     }
     function mouseLeaveHandler(){
         setHoverList([true,false,false])
+    }
+    function activateReel(){
+        dispatch(changeReelActive(true))
+        // dispatch(changeReelActive(true))
     }
     return(
         <div className="flex relative w-full h-[250px]">
@@ -61,7 +68,7 @@ export function SingleCarGallery({children}){
                     </div>
                 </div>
             </div>
-            <div className="absolute left-2 bottom-2 cursor-pointer">
+            <div onClick={activateReel} className="absolute left-2 bottom-2 cursor-pointer">
                 <IconPlay/>
             </div>
         </div>

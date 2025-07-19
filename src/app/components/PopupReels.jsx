@@ -2,18 +2,27 @@
 import { useEffect, useRef, useState } from "react"
 import { IconArrow, IconClose, IconMute, IconPlay2, IconUnMute } from "./Icons"
 import { useMediaQuery } from "../hooks/useMediaQuery"
+import { useDispatch, useSelector } from "react-redux"
+import { changeActiveIndex, changeReelActive } from "@/redux/slices/reelsSlice"
 
 export default function PopupReels(){
-    const [reelList,setReelList] = useState(['/videos/test-vid-1.mp4','/videos/test-vid-2.mp4','/videos/test-vid-1.mp4','/videos/test-vid-2.mp4','/videos/test-vid-1.mp4','/videos/test-vid-2.mp4','/videos/test-vid-1.mp4','/videos/test-vid-2.mp4'])
+    const dispatch = useDispatch()
+    const reelList = useSelector((state)=>state.reels.reelList)
+    const sliderIndex = useSelector((state) => state.reels.activeIndex)
     const [isMuted,setIsmuted] = useState(true)
     const isUnderSm = useMediaQuery("(max-width: 639.9px)");
-    const [sliderIndex,setSliderIndex] = useState(0)
     const [sliderTransition,setSliderTransition] = useState(0)
     const touchStartY = useRef(0)
     const sliderIndexRef = useRef(0)
     const reelsRef = useRef([])
     const isSliderLocked = useRef(false)
-    
+    function closePopupReels(){
+        dispatch(changeActiveIndex(0))
+        dispatch(changeReelActive(false))
+    }
+    function setSliderIndex(index){
+        dispatch(changeActiveIndex(index))
+    }
     function wheelHandler(event){
         if(event.wheelDelta > 0){
             moveUp()
@@ -117,11 +126,11 @@ export default function PopupReels(){
 
     return(
         <div className="fixed z-50 w-[100vw] h-[100vh] top-0 right-0">
-            <div className="absolute w-full h-full bg-black opacity-85"></div>
+            <div onClick={closePopupReels} className="absolute w-full h-full bg-black opacity-85"></div>
             <div className="sm:h-[90vh] h-[100vh] absolute left-1/2 top-1/2 -translate-1/2 flex gap-2">
                 <div className="text-white z-20 flex flex-col h-full sm:static right-2 top-6 absolute justify-between">
                     <div className="flex flex-col gap-2">
-                        <div className="text-white w-[50px] h-[50px] flex items-center justify-center transition-all p-3 bg-[#ffffff26] rounded-lg hover:bg-[#ffffff46] cursor-pointer">
+                        <div onClick={closePopupReels} className="text-white w-[50px] h-[50px] flex items-center justify-center transition-all p-3 bg-[#ffffff26] rounded-lg hover:bg-[#ffffff46] cursor-pointer">
                             <IconClose className={'w-[16px]'}/>
                         </div>
                         <div onClick={()=>setIsmuted(!isMuted )} className="text-white w-[50px] h-[50px] flex items-center justify-center transition-all p-3 bg-[#ffffff26] rounded-lg hover:bg-[#ffffff46] cursor-pointer">
