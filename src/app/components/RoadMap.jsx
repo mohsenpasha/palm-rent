@@ -28,7 +28,7 @@ export default function RoadMap(){
                 return(
                     <div key={index} className="flex flex-col items-center justify-center gap-2 w-[200px]">
                         <div className="relative">
-                            <div className="p-2 bg-white">
+                            <div className="p-2 bg-[#F6F6F6]">
                                 {item.icon}
                             </div>
                             {/* <IconCircledTick/> */}
