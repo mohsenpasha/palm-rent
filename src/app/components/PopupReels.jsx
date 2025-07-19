@@ -1,17 +1,19 @@
 'use client'
 import { useEffect, useRef, useState } from "react"
 import { IconArrow, IconClose, IconMute, IconPlay2, IconUnMute } from "./Icons"
+import { useMediaQuery } from "../hooks/useMediaQuery"
 
 export default function PopupReels(){
     const [reelList,setReelList] = useState(['/videos/test-vid-1.mp4','/videos/test-vid-2.mp4','/videos/test-vid-1.mp4','/videos/test-vid-2.mp4','/videos/test-vid-1.mp4','/videos/test-vid-2.mp4','/videos/test-vid-1.mp4','/videos/test-vid-2.mp4'])
     const [isMuted,setIsmuted] = useState(true)
+    const isUnderSm = useMediaQuery("(max-width: 639.9px)");
     const [sliderIndex,setSliderIndex] = useState(0)
     const [sliderTransition,setSliderTransition] = useState(0)
+    const touchStartY = useRef(0)
     const sliderIndexRef = useRef(0)
     const reelsRef = useRef([])
     const isSliderLocked = useRef(false)
     
-    window.addEventListener('wheel',wheelHandler)
     function wheelHandler(event){
         if(event.wheelDelta > 0){
             moveUp()
@@ -21,6 +23,21 @@ export default function PopupReels(){
         }
     }
 
+    function touchStartHandler(event){
+        touchStartY.current = event.touches[0].clientY
+    }
+    function touchMoveHandler(event){
+        if(event.touches[0].clientY - touchStartY.current > 0){
+            moveUp()
+        }
+        else{
+            moveDown()
+        }
+        
+    }
+    function touchEndHandler(){
+        touchStartY.current = 0
+    }
     function tDisableSlider(){
         isSliderLocked.current = true
         setTimeout(()=>{
@@ -46,13 +63,28 @@ export default function PopupReels(){
     }
     useEffect(()=>{
         reelsRef.current[sliderIndex].querySelector('video').play()
-          window.addEventListener('wheel', wheelHandler, { passive: true })
-            return () => {
-                window.removeEventListener('wheel', wheelHandler)
-            }
+        window.addEventListener('wheel', wheelHandler, { passive: true })
+        window.addEventListener('touchstart', touchStartHandler)
+        window.addEventListener('touchmove', touchMoveHandler)
+        window.addEventListener('touchend', touchEndHandler)
+        return () => {
+            window.removeEventListener('wheel', wheelHandler)
+            window.removeEventListener('touchstart', touchStartHandler)
+            window.removeEventListener('touchmove', touchMoveHandler)
+            window.removeEventListener('touchend', touchEndHandler)
+        }
     },[])
     useEffect(()=>{
-        let tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top - ((window.innerHeight * 5) / 100)) * -1
+        console.log(isUnderSm)
+        let tr;
+        if(isUnderSm){
+            console.log('isundersm')
+            tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top) * -1
+        }
+        else{
+            console.log('not under')
+            tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top - ((window.innerHeight * 5) / 100)) * -1
+        }
         setSliderTransition(sliderTransition + tr)
         reelsRef.current.map((item,index)=>{
             item.querySelector('video').muted = isMuted
@@ -65,6 +97,19 @@ export default function PopupReels(){
         })
     },[sliderIndex])
     useEffect(()=>{
+        let tr;
+        if(isUnderSm){
+            console.log('isundersm')
+            tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top) * -1
+        }
+        else{
+            console.log('not under')
+            tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top - ((window.innerHeight * 5) / 100)) * -1
+        }
+        console.log(sliderTransition,tr)
+        setSliderTransition(sliderTransition + tr)
+    },[isUnderSm])
+    useEffect(()=>{
             reelsRef.current.map((item,index)=>{
                 item.querySelector('video').muted = isMuted
             })
@@ -73,8 +118,8 @@ export default function PopupReels(){
     return(
         <div className="fixed z-50 w-[100vw] h-[100vh] top-0 right-0">
             <div className="absolute w-full h-full bg-black opacity-85"></div>
-            <div className="h-[90vh] absolute left-1/2 top-1/2 -translate-1/2 flex gap-2">
-                <div className="text-white z-20 flex flex-col h-full justify-between">
+            <div className="sm:h-[90vh] h-[100vh] absolute left-1/2 top-1/2 -translate-1/2 flex gap-2">
+                <div className="text-white z-20 flex flex-col h-full sm:static right-2 top-6 absolute justify-between">
                     <div className="flex flex-col gap-2">
                         <div className="text-white w-[50px] h-[50px] flex items-center justify-center transition-all p-3 bg-[#ffffff26] rounded-lg hover:bg-[#ffffff46] cursor-pointer">
                             <IconClose className={'w-[16px]'}/>
@@ -100,7 +145,7 @@ export default function PopupReels(){
                 <div style={{transform: `translateY(${sliderTransition}px)`}} className="transition-all duration-200">
                     {reelList.map((item,index)=>{
                         return(
-                            <SingleReel video={item} key={index} reelIndex={index} ref={reelsRef}/>
+                            <SingleReel video={item} key={index} activeIndex={sliderIndex} reelIndex={index} ref={reelsRef}/>
                         )
                     })}
                 </div>
@@ -110,7 +155,7 @@ export default function PopupReels(){
     )
 }
 
-export function SingleReel({ref,reelIndex,video}){
+export function SingleReel({ref,reelIndex,activeIndex,video}){
     const [isPaused,setIsPaused] = useState(false)
     function videoToggle(){
         if(ref.current[reelIndex].querySelector('video').paused){
@@ -122,14 +167,19 @@ export function SingleReel({ref,reelIndex,video}){
             setIsPaused(true)
         }
     }
+    useEffect(()=>{
+        if(activeIndex == reelIndex){
+            setIsPaused(false)
+        }
+    },[activeIndex])
     return(
-        <div onClick={videoToggle} ref={(el) => (ref.current[reelIndex] = el)} className="relative h-[90vh] w-[410px] rounded-lg bg-white first:mt-0 my-4">
+        <div onClick={videoToggle} ref={(el) => (ref.current[reelIndex] = el)} className="relative sm:h-[90vh] sm:w-[410px] h-[100vh] w-[100vw] sm:rounded-lg bg-white first:mt-0 my-4">
             {isPaused &&
                 <span className="absolute top-1/2 left-1/2 -translate-1/2 size-[60px] flex items-center justify-center bg-[#00000066] rounded-full text-white">
                     <IconPlay2/>
                 </span>
             }
-            <video loop muted className="w-full h-full object-cover rounded-lg" src={video}>Your browser does not support the video tag.</video>
+            <video loop muted className="w-full h-full object-cover sm:rounded-lg" src={video}>Your browser does not support the video tag.</video>
         </div>
     )
 }
