@@ -5,20 +5,22 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeReelActive } from "@/redux/slices/reelsSlice";
 
-export default function SingleCar(){
+export default function SingleCar({data}){
+    console.log(data)   
     return(
         <div className="flex w-full flex-col rounded-2xl md:text-base text-sm border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
             <SingleCarGallery>
                 <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2 w-full overflow-hidden flex-wrap">
-                    <span className="py-1 px-2 rounded-4xl bg-white">بدون دیپوزیت</span>
-                    <span className="py-1 px-2 rounded-4xl bg-white">تحویل رایگان</span>
-                    <span className="py-1 px-2 rounded-4xl bg-white">بیمه رایگان</span>
-                    <span className="py-1 px-2 rounded-4xl bg-white">کیلومتر نامحدود</span>
+                    {data.options.map((item,index)=>{
+                        return(
+                            <span key={index} className="py-1 px-2 rounded-4xl bg-white">{item}</span>
+                        )
+                    })}
                 </div>
             </SingleCarGallery>
-            <div className="text-left my-2 lg:text-xl sm:text-lg text-base">Audi r8 2022</div>
-            <SingleCarOptions/>
-            <SingleCarPriceList/>
+            <div className="text-left my-2 lg:text-xl sm:text-lg text-base">{data.title}</div>
+            <SingleCarOptions data={data}/>
+            <SingleCarPriceList priceList={data.priceList}/>
             <SingleCarButtonHolder2/>
         </div>
     )
@@ -74,77 +76,59 @@ export function SingleCarGallery({children}){
         </div>
     )
 }
-export function SingleCarOptions(){
+export function SingleCarOptions({data}){
     return(
         <div className="flex w-full text-[#787878] text-xs">
             <div className="w-full flex items-center gap-1 justify-center">
                 <IconGas/>
-                بنزین
+                {data.gasType}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <IconGearBox/>
-                اتوماتیک
+                {data.gearbox}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <IconBag/>
-                3 چمدان
+                {data.suitcase} چمدان
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <IconPerson/>
-                5 نفر
+                {data.passengers} نفر
             </div>
         </div>
     )
 }
-export function SingleCarPriceList(){
+export function SingleCarPriceList({priceList}){
+    console.log(priceList)
     return(
         <div>
-            <div className="w-full border-b-[1px] border-[#E2E2E2] py-4">
+            {/* <div className="w-full border-b-[1px] border-[#E2E2E2] py-2">
                 قیمت کرایه تویوتا یاریس 2024 دبی
-            </div>
-            <div className="flex flex-col gap-2 my-4">
-                <div className="flex justify-between">
-                    <div>
-                        از 1 تا 6 روز
+            </div> */}
+            <div className="flex flex-col gap-2 my-4 border-t-[1px] pt-2 border-[#E2E2E2]">
+                {Object.entries(priceList).map(([key, { previousPrice, currentPrice }]) => (
+                    <div key={key} className="flex justify-between">
+                        <div>
+                            {(() => {
+                                const [from, to] = key.split(":");
+                                return to.length === 0 ? (
+                                    <>بیشتر {from} روز</>
+                                ) : (
+                                    <>از {from} تا {to} روز</>
+                                );
+                            })()}
+                        </div>
+                        <div className="lg:text-lg text-base flex gap-2">
+                            <span className="text-[#A7A7A7] line-through">
+                                {previousPrice}
+                            </span>
+                            <span className="text-[#10B981]">
+                                {currentPrice}
+                            </span>
+                            درهم روزانه
+                        </div>
                     </div>
-                    <div className="lg:text-lg text-base flex gap-2">
-                        <span className="text-[#A7A7A7] line-through">
-                            140
-                        </span>
-                        <span className="text-[#10B981]">
-                            98
-                        </span>
-                        درهم روزانه
-                    </div>
-                </div>
-                <div className="flex justify-between">
-                    <div>
-                        از 1 تا 6 روز
-                    </div>
-                    <div className="lg:text-lg text-base flex gap-2">
-                        <span className="text-[#A7A7A7] line-through">
-                            140
-                        </span>
-                        <span className="text-[#10B981]">
-                            98
-                        </span>
-                        درهم روزانه
-                    </div>
-                </div>
-                <div className="flex justify-between">
-                    <div>
-                        از 1 تا 6 روز
-                    </div>
-                    <div className="lg:text-lg text-base flex gap-2">
-                        <span className="text-[#A7A7A7] line-through">
-                            140
-                        </span>
-                        <span className="text-[#10B981]">
-                            98
-                        </span>
-                        درهم روزانه
-                    </div>
-                </div>
+                    ))}
             </div>
         </div>
     )

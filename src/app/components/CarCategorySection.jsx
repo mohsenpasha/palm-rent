@@ -39,7 +39,7 @@ export default function CarCategorySection(){
     ])
     return(
         <section>
-            <div className="w-[95vw] m-auto my-16">
+            <div className="w-[85vw] m-auto my-16">
                 <div className="text-center">
                     دسته بندی خودرو ها
                 </div>

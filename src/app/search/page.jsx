@@ -9,6 +9,8 @@ import SingleCar from "../components/SingleCar";
 
 export default function SearchResultPage(){
     const isReelActive = useSelector((state) => state.reels.isReelActive)
+    const carList = useSelector((state) => state.carList.carList)
+    console.log(carList)
     return(
         <>
             <Header/>
@@ -17,24 +19,13 @@ export default function SearchResultPage(){
                 <DateBox/>
                 <SearchBox/>
                 <div className="flex flex-wrap gap-4">
-                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                        <SingleCar/>
-                    </div>
-                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                        <SingleCar/>
-                    </div>
-                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                        <SingleCar/>
-                    </div>
-                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                        <SingleCar/>
-                    </div>
-                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                        <SingleCar/>
-                    </div>
-                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                        <SingleCar/>
-                    </div>
+                    {carList.map((item,index)=>{
+                        return(
+                            <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                                <SingleCar data={item}/>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
             {isReelActive && 
