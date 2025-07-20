@@ -207,9 +207,9 @@ export function ExtraServices(){
     )
 }
 
-export function FineDeposit(){
+export function FineDeposit({borderLess}){
     return(
-        <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className={`${!borderLess == 'border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl'} my-4 flex-1 bg-white`}>
             <div className="flex flex-col gap-4">
 
                 <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
@@ -232,9 +232,9 @@ export function FineDeposit(){
 
 
 
-export function PaymentDetail(){
+export function PaymentDetail({borderLess=false}){
     return(
-        <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className={`${!borderLess && 'border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
             <div className="mb-4 flex justify-between">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">جزئیات پرداخت خود را مرور کنید </div>
                 <div className="text-[#3B82F6] cursor-pointer">کد تخفیف دارم !</div>
