@@ -24,7 +24,9 @@ export function SearchBox(){
                     <label className="flex gap-2 select-none">
                         <input className="peer hidden" type="checkbox" />
                         <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
-                            <IconSort1/>
+                            <span className="flex size-[18px]">
+                                <IconSort1/>
+                            </span>
                             بدون دیپوزیت
                         </div>
                     </label>
