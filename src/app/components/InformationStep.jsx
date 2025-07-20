@@ -6,15 +6,15 @@ import Link from "next/link"
 
 export default function InformationStep(){
     return(
-        <div className="flex w-full flex-1 gap-4">
-            <div className="flex flex-col flex-1 h-fit">
+        <div className="flex w-full flex-1 gap-4 lg:flex-nowrap flex-wrap">
+            <div className="flex flex-col flex-1 lg:w-auto w-full h-fit">
                 <DeliverySpot/>
                 <ExtraServices/>
                 <FineDeposit/>
                 <PaymentDetail/>
                 <PersonalInfoBox/>
             </div>
-            <div className="w-1/3 h-fit sticky top-[100px]">
+            <div className="w-1/3 lg:flex hidden h-fit sticky top-[100px]">
                 <SideCarDetail/>
             </div>
         </div>
@@ -26,20 +26,20 @@ export function DeliverySpot(){
     return(
         <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="text-lg font-semibold">دوست دارید خودرو خود را کجا تحویل بگیرید ؟</div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">دوست دارید خودرو خود را کجا تحویل بگیرید ؟</div>
             </div>
             <div>
-                <div className="bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div>
                         <div>مکان محل تحویل خود را انتخاب کنید </div>
                         <div className="text-[#545454] text-sm">از 9 مکان موجود انتخاب کنید</div>
                     </div>
                     <IconArrow className={'rotate-90'}/>
                 </div>
-                <label className="flex gap-2 items-center my-2 mt-4" htmlFor="anotherSpotDelivery">
-                    <div className="bg-[#B5B5B5] transition-all has-[:checked]:bg-[#55FF55] w-[61px] h-[30px] rounded-[20px] relative shadow-[inset_0_1px_2px_0px_rgba(0,0,0,.25)]">
+                <label className="flex gap-2 items-center my-2 mt-4 lg:text-base md:text-sm text-xs" htmlFor="anotherSpotDelivery">
+                    <div className="bg-[#B5B5B5] transition-all has-[:checked]:bg-[#55FF55] md:w-[61px] md:h-[30px] w-[45px] h-[20px] rounded-[20px] relative shadow-[inset_0_1px_2px_0px_rgba(0,0,0,.25)]">
                         <input id="anotherSpotDelivery" className="peer hidden" type="checkbox" />
-                        <span className="absolute size-[30px] bg-white transition-all rounded-full translate-0 peer-checked:left-full peer-checked:-translate-x-full left-0 shadow-[-2px_1px_4px_0px_rgba(0,0,0,.15)]"></span>
+                        <span className="absolute md:size-[30px] size-[20px] bg-white transition-all rounded-full translate-0 peer-checked:left-full peer-checked:-translate-x-full left-0 shadow-[-2px_1px_4px_0px_rgba(0,0,0,.15)]"></span>
                     </div>
                     خودرو را در محل دیگری تحویل میدهم
                 </label>
@@ -53,7 +53,7 @@ export function SideCarDetail(){
     return(
         <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="text-lg font-semibold">به صورت آنلاین خودرو خود را رزرو کنید </div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">به صورت آنلاین خودرو خود را رزرو کنید </div>
             </div>
             <DetailGallery/>
             <div className="py-3 border-b-[1px] border-[#E2E2E2]">
@@ -138,7 +138,7 @@ export function ReservedServices(){
 
             </div>
 
-        </div>
+        </div> 
     )
 }
 
@@ -146,18 +146,18 @@ export function ExtraServices(){
     return(
         <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="text-lg font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
             </div>
             <div className="flex flex-col gap-4">
 
-                <label className="bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <label className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div className="flex gap-2 items-center">
                         <input type="checkbox" className="peer hidden" />
-                        <div className="size-[40px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                            <div className="absolute z-1 w-full h-full border-[10px] border-[#3B82F6] top-0 right-0"></div>
+                        <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
+                            <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
                             <IconTick2 className={'absolute z-10'}/>
                         </div>
-                        <div className="size-[40px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
+                        <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
                         >
                         </div>
                         <div>صندلی کودک</div>
@@ -167,14 +167,14 @@ export function ExtraServices(){
                         قیمت روزانه 29 درهم
                     </div>
                 </label>
-                <label className="bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <label className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div className="flex gap-2 items-center">
                         <input type="checkbox" className="peer hidden" />
-                        <div className="size-[40px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                            <div className="absolute z-1 w-full h-full border-[10px] border-[#3B82F6] top-0 right-0"></div>
+                        <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
+                            <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
                             <IconTick2 className={'absolute z-10'}/>
                         </div>
-                        <div className="size-[40px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
+                        <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
                         >
                         </div>
                         <div>صندلی کودک</div>
@@ -184,14 +184,14 @@ export function ExtraServices(){
                         قیمت روزانه 29 درهم
                     </div>
                 </label>
-                <label className="bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <label className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div className="flex gap-2 items-center">
                         <input type="checkbox" className="peer hidden" />
-                        <div className="size-[40px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                            <div className="absolute z-1 w-full h-full border-[10px] border-[#3B82F6] top-0 right-0"></div>
+                        <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
+                            <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
                             <IconTick2 className={'absolute z-10'}/>
                         </div>
-                        <div className="size-[40px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
+                        <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
                         >
                         </div>
                         <div>صندلی کودک</div>
@@ -212,7 +212,7 @@ export function FineDeposit(){
         <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="flex flex-col gap-4">
 
-                <div className="bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div className="flex gap-2 items-center">
                         <span className="flex size-9 p-1 text-[#7C7C7C]">
                             <IconSort1/>
@@ -236,14 +236,14 @@ export function PaymentDetail(){
     return(
         <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4 flex justify-between">
-                <div className="text-lg font-semibold">جزئیات پرداخت خود را مرور کنید </div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">جزئیات پرداخت خود را مرور کنید </div>
                 <div className="text-[#3B82F6] cursor-pointer">کد تخفیف دارم !</div>
             </div>
             <div className="flex relative bg-[#EFFBF6] my-12 py-2">
                 <div className="absolute top-0 -translate-y-8 right-0 w-full">
                     <IconGrate/>
                 </div>
-                <div className="flex flex-col justify-center items-center w-full">
+                <div className="flex flex-col justify-center items-center w-full md:text-base text-sm">
                     <SinglePaymentDet
                         title={'قیمت اجاره 3 روزه'}
                         subtitle={
@@ -281,9 +281,9 @@ export function PaymentDetail(){
                     />
                     <div className="p-4 w-full">
                         <div className="rounded-2xl bg-white w-full">
-                            <div className="py-4 px-5 flex w-full items-center justify-between">
+                            <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between">
                                 <div className="flex flex-col gap-2">
-                                    <div className="text-xl font-semibold">
+                                    <div className="lg:text-xl md:text-lg text-sm font-semibold">
                                         پیش پرداخت
                                     </div>
                                     <div className="flex gap-2">
@@ -291,7 +291,7 @@ export function PaymentDetail(){
                                         <Image src={'/images/zarinpal.png'} width={60} height={29} alt=""></Image>
                                     </div>
                                 </div>
-                                <div className="flex flex-col items-end gap-1">
+                                <div className="flex flex-col items-end gap-1 md:text-base text-sm">
                                     <div className="font-bold">
                                         170 درهم
                                     </div>
@@ -302,16 +302,16 @@ export function PaymentDetail(){
                             </div>
 
 
-                            <div className="py-4 px-5 flex w-full items-center justify-between border-t-[1px] border-[#E2E2E2]">
+                            <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between border-t-[1px] border-[#E2E2E2]">
                                 <div className="flex flex-col gap-2">
-                                    <div className="text-lg font-semibold">
+                                    <div className="lg:text-lg md sm:text-sm text-xs font-semibold">
                                         مانده ، پرداخت هنگام تحویل خودرو
                                     </div>
-                                    <div className="text-[#545454]">
+                                    <div className="text-[#545454] lg:text-xl md:text-lg sm:text-sm text-xs">
                                         پرداخت : نقدی دلار ، درهم ، کارت بانک بین المللی
                                     </div>
                                 </div>
-                                <div className="flex flex-col items-end gap-1">
+                                <div className="flex flex-col items-end gap-1 md:text-base text-sm">
                                     800 درهم
                                 </div>
                             </div>
@@ -347,12 +347,12 @@ export function SinglePaymentDet({title,subtitle,price}){
 
 export function PersonalInfoBox(){
     return(
-        <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
+        <div className="lg:text-base md:text-sm text-xs border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="text-lg font-semibold">اطلاعات شخصی خود را وارد کنید</div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">اطلاعات شخصی خود را وارد کنید</div>
             </div>
             <div className="flex flex-col gap-4">
-                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3" type="text" placeholder="نام و نام خانوادگی ..." />
+                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder="نام و نام خانوادگی ..." />
                 <div className="border-[1px] flex flex-row-reverse items-center border-[#B0B0B0] rounded-xl">
                     <select dir="ltr" className="p-2 text-center outline-0" name="" id="">
                         <option value="98">+98</option>
@@ -363,9 +363,9 @@ export function PersonalInfoBox(){
                     <span className="inline-block h-8 w-[1px] bg-[#919191]"></span>
                     <input className="text-left w-full outline-0 p-3" placeholder="091*********" type="text" />
                 </div>
-                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3" type="text" placeholder="ایمیل ..." />
+                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder="ایمیل ..." />
             </div>
-            <div className="flex justify-center py-2 gap-1">
+            <div className="flex justify-center py-2 gap-1 sm:text-xs text-[10px]">
                 رزرو این خودرو به منزله پذیرفتن کلیه <Link className="text-[#3B82F6]" href={'#'}>قوانین و مقررات</Link> پالم رانت میباشد
             </div>
             <div className="pr-8 relative">
@@ -374,10 +374,10 @@ export function PersonalInfoBox(){
                 </span>
                 <div>در پالم رنت ، رزرو خودرو رایگان است  و تا 15 دقیقه بررسی شده ، سپس پیامک تاییدیه با لینک پیش پرداخت ارسال میشود.</div>
             </div>
-            <button className="bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 w-full text-xl my-2">
+            <button className="bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 w-full lg:text-xl sm:text-lg text-sm my-2">
                 خودرو خود را رزرو کنید
             </button>
-            <div className="text-center text-[#8A8A8A] text-sm">
+            <div className="text-center text-[#8A8A8A] md:text-sm text-xs">
                 در ثبت اولیه نیازی به پرداخت نیست
             </div>
         </div>
@@ -390,7 +390,7 @@ export function PersonalInfoBox(){
 //     return(
 //         <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
 //             <div className="mb-4">
-//                 <div className="text-lg font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
+//                 <div className="lg:text-lg sm:text-base text-sm font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
 //             </div>
 //         </div>
 //     )
