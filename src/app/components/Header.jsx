@@ -8,7 +8,7 @@ import { useMediaQuery } from "../hooks/useMediaQuery";
 export default function Header(){
     const [menuToggle,setMenuToggle] = useState(false)
     return(
-        <header className="min-h-[80px] flex items-center">
+        <header className="min-h-[64px] flex items-center">
             <div className="p-4 px-3 2xl:px-6 flex justify-between fixed z-50 top-0 right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                 <div className="flex items-center">
                     <Link className="absolute left-1/2 top-1/2 -translate-1/2 lg:translate-0 lg:static hidden sm:block" href="#">
