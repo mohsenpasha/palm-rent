@@ -5,28 +5,32 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeReelActive } from "@/redux/slices/reelsSlice";
 
-export default function SingleCar({data}){
+export default function SingleCar({data,noBtn = false}){
     console.log(data)   
     return(
         <div className="flex w-full flex-col rounded-2xl md:text-base text-sm border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
-            <SingleCarGallery>
-                <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2 w-full overflow-hidden flex-wrap">
-                    {data.options.map((item,index)=>{
-                        return(
-                            <span key={index} className="py-1 px-2 rounded-4xl bg-white">{item}</span>
-                        )
-                    })}
-                </div>
+            <SingleCarGallery noBtn={noBtn}>
+                {!noBtn && 
+                    <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2 w-full overflow-hidden flex-wrap">
+                        {data.options.map((item,index)=>{
+                            return(
+                                <span key={index} className="py-1 px-2 rounded-4xl bg-white">{item}</span>
+                            )
+                        })}
+                    </div>
+                }
             </SingleCarGallery>
             <div className="text-left my-2 lg:text-xl sm:text-lg text-base">{data.title}</div>
             <SingleCarOptions data={data}/>
             <SingleCarPriceList priceList={data.priceList}/>
-            <SingleCarButtonHolder2/>
+            {!noBtn && 
+                <SingleCarButtonHolder2/>
+            }
         </div>
     )
 }
 
-export function SingleCarGallery({children}){
+export function SingleCarGallery({children,noBtn}){
     const dispatch = useDispatch()
     const [hoverList,setHoverList] = useState([true,false,false])
     function galleryHoverHandler(targetIndex){
@@ -70,29 +74,39 @@ export function SingleCarGallery({children}){
                     </div>
                 </div>
             </div>
-            <div onClick={activateReel} className="absolute left-2 bottom-2 cursor-pointer">
-                <IconPlay/>
-            </div>
+            {!noBtn && 
+                <div onClick={activateReel} className="absolute left-2 bottom-2 cursor-pointer">
+                    <IconPlay/>
+                </div>
+            }
         </div>
     )
 }
-export function SingleCarOptions({data}){
+export function SingleCarOptions({data,bigFont=false}){
     return(
-        <div className="flex w-full text-[#787878] text-xs">
+        <div className={`flex w-full text-[#787878] ${bigFont ? 'xl:text-2xl lg:text-xl md:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs'}`}>
             <div className="w-full flex items-center gap-1 justify-center">
-                <IconGas/>
+                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                    <IconGas/>
+                </span>
                 {data.gasType}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
-                <IconGearBox/>
+                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                    <IconGearBox/>
+                </span>
                 {data.gearbox}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
-                <IconBag/>
+                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                    <IconBag/>
+                </span>
                 {data.suitcase} چمدان
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
-                <IconPerson/>
+                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                    <IconPerson/>
+                </span>
                 {data.passengers} نفر
             </div>
         </div>
