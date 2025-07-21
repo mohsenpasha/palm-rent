@@ -3,6 +3,7 @@ import CarCategorySection from "./components/CarCategorySection";
 import CommentSection from "./components/CommentSection";
 import CommonQuestionSection from "./components/CommonQuestionSection";
 import DescriptionSection from "./components/DescriptionSection";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import LandingFirstView from "./components/LandingFirstView";
 import { Why2Section } from "./components/Why2Section";
@@ -20,6 +21,8 @@ export default function Home() {
       <CommentSection/>
       <Why2Section/>
       <DescriptionSection/>
+      <Footer/>
+      
     </>
   );
 }
