@@ -29,9 +29,9 @@ export default function SearchResultPage(){
                         )
                     })}
                 </div> */}
-                {/* <InformationStep/> */}
+                <InformationStep/>
             </div>
-            <VoucherStep/>
+            {/* <VoucherStep/> */}
             {isReelActive && 
                 <PopupReels/>
             }
