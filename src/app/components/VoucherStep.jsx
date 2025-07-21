@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import { IconBarcode, IconCalender2, IconCalenderTick, IconClock, IconContact, IconDownload, IconEmail, IconGlobalSearch, IconInfo2, IconInstagram, IconLocation, IconLocationTick, IconPerson2, IconPhone, IconReceipt, IconSmsTracking, IconTick2 } from "./Icons";
 import { FineDeposit, PaymentDetail } from "./InformationStep";
