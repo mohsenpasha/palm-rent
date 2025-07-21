@@ -17,7 +17,9 @@ export default function SearchBar(){
                     <div className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
                         <span className="text-sm">مقصد</span>
                         <div onClick={()=>setCityToggle(!cityToggle)} className="border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1">
-                            <IconLocation/>
+                            <span className="size-6">
+                                <IconLocation/>
+                            </span>
                             دبی
                         </div>
                         {cityToggle &&
@@ -87,7 +89,9 @@ export function SingleCityItem({text,href}){
     return(
         <div href={href} className="text-[#4b5259] text-nowrap px-3 transition-all hover:bg-[#f2f9ff] last-of-type:border-0 flex items-center cursor-pointer">
             <div className="flex border-b-[1px] border-[#0000001f] w-full gap-1 py-4">
-                <IconLocation/>
+                <span className="size-6">
+                    <IconLocation/>
+                </span>
                 {text}
             </div>
         </div>
