@@ -12,7 +12,7 @@ export default function Header(){
             <div className="p-4 px-3 2xl:px-6 flex justify-between fixed z-50 top-0 right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                 <div className="flex items-center">
                     <Link className="absolute left-1/2 top-1/2 -translate-1/2 lg:translate-0 lg:static hidden sm:block" href="#">
-                        <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="test"></Image>
+                        <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="palmrent logo"></Image>
                     </Link>
                     <div onClick={()=>setMenuToggle(!menuToggle)} className="z-50 flex flex-col w-6 relative cursor-pointer lg:hidden">
                         <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black ${menuToggle && 'absolute -rotate-45'}`}></div>
