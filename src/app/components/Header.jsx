@@ -2,14 +2,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import {IconArrow, IconGlobal, IconPhone, IconLogin} from "./Icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
 export default function Header(){
     const [menuToggle,setMenuToggle] = useState(false)
+    const [isHeaderClose,setIsHeaderClose] = useState(false)
+    useEffect(()=>{
+        window.addEventListener('wheel',(event)=>scrollHandler(event))
+        return () => {
+            window.removeEventListener('wheel',(event)=>scrollHandler(event))
+        }
+    },[])
+    function scrollHandler(event){
+        if(event.wheelDelta < 0 && event.pageY > 350){
+            setIsHeaderClose(true)
+        }
+        else{
+            setIsHeaderClose(false)
+        }
+    }
     return(
-        <header className="min-h-[64px] flex items-center">
-            <div className="p-4 px-3 2xl:px-6 flex justify-between fixed z-50 top-0 right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+        <header className={`min-h-[64px] flex items-center`}>
+            <div className={`p-4 px-3 2xl:px-6 flex justify-between fixed z-50 transition-all right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] ${isHeaderClose ? '-top-16' : 'top-0'}`}>
                 <div className="flex items-center">
                     <Link className="absolute left-1/2 top-1/2 -translate-1/2 lg:translate-0 lg:static hidden sm:block" href="#">
                         <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="palmrent logo"></Image>
@@ -61,7 +76,6 @@ export function HeaderMenu({ isActive, closeMenu }){
                 return !item
             }
         }))
-        console.log(targetIndex)
     }
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     return(
@@ -146,7 +160,6 @@ export function HeaderMenu({ isActive, closeMenu }){
 }
 
 export function DropDown({ children, isActive }){
-    // document.addEventListener('resize',()=>{console.log('test')})
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     return(
         <div className="lg:absolute lg:hidden w-full animate-fade-in lg:translate-y-full lg:group-hover:flex bottom-0 left-1/2 lg:-translate-x-1/2 lg:pt-2">
