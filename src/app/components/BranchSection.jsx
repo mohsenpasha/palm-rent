@@ -41,144 +41,34 @@ export function Slider() {
             }}
             >
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/dubai.webp' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    شعبه دبی
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/dubai.webp'} title={'شعبه دبی'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/antalya.webp' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    آنتالیا ترکیه
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/antalya.webp'} title={'آنتالیا ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/kayseri-min.jpg' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    قیصریه ترکیه
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/kayseri-min.jpg'} title={'قیصریه ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/georgia-min.jpg' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    تفلیس گرجستان
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/georgia-min.jpg'} title={'تفلیس گرجستان'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/istanbul.webp' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    شعبه استانبول
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/istanbul.webp'} title={'شعبه استانبول'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/oman-min.jpg' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    شعبه عمان
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/oman-min.jpg'} title={'شعبه عمان'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/kish-min.jpg' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    شعبه کیش
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/kish-min.jpg'} title={'شعبه کیش'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/samsun.webp' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    سامسون ترکیه
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/samsun.webp'} title={'سامسون ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/ezmir.webp' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    ازمیر ترکیه
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/ezmir.webp'} title={'ازمیر ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <Link href="#" className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src='/images/ankara.webp' width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
-                    <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] top-0 left-0 transition-all'>
-                        <IconArrowHandle className={'transition-all group-hover:filter-[brightness(10)]'}/>
-                    </span>
-                </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
-                    آنکارا ترکیه
-                </div>
-            </Link>
+            <SingleBranchCity link={'#'} image={'/images/ankara.webp'} title={'آنکارا ترکیه'}/>
         </SwiperSlide>
         </Swiper>
         <div className="swiper-button-next cursor-pointer custom-arrow absolute top-1/2 left-0 z-10 -translate-y-1/2 lg:-translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
@@ -189,4 +79,21 @@ export function Slider() {
         </div>
     </div>
   );
+}
+
+export function SingleBranchCity({link,image,title}){
+    return(
+            <Link href={link} className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
+                <Image className='w-full rounded-lg object-cover h-[140px]' src={image} width={218} height={181} alt=''></Image>
+                <div className='absolute left-2 top-2'>
+                    <IconWSOSD/>
+                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] group-hover:text-white top-0 left-0 transition-all'>
+                        <IconArrowHandle/>
+                    </span>
+                </div>
+                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
+                    {title}
+                </div>
+            </Link>
+    )
 }
