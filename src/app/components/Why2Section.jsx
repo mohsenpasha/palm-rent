@@ -6,7 +6,7 @@ export function Why2Section(){
     return(
         <section>
             <div className="w-[90vw] m-auto">
-                <div className="flex sm:flex-nowrap flex-wrap bg-[#F6F6F6] p-6 justify-between rounded-2xl items-center font-bold">
+                <div className="flex sm:flex-nowrap flex-wrap bg-white p-6 justify-between rounded-2xl items-center font-bold">
                     <div className="sm:w-auto w-full text-center lg:text-right my-2 gap-2">
                         <div className="text-[#3B82F6] lg:text-[32px] md:text-2xl">
                             چرا باید از ما ماشین اجاره کنید؟

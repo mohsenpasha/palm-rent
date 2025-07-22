@@ -43,7 +43,7 @@ export default function DescriptionSection(){
 }
 export function DescriptionItem({icon,title,text}){
     return(
-        <div className="p-[30px] lg:w-[calc(33%-16px)] md:w-[calc(50%-16px)] md:text-right text-center w-full border-[1px] border-[#F4F4F4] rounded-2xl flex flex-col gap-2 shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+        <div className="bg-white p-[30px] lg:w-[calc(33%-16px)] md:w-[calc(50%-16px)] md:text-right text-center w-full border-[1px] border-[#F4F4F4] rounded-2xl flex flex-col gap-2 shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <div className="h-12 flex justify-center md:justify-start">
                 {icon}
             </div>
@@ -55,7 +55,7 @@ export function DescriptionItem({icon,title,text}){
 
 export function OptionItem({icon,title}){
     return(
-        <div className="rounded-2xl lg:w-full md:w-[calc(50%-16px)] w-full md:text-base text-sm bg-[#F6F6F6] p-4 gap-4 flex items-center">
+        <div className="rounded-2xl lg:w-full md:w-[calc(50%-16px)] w-full md:text-base text-sm bg-white p-4 gap-4 flex items-center">
             {icon}
             {title}
         </div>
