@@ -1,8 +1,14 @@
 'use client'
 import { useState } from "react";
 import { IconCarExtra, IconCoupeCar, IconCrookCar, IconDiamond2, IconHandCoin, IconRocket, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3, IconStandard, IconSuitcase, IconSuv } from "./Icons";
+import { useDispatch } from "react-redux";
+import { changeSearchStatus } from "@/redux/slices/globalSlice";
 
 export function SearchBox(){
+    const dispatch = useDispatch()
+    function openSearchPopup(){
+        dispatch(changeSearchStatus(true))
+    }
     const [sortList,setSortList] = useState([
         {
             id:1,
@@ -31,18 +37,6 @@ export function SearchBox(){
     }
     return(
         <div className="bg-white rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap">
-            {/* <div className="bg-[#F4F4F4] rounded-xl flex items-center p-4 py-3 relative">
-                <span>
-                    <IconSearch2/>
-                </span>
-                <input className="w-full px-4 outline-0" type="search" placeholder="جستجوی خودرو" />
-                <button className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
-                    <IconSetting/>
-                    <span className="">
-                        فیلتر ها
-                    </span>
-                </button>
-            </div> */}
             <div className="flex md:gap-2 gap-1 overflow-auto">
                 {sortList.filter((item)=>item.selected == true).map((item,index)=>{
                         return(
@@ -84,7 +78,7 @@ export function SearchBox(){
                             فیلتر ها
                         </span>
                     </button>
-                    <button className="flex bg-[#3B82F6] py-2 px-4 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
+                    <button onClick={openSearchPopup} className="flex bg-[#3B82F6] py-2 px-4 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
                         <span className="">
                             جستجو
                         </span>

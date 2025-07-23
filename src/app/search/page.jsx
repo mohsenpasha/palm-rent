@@ -9,9 +9,11 @@ import SingleCar from "../components/SingleCar";
 import InformationStep from "../components/InformationStep";
 import { VoucherStep } from "../components/VoucherStep";
 import SkeletonSingleCar from "../components/SkeletonSingleCar";
+import SearchPopup from "../components/SearchPopup";
 
 export default function SearchResultPage(){
     const isReelActive = useSelector((state) => state.reels.isReelActive)
+    const isSearchOpen = useSelector((state) => state.global.isSearchOpen)
     const carList = useSelector((state) => state.carList.carList)
     console.log(carList)
     return(
@@ -38,6 +40,9 @@ export default function SearchResultPage(){
             {/* <VoucherStep/> */}
             {isReelActive && 
                 <PopupReels/>
+            }
+            {isSearchOpen && 
+                <SearchPopup/>
             }
         </>
     )
