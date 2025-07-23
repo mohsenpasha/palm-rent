@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { 
+const initialState = {
   // carList:[
   //   {
   //     id:1,
@@ -21,7 +21,9 @@ const initialState = {
 
   //   },
   // ],
-  carDates:['1404/05/13', '1404/05/22']
+  carDates:['1404/05/13', '1404/05/22'],
+  isSingleGalleryOpen:false,
+  // singleCar:{}
 }
 
 const globalSlice = createSlice({
@@ -31,8 +33,11 @@ const globalSlice = createSlice({
     changeCarDates: (state,action) => {
       state.carDates = action.payload
     },
+    changeSingleGalleryStatus: (state,action) => {
+      state.isSingleGalleryOpen = action.payload
+    },
   },
 })
 
-export const { changeCarDates } = globalSlice.actions
+export const { changeCarDates,changeSingleGalleryStatus } = globalSlice.actions
 export default globalSlice.reducer

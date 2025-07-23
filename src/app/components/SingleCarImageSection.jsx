@@ -1,8 +1,14 @@
 import Image from "next/image";
 import { SingleCarOptions } from "./SingleCar";
 import { IconCalender, IconSend, IconStickyNote, IconWhatsapp } from "./Icons";
+import { useDispatch } from "react-redux";
+import { changeSingleGalleryStatus } from "@/redux/slices/globalSlice";
 
 export function SingleCarImageSection(){
+    const dispatch = useDispatch()
+    function popupGalleryHandler(){
+        dispatch(changeSingleGalleryStatus(true))
+    }
     return(
         <div className="border-[1px] w-full border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] sm:px-4 px-2 py-4 rounded-4xl bg-white my-4">
             <div className="flex justify-between w-full md:text-base text-sm">
@@ -16,22 +22,22 @@ export function SingleCarImageSection(){
             <div className="rounded-2xl flex xl:h-[324px] lg:h-[290px] md:h-[260px] sm:h-[200px] gap-1 my-4 sm:flex-nowrap flex-wrap">
                 <div className="sm:w-8/12 w-full h-full flex gap-1">
                     <div className="w-8/12 sm:h-full h-[140px] flex relative sm:rounded-2xl rounded-bl-[0] rounded-tl-[0]">
-                        <Image className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
+                        <Image onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
                     </div>
                     <div className="w-4/12 sm:h-full h-[140px] flex flex-col gap-1">
                         <div className="relative flex-1 w-full">
-                            <Image className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
+                            <Image onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
                         </div>
                         <div className="relative flex-1 w-full">
-                            <Image className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
+                            <Image onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
                         </div>
                     </div>
                 </div>
                 <div className="sm:w-2/12 w-[calc(50%-2px)] sm:h-full h-[140px] flex relative">
-                    <Image className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
+                    <Image onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
                 </div>
                 <div className="sm:w-2/12 w-[calc(50%-2px)] sm:h-full h-[140px] flex relative sm:rounded-2xl rounded-br-[0] rounded-tr-[0]">
-                    <Image className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
+                    <Image onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
                 </div>
             </div>
             <div className="flex justify-between w-full md:flex-nowrap flex-wrap">

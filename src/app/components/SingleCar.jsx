@@ -50,6 +50,9 @@ export function SingleCarGallery({children,noBtn}){
         dispatch(changeReelActive(true))
         // dispatch(changeReelActive(true))
     }
+    function imageClickHandler(){
+        
+    }
     return(
         <div className="flex relative w-full h-[250px]">
             <div className="flex h-full">

@@ -4,29 +4,37 @@ import { IconInfo2, IconMoney } from "@/app/components/Icons";
 import { FineDeposit, ReservedServices } from "@/app/components/InformationStep";
 import SearchBar from "@/app/components/SearchBar";
 import { SingleCarImageSection } from "@/app/components/SingleCarImageSection";
+import SingleCarPopupGallery from "@/app/components/SingleCarPopupGallery";
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function CarsPage(){
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
+    const isSingleGalleryOpen = useSelector((state)=>state.global.isSingleGalleryOpen)
     return(
-        <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
-            <div>
-                {!isUnderLg && 
-                    <Image className="object-contain" src={'/images/search-bg.png'} height={320} width={1440} alt=""></Image>
-                }
-                <div className="lg:-mt-[120px] mt-8">
-                    <SearchBar/>
+        <>
+            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
+                <div>
+                    {!isUnderLg && 
+                        <Image className="object-contain" src={'/images/search-bg.png'} height={320} width={1440} alt=""></Image>
+                    }
+                    <div className="lg:-mt-[120px] mt-8">
+                        <SearchBar/>
+                    </div>
                 </div>
+                <SingleCarImageSection/>
+                <div className="flex gap-4 md:flex-nowrap flex-wrap my-4">
+                    <PriceServiceBox/>
+                    <CarInfoText/>
+                </div>
+                <CarSlider/>
             </div>
-            <SingleCarImageSection/>
-            <div className="flex gap-4 md:flex-nowrap flex-wrap my-4">
-                <PriceServiceBox/>
-                <CarInfoText/>
-            </div>
-            <CarSlider/>
-        </div>
+            {isSingleGalleryOpen && 
+                <SingleCarPopupGallery/>
+            }
+        </>
     )
 }
 
