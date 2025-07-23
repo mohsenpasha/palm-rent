@@ -2,12 +2,15 @@
 import { useState } from "react";
 import { IconCarExtra, IconCoupeCar, IconCrookCar, IconDiamond2, IconHandCoin, IconRocket, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3, IconStandard, IconSuitcase, IconSuv } from "./Icons";
 import { useDispatch } from "react-redux";
-import { changeSearchStatus } from "@/redux/slices/globalSlice";
+import { changeFilterStatus, changeSearchStatus } from "@/redux/slices/globalSlice";
 
 export function SearchBox(){
     const dispatch = useDispatch()
     function openSearchPopup(){
         dispatch(changeSearchStatus(true))
+    }
+    function openFilterPopup(){
+        dispatch(changeFilterStatus(true))
     }
     const [sortList,setSortList] = useState([
         {
@@ -72,7 +75,7 @@ export function SearchBox(){
                     </div>
                 </div>
                 <div className="flex gap-2">
-                    <button className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
+                    <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
                         <IconSetting/>
                         <span className="">
                             فیلتر ها

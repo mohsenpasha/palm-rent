@@ -23,7 +23,8 @@ const initialState = {
   // ],
   carDates:['1404/05/13', '1404/05/22'],
   isSingleGalleryOpen:false,
-  isSearchOpen:false
+  isSearchOpen:false,
+  isFilterOpen:false
   // singleCar:{}
 }
 
@@ -40,8 +41,11 @@ const globalSlice = createSlice({
     changeSearchStatus: (state,action) => {
       state.isSearchOpen = action.payload
     },
+    changeFilterStatus: (state,action) => {
+      state.isFilterOpen = action.payload
+    },
   },
 })
 
-export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus } = globalSlice.actions
+export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus } = globalSlice.actions
 export default globalSlice.reducer
