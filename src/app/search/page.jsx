@@ -23,7 +23,8 @@ export default function SearchResultPage(){
             <Header/>
             <div className="w-[90vw] max-w-[1500px] m-auto">
                 {/* <RoadMap/> */}
-                {/* <DateBox/> */}
+                {/* <DateBox isSticky={true}/> */}
+                <DateBox/>
                 <SearchBox/>
                 <div className="flex flex-wrap gap-4">
                     <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
