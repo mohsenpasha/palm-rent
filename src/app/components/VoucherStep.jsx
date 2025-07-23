@@ -9,7 +9,7 @@ export function VoucherStep(){
     return(
         <div>
             <VoucherHead/>
-            <div className="lg:w-[85vw] sm:w-[90vw] w-[95vw] m-auto">
+            <div className="lg:w-[85vw] sm:w-[90vw] w-[95vw] max-w-[1500px] m-auto">
                 <div className="flex sm:flex-row flex-col-reverse flex-wrap gap-4 my-4">
                     <PersonalInfoShow/>
                     <div className="xl:w-1/3 md:w-3/12 w-full xl:text-lg text-sm text-center bg-white rounded-2xl flex flex-col items-center justify-between py-4">

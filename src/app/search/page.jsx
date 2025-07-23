@@ -17,7 +17,7 @@ export default function SearchResultPage(){
     return(
         <>
             <Header/>
-            <div className="w-[90vw] m-auto">
+            <div className="w-[90vw] max-w-[1500px] m-auto">
                 {/* <RoadMap/> */}
                 {/* <DateBox/> */}
                 <SearchBox/>

@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Footer(){
     return(
         <footer className="bg-white pt-12">
-            <div className="w-[90vw] m-auto">
+            <div className="w-[90vw] max-w-[1500px] m-auto">
                 <div className="flex lg:flex-nowrap flex-wrap sm:gap-0 gap-4">
                     <div className="xl:w-3/12 lg:w-4/12 sm:w-1/2 w-full lg:px-6 md:px-4 px-2">
                         <div className="xl:text-lg lg:text-base mb-2">

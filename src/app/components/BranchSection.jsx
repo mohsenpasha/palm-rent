@@ -9,7 +9,7 @@ import Link from 'next/link';
 export default function BranchSection(){
     return(
         <section className='my-4 bg-[#F6F6F6] lg:pt-[92px] py-12 md:py-16'>
-            <div className='w-[85vw] m-auto'>
+            <div className='w-[85vw] max-w-[1500px] m-auto'>
             <div className='text-center pb-12 lg:text-[32px] md:text-2xl text-lg font-bold text-[#3B82F6]'>
                 شعبه های پالم رنت
             </div>
