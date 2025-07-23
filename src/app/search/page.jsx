@@ -8,6 +8,7 @@ import { SearchBox } from "../components/SearchBox";
 import SingleCar from "../components/SingleCar";
 import InformationStep from "../components/InformationStep";
 import { VoucherStep } from "../components/VoucherStep";
+import SkeletonSingleCar from "../components/SkeletonSingleCar";
 
 export default function SearchResultPage(){
     const isReelActive = useSelector((state) => state.reels.isReelActive)
@@ -20,7 +21,10 @@ export default function SearchResultPage(){
                 {/* <RoadMap/> */}
                 {/* <DateBox/> */}
                 <SearchBox/>
-                {/* <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4">
+                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                        <SkeletonSingleCar/>
+                    </div>
                     {carList.map((item,index)=>{
                         return(
                             <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
@@ -28,8 +32,8 @@ export default function SearchResultPage(){
                             </div>
                         )
                     })}
-                </div> */}
-                <InformationStep/>
+                </div>
+                {/* <InformationStep/> */}
             </div>
             {/* <VoucherStep/> */}
             {isReelActive && 

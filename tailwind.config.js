@@ -18,9 +18,23 @@ export default {
             transform: 'translateY(0)',
            },
         },
+        skeleton: {
+          "0%": { 
+            background: 'linear-gradient(90deg, #EDEDED 30%, #DCDCDC 50%,	#EDEDED 70%);',
+            backgroundSize: '400%',
+            backgroundPosition:'100% 100%'
+
+           },
+          "100%": {
+            background: 'linear-gradient(90deg, #EDEDED 30%, #DCDCDC 50%,	#EDEDED 70%);',
+            backgroundSize: '400%',
+            backgroundPosition:'0 0'
+           },
+        },
       },
       animation: {
         fadeIn: "fadeIn 0.2s ease-out forwards",
+        skeleton : "skeleton 1.5s infinite linear"
       }
     },
   },
