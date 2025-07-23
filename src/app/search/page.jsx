@@ -19,7 +19,7 @@ export default function SearchResultPage(){
             <div className="w-[90vw] m-auto">
                 {/* <RoadMap/> */}
                 {/* <DateBox/> */}
-                {/* <SearchBox/> */}
+                <SearchBox/>
                 {/* <div className="flex flex-wrap gap-4">
                     {carList.map((item,index)=>{
                         return(
