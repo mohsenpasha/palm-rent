@@ -28,11 +28,10 @@ export function SearchBox(){
             if(item.id != itemId) return item
             return {...item,selected:!item.selected}
         }))
-        console.log(itemId)
     }
     return(
         <div className="bg-white rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap">
-            <div className="bg-[#F4F4F4] rounded-xl flex items-center p-4 py-3 relative">
+            {/* <div className="bg-[#F4F4F4] rounded-xl flex items-center p-4 py-3 relative">
                 <span>
                     <IconSearch2/>
                 </span>
@@ -43,11 +42,11 @@ export function SearchBox(){
                         فیلتر ها
                     </span>
                 </button>
-            </div>
-            <div className="flex md:gap-2 gap-1 overflow-auto my-4">
+            </div> */}
+            <div className="flex md:gap-2 gap-1 overflow-auto">
                 {sortList.filter((item)=>item.selected == true).map((item,index)=>{
                         return(
-                            <label key={index} className="flex gap-2 select-none">
+                            <label key={index} className="flex gap-2 mb-2 select-none">
                                 <input onChange={()=>sortChangeHandler(item.id)} checked={true} className="peer hidden" value={item.id} type="checkbox" />
                                 <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
                                     {item.title}
@@ -57,26 +56,40 @@ export function SearchBox(){
                         )
                     })}
             </div>
-            <div className="flex items-center mt-4 gap-2 lg:text-base md:text-sm text-xs">
-                <span className="flex">
-                    <IconSort/>
-                    مرتب سازی :
-                </span>
-                <div className="flex md:gap-2 gap-1 overflow-auto">
-                    {sortList.filter((item)=>item.selected == false).map((item,index)=>{
-                        return(
-                            <label key={index} className="flex gap-2 select-none">
-                                <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
-                                <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
-                                    {item.title}
-                                    {item.icon}
-                                </div>
-                            </label>
-                        )
-                    })}
+            <div className="flex items-center justify-between gap-2 lg:text-base md:text-sm text-xs">
+                <div className="flex items-center gap-2 lg:text-base md:text-sm text-xs">
+                    <span className="flex">
+                        <IconSort/>
+                        مرتب سازی :
+                    </span>
+                    <div className="flex md:gap-2 gap-1 overflow-auto">
+                        {sortList.filter((item)=>item.selected == false).map((item,index)=>{
+                            return(
+                                <label key={index} className="flex gap-2 select-none">
+                                    <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
+                                    <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
+                                        {item.title}
+                                        {item.icon}
+                                    </div>
+                                </label>
+                            )
+                        })}
 
+                    </div>
                 </div>
-                
+                <div className="flex gap-2">
+                    <button className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
+                        <IconSetting/>
+                        <span className="">
+                            فیلتر ها
+                        </span>
+                    </button>
+                    <button className="flex bg-[#3B82F6] py-2 px-4 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
+                        <span className="">
+                            جستجو
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     )
