@@ -1,10 +1,11 @@
 'use client'
 import { useState } from "react";
 import { IconCarExtra, IconCoupeCar, IconCrookCar, IconDiamond2, IconHandCoin, IconRocket, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3, IconStandard, IconSuitcase, IconSuv } from "./Icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeFilterStatus, changeSearchStatus } from "@/redux/slices/globalSlice";
 
 export function SearchBox(){
+    const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
     const dispatch = useDispatch()
     function openSearchPopup(){
         dispatch(changeSearchStatus(true))
@@ -39,7 +40,7 @@ export function SearchBox(){
         }))
     }
     return(
-        <div className="bg-white rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap">
+        <div className={`bg-white sticky ${isHeaderClose ? 'top-[10px]' : 'top-18'} z-30 transition-all rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap`}>
             <div className="flex md:gap-2 gap-1 overflow-auto">
                 {sortList.filter((item)=>item.selected == true).map((item,index)=>{
                         return(

@@ -4,10 +4,16 @@ import Link from "next/link";
 import {IconArrow, IconGlobal, IconPhone, IconLogin} from "./Icons";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
+import { useDispatch, useSelector } from "react-redux";
+import { changeIsHeaderClose } from "@/redux/slices/globalSlice";
 
 export default function Header(){
     const [menuToggle,setMenuToggle] = useState(false)
-    const [isHeaderClose,setIsHeaderClose] = useState(false)
+    const dispatch = useDispatch()
+    const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
+    function setIsHeaderClose(st){
+        dispatch(changeIsHeaderClose(st))
+    }
     useEffect(()=>{
         window.addEventListener('wheel',(event)=>scrollHandler(event))
         return () => {
