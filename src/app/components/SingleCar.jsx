@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import { IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhatsapp } from "./Icons";
+import { IconArrowHandle, IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhatsapp } from "./Icons";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeReelActive } from "@/redux/slices/reelsSlice";
@@ -32,7 +32,7 @@ export default function SingleCar({data,noBtn = false}){
 
 export function SingleCarGallery({children,noBtn}){
     const dispatch = useDispatch()
-    const [hoverList,setHoverList] = useState([true,false,false])
+    const [hoverList,setHoverList] = useState([true,false,false,false])
     function galleryHoverHandler(targetIndex){
         setHoverList(hoverList.map((item,index)=>{
             if(index == targetIndex){
@@ -44,7 +44,7 @@ export function SingleCarGallery({children,noBtn}){
         }))
     }
     function mouseLeaveHandler(){
-        setHoverList([true,false,false])
+        setHoverList([true,false,false,false])
     }
     function activateReel(){
         dispatch(changeReelActive(true))
@@ -57,9 +57,18 @@ export function SingleCarGallery({children,noBtn}){
         <div className="flex relative w-full h-[250px]">
             <div className="flex h-full">
                 <div className="absolute w-full h-full top-0 right-0 rounded-lg -z-10">
-                    <Image className={`${hoverList[1] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-1.png'} width={395} height={253} alt=''></Image>
-                    <Image className={`${hoverList[2] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-2.jpg'} width={395} height={253} alt=''></Image>
-                    <Image className={`${hoverList[3] && 'z-10'} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
+                    <Image className={`${hoverList[0] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-2.jpg'} width={395} height={253} alt=''></Image>
+                    <Image className={`${hoverList[1] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
+                    <Image className={`${hoverList[2] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-1.png'} width={395} height={253} alt=''></Image>
+                    <div className={`${hoverList[3] ? 'z-10' : ''} rounded-lg w-full h-full absolute`}>
+                        <div className={`absolute w-full h-full rounded-lg ${hoverList[3] ? 'z-20' : ''} bg-[#000000aa] text-white flex flex-col items-center justify-center`}>
+                            <span className="flex items-center justify-center border-2 border-white rounded-full size-16 rotate-135">
+                                <IconArrowHandle/>
+                            </span>
+                            عکس های بیشتر
+                        </div>
+                        <Image className={`${hoverList[3] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
+                    </div>
                 </div>
                     <div className="z-20">
                         {children}
@@ -73,6 +82,9 @@ export function SingleCarGallery({children,noBtn}){
                         <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
                     </div>
                     <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(2)} className="w-full h-full flex items-end group px-1">
+                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
+                    </div>
+                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(3)} className="w-full h-full flex items-end group px-1">
                         <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
                     </div>
                 </div>
