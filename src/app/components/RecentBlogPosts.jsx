@@ -1,0 +1,58 @@
+import Link from "next/link";
+import { IconArrow } from "./Icons";
+import Image from "next/image";
+
+export function RecentBlogPosts(){
+    return(
+        <section className='my-32 bg-[#F6F6F6] py-20 pb-24'>
+            <div className='xl:w-[85vw] w-[95vw]  max-w-[1500px] m-auto'>
+                <div className='flex w-full justify-between'>
+                    <div className="md:text-right text-center pb-12 lg:text-[32px] md:text-2xl text-lg font-bold text-[#3B82F6]">
+                        آخرین مقالات پالم رنت
+                    </div>
+                    <Link href={'#'} className="flex gap-2 items-center font-medium cursor-pointer">
+                        مشاهده همه
+                        <IconArrow className={'rotate-90'}/>
+                    </Link>
+                </div>
+                <div className="flex gap-8 lg:flex-nowrap flex-wrap lg:flex-row flex-col-reverse">
+                    <div className="flex flex-col justify-between gap-4 lg:w-7/12 w-full">
+                        <SingleBlogPost/>
+                        <SingleBlogPost/>
+                        <SingleBlogPost/>
+
+                    </div>
+                    <div className="flex lg:w-5/12 w-full">
+                        <SingleBlogPost bigPost={true}/>
+                    </div>
+                </div>
+                {/* <CommentSlider/> */}
+            </div>
+        </section>
+    )
+}
+export function SingleBlogPost({bigPost=false}){
+    return(
+        <Link href={'#'} className="flex w-full cursor-pointer">
+            <div className={`flex ${bigPost ? 'flex-col' : ''} gap-4 w-full`}>
+                <div className="w-full relative">
+                    <Image className="w-full h-full object-cover rounded-lg" src={'/images/singlecar-1.png'} width={530} height={280} alt=""></Image>
+                    <span className="absolute left-3 bottom-3 text-white bg-[#DF900A] py-0.5 px-2.5 rounded-4xl text-nowrap lg:text-base md:text-sm text-xs">راننده شخصی</span>
+                </div>
+                <div className="flex flex-col text-justify gap-4">
+                    <div className="lg:text-xl md:text-lg sm:text-base text-sm font-bold">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
+                    </div>
+                    <div className={`lg:text-lg md:text-base sm:text-sm text-xs text-[#5B5B5B] ${bigPost ? 'line-clamp-5' :'line-clamp-3'}`}>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است،  چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، 
+                    </div>
+                </div>
+                {bigPost &&
+                    <div className="text-[#F59E0B]">
+                        خواندن ادامه
+                    </div>
+                }
+            </div>
+        </Link>
+    )
+}
