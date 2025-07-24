@@ -1,3 +1,4 @@
+import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function BranchLayout({ children }) {
     <>
         <Header/>
         { children }
+        <Footer/>
     </>
   );
 }
