@@ -25,7 +25,8 @@ const initialState = {
   isSingleGalleryOpen:false,
   isHeaderClose:false,
   isSearchOpen:false,
-  isFilterOpen:false
+  isFilterOpen:false,
+  roadMapStep:3
   // singleCar:{}
 }
 
@@ -47,9 +48,12 @@ const globalSlice = createSlice({
     },
     changeIsHeaderClose: (state,action) => {
       state.isHeaderClose = action.payload
+    },
+    changeRoadMapStep: (state,action) => {
+      state.roadMapStep = action.payload
     }
   },
 })
 
-export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose } = globalSlice.actions
+export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep } = globalSlice.actions
 export default globalSlice.reducer

@@ -17,30 +17,43 @@ export default function SearchResultPage(){
     const isSearchOpen = useSelector((state) => state.global.isSearchOpen)
     const carList = useSelector((state) => state.carList.carList)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
-    console.log(carList)
+    const roadMapStep = useSelector((state) => state.global.roadMapStep)
+    // console.log(carList)
     return(
         <>
             <Header/>
             <div className="w-[90vw] max-w-[1500px] m-auto">
-                {/* <RoadMap/> */}
-                {/* <DateBox isSticky={true}/> */}
-                <DateBox/>
-                <SearchBox/>
-                <div className="flex flex-wrap gap-4">
-                    <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                        <SkeletonSingleCar/>
-                    </div>
-                    {carList.map((item,index)=>{
-                        return(
-                            <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                <SingleCar data={item}/>
+                {roadMapStep < 3 && 
+                    <>
+                        <RoadMap step={roadMapStep}/>
+                        <DateBox isSticky={roadMapStep == 2 ? true : false}/>
+                    </>
+                }
+                {
+                    roadMapStep == 1 &&
+                    <>
+                        <SearchBox/>
+                        <div className="flex flex-wrap gap-4">
+                            <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                                <SkeletonSingleCar/>
                             </div>
-                        )
-                    })}
-                </div>
-                {/* <InformationStep/> */}
+                            {carList.map((item,index)=>{
+                                return(
+                                    <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                                        <SingleCar data={item}/>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </>
+                }
+                {roadMapStep == 2 &&
+                    <InformationStep/>
+                }
             </div>
-            {/* <VoucherStep/> */}
+            {roadMapStep == 3 &&
+                <VoucherStep/>
+            }
             {isReelActive && 
                 <PopupReels/>
             }
