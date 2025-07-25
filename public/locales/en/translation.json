@@ -1,5 +1,6 @@
 {
   "settings": "Settings",
   "chooselang": "Choose language",
-  "choosecurrency": "Currency selection"
+  "choosecurrency": "Currency selection",
+  "language":"English"
 }
