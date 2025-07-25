@@ -65,8 +65,8 @@ export default function SearchBar(){
                             </CityDropDown>
                         }
                     </div>
-                    <div className="relative lg:w-5/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2">
-                        <div onClick={openDateSelect} className="relative w-full grow-0 flex flex-col gap-1">
+                    <div className="relative lg:w-6/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2">
+                        <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
                             <span className="text-sm">تاریخ و زمان تحویل</span>
                             <div onClick={()=>setDateToggle(true)} className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] gap-1 items-center">
@@ -79,7 +79,7 @@ export default function SearchBar(){
                                 </div>
                             </div>
                         </div>
-                        <div onClick={openDateSelect} className="relative w-full grow-0 flex flex-col gap-1">
+                        <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
                             <span className="text-sm">تاریخ و زمان عودت</span>
                             <div onClick={()=>setDateToggle(true)} className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1">
