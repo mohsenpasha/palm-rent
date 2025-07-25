@@ -15,7 +15,7 @@ export default function SearchFilterPopup(){
                     <span>
                         فیلتر‌ها
                     </span>
-                    <span onClick={closePopup} className="absolute top-1/2 left-4 -translate-y-1/2 border-[1px] transition-all border-red-600 hover:bg-red-600 hover:text-white cursor-pointer text-red-600 rounded-sm sm:p-2 p-1">
+                    <span onClick={closePopup} className="absolute top-1/2 rtl:left-4 ltr:right-4 -translate-y-1/2 border-[1px] transition-all border-red-600 hover:bg-red-600 hover:text-white cursor-pointer text-red-600 rounded-sm sm:p-2 p-1">
                         <IconClose/>
                     </span>
                 </div>
