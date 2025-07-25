@@ -5,14 +5,16 @@ import {IconArrow, IconGlobal, IconPhone, IconLogin} from "./Icons";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
-import { changeIsHeaderClose } from "@/redux/slices/globalSlice";
+import { changeIsHeaderClose, changeIsTranslatePopupOpen } from "@/redux/slices/globalSlice";
 import { useTranslation } from "react-i18next";
+import LanguageCurrencyPopup from "./LanguageCurrencyPopup";
 
 export default function Header(){
     const { t, i18n } = useTranslation();
     const [menuToggle,setMenuToggle] = useState(false)
     const dispatch = useDispatch()
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
+    const isTranslateOpen = useSelector((state)=> state.global.isTranslatePopupOpen)
     function setIsHeaderClose(st){
         dispatch(changeIsHeaderClose(st))
     }
@@ -30,47 +32,49 @@ export default function Header(){
             setIsHeaderClose(false)
         }
     }
+    function openTranslatePopup(){
+        dispatch(changeIsTranslatePopupOpen(true))
+    }
     return(
-        <header className={`min-h-[64px] flex items-center`}>
-            <div className={`p-4 px-3 2xl:px-6 flex justify-between fixed z-50 transition-all right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] ${isHeaderClose ? '-top-16' : 'top-0'}`}>
-            {/* {t("greeting")} */}
-                <div className="flex items-center">
-                    <Link className="absolute left-1/2 top-1/2 -translate-1/2 lg:translate-0 lg:static hidden sm:block" href="#">
-                        <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="palmrent logo"></Image>
-                    </Link>
-                    <div onClick={()=>setMenuToggle(!menuToggle)} className="z-50 flex flex-col w-6 relative cursor-pointer lg:hidden">
-                        <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black ${menuToggle && 'absolute -rotate-45'}`}></div>
-                        <div className={`h-1 scale-y-50 mt-1 transition-all w-full bg-black ${menuToggle && 'opacity-0'}`}></div>
-                        <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black ${menuToggle && 'absolute rotate-45'}`}></div>
-                    </div>
-                    <HeaderMenu isActive={menuToggle} closeMenu={()=>setMenuToggle(false)}/>
-                </div>
-                <div className="flex items-center lg:gap-6">
-                    <Link href="tel:+989211284055">
-                        <IconPhone/>
-                    </Link>
-                    <div className="relative group p-1 cursor-pointer underline-offset-8 flex items-center xl:gap-2 gap-1">
-                            <IconGlobal/>
-                            فارسی
-                            <IconArrow/>
-                            <LangDropDown>
-                                {/* <DropDownItem text={'فارسی'} href={'#'}/> */}
-                                <DropDownItem text={'English'} href={'#'}/>
-                                <DropDownItem text={'العربی'} href={'#'}/>
-                                <DropDownItem text={'Türkiye'} href={'#'}/>
-                            </LangDropDown>
-                    </div>
-                    <div className="p-1 cursor-pointer underline-offset-8">
-                        <Link className="h-full w-full flex gap-2" href='#'>
-                            <IconLogin/>
-                            <span className="xl:block hidden">
-                                ورود / ثبت نام
-                            </span>
+        <>
+            <header className={`min-h-[64px] flex items-center`}>
+                <div className={`p-4 px-3 2xl:px-6 flex justify-between fixed z-50 transition-all right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] ${isHeaderClose ? '-top-16' : 'top-0'}`}>
+                {/* {t("greeting")} */}
+                    <div className="flex items-center">
+                        <Link className="absolute left-1/2 top-1/2 -translate-1/2 lg:translate-0 lg:static hidden sm:block" href="#">
+                            <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="palmrent logo"></Image>
                         </Link>
+                        <div onClick={()=>setMenuToggle(!menuToggle)} className="z-50 flex flex-col w-6 relative cursor-pointer lg:hidden">
+                            <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black ${menuToggle && 'absolute -rotate-45'}`}></div>
+                            <div className={`h-1 scale-y-50 mt-1 transition-all w-full bg-black ${menuToggle && 'opacity-0'}`}></div>
+                            <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black ${menuToggle && 'absolute rotate-45'}`}></div>
+                        </div>
+                        <HeaderMenu isActive={menuToggle} closeMenu={()=>setMenuToggle(false)}/>
+                    </div>
+                    <div className="flex items-center lg:gap-6">
+                        <Link href="tel:+989211284055">
+                            <IconPhone/>
+                        </Link>
+                        <div onClick={openTranslatePopup} className="relative group p-1 cursor-pointer underline-offset-8 flex items-center xl:gap-2 gap-1">
+                                <IconGlobal/>
+                                {t('language')}                               
+                        </div>
+                        <div className="p-1 cursor-pointer underline-offset-8">
+                            <Link href={'/login'} className="h-full w-full flex gap-2">
+                                <IconLogin/>
+                                <span className="xl:block hidden">
+                                    ورود / ثبت نام
+                                </span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+            {isTranslateOpen && 
+                <LanguageCurrencyPopup/>
+            }
+        </>
+
     )
 }
 
@@ -178,25 +182,8 @@ export function DropDown({ children, isActive }){
         </div>
     )
 }
-
-export function LangDropDown({ children }){
-    return(
-        <div className="absolute hidden animate-fade-in translate-y-full group-hover:flex bottom-0 left-1/2 -translate-x-1/2 pt-2">
-            <ul className="flex flex-col bg-white min-w-32 rounded-lg border-[1px] border-[#cccccc] p-1 shadow-[0_3px_10px_0_rgba(0,0,0,.12),0_10px_10px_-6px_rgba(0,0,0,.12)]">
-                { children }
-            </ul>
-        </div>
-    )
-}
-
 export function DropDownItem({text,href}){
     return(
         <Link href={href} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg">{text}</Link>
-    )
-}
-
-export function DropDownLanguage({text,href}){
-    return(
-        <Link href={href} className="text-[#4b5259] p-2 px-3 text-nowrap hover:bg-[#f8fafb] rounded-lg">{text}</Link>
     )
 }
