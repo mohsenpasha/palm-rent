@@ -1,4 +1,5 @@
 {
-  "greeting": "hello world",
-  "language": "زبان"
+  "settings": "Settings",
+  "chooselang": "Choose language",
+  "choosecurrency": "Currency selection"
 }

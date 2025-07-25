@@ -4,6 +4,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import translationFa from "../../../public/locales/fa/translation.json";
 import translationEn from "../../../public/locales/en/translation.json";
+import translationTr from "../../../public/locales/tr/translation.json";
+import translationAr from "../../../public/locales/ar/translation.json";
 
 const resources = {
   fa: {
@@ -11,6 +13,12 @@ const resources = {
   },
   en: {
     translation: translationEn,
+  },
+  tr: {
+    translation: translationTr,
+  },
+  ar: {
+    translation: translationAr,
   },
 };
 
@@ -20,7 +28,7 @@ i18n
   .init({
     resources,
     fallbackLng: "fa",
-    supportedLngs: ["fa", "en"],
+    supportedLngs: ["fa", "en",'ar','tr'],
     interpolation: {
       escapeValue: false,
     },

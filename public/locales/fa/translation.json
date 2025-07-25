@@ -1,4 +1,5 @@
 {
-  "greeting": "سلام دنیا!",
-  "language": "زبان"
+  "settings": "تنظیمات",
+  "chooselang": "انتخاب زبان",
+  "choosecurrency": "انتخاب ارز"
 }
