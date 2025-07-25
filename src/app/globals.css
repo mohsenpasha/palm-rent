@@ -100,6 +100,10 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
   background: #4554AF;
 }
+.rmdp-shadow{
+  box-shadow: unset!important;
+}
+
 rmdp-week{
   height: 50px;
 }
@@ -125,3 +129,17 @@ rmdp-week{
   left: 0!important;
   bottom: 0!important;
 } */
+
+@media only screen and (max-width: 768px) {
+  .rmdp-day{
+    width: 100%!important;
+    height: unset!important;
+    aspect-ratio: 1 / 1;
+  }
+  .rmdp-wrapper, .rmdp-top-class, .rmdp-calendar,.rmdp-day-picker,.rmdp-week{
+    width: 100%!important;
+  }
+  .rmdp-day-picker > div{
+    width: 100%;
+  }
+}

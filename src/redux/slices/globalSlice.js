@@ -22,10 +22,13 @@ const initialState = {
   //   },
   // ],
   carDates:['1404/05/13', '1404/05/22'],
+  deliveryTime:'21:30',
+  returnTime:'22:30',
   isSingleGalleryOpen:false,
   isHeaderClose:false,
   isSearchOpen:false,
   isFilterOpen:false,
+  isDateSelectOpen:false,
   roadMapStep:3
   // singleCar:{}
 }
@@ -51,9 +54,18 @@ const globalSlice = createSlice({
     },
     changeRoadMapStep: (state,action) => {
       state.roadMapStep = action.payload
+    },
+    changeIsDateSelectOpen: (state,action) => {
+      state.isDateSelectOpen = action.payload
+    },
+    changeDeliveryTime: (state,action) => {
+      state.deliveryTime = action.payload
+    },
+    changeReturnTime: (state,action) => {
+      state.returnTime = action.payload
     }
   },
 })
 
-export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep } = globalSlice.actions
+export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime } = globalSlice.actions
 export default globalSlice.reducer

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { IconCalender, IconClock, IconLocation, IconSearch } from "./Icons";
 // import { DayPicker } from 'react-day-picker';
 // import 'react-day-picker/dist/style.css';
@@ -11,15 +11,38 @@ import DateObject from "react-date-object"
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import { useDispatch, useSelector } from "react-redux";
-import { changeCarDates } from "@/redux/slices/globalSlice";
+import { changeCarDates, changeDeliveryTime, changeIsDateSelectOpen, changeReturnTime } from "@/redux/slices/globalSlice";
+import { useMediaQuery } from "../hooks/useMediaQuery";
+import { useClickOutside } from "../hooks/useClickOutside";
 
 export default function SearchBar(){
     const carDates = useSelector((state) => state.global.carDates)
+    const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
+    const deliveryTime = useSelector((state) => state.global.deliveryTime)
+    const returnTime = useSelector((state) => state.global.returnTime)
     const [cityToggle,setCityToggle] = useState(false)
     const [dataToggle,setDateToggle] = useState(false)
+    const ref = useClickOutside(() => {
+        closeDateSelect()
+    });
+    const dispatch = useDispatch()
+    function closeDateSelect(){
+        console.log('test')
+        dispatch(changeIsDateSelectOpen(false))
+    }
+    function openDateSelect(){
+        console.log('open')
+        dispatch(changeIsDateSelectOpen(true))
+    }
+    function changeDeliveryTimeHandler(newTime){
+        dispatch(changeDeliveryTime(newTime))
+    }
+    function changeReturnTimeHandler(newTime){
+        dispatch(changeReturnTime(newTime))
+    }
     return(
         <>
-            <div className="relative border-2 border-[#EAEAEA] bg-white rounded-2xl p-2 py-4 md:p-6 md:py-8">
+            <div className="relative md:z-10 border-2 border-[#EAEAEA] bg-white rounded-2xl p-2 py-4 md:p-6 md:py-8">
                 <div className="lg:text-2xl md:text-xl sm:text-lg  md:text-right text-center text-md font-bold mb-8">
                     اجاره آنلاین خودرو در همه شهر ها با بهترین قیمت
                 </div>
@@ -43,7 +66,7 @@ export default function SearchBar(){
                         }
                     </div>
                     <div className="relative lg:w-5/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2">
-                        <div className="relative w-full grow-0 flex flex-col gap-1">
+                        <div onClick={openDateSelect} className="relative w-full grow-0 flex flex-col gap-1">
                             <span className="text-sm">تاریخ و زمان تحویل</span>
                             <div onClick={()=>setDateToggle(true)} className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] gap-1 items-center">
@@ -52,11 +75,11 @@ export default function SearchBar(){
                                 </div>
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 border-r-[1px] border-[#B5B5B5B2]">
                                     <IconCalender/> 
-                                    <span>زمان</span>
+                                    <span>{deliveryTime || 'زمان'}</span>
                                 </div>
                             </div>
                         </div>
-                        <div className="relative w-full grow-0 flex flex-col gap-1">
+                        <div onClick={openDateSelect} className="relative w-full grow-0 flex flex-col gap-1">
                             <span className="text-sm">تاریخ و زمان عودت</span>
                             <div onClick={()=>setDateToggle(true)} className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1">
@@ -65,11 +88,32 @@ export default function SearchBar(){
                                 </div>
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 border-r-[1px] border-[#B5B5B5B2]">
                                     <IconCalender/> 
-                                    <span>زمان</span>
+                                    <span>{returnTime || 'زمان'}</span>
                                 </div>
                             </div>
                         </div>
-                        <DatePicker2/>
+                        {isDateSelectOpen && 
+                            <div ref={ref} className="bg-white md:absolute fixed w-[100vw] h-[100vh] md:w-auto md:h-auto top-0 right-0 md:top-auto md:right-auto md:z-auto z-50 md:bottom-0 bottom-[unset] md:translate-y-full md:left-1/2 md:-translate-x-1/2 shadow-[0_0_5px_#8798ad] rounded-lg p-4">
+                                <div className="relative z-20 flex w-full justify-center gap-8">
+                                    <div className="w-full md:w-auto">
+                                        <span>زمان تحویل</span>
+                                        <TimeSelectBox selected={deliveryTime} setSelected={changeDeliveryTimeHandler}/>
+                                    </div>
+                                    <div className="w-full md:w-auto">
+                                        <span>زمان عودت</span>
+                                        <TimeSelectBox selected={returnTime} setSelected={changeReturnTimeHandler}/>
+                                    </div>
+                                </div>
+                                <div className="flex relative z-10 md:w-full m-auto sm:w-10/12 w-full justify-center md:my-auto my-6">
+                                    <DatePicker2/>
+                                </div>
+                                <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 md:translate-x-0 absolute md:static flex justify-end">
+                                    <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
+                                        تایید
+                                    </button>
+                                </div>
+                            </div>
+                        }
                     </div>
 
                     <button className="lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
@@ -211,6 +255,7 @@ export function DatePicker2() {
     const [hovered, setHovered] = useState(null)
     const [isValueSync,setIsValueSync] = useState(false)
     const [hoverText,setHoverText] = useState('تاریخ رفت')
+    const isUnderMd = useMediaQuery("(max-width: 767.9px)");
 
     
 
@@ -243,8 +288,6 @@ export function DatePicker2() {
                 return convertToEnglishDigits(item.format())
             })))
         }
-        // console.log(value[0].format())
-        // console.log(value[1].format())
     },[value])
     useEffect(()=>{
         const testValue = carDates.map(
@@ -273,7 +316,6 @@ export function DatePicker2() {
         }
     },[hovered])
   return (
-    <div className="absolute bottom-0 translate-y-full left-1/2 -translate-x-1/2">
       <Calendar
         range
         calendar={persian}
@@ -282,7 +324,7 @@ export function DatePicker2() {
         value={value}
         minDate={new Date()}
         onChange={changeHandler}
-        numberOfMonths={2}
+        numberOfMonths={isUnderMd ? 1 : 2}
         mapDays={({ date }) => {
           const isHovered = hovered?.format?.() === date.format()
           return {
@@ -318,6 +360,72 @@ export function DatePicker2() {
           }
         }}
       />
-    </div>
   )
+}
+
+
+const generateTimeOptions = () => {
+  const options = [];
+  for (let h = 0; h < 24; h++) {
+    for (let m = 0; m < 60; m += 30) {
+      const hh = h.toString().padStart(2, '0');
+      const mm = m.toString().padStart(2, '0');
+      options.push(`${hh}:${mm}`);
+    }
+  }
+  return options;
+};
+
+export function TimeSelectBox({selected,setSelected}) {
+  const allOptions = useMemo(() => generateTimeOptions(), []);
+  const [search, setSearch] = useState('');
+//   const [selected, setSelected] = useState('');
+  const [showList, setShowList] = useState(false);
+
+  const filteredOptions = useMemo(() => {
+    return allOptions.filter((time) =>
+      time.includes(search)
+    );
+  }, [search]);
+
+  return (
+    <div className="relative z-50 md:w-64 w-full text-sm">
+      <div
+        onClick={() => setShowList((prev) => !prev)}
+        className="border rounded-lg px-4 py-2 cursor-pointer bg-white shadow-sm"
+      >
+        {selected || 'انتخاب زمان'}
+      </div>
+
+      {showList && (
+        <div className="absolute w-full mt-1 border rounded-lg bg-white shadow-lg max-h-64 overflow-y-auto">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full px-3 py-2 border-b focus:outline-none"
+            placeholder="جستجو..."
+          />
+          <ul className="max-h-48 overflow-y-auto">
+            {filteredOptions.map((time) => (
+              <li
+                key={time}
+                onClick={() => {
+                  setSelected(time);
+                  setShowList(false);
+                  setSearch('');
+                }}
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                {time}
+              </li>
+            ))}
+            {filteredOptions.length === 0 && (
+              <li className="px-4 py-2 text-gray-400">یافت نشد</li>
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
