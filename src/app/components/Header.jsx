@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { changeIsHeaderClose } from "@/redux/slices/globalSlice";
+import { useTranslation } from "react-i18next";
 
 export default function Header(){
+    const { t, i18n } = useTranslation();
     const [menuToggle,setMenuToggle] = useState(false)
     const dispatch = useDispatch()
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
@@ -31,6 +33,7 @@ export default function Header(){
     return(
         <header className={`min-h-[64px] flex items-center`}>
             <div className={`p-4 px-3 2xl:px-6 flex justify-between fixed z-50 transition-all right-0 bg-white w-full shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] ${isHeaderClose ? '-top-16' : 'top-0'}`}>
+            {/* {t("greeting")} */}
                 <div className="flex items-center">
                     <Link className="absolute left-1/2 top-1/2 -translate-1/2 lg:translate-0 lg:static hidden sm:block" href="#">
                         <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="palmrent logo"></Image>
