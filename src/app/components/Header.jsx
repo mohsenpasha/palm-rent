@@ -58,7 +58,7 @@ export default function Header(){
                         </Link>
                         <div onClick={openTranslatePopup} className="relative group p-1 cursor-pointer underline-offset-8 flex items-center xl:gap-2 gap-1">
                                 <IconGlobal/>
-                                {t('language')}                               
+                                {t('language')}
                         </div>
                         <div className="p-1 cursor-pointer underline-offset-8">
                             <Link href={'/login'} className="h-full w-full flex gap-2">
@@ -164,7 +164,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                         <DropDownItem text={'مجله پالم رنت'} href={'#'}/>
                         <DropDownItem text={'گالری تصاویر'} href={'/gallery'}/>
                         <DropDownItem text={'سوالات متداول'} href={'#'}/>
-                        <DropDownItem text={'قوانین اجاره خودرو'} href={'#'}/>
+                        <DropDownItem text={'قوانین اجاره خودرو'} href={'/rules'}/>
                     </DropDown>
                 </li>
             </ul>
@@ -176,7 +176,7 @@ export function HeaderMenu({ isActive, closeMenu }){
 export function DropDown({ children, isActive }){
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     return(
-        <div className="lg:absolute lg:hidden w-full animate-fade-in lg:translate-y-full lg:group-hover:flex bottom-0 left-1/2 lg:-translate-x-1/2 lg:pt-2">
+        <div className="lg:absolute lg:hidden min-w-32 animate-fade-in lg:translate-y-full lg:group-hover:flex bottom-0 left-1/2 lg:-translate-x-1/2 lg:pt-2">
             <ul className={`flex ${isUnderLg ? (isActive ? 'max-h-[500px]  p-1' : 'max-h-0') : 'p-1' } transition-all overflow-hidden flex-col bg-white min-w-32 rounded-lg lg:border-[1px] border-[#cccccc] lg:shadow-[0_3px_10px_0_rgba(0,0,0,.12),0_10px_10px_-6px_rgba(0,0,0,.12)]`}>
                 { children }
             </ul>
