@@ -8,7 +8,7 @@ export default function AboutUsPage(){
         <>
             <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
                 <div className="py-4">
-                    <div className="text-center py-4 lg:text-[32px] md:text-2xl text-lg font-bold text-[#3B82F6]">
+                    <div className="text-center py-4 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
                         درباره ما
                     </div>
                     <FirstAboutSection/>

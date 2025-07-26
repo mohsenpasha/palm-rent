@@ -10,7 +10,7 @@ export default function WhySection(){
                         <div className="lg:text-2xl md:text-xl text-lg font-bold">
                             ما که هستیم!
                         </div>
-                        <div className="lg:text-[44px] md:text-[32px] text-2xl font-bold my-4">چرا برای اجاره خودرو باید <span className="text-[#3B82F6]">پالم رنت</span> را انتخاب کنیم؟</div>
+                        <div className="lg:text-[32px] md:text-[24px] text-2xl font-bold my-4">چرا برای اجاره خودرو باید <span className="text-[#3B82F6]">پالم رنت</span> را انتخاب کنیم؟</div>
                         <p className="text-[#636363] md:text-base sm:text-sm text-xs">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، </p>
                         <div className="flex lg:justify-between justify-around my-6 md:text-base sm:text-sm text-xs sm:p-0 px-2">
                             <div className="flex flex-col gap-1">
