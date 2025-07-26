@@ -11,23 +11,25 @@ import DateObject from "react-date-object"
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import { useDispatch, useSelector } from "react-redux";
-import { changeCarDates, changeDeliveryTime, changeIsDateSelectOpen, changeReturnTime } from "@/redux/slices/globalSlice";
+import { changeCarDates, changeDeliveryTime, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime } from "@/redux/slices/globalSlice";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useClickOutside } from "../hooks/useClickOutside";
 
-export default function SearchBar(){
+export default function SearchBar({isPopup=false}){
     const carDates = useSelector((state) => state.global.carDates)
     const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
     const deliveryTime = useSelector((state) => state.global.deliveryTime)
     const returnTime = useSelector((state) => state.global.returnTime)
     const [cityToggle,setCityToggle] = useState(false)
     const [dataToggle,setDateToggle] = useState(false)
+    function closeSearchBar(){
+      dispatch(changeIsSearchPopupOpen(false))
+    }
     const ref = useClickOutside(() => {
         closeDateSelect()
     });
     const dispatch = useDispatch()
     function closeDateSelect(){
-        console.log('test')
         dispatch(changeIsDateSelectOpen(false))
     }
     function openDateSelect(){
@@ -42,11 +44,16 @@ export default function SearchBar(){
     }
     return(
         <>
-            <div className="relative md:z-10 border-2 border-[#EAEAEA] bg-white rounded-2xl p-2 py-4 md:p-6 md:py-8">
+            <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-10 bg-white p-2 py-4 md:p-6 md:py-8'} border-2 border-[#EAEAEA] rounded-2xl`}>
+              <div onClick={closeSearchBar} className="absolute top-0 right-0 w-full h-full bg-[#00000066]">
+
+              </div>
+              {!isPopup &&
                 <div className="lg:text-2xl md:text-xl sm:text-lg  md:text-right text-center text-md font-bold mb-8">
                     اجاره آنلاین خودرو در همه شهر ها با بهترین قیمت
                 </div>
-                <div className="flex lg:gap-2 gap-4 items-end lg:flex-nowrap flex-wrap">
+                }
+                <div className={`flex lg:gap-2 gap-4 items-end lg:flex-nowrap flex-wrap ${isPopup ? `bg-white rounded-lg justify-center ${isDateSelectOpen ? 'md:w-10/12 w-full md:p-8 md:my-4' : 'p-8 w-10/12 my-4'} absolute  left-1/2 -translate-x-1/2` : ''}`}>
                     <div className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
                         <span className="text-sm">مقصد</span>
                         <div onClick={()=>setCityToggle(!cityToggle)} className="border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1">
@@ -65,7 +72,7 @@ export default function SearchBar(){
                             </CityDropDown>
                         }
                     </div>
-                    <div className="relative lg:w-6/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2">
+                    <div className={`relative lg:w-6/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2`}>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
                             <span className="text-sm">تاریخ و زمان تحویل</span>
                             <div onClick={()=>setDateToggle(true)} className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
@@ -115,11 +122,16 @@ export default function SearchBar(){
                             </div>
                         }
                     </div>
-
-                    <button className="lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
-                        <IconSearch/>
-                        جستجوی خودرو ها
-                    </button>
+                    {!isPopup ?
+                      <button className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+                          <IconSearch/>
+                          جستجوی خودرو ها
+                      </button>
+                      :
+                      <button onClick={closeSearchBar} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+                          تایید
+                      </button>
+                    }
                 </div>
             </div>
             
@@ -239,7 +251,7 @@ function getDaysSinceEpoch(date) {
   return totalDays
 }
 
-function getDiffInShamsiDays(date1, date2) {
+export function getDiffInShamsiDays(date1, date2) {
     if(!date1 || !date2) return
   return getDaysSinceEpoch(date2) - getDaysSinceEpoch(date1)
 }
