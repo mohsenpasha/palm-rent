@@ -31,7 +31,7 @@ const initialState = {
   isDateSelectOpen:false,
   isTranslatePopupOpen:false,
   isSearchPopupOpen:false,
-  roadMapStep:2
+  roadMapStep:1
   // singleCar:{}
 }
 

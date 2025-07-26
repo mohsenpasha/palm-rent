@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeCarDates, changeDeliveryTime, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime } from "@/redux/slices/globalSlice";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useClickOutside } from "../hooks/useClickOutside";
+import Link from "next/link";
 
 export default function SearchBar({isPopup=false}){
     const carDates = useSelector((state) => state.global.carDates)
@@ -125,10 +126,10 @@ export default function SearchBar({isPopup=false}){
                         }
                     </div>
                     {!isPopup ?
-                      <button className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+                      <Link href={'/search'} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
                           <IconSearch/>
                           جستجوی خودرو ها
-                      </button>
+                      </Link>
                       :
                       <button onClick={closeSearchBar} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
                           تایید

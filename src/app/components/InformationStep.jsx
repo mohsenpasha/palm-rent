@@ -3,6 +3,8 @@ import { IconArrow, IconGrate, IconInfo, IconSort1, IconTick2 } from "./Icons"
 import Image from "next/image"
 import { SingleCarOptions } from "./SingleCar"
 import Link from "next/link"
+import { changeRoadMapStep } from "@/redux/slices/globalSlice"
+import { useDispatch } from "react-redux"
 
 export default function InformationStep(){
     return(
@@ -346,6 +348,10 @@ export function SinglePaymentDet({title,subtitle,price}){
 }
 
 export function PersonalInfoBox(){
+    const dispatch = useDispatch()
+    function nextStep(){
+        dispatch(changeRoadMapStep(3))
+    }
     return(
         <div className="lg:text-base md:text-sm text-xs border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
@@ -374,7 +380,7 @@ export function PersonalInfoBox(){
                 </span>
                 <div>در پالم رنت ، رزرو خودرو رایگان است  و تا 15 دقیقه بررسی شده ، سپس پیامک تاییدیه با لینک پیش پرداخت ارسال میشود.</div>
             </div>
-            <button className="bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 w-full lg:text-xl sm:text-lg text-sm my-2">
+            <button onClick={nextStep} className="bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 w-full lg:text-xl sm:text-lg text-sm my-2">
                 خودرو خود را رزرو کنید
             </button>
             <div className="text-center text-[#8A8A8A] md:text-sm text-xs">

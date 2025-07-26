@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <Header />
       <LandingFirstView/>
-      <CarCategorySection/>
+      {/* <CarCategorySection/> */}
       <BranchSection/>
       <WhySection/>
       <CommonQuestionSection/>

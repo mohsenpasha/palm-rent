@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export function RecentBlogPosts(){
     return(
-        <section className='my-32 bg-[#F6F6F6] py-20 pb-24'>
+        <section className='my-8 bg-[#F6F6F6] py-8 pb-24'>
             <div className='xl:w-[85vw] w-[95vw]  max-w-[1500px] m-auto'>
-                <div className='flex w-full justify-between'>
-                    <div className="md:text-right text-center pb-12 lg:text-[32px] md:text-2xl text-lg font-bold text-[#3B82F6]">
+                <div className='flex w-full justify-between md:pb-6'>
+                    <div className="md:text-right text-center lg:text-[32px] md:text-2xl text-lg font-bold text-[#3B82F6]">
                         آخرین مقالات پالم رنت
                     </div>
                     <Link href={'#'} className="flex gap-2 items-center font-medium cursor-pointer">
