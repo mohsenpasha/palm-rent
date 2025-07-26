@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeIsHeaderClose, changeIsTranslatePopupOpen } from "@/redux/slices/globalSlice";
 import { useTranslation } from "react-i18next";
 import LanguageCurrencyPopup from "./LanguageCurrencyPopup";
+import '../i18n/index'
 
 export default function Header(){
     const { t, i18n } = useTranslation();
@@ -25,6 +26,7 @@ export default function Header(){
         }
     },[])
     function scrollHandler(event){
+        console.log('test')
         if(event.wheelDelta < 0 && event.pageY > 350){
             setIsHeaderClose(true)
         }
