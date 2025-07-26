@@ -152,7 +152,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                     </div>
                     <DropDown isActive={dropMenuToggle[2]}>
                         <DropDownItem text={'درباره پالم رنت'} href={'/about-us'}/>
-                        <DropDownItem text={'تماس با ما'} href={'#'}/>
+                        <DropDownItem text={'تماس با ما'} href={'/contact-us'}/>
                     </DropDown>
                 </li>
                 <li className="relative group lg:p-1 lg:px-3 2xl:px-6 underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
