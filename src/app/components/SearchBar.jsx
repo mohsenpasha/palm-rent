@@ -45,9 +45,11 @@ export default function SearchBar({isPopup=false}){
     return(
         <>
             <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-10 bg-white p-2 py-4 md:p-6 md:py-8'} border-2 border-[#EAEAEA] rounded-2xl`}>
-              <div onClick={closeSearchBar} className="absolute top-0 right-0 w-full h-full bg-[#00000066]">
+              {isPopup &&
+                <div onClick={closeSearchBar} className="absolute top-0 right-0 w-full h-full bg-[#00000066]">
 
-              </div>
+                </div>
+              }
               {!isPopup &&
                 <div className="lg:text-2xl md:text-xl sm:text-lg  md:text-right text-center text-md font-bold mb-8">
                     اجاره آنلاین خودرو در همه شهر ها با بهترین قیمت
