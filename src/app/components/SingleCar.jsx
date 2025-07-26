@@ -1,9 +1,12 @@
 'use client'
 import Image from "next/image";
 import { IconArrowHandle, IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhatsapp } from "./Icons";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { changeReelActive } from "@/redux/slices/reelsSlice";
+import Link from "next/link";
+import { getDiffInShamsiDays } from "./SearchBar";
+import { changeRoadMapStep } from "@/redux/slices/globalSlice";
 
 export default function SingleCar({data,noBtn = false}){
     console.log(data)   
@@ -169,23 +172,36 @@ export function SingleCarButtonHolder1(){
                 <IconSend/>
                 رزرو فوری
             </button>
-            <button className="border-[1px] border-[#10B981] rounded-xl text-[#10B981] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#10B981] transition-all hover:text-white hover:border-transparent">
+            <Link href="https://wa.me/989123456789?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AE%D9%88%D8%B4%D9%85%20%D8%A7%D9%88%D9%85%D8%AF%DB%8C" target="_blank" className="border-[1px] border-[#10B981] rounded-xl text-[#10B981] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#10B981] transition-all hover:text-white hover:border-transparent">
                 <IconWhatsapp/>
                 رزرو : واتس اپ
-            </button>
+            </Link>
         </div>
     )
 }
 export function SingleCarButtonHolder2(){
+    const [whatsappText,setWhatsappText] = useState()
+    const text = ''
+    const carDates = useSelector((state)=> state.global.carDates)
+    const deliveryTime = useSelector((state)=> state.global.deliveryTime)
+    const returnTime = useSelector((state)=> state.global.returnTime)
+    useEffect(()=>{
+        setWhatsappText('سلام ، مایل هستم یک خودروی تویوتا یاریس در دبی از تاریخ ' + carDates[0] +' ساعت '+ deliveryTime +' تا '+ carDates[1] +' ساعت '+ returnTime +' به مدت '+ getDiffInShamsiDays(carDates[0],carDates[1]) +' روز رزرو کنم. لطفاً راهنمایی بفرمایید.')
+    },[])
+    // this is test for showing
+    const dispatch = useDispatch()
+    function nextStep(){
+        dispatch(changeRoadMapStep(2))
+    }
     return(
         <div className="flex w-full gap-2">
-            <button className="rounded-xl py-2 flex justify-center gap-2 w-full cursor-pointer bg-[#3B82F6] text-white">
+            <button onClick={nextStep} className="rounded-xl py-2 flex justify-center gap-2 w-full cursor-pointer bg-[#3B82F6] text-white">
                 انتخاب خودرو
             </button>
-            <button className="rounded-xl py-2 flex justify-center gap-2 w-fit text-nowrap px-2 cursor-pointer bg-[#10B981] text-white">
+            <Link href={`https://wa.me/971556061134?text=${encodeURIComponent(whatsappText)}`} target="_blank" className="rounded-xl py-2 flex justify-center gap-2 w-fit text-nowrap px-2 cursor-pointer bg-[#10B981] text-white">
                 <IconWhatsapp/>
                 واتس اپ
-            </button>
+            </Link>
         </div>
     )
 }
