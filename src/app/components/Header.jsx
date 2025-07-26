@@ -141,7 +141,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                     </DropDown>
                 </li>
                 <li className="lg:p-1 lg:px-3 2xl:px-6 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
-                    <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='#'>
+                    <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='/documents'>
                         مدارک مورد نیاز
                     </Link>
                 </li>
