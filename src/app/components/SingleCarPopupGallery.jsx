@@ -39,10 +39,10 @@ export default function SingleCarPopupGallery(){
                         <SingleImageScroll src={'/images/singlecar-1.png'}/>
                     </div>
                     <div className="relative w-[100vw] h-[100vh] shrink-0">
-                        <SingleImageScroll src={'/images/singlecar-1.png'}/>
+                        <SingleImageScroll src={'/images/singlecar-2.jpg'}/>
                     </div>
                     <div className="relative w-[100vw] h-[100vh] shrink-0">
-                        <SingleImageScroll src={'/images/singlecar-1.png'}/>
+                        <SingleImageScroll src={'/images/singlecar-3.jpg'}/>
                     </div>
                 </div>
             </div>

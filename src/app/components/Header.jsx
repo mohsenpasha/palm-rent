@@ -26,7 +26,6 @@ export default function Header(){
         }
     },[])
     function scrollHandler(event){
-        console.log('test')
         if(event.wheelDelta < 0 && event.pageY > 350){
             setIsHeaderClose(true)
         }
@@ -163,7 +162,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                     </div>
                     <DropDown isActive={dropMenuToggle[3]}>
                         <DropDownItem text={'مجله پالم رنت'} href={'#'}/>
-                        <DropDownItem text={'گالری تصاویر'} href={'#'}/>
+                        <DropDownItem text={'گالری تصاویر'} href={'/gallery'}/>
                         <DropDownItem text={'سوالات متداول'} href={'#'}/>
                         <DropDownItem text={'قوانین اجاره خودرو'} href={'#'}/>
                     </DropDown>
