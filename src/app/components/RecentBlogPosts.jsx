@@ -31,19 +31,20 @@ export function RecentBlogPosts(){
         </section>
     )
 }
-export function SingleBlogPost({bigPost=false}){
+
+export function SingleBlogPost({bigPost=false,smallFont=false}){
     return(
         <Link href={'#'} className="flex w-full cursor-pointer">
             <div className={`flex ${bigPost ? 'flex-col' : ''} gap-4 w-full`}>
                 <div className="w-full relative">
                     <Image className="w-full h-full object-cover rounded-lg" src={'/images/singlecar-1.png'} width={530} height={280} alt=""></Image>
-                    <span className="absolute left-3 bottom-3 text-white bg-[#DF900A] py-0.5 px-2.5 rounded-4xl text-nowrap lg:text-base md:text-sm text-xs">راننده شخصی</span>
+                    <span className={`absolute left-3 bottom-3 text-white bg-[#DF900A] py-0.5 px-2.5 rounded-4xl text-nowrap ${smallFont ? 'lg:text-md md:text-sm text-xs' :'lg:text-base md:text-sm text-xs'}`}>راننده شخصی</span>
                 </div>
                 <div className="flex flex-col text-justify gap-4">
-                    <div className="lg:text-xl md:text-lg sm:text-base text-sm font-bold">
+                    <div className={`${smallFont ? 'lg:text-base md:text-md text-sm' : 'lg:text-xl md:text-lg sm:text-base text-sm'} font-bold`}>
                         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است،
                     </div>
-                    <div className={`lg:text-lg md:text-base sm:text-sm text-xs text-[#5B5B5B] ${bigPost ? 'line-clamp-5' :'line-clamp-3'}`}>
+                    <div className={`${bigPost ? 'lg:text-md text-sm ' : 'lg:text-lg md:text-base sm:text-sm text-xs'} text-[#5B5B5B] ${bigPost ? 'line-clamp-5' :'line-clamp-3'}`}>
                         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است،  چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، 
                     </div>
                 </div>

@@ -161,7 +161,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                         <IconArrow/>
                     </div>
                     <DropDown isActive={dropMenuToggle[3]}>
-                        <DropDownItem text={'مجله پالم رنت'} href={'#'}/>
+                        <DropDownItem text={'مجله پالم رنت'} href={'/blogs'}/>
                         <DropDownItem text={'گالری تصاویر'} href={'/gallery'}/>
                         <DropDownItem text={'سوالات متداول'} href={'/faq'}/>
                         <DropDownItem text={'قوانین اجاره خودرو'} href={'/rules'}/>
