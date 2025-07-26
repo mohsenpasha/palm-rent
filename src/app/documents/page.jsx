@@ -106,7 +106,6 @@ export default function DocumentsPage(){
 export function DocumentImages(){
     return(
         <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
-            test
             <div className="flex flex-col w-full items-center justify-center gap-2">
                 <div className="relative p-4 border-[1px] border-[#EBEBEB] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
                     <div>تصویر نمونه برای شناسایی خودروهای بدون نیاز به دپوزیت</div>
