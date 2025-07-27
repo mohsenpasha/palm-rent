@@ -27,11 +27,9 @@ export default function Header(){
     function touchMoveHandler(event){
         console.log(touchStart.current,event.touches[0].clientY)
         if(touchStart.current < event.touches[0].clientY){
-            console.log('low')
             setIsHeaderClose(false)
         }
         else{
-            console.log('high')
             setIsHeaderClose(true)
         }
     }

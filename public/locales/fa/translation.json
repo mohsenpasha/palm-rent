@@ -2,5 +2,15 @@
   "settings": "تنظیمات",
   "chooselang": "انتخاب زبان",
   "choosecurrency": "انتخاب ارز",
-  "language":"فارسی"
+  "language":"فارسی",
+  "dubai":"دبی",
+  "istanbul":"استانبول",
+  "kayseri":"قیصریه ترکیه",
+  "kish":"کیش",
+  "ezmir":"ازمیر",
+  "georgia":"تفلیس گرجستان",
+  "oman":"عمان",
+  "samsun":"سامسون ترکیه",
+  "antalya":"آنتالیا ترکیه",
+  "ankara":"آنکارا ترکیه"
 }

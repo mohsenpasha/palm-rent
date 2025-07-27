@@ -11,23 +11,31 @@ import DateObject from "react-date-object"
 import persian from "react-date-object/calendars/persian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import { useDispatch, useSelector } from "react-redux";
-import { changeCarDates, changeDeliveryTime, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime } from "@/redux/slices/globalSlice";
+import { changeCarDates, changeDeliveryTime, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime, changeSelectedCity } from "@/redux/slices/globalSlice";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useClickOutside } from "../hooks/useClickOutside";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function SearchBar({isPopup=false}){
     const carDates = useSelector((state) => state.global.carDates)
+    const selectedCity = useSelector((state) => state.global.selectedCity)
+    const cities = useSelector((state) => state.global.cities)
     const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
     const deliveryTime = useSelector((state) => state.global.deliveryTime)
     const returnTime = useSelector((state) => state.global.returnTime)
     const [cityToggle,setCityToggle] = useState(false)
     const [dataToggle,setDateToggle] = useState(false)
+    const { t, i18n } = useTranslation();
+    
     function closeSearchBar(){
       dispatch(changeIsSearchPopupOpen(false))
     }
     const ref = useClickOutside(() => {
         closeDateSelect()
+    });
+    const citySelectRef = useClickOutside(() => {
+        setCityToggle(false)
     });
     const dispatch = useDispatch()
     function closeDateSelect(){
@@ -57,21 +65,21 @@ export default function SearchBar({isPopup=false}){
                 </div>
                 }
                 <div className={`flex lg:gap-2 gap-4 items-end lg:flex-nowrap flex-wrap ${isPopup ? `bg-white rounded-lg justify-center ${isDateSelectOpen ? 'md:w-10/12 w-full md:p-8 md:my-4' : 'p-8 w-10/12 my-4'} absolute  left-1/2 -translate-x-1/2` : ''}`}>
-                    <div className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
+                    <div ref={citySelectRef} className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
                         <span className="text-sm">مقصد</span>
                         <div onClick={()=>setCityToggle(!cityToggle)} className="border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1">
                             <span className="size-6">
                                 <IconLocation/>
                             </span>
-                            دبی
+                            {t(selectedCity) || 'انتخاب کنید'}
                         </div>
                         {cityToggle &&
                             <CityDropDown>
-                                <SingleCityItem href={'test'} text={'تهران'}/>
-                                <SingleCityItem href={'test'} text={'تهران'}/>
-                                <SingleCityItem href={'test'} text={'تهران'}/>
-                                <SingleCityItem href={'test'} text={'تهران'}/>
-                                <SingleCityItem href={'test'} text={'تهران'}/>
+                              {cities.map((item,index)=>{
+                                return(
+                                  <SingleCityItem closeDropDown={()=>setCityToggle(false)} key={index} value={item}/>
+                                )
+                              })}
                             </CityDropDown>
                         }
                     </div>
@@ -156,14 +164,20 @@ export function CityDropDown({children}){
 }
 
 
-export function SingleCityItem({text,href}){
+export function SingleCityItem({value,closeDropDown}){
+    const dispatch = useDispatch()
+    function changeCity(){
+      dispatch(changeSelectedCity(value))
+      closeDropDown()
+    }
+    const { t, i18n } = useTranslation();
     return(
-        <div href={href} className="text-[#4b5259] text-nowrap px-3 transition-all hover:bg-[#f2f9ff] last-of-type:border-0 flex items-center cursor-pointer">
+        <div onClick={changeCity} className="text-[#4b5259] text-nowrap px-3 transition-all hover:bg-[#f2f9ff] last-of-type:border-0 flex items-center cursor-pointer">
             <div className="flex border-b-[1px] border-[#0000001f] w-full gap-1 py-4">
                 <span className="size-6">
                     <IconLocation/>
                 </span>
-                {text}
+                {t(value)}
             </div>
         </div>
     )

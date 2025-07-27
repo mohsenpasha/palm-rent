@@ -31,7 +31,9 @@ const initialState = {
   isDateSelectOpen:false,
   isTranslatePopupOpen:false,
   isSearchPopupOpen:false,
-  roadMapStep:1
+  roadMapStep:1,
+  cities:['dubai','istanbul','kayseri','kish','ezmir','georgia','oman','samsun','antalya','ankara'],
+  selectedCity:null,
   // singleCar:{}
 }
 
@@ -72,10 +74,11 @@ const globalSlice = createSlice({
     changeIsSearchPopupOpen: (state,action) => {
       state.isSearchPopupOpen = action.payload
     },
-    
-    
+    changeSelectedCity: (state,action) => {
+      state.selectedCity = action.payload
+    },
   },
 })
 
-export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen } = globalSlice.actions
+export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen, changeSelectedCity } = globalSlice.actions
 export default globalSlice.reducer

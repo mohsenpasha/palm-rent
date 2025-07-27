@@ -2,5 +2,15 @@
   "settings": "Settings",
   "chooselang": "Choose language",
   "choosecurrency": "Currency selection",
-  "language":"English"
+  "language":"English",
+  "dubai":"",
+  "istanbul":"",
+  "kayseri":"",
+  "kish":"",
+  "ezmir":"",
+  "georgia":"",
+  "oman":"",
+  "samsun":"",
+  "antalya":"",
+  "ankara":""
 }

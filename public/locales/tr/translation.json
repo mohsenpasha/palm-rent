@@ -2,6 +2,15 @@
   "settings": "Ayarlar",
   "chooselang": "Dil seçimi",
   "choosecurrency": "Para birimi seçimi",
-  "language":"Türkiye"
-  
+  "language":"Türkiye",
+  "dubai":"",
+  "istanbul":"",
+  "kayseri":"",
+  "kish":"",
+  "ezmir":"",
+  "georgia":"",
+  "oman":"",
+  "samsun":"",
+  "antalya":"",
+  "ankara":""
 }

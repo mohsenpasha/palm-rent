@@ -2,6 +2,16 @@
   "settings": "إعدادات",
   "chooselang": "اختيار اللغة",
   "choosecurrency": "اختيار العملة",
-  "language":"العربی"
+  "language":"العربی",
+  "dubai":"",
+  "istanbul":"",
+  "kayseri":"",
+  "kish":"",
+  "ezmir":"",
+  "georgia":"",
+  "oman":"",
+  "samsun":"",
+  "antalya":"",
+  "ankara":""
   
 }
