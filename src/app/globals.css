@@ -6,16 +6,16 @@ body{
   background: #F6F6F6;
 }
 @font-face {
-  font-family: dana;
-  src: url(fonts/Dana-Medium.woff);
+  font-family: iranYekan;
+  src: url(fonts/iranyekanwebregularfanum.ttf);
 }
 @font-face {
-  font-family: dana;
-  src: url(fonts/Dana-Bold.woff);
+  font-family: iranYekan;
+  src: url(fonts/iranyekanwebboldfanum.ttf);
   font-weight: bold;
 }
 *{
-  font-family: dana;
+  font-family: iranYekan;
 }
 /* .sp-date-btn{
   background-color: #A5C6FB;

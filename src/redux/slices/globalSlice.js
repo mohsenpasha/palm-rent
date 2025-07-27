@@ -21,9 +21,9 @@ const initialState = {
 
   //   },
   // ],
-  carDates:['1404/05/13', '1404/05/22'],
-  deliveryTime:'21:30',
-  returnTime:'22:30',
+  carDates:['', ''],
+  deliveryTime:'10:00',
+  returnTime:'10:00',
   isSingleGalleryOpen:false,
   isHeaderClose:false,
   isSearchOpen:false,
