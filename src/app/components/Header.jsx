@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {IconArrow, IconGlobal, IconPhone, IconLogin} from "./Icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { changeIsHeaderClose, changeIsTranslatePopupOpen } from "@/redux/slices/globalSlice";
@@ -13,16 +13,41 @@ import '../i18n/index'
 export default function Header(){
     const { t, i18n } = useTranslation();
     const [menuToggle,setMenuToggle] = useState(false)
+    const touchStart = useRef(0)
     const dispatch = useDispatch()
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
     const isTranslateOpen = useSelector((state)=> state.global.isTranslatePopupOpen)
     function setIsHeaderClose(st){
         dispatch(changeIsHeaderClose(st))
     }
+    function touchStartHandler(event){
+        console.log(event.touches[0].clientY)
+        touchStart.current = event.touches[0].clientY
+    }
+    function touchMoveHandler(event){
+        console.log(touchStart.current,event.touches[0].clientY)
+        if(touchStart.current < event.touches[0].clientY){
+            console.log('low')
+            setIsHeaderClose(false)
+        }
+        else{
+            console.log('high')
+            setIsHeaderClose(true)
+        }
+    }
+    function touchEndHandler(){
+        // setTouchStart(0)
+    }
     useEffect(()=>{
         window.addEventListener('wheel',(event)=>scrollHandler(event))
+        window.addEventListener('touchstart', touchStartHandler)
+        window.addEventListener('touchmove', touchMoveHandler)
+        window.addEventListener('touchend', touchEndHandler)
         return () => {
             window.removeEventListener('wheel',(event)=>scrollHandler(event))
+            window.removeEventListener('touchstart', touchStartHandler)
+            window.removeEventListener('touchmove', touchMoveHandler)
+            window.removeEventListener('touchend', touchEndHandler)
         }
     },[])
     function scrollHandler(event){
@@ -94,11 +119,11 @@ export function HeaderMenu({ isActive, closeMenu }){
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     return(
         <>  
-            <div className={`${isUnderLg && !isActive && 'hidden'} animate-fade-in fixed top-0 right-0`}>
+            <div className={`${isUnderLg && isActive && 'block!'} hidden animate-fade-in fixed top-0 right-0`}>
                 <div onClick={closeMenu} className={`absolute w-[100vw] h-[100vh] bg-black opacity-40 z-40 top-0 right-0 lg:hidden`}>
                 </div>
             </div>
-            <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0' : 'translate-x-full')} pt-15 lg:pt-0 fixed transition-all h-[100vh] lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible`}>
+            <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0!' : '')} translate-x-full lg:translate-x-0 pt-15 lg:pt-0 fixed transition-all h-[100vh] lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible`}>
                 <li className="lg:p-1 lg:px-3 2xl:px-6 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
                     <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='#'>
                         خانه
@@ -176,7 +201,7 @@ export function HeaderMenu({ isActive, closeMenu }){
 export function DropDown({ children, isActive }){
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     return(
-        <div className="lg:absolute lg:hidden min-w-32 animate-fade-in lg:translate-y-full lg:group-hover:flex bottom-0 left-1/2 lg:-translate-x-1/2 lg:pt-2">
+        <div className="lg:absolute lg:hidden min-w-32 lg:w-auto w-full  animate-fade-in lg:translate-y-full lg:group-hover:flex bottom-0 left-1/2 lg:-translate-x-1/2 lg:pt-2">
             <ul className={`flex ${isUnderLg ? (isActive ? 'max-h-[500px]  p-1' : 'max-h-0') : 'p-1' } transition-all overflow-hidden flex-col bg-white min-w-32 rounded-lg lg:border-[1px] border-[#cccccc] lg:shadow-[0_3px_10px_0_rgba(0,0,0,.12),0_10px_10px_-6px_rgba(0,0,0,.12)]`}>
                 { children }
             </ul>

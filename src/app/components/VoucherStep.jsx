@@ -247,7 +247,9 @@ export function SocialBox(){
             </div>
             <div className="py-3 px-6 lg:w-auto sm:w-[calc(50%-8px)] w-full justify-center bg-[#FFFFFF66] rounded-2xl flex items-center gap-4 text-[#10B981] shadow-[inset_-8px_-8px_8px_0_#FFFFFF12,inset_-8px_-8px_8px_0_#C2C2C212,0_4px_14px_-4px_#10B98140]">
                 +9104992043
-                <IconPhone/>
+                <span className="size-8 flex">
+                    <IconPhone/>
+                </span>
             </div>
         </div>
     )

@@ -54,8 +54,8 @@ export function SearchBox(){
                         )
                     })}
             </div>
-            <div className="flex items-center justify-between gap-2 lg:text-base md:text-sm text-xs">
-                <div className="flex items-center gap-2 lg:text-base md:text-sm text-xs">
+            <div className="flex md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-base md:text-sm text-xs">
+                <div className="flex md:w-auto w-full items-center gap-2 lg:text-base md:text-sm text-xs">
                     <span className="flex">
                         <IconSort/>
                         مرتب سازی :
@@ -75,7 +75,7 @@ export function SearchBox(){
 
                     </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 md:w-auto w-full justify-between">
                     <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
                         <IconSetting/>
                         <span className="">
