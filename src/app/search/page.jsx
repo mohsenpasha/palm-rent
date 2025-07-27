@@ -22,7 +22,7 @@ export default function SearchResultPage(){
     return(
         <>
             <Header/>
-            <div className="w-[90vw] max-w-[1500px] m-auto">
+            <div className="w-[90vw] max-w-[1100px] m-auto">
                 {roadMapStep < 3 && 
                     <>
                         <RoadMap step={roadMapStep}/>

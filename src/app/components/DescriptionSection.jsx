@@ -4,7 +4,7 @@ import { IconCoupon, IconDiamond, IconFewCars, IconGlobCar, IconHandBreak, IconL
 export default function DescriptionSection(){
     return(
         <section className="my-12">
-            <div className="w-[85vw] max-w-[1500px] m-auto">
+            <div className="w-[85vw] max-w-[1100px] m-auto">
                 <div className="md:flex hidden md:justify-between justify-center items-center">
                     <div className="text-[#3B82F6] lg:text-4xl md:text-3xl font-bold lg:max-w-[400px] md:max-w-[300px] lg:leading-18 md:text-right text-center">
                         پالم رنت شرکتی پیشرو در اجاره خودرو
