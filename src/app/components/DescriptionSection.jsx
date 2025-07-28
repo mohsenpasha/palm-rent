@@ -1,15 +1,35 @@
+'use client'
 import Image from "next/image";
 import { IconCoupon, IconDiamond, IconFewCars, IconGlobCar, IconHandBreak, IconLuxCar, IconStars } from "./Icons";
+import { useEffect, useRef, useState } from "react";
 
 export default function DescriptionSection(){
+    const [carTransition,setCarTransition] = useState(0)
+    const sectionRef = useRef()
+    useEffect(() => {
+        document.addEventListener("scroll", scrollHandler);
+
+        return () => {
+        document.removeEventListener("scroll", scrollHandler);
+        };
+    }, []);
+    const scrollHandler = () => {
+        const elmTop = sectionRef.current.getBoundingClientRect().top
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        console.log(sectionRef.current.getBoundingClientRect().bottom)
+        if(elmTop < window.innerHeight / 2 && elmTop > 0){
+            console.log(elmTop - elmTop)
+            setCarTransition(elmTop)
+        }
+    };
     return(
-        <section className="my-12">
+        <section ref={sectionRef} className="my-12">
             <div className="w-[85vw] max-w-[1100px] m-auto">
-                <div className="md:flex hidden md:justify-between justify-center items-center">
+                <div className="md:flex hidden md:justify-between justify-center items-center overflow-hidden">
                     <div className="text-[#3B82F6] lg:text-4xl md:text-3xl font-bold lg:max-w-[400px] md:max-w-[300px] lg:leading-18 md:text-right text-center">
                         پالم رنت شرکتی پیشرو در اجاره خودرو
                     </div>
-                    <div className="md:block hidden">
+                    <div style={{transform:`translateX(${carTransition}px)`}} className="md:block hidden">
                         <Image src={'/images/company-car.png'} width={360} height={190} alt=""></Image>
                     </div>
                 </div>
