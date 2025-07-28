@@ -4,6 +4,7 @@ import { IconArrow, IconClose, IconMute, IconPlay2, IconUnMute } from "./Icons"
 import { useMediaQuery } from "../hooks/useMediaQuery"
 import { useDispatch, useSelector } from "react-redux"
 import { changeActiveIndex, changeReelActive } from "@/redux/slices/reelsSlice"
+import useDisableScroll from "../hooks/useDisableScroll"
 
 export default function PopupReels(){
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ export default function PopupReels(){
     const sliderIndexRef = useRef(0)
     const reelsRef = useRef([])
     const isSliderLocked = useRef(false)
+    useDisableScroll()
     function closePopupReels(){
         dispatch(changeActiveIndex(0))
         dispatch(changeReelActive(false))
@@ -84,14 +86,11 @@ export default function PopupReels(){
         }
     },[])
     useEffect(()=>{
-        console.log(isUnderSm)
         let tr;
         if(isUnderSm){
-            console.log('isundersm')
             tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top) * -1
         }
         else{
-            console.log('not under')
             tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top - ((window.innerHeight * 5) / 100)) * -1
         }
         setSliderTransition(sliderTransition + tr)
@@ -108,14 +107,11 @@ export default function PopupReels(){
     useEffect(()=>{
         let tr;
         if(isUnderSm){
-            console.log('isundersm')
             tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top) * -1
         }
         else{
-            console.log('not under')
             tr = (reelsRef.current[sliderIndex].getBoundingClientRect().top - ((window.innerHeight * 5) / 100)) * -1
         }
-        console.log(sliderTransition,tr)
         setSliderTransition(sliderTransition + tr)
     },[isUnderSm])
     useEffect(()=>{
