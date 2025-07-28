@@ -44,7 +44,7 @@ export default function RulesPage(){
                     <div className="text-center py-4 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
                         قوانین اجاره خودرو
                     </div>
-                    <CommonQuestionSection rules={rules} setRules={setRules} newVersion={true}/>
+                    <CommonQuestionSection rules={rules} setRules={setRules}/>
                 </div>
             </div>
         </>

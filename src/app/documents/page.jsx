@@ -93,7 +93,7 @@ export default function DocumentsPage(){
                         مدارک مورد نیاز
                     </div>
                     <div>
-                        <CommonQuestionSection newVersion rules={rules} setRules={setRules}/>
+                        <CommonQuestionSection rules={rules} setRules={setRules}/>
                         <DocumentImages/>
                     </div>
                 </div>

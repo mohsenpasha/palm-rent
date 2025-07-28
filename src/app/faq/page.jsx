@@ -64,7 +64,7 @@ export default function FaqPage(){
                     <div className="text-center py-4 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
                         سوالات متداول
                     </div>
-                    <CommonQuestionSection rules={rules} setRules={setRules} newVersion={true}/>
+                    <CommonQuestionSection rules={rules} setRules={setRules}/>
                 </div>
             </div>
         </>
