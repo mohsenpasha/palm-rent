@@ -11,7 +11,7 @@ import { changeRoadMapStep } from "@/redux/slices/globalSlice";
 export default function SingleCar({data,noBtn = false}){
     console.log(data)   
     return(
-        <div className="flex w-full flex-col rounded-2xl md:text-base text-sm border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
+        <div className="flex w-full flex-col rounded-2xl md:text-base text-sm border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
             <SingleCarGallery noBtn={noBtn}>
                 {!noBtn && 
                     <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2 w-full overflow-hidden flex-wrap">
@@ -134,10 +134,10 @@ export function SingleCarPriceList({priceList}){
     console.log(priceList)
     return(
         <div>
-            {/* <div className="w-full border-b-[1px] border-[#E2E2E2] py-2">
+            {/* <div className="w-full border-b-[1px] border-[#0000001f] py-2">
                 قیمت کرایه تویوتا یاریس 2024 دبی
             </div> */}
-            <div className="flex flex-col gap-2 my-4 border-t-[1px] pt-2 border-[#E2E2E2]">
+            <div className="flex flex-col gap-2 my-4 border-t-[1px] pt-2 border-[#0000001f]">
                 {Object.entries(priceList).map(([key, { previousPrice, currentPrice }]) => (
                     <div key={key} className="flex justify-between">
                         <div>

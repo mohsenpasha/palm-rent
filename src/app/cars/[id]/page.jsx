@@ -41,7 +41,7 @@ export default function CarsPage(){
 
 export function PriceServiceBox(){
     return(
-        <div className="border-[1px] w-full border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl bg-white">
+        <div className="border-[1px] w-full border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl bg-white">
             <div className="flex items-center lg:text-xl md:text-base text-sm font-semibold gap-2">
                 <span className="size-7">
                     <IconMoney/>
@@ -95,7 +95,7 @@ export function SinglePrice({title,value}){
 }
 export function CarInfoText(){
     return(
-        <div className="border-[1px] w-full border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl bg-white">
+        <div className="border-[1px] w-full border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl bg-white">
             <div className="flex items-center lg:text-xl md:text-base text-sm font-semibold gap-2">
                 <IconInfo2/>
                 اطلاعات خودرو

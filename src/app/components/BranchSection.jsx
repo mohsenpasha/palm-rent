@@ -83,7 +83,7 @@ export function Slider() {
 
 export function SingleBranchCity({link,image,title}){
     return(
-            <Link href={link} className='border-[1px] group border-[#E2E2E2] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
+            <Link href={link} className='border-[1px] group border-[#0000001f] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
                 <Image className='w-full rounded-lg object-cover h-[140px]' src={image} width={218} height={181} alt=''></Image>
                 <div className='absolute left-2 top-2'>
                     <IconWSOSD/>
@@ -91,7 +91,7 @@ export function SingleBranchCity({link,image,title}){
                         <IconArrowHandle/>
                     </span>
                 </div>
-                <div className='border-[1px] border-[#E2E2E2] rounded-lg mt-2 p-3'>
+                <div className='border-[1px] border-[#0000001f] rounded-lg mt-2 p-3'>
                     {title}
                 </div>
             </Link>

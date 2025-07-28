@@ -22,7 +22,7 @@ export function VoucherStep(){
                     </div>
                 </div>
                 <ReservationDetail/>
-                <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+                <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
                     <PaymentDetail borderLess={true}/>
                     <FineDeposit borderLess={true}/>
                 </div>
@@ -60,7 +60,7 @@ export function VoucherHead(){
 }
 export function PersonalInfoShow(){
     return(
-        <div className="border-[1px] flex flex-col border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
+        <div className="border-[1px] flex flex-col border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
             <div className="flex items-center lg:text-xl md:text-base text-sm font-semibold gap-2">
                 <IconContact/>
                 اطلاعات شخصی
@@ -109,7 +109,7 @@ export function PersonalInfoShow(){
 
 export function PersonalInfoShowSingle({title,value}){
     return(
-        <div className="sm:w-1/2 w-full sm:border-l-[1px] even:border-l-0 border-b-[1px] last:border-b-0 sm:nth-[5]:border-b-0 border-[#E6E6E6] flex items-center justify-between lg:py-8 py-4 px-4 lg:text-base text-sm">
+        <div className="sm:w-1/2 w-full sm:border-l-[1px] even:border-l-0 border-b-[1px] last:border-b-0 sm:nth-[5]:border-b-0 border-[#0000001f] flex items-center justify-between lg:py-8 py-4 px-4 lg:text-base text-sm">
             <div className="flex gap-2 items-center">
                 {title}
             </div>
@@ -123,7 +123,7 @@ export function PersonalInfoShowSingle({title,value}){
 export function ReservationDetail(){
     const [options,setOptions] = useState(['بدون دیپوزیت','تحویل رایگان','بیمه رایگان','کیلومتر نامحدود'])
     return(
-        <div className="border-[1px] flex md:flex-nowrap flex-wrap lg:gap-12 gap-6 border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
+        <div className="border-[1px] flex md:flex-nowrap flex-wrap lg:gap-12 gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
             <div className="md:w-1/2 w-full flex flex-col gap-4">
                 <div className="flex justify-between">
                     <div className="flex gap-2 lg:text-xl md:text-base text-sm font-semibold items-center">
@@ -209,7 +209,7 @@ export function SingleReservationDetail({title,value}){
 
 export function FinalDetail(){
     return(
-        <div className="border-[1px] flex gap-6 border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white flex-col xl:text-lg lg:text-base md:text-sm text-xs">
+        <div className="border-[1px] flex gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white flex-col xl:text-lg lg:text-base md:text-sm text-xs">
             <div className="flex gap-2 items-center text-black lg:text-xl md:text-base text-sm font-semibold">
                 <IconInfo2/>
                 اطلاعات تکمیلی

@@ -13,34 +13,34 @@ export default function BlogsPage(){
                     </div>
                     <div className="flex">
                         <div className="flex w-full flex-wrap gap-2">
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
-                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#EBEBEB] p-4 rounded-lg bg-white">
+                            <div className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
                                 <SingleBlogPost smallFont={true} bigPost={true}/>
                             </div>
                             

@@ -10,7 +10,7 @@ export function SingleCarImageSection(){
         dispatch(changeSingleGalleryStatus(true))
     }
     return(
-        <div className="border-[1px] w-full border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] sm:px-4 px-2 py-4 rounded-4xl bg-white my-4">
+        <div className="border-[1px] w-full border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] sm:px-4 px-2 py-4 rounded-4xl bg-white my-4">
             <div className="flex justify-between w-full md:text-base text-sm">
                 <div>
                     تویوتا یاریس 2025

@@ -17,7 +17,7 @@ export default function PanelPage(){
 
 export function PanelSideBar(){
     return(
-        <div className="flex flex-col border-[1px] border-[#EBEBEB] my-4 rounded-lg overflow-hidden">
+        <div className="flex flex-col border-[1px] border-[#0000001f] my-4 rounded-lg overflow-hidden">
             <button className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full bg-white hover:bg-blue-50">
                 <span>حساب کاربری</span>
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 flex w-[90%] h-[1px] bg-[#EBEBEB]"></span>
@@ -39,9 +39,9 @@ export function PanelSideBar(){
 
 export function PanelStartElm(){
     return(
-        <div className="flex items-center justify-between border-[1px] bg-white border-[#EBEBEB] my-4 rounded-lg overflow-hidden px-8 py-4">
+        <div className="flex items-center justify-between border-[1px] bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
             <div className="flex gap-2">
-                <div className="size-12 rounded-full border-[1px] border-[#EBEBEB] flex items-center justify-center">
+                <div className="size-12 rounded-full border-[1px] border-[#0000001f] flex items-center justify-center">
                     <span className="size-8">
                         <IconPerson/>
                     </span>
@@ -66,9 +66,9 @@ export function PanelStartElm(){
 
 // export function PanelStartElm(){
 //     return(
-//         <div className="flex items-center justify-between border-[1px] bg-white border-[#EBEBEB] my-4 rounded-lg overflow-hidden px-8 py-4">
+//         <div className="flex items-center justify-between border-[1px] bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
 //             <div className="flex gap-2">
-//                 <div className="size-12 rounded-full border-[1px] border-[#EBEBEB] flex items-center justify-center">
+//                 <div className="size-12 rounded-full border-[1px] border-[#0000001f] flex items-center justify-center">
 //                     <span className="size-8">
 //                         <IconPerson/>
 //                     </span>

@@ -32,7 +32,7 @@ export function QBox({newVersion = false,rules,setRules}){
         <div className="flex flex-wrap gap-2">
             {rules.map((item,index)=>{
                 return(
-                    <div key={index} className={`lg:p-8 p-4 border-[1px] border-[#E6E6E6] bg-white lg:rounded-2xl rounded-lg w-full ${newVersion ? 'w-full' : 'lg:w-[calc(50%-8px)]'} h-fit`}>
+                    <div key={index} className={`lg:p-8 p-4 border-[1px] border-[#0000001f] bg-white lg:rounded-2xl rounded-lg w-full ${newVersion ? 'w-full' : 'lg:w-[calc(50%-8px)]'} h-fit`}>
                         <div onClick={()=>toggleQItem(index)} className="flex items-center justify-between cursor-pointer">
                             <span className="md:text-xl sm:text-lg text-base font-bold">
                                 {item.q}

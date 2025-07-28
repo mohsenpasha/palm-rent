@@ -26,7 +26,7 @@ export default function InformationStep(){
 export function DeliverySpot(){
     const [otherSpotChecked,setOtherSpotChecked] = useState(false)
     return(
-        <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">دوست دارید خودرو خود را کجا تحویل بگیرید ؟</div>
             </div>
@@ -53,12 +53,12 @@ export function DeliverySpot(){
 
 export function SideCarDetail(){
     return(
-        <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">به صورت آنلاین خودرو خود را رزرو کنید </div>
             </div>
             <DetailGallery/>
-            <div className="py-3 border-b-[1px] border-[#E2E2E2]">
+            <div className="py-3 border-b-[1px] border-[#0000001f]">
                 <div className="flex w-full justify-between my-2">
                     <div className="flex gap-3">
                         <div className="text-[#1D1D1D]">
@@ -146,7 +146,7 @@ export function ReservedServices(){
 
 export function ExtraServices(){
     return(
-        <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
             </div>
@@ -211,7 +211,7 @@ export function ExtraServices(){
 
 export function FineDeposit({borderLess}){
     return(
-        <div className={`${!borderLess == 'border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl'} my-4 flex-1 bg-white`}>
+        <div className={`${!borderLess == 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl'} my-4 flex-1 bg-white`}>
             <div className="flex flex-col gap-4">
 
                 <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
@@ -236,7 +236,7 @@ export function FineDeposit({borderLess}){
 
 export function PaymentDetail({borderLess=false}){
     return(
-        <div className={`${!borderLess && 'border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
+        <div className={`${!borderLess && 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
             <div className="mb-4 flex justify-between">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">جزئیات پرداخت خود را مرور کنید </div>
                 <div className="text-[#3B82F6] cursor-pointer">کد تخفیف دارم !</div>
@@ -304,7 +304,7 @@ export function PaymentDetail({borderLess=false}){
                             </div>
 
 
-                            <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between border-t-[1px] border-[#E2E2E2]">
+                            <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between border-t-[1px] border-[#0000001f]">
                                 <div className="flex flex-col gap-2">
                                     <div className="lg:text-lg md sm:text-sm text-xs font-semibold">
                                         مانده ، پرداخت هنگام تحویل خودرو
@@ -353,7 +353,7 @@ export function PersonalInfoBox(){
         dispatch(changeRoadMapStep(3))
     }
     return(
-        <div className="lg:text-base md:text-sm text-xs border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
+        <div className="lg:text-base md:text-sm text-xs border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">اطلاعات شخصی خود را وارد کنید</div>
             </div>
@@ -394,7 +394,7 @@ export function PersonalInfoBox(){
 
 // export function ExtraServices(){
 //     return(
-//         <div className="border-[1px] border-[#EBEBEB] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+//         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
 //             <div className="mb-4">
 //                 <div className="lg:text-lg sm:text-base text-sm font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
 //             </div>
