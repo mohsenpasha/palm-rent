@@ -38,7 +38,7 @@ export default function CarSlider() {
                 slidesPerView: 2.2,
                 },
                 768: {
-                slidesPerView: 3,
+                slidesPerView: 2.5,
                 },
                 1024: {
                 slidesPerView: 3,
