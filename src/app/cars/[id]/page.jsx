@@ -29,7 +29,10 @@ export default function CarsPage(){
                     <PriceServiceBox/>
                     <CarInfoText/>
                 </div>
-                <CarSlider/>
+                <div className="bg-white p-2 rounded-2xl">
+                    <div className="lg:text-xl text-base py-2 font-bold">شاید دوست داشته باشید !</div>
+                    <CarSlider/>
+                </div>
             </div>
             {isSingleGalleryOpen && 
                 <SingleCarPopupGallery/>
