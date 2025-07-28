@@ -9,9 +9,12 @@ import { Calendar } from "react-multi-date-picker"
 import DateObject from "react-date-object"
 
 import persian from "react-date-object/calendars/persian"
+import gregorian from "react-date-object/calendars/gregorian"
 import persian_fa from "react-date-object/locales/persian_fa"
+import gregorian_en from "react-date-object/locales/gregorian_en"
+
 import { useDispatch, useSelector } from "react-redux";
-import { changeCarDates, changeDeliveryTime, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime, changeSelectedCity } from "@/redux/slices/globalSlice";
+import { changeCarDates, changeDeliveryTime, changeIsDateJalili, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime, changeSelectedCity } from "@/redux/slices/globalSlice";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useClickOutside } from "../hooks/useClickOutside";
 import Link from "next/link";
@@ -19,6 +22,7 @@ import { useTranslation } from "react-i18next";
 
 export default function SearchBar({isPopup=false}){
     const carDates = useSelector((state) => state.global.carDates)
+    const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const selectedCity = useSelector((state) => state.global.selectedCity)
     const cities = useSelector((state) => state.global.cities)
     const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
@@ -27,7 +31,7 @@ export default function SearchBar({isPopup=false}){
     const [cityToggle,setCityToggle] = useState(false)
     const [dataToggle,setDateToggle] = useState(false)
     const { t, i18n } = useTranslation();
-    
+    const dispatch = useDispatch()
     function closeSearchBar(){
       dispatch(changeIsSearchPopupOpen(false))
     }
@@ -37,7 +41,6 @@ export default function SearchBar({isPopup=false}){
     const citySelectRef = useClickOutside(() => {
         setCityToggle(false)
     });
-    const dispatch = useDispatch()
     function closeDateSelect(){
         dispatch(changeIsDateSelectOpen(false))
     }
@@ -50,6 +53,11 @@ export default function SearchBar({isPopup=false}){
     }
     function changeReturnTimeHandler(newTime){
         dispatch(changeReturnTime(newTime))
+    }
+    function toggleIsJalili(){
+      dispatch(changeCarDates([]))
+      console.log(carDates)
+      dispatch(changeIsDateJalili(!isDateJalili))
     }
     return(
         <>
@@ -111,8 +119,19 @@ export default function SearchBar({isPopup=false}){
                             </div>
                         </div>
                         {isDateSelectOpen && 
-                            <div ref={ref} className="bg-white md:absolute fixed w-[100vw] h-[100vh] md:w-auto md:h-auto top-0 right-0 md:top-auto md:right-auto md:z-auto z-50 md:bottom-0 bottom-[unset] md:translate-y-full md:left-1/2 md:-translate-x-1/2 shadow-[0_0_5px_#8798ad] rounded-lg p-4">
-                                <div className="relative z-20 flex w-full justify-center gap-8">
+                            <div ref={ref} className="bg-white md:absolute fixed w-[100vw] h-[100vh] md:w-auto md:h-auto top-0 right-0 md:top-auto md:right-auto md:z-auto z-50 md:bottom-0 bottom-[unset] md:translate-y-full md:left-1/2 md:-translate-x-1/2 border-[1px] border-[#0000001f] rounded-lg lg:max-w-[524px]">
+                                <div className="p-2 px-4 flex justify-between border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
+                                  <button className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
+                                    <span>برو امروز</span>
+                                  </button>
+                                  <button onClick={toggleIsJalili} className="flex items-center gap-0.5 cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
+                                    <span className="size-4 flex items-center">
+                                      <IconCalender/>
+                                    </span>
+                                    <span>{isDateJalili ? 'تقویم میلادی' : 'تقویم شمسی'}</span>
+                                  </button>
+                                </div>
+                                <div className="relative z-20 flex w-full justify-center gap-8 border-b-[1px] border-[#0000001f] p-4 px-2">
                                     <div className="w-full md:w-auto">
                                         <span>زمان تحویل</span>
                                         <TimeSelectBox selected={deliveryTime} setSelected={changeDeliveryTimeHandler}/>
@@ -122,13 +141,17 @@ export default function SearchBar({isPopup=false}){
                                         <TimeSelectBox selected={returnTime} setSelected={changeReturnTimeHandler}/>
                                     </div>
                                 </div>
-                                <div className="flex relative z-10 md:w-full m-auto sm:w-10/12 w-full justify-center md:my-auto my-6">
+                                <div dir={isDateJalili ? "rtl" : "ltr"} className="date-picker-holder flex relative z-10 md:w-full m-auto sm:w-10/12 w-full justify-center md:my-auto p-4 my-6">
                                     <DatePicker2/>
                                 </div>
-                                <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 md:translate-x-0 absolute md:static flex justify-end">
-                                    <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
-                                        تایید
-                                    </button>
+                                <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
+                                  <div className="md:flex hidden text-xs">
+                                    <div>تحویل <span className="font-bold text-sm">{carDates[0] || 'انتخاب کنید'}</span> -</div>
+                                    <div>عودت <span className="font-bold text-sm">{carDates[1]}</span></div>
+                                  </div>
+                                  <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
+                                    تایید
+                                  </button>
                                 </div>
                             </div>
                         }
@@ -145,10 +168,6 @@ export default function SearchBar({isPopup=false}){
                     }
                 </div>
             </div>
-            
-            {/* {dataToggle &&  */}
-                {/* <DatePickerPopup closeToggle={()=>setDateToggle(false)}/> */}
-            {/* } */}
         </>
     )
 }
@@ -182,59 +201,6 @@ export function SingleCityItem({value,closeDropDown}){
         </div>
     )
 }
-
-// export function DatePickerPopup({closeToggle}) {
-//   const [range, setRange] = useState(undefined);
-
-//   return (
-//     <div className="fixed z-[51] w-full h-full top-0 right-0">
-//         <div onClick={closeToggle} className="absolute top-0 right-0 w-full h-full bg-black opacity-40 transition-all"></div>
-//         <div className="md:min-w-[580px] md:max-h-[90vh] md:w-auto md:h-auto h-full w-full rounded-lg border-[#9E9E9E] border-[1px] bg-white absolute z-10 left-1/2 top-1/2 -translate-1/2 flex flex-col justify-between">
-//             <span className="text-xl font-bold block md:p-4 p-4 pt-16">
-//                 انتخاب زمان و تاریخ
-//             </span>
-//             <div className="flex w-full justify-between gap-2 p-2">
-//                 <div className="bg-[#F5F4F2] rounded-lg flex-1 py-2 px-3 flex flex-col">
-//                     <span className="text-xs text-[#75736F]">زمان تحویل</span>
-//                     <input className="outline-0 w-fit" type="time" defaultValue={'10:00'}/>
-//                 </div>
-//                 <div className="bg-[#F5F4F2] rounded-lg flex-1 py-2 px-3 flex flex-col">
-//                     <span className="text-xs text-[#75736F]">زمان عودت</span>
-//                     <input className="outline-0 w-fit" type="time" defaultValue={'10:00'}/>
-//                 </div>
-//             </div>
-//             <div className="p-4">
-//                 <DayPicker
-//                     mode="range"
-//                     selected={range}
-//                     onSelect={setRange}
-//                     numberOfMonths={1}
-//                     className="w-full"
-//                     modifiersClassNames={{
-//                         selected: 'text-white',
-//                         range_start: 'sp-date-btn text-black sp-date-btn-start',
-//                         range_end: 'sp-date-btn text-white  sp-date-btn-end',
-//                         range_middle: 'rounded-none bg-[#A5C6FB] sp-middle-btn',
-//                         months: 'flex'
-//                     }}
-//                     />
-//             </div>
-
-//                 {/* {range?.from && range?.to && (
-//                     <p className="mt-2 text-sm text-gray-700">
-//                     از <b>{range.from.toLocaleDateString()}</b> تا{' '}
-//                     <b>{range.to.toLocaleDateString()}</b>
-//                     </p>
-//                 )} */}
-//                 <div className="w-full rounded-lg border-[1px] border-[#cccccc] p-2 flex justify-between gap-2">
-//                     <button onClick={closeToggle} className="flex-1 cursor-pointer bg-[#F5F4F2] rounded-xl py-3">لغو کردن</button>
-//                     <button className="flex-1 cursor-pointer bg-[#3B82F6] text-white rounded-xl py-3">نمایش 800 پیشنهاد</button>
-//                 </div>
-//         </div>
-        
-//     </div>
-//   );
-// }
 
 
 function convertToEnglishDigits(str) {
@@ -279,18 +245,20 @@ export function getDiffInShamsiDays(date1, date2) {
 
 export function DatePicker2() {
     const carDates = useSelector((state) => state.global.carDates)
+    const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const [value, setValue] = useState([])
     const dispatch = useDispatch()
     const [hovered, setHovered] = useState(null)
     const [isValueSync,setIsValueSync] = useState(false)
     const [hoverText,setHoverText] = useState('تاریخ رفت')
     const isUnderMd = useMediaQuery("(max-width: 767.9px)");
-
     
-
     function hoverHandler(date){
         setHovered(date)
     }
+    useEffect(()=>{
+      setValue([])
+    },[isDateJalili])
     function changeHandler(data){
         if(data.length == 2){
             let dateDistance =  getDiffInShamsiDays(convertToEnglishDigits(data[1]?.format("YYYY/MM/DD")),convertToEnglishDigits(hovered?.format("YYYY/MM/DD")))
@@ -311,14 +279,14 @@ export function DatePicker2() {
             dispatch(changeCarDates([]))
         }
         else{
-            console.log(value.length)
-            console.log(value)
             dispatch(changeCarDates(value.map((item,index)=>{
+                console.log(item)
                 return convertToEnglishDigits(item.format())
             })))
         }
     },[value])
     useEffect(()=>{
+      console.log(carDates)
         const testValue = carDates.map(
         (d) =>
             new DateObject({
@@ -347,9 +315,9 @@ export function DatePicker2() {
   return (
       <Calendar
         range
-        calendar={persian}
-        locale={persian_fa}
-        format="YYYY/MM/DD"
+        calendar={isDateJalili ? persian : gregorian}
+        locale={isDateJalili ? persian_fa : gregorian_en}
+        format={"YYYY/MM/DD"}
         value={value}
         minDate={new Date()}
         onChange={changeHandler}
@@ -379,7 +347,6 @@ export function DatePicker2() {
                     }}
                   >
                     {hoverText}
-                    {/* <br /> */}
                     {/* {`تاریخ برگشت: ${value?.[1]?.format?.() || "---"}`} */}
                   </div>
                 )}
@@ -410,7 +377,9 @@ export function TimeSelectBox({selected,setSelected}) {
   const [search, setSearch] = useState('');
 //   const [selected, setSelected] = useState('');
   const [showList, setShowList] = useState(false);
-
+  const timeSelectRef = useClickOutside(()=>{
+    setShowList(false)
+  })
   const filteredOptions = useMemo(() => {
     return allOptions.filter((time) =>
       time.includes(search)
@@ -418,7 +387,7 @@ export function TimeSelectBox({selected,setSelected}) {
   }, [search]);
 
   return (
-    <div className="relative z-50 md:w-64 w-full text-sm">
+    <div ref={timeSelectRef} className="relative z-50 md:w-52 w-full text-sm">
       <div
         onClick={() => setShowList((prev) => !prev)}
         className="border rounded-lg px-4 py-2 cursor-pointer bg-white shadow-sm"
@@ -427,7 +396,7 @@ export function TimeSelectBox({selected,setSelected}) {
       </div>
 
       {showList && (
-        <div className="absolute w-full mt-1 border rounded-lg bg-white shadow-lg max-h-64 overflow-y-auto">
+        <div className="absolute w-full mt-1 border rounded-lg bg-white shadow-lg max-h-[380px] overflow-y-auto">
           <input
             type="text"
             value={search}
@@ -435,7 +404,7 @@ export function TimeSelectBox({selected,setSelected}) {
             className="w-full px-3 py-2 border-b focus:outline-none"
             placeholder="جستجو..."
           />
-          <ul className="max-h-48 overflow-y-auto">
+          <ul className="max-h-[332px] overflow-y-auto">
             {filteredOptions.map((time) => (
               <li
                 key={time}
