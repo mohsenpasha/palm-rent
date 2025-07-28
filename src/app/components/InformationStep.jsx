@@ -7,6 +7,10 @@ import { changeRoadMapStep } from "@/redux/slices/globalSlice"
 import { useDispatch } from "react-redux"
 
 export default function InformationStep(){
+    const dispatch = useDispatch()
+    function nextStep(){
+        dispatch(changeRoadMapStep(3))
+    }
     return(
         <div className="flex w-full flex-1 gap-4 lg:flex-nowrap flex-wrap">
             <div className="flex flex-col flex-1 lg:w-auto w-full h-fit">
@@ -15,6 +19,12 @@ export default function InformationStep(){
                 <FineDeposit/>
                 <PaymentDetail/>
                 <PersonalInfoBox/>
+                <button onClick={nextStep} className="w-10/12 bottom-4 m-auto sticky bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 lg:text-xl sm:text-lg text-sm my-2">
+                    خودرو خود را رزرو کنید
+                </button>
+                <div className="text-center text-[#8A8A8A] md:text-sm text-xs pb-4">
+                    در ثبت اولیه نیازی به پرداخت نیست
+                </div>
             </div>
             <div className="w-1/3 lg:flex hidden h-fit sticky top-[100px]">
                 <SideCarDetail/>
@@ -348,12 +358,8 @@ export function SinglePaymentDet({title,subtitle,price}){
 }
 
 export function PersonalInfoBox(){
-    const dispatch = useDispatch()
-    function nextStep(){
-        dispatch(changeRoadMapStep(3))
-    }
     return(
-        <div className="lg:text-base md:text-sm text-xs border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
+        <div className="lg:text-base md:text-sm text-xs pb-12 border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">اطلاعات شخصی خود را وارد کنید</div>
             </div>
@@ -380,12 +386,7 @@ export function PersonalInfoBox(){
                 </span>
                 <div>در پالم رنت ، رزرو خودرو رایگان است  و تا 15 دقیقه بررسی شده ، سپس پیامک تاییدیه با لینک پیش پرداخت ارسال میشود.</div>
             </div>
-            <button onClick={nextStep} className="bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 w-full lg:text-xl sm:text-lg text-sm my-2">
-                خودرو خود را رزرو کنید
-            </button>
-            <div className="text-center text-[#8A8A8A] md:text-sm text-xs">
-                در ثبت اولیه نیازی به پرداخت نیست
-            </div>
+            
         </div>
     )
 }
