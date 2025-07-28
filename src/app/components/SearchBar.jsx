@@ -30,6 +30,7 @@ export default function SearchBar({isPopup=false}){
     const returnTime = useSelector((state) => state.global.returnTime)
     const [cityToggle,setCityToggle] = useState(false)
     const [dataToggle,setDateToggle] = useState(false)
+    const datePickerRef = useRef()
     const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function closeSearchBar(){
@@ -61,7 +62,7 @@ export default function SearchBar({isPopup=false}){
     }
     return(
         <>
-            <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-10 bg-white p-2 py-4 md:p-6 md:py-8'} border-2 border-[#EAEAEA] rounded-2xl`}>
+            <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-10 bg-white p-2 py-4 md:p-6 md:py-8'} border-2 border-[#0000001f] rounded-2xl`}>
               {isPopup &&
                 <div onClick={closeSearchBar} className="absolute top-0 right-0 w-full h-full bg-[#00000066]">
 
@@ -120,10 +121,10 @@ export default function SearchBar({isPopup=false}){
                         </div>
                         {isDateSelectOpen && 
                             <div ref={ref} className="bg-white md:absolute fixed w-[100vw] h-[100vh] md:w-auto md:h-auto top-0 right-0 md:top-auto md:right-auto md:z-auto z-50 md:bottom-0 bottom-[unset] md:translate-y-full md:left-1/2 md:-translate-x-1/2 border-[1px] border-[#0000001f] rounded-lg lg:max-w-[524px]">
-                                <div className="p-2 px-4 flex justify-between border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
-                                  <button className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
+                                <div className="p-2 px-4 flex justify-end border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
+                                  {/* <button onClick={goToToday} className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
                                     <span>برو امروز</span>
-                                  </button>
+                                  </button> */}
                                   <button onClick={toggleIsJalili} className="flex items-center gap-0.5 cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
                                     <span className="size-4 flex items-center">
                                       <IconCalender/>
@@ -142,7 +143,7 @@ export default function SearchBar({isPopup=false}){
                                     </div>
                                 </div>
                                 <div dir={isDateJalili ? "rtl" : "ltr"} className="date-picker-holder flex relative z-10 md:w-full m-auto sm:w-10/12 w-full justify-center md:my-auto p-4 my-6">
-                                    <DatePicker2/>
+                                    <DatePicker2 datePickerRef={datePickerRef}/>
                                 </div>
                                 <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
                                   <div className="md:flex hidden text-xs">
@@ -175,7 +176,7 @@ export default function SearchBar({isPopup=false}){
 export function CityDropDown({children}){
     return(
         <div className="absolute z-10 animate-fade-in overflow-hidden -bottom-1 w-full translate-y-full bg-white flex flex-col min-w-32 rounded-lg border-[1px] border-[#cccccc] shadow-[0_3px_10px_0_rgba(0,0,0,.12),0_10px_10px_-6px_rgba(0,0,0,.12)]">
-            <div className="max-h-60 overflow-auto">
+            <div className="max-h-80 overflow-auto">
                 {children}
             </div>
         </div>
@@ -243,7 +244,7 @@ export function getDiffInShamsiDays(date1, date2) {
 
 
 
-export function DatePicker2() {
+export function DatePicker2({datePickerRef}) {
     const carDates = useSelector((state) => state.global.carDates)
     const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const [value, setValue] = useState([])
@@ -252,10 +253,14 @@ export function DatePicker2() {
     const [isValueSync,setIsValueSync] = useState(false)
     const [hoverText,setHoverText] = useState('تاریخ رفت')
     const isUnderMd = useMediaQuery("(max-width: 767.9px)");
-    
+    const [currentDate, setCurrentDate] = useState(new DateObject());
     function hoverHandler(date){
         setHovered(date)
     }
+    // const goToToday = () => {
+    //   console.log('shit')
+    //   setCurrentDate(new DateObject());
+    // };
     useEffect(()=>{
       setValue([])
     },[isDateJalili])
@@ -313,8 +318,11 @@ export function DatePicker2() {
         }
     },[hovered])
   return (
+    <>
       <Calendar
         range
+        weekDays={isDateJalili ? ["ش", "ی", "د", "س", "چ", "پ", "ج"] : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
+        ref={datePickerRef}
         calendar={isDateJalili ? persian : gregorian}
         locale={isDateJalili ? persian_fa : gregorian_en}
         format={"YYYY/MM/DD"}
@@ -322,6 +330,7 @@ export function DatePicker2() {
         minDate={new Date()}
         onChange={changeHandler}
         numberOfMonths={isUnderMd ? 1 : 2}
+        currentDate={currentDate}
         mapDays={({ date }) => {
           const isHovered = hovered?.format?.() === date.format()
           return {
@@ -356,6 +365,8 @@ export function DatePicker2() {
           }
         }}
       />
+    </>
+
   )
 }
 
