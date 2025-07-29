@@ -7,9 +7,9 @@ import { changeReelActive } from "@/redux/slices/reelsSlice";
 import Link from "next/link";
 import { getDiffInShamsiDays } from "./SearchBar";
 import { changeRoadMapStep } from "@/redux/slices/globalSlice";
+import { usePathname } from "next/navigation";
 
 export default function SingleCar({data,noBtn = false}){
-    console.log(data)   
     return(
         <div className="flex w-full flex-col hover:scale-[97%] bg-white cursor-pointer transition-all rounded-2xl md:text-base text-sm border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]">
             <SingleCarGallery noBtn={noBtn}>
@@ -131,14 +131,53 @@ export function SingleCarOptions({data,bigFont=false}){
     )
 }
 export function SingleCarPriceList({priceList}){
-    console.log(priceList)
+    const [rentDay,setRentDay] = useState(null)
+    const [finalDayPrice,setFinalDayPrice] = useState(null)
+    const carDates = useSelector((state)=>state.global.carDates)
+    // const router = useRouter();
+    const pathname = usePathname()
+    const isInSearchPage = pathname == '/search'
+    useEffect(()=>{
+        if(!isInSearchPage) return
+        const dayD = parseInt(getDiffInShamsiDays(carDates[0],carDates[1]))
+        setRentDay(dayD)
+        console.log('dayD ' + dayD)
+        Object.entries(priceList).map(([key,value])=>{
+            const splitedData = key.split(':')
+            let st;
+            if(splitedData[1].length == 0){
+                st = parseInt(splitedData[0]) <= dayD
+            }
+            else{
+                st = parseInt(splitedData[0]) <= dayD && dayD <= parseInt(splitedData[1])
+            }
+            if(st){
+                setFinalDayPrice(value)
+            }
+        })
+    },[carDates])
+    // console.log('isInSearchPage ' + isInSearchPage)
     return(
         <div>
             {/* <div className="w-full border-b-[1px] border-[#0000001f] py-2">
                 قیمت کرایه تویوتا یاریس 2024 دبی
             </div> */}
             <div className="flex flex-col gap-2 my-4 border-t-[1px] pt-2 border-[#0000001f]">
-                {Object.entries(priceList).map(([key, { previousPrice, currentPrice }]) => (
+                {finalDayPrice ?
+                <div className="flex justify-between items-center">
+                    <span>قیمت روزانه برای {rentDay} روز</span>
+                    <div className="lg:text-lg text-base flex gap-2">
+                        <span className="text-[#A7A7A7] line-through">
+                            {finalDayPrice.previousPrice}
+                        </span>
+                        <span className="text-[#10B981]">
+                            {finalDayPrice.currentPrice}
+                        </span>
+                        درهم روزانه
+                    </div>
+                </div>
+                : 
+                Object.entries(priceList).map(([key, { previousPrice, currentPrice }]) => (
                     <div key={key} className="flex justify-between">
                         <div>
                             {(() => {
