@@ -11,10 +11,11 @@ import SingleCar from "@/app/components/SingleCar";
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Image from "next/image";
 import { useParams, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 
 export default function BranchPage(){
@@ -24,7 +25,13 @@ export default function BranchPage(){
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
     const carList = useSelector((state) => state.carList.carList)
     const { t, i18n } = useTranslation();
-    
+    useEffect(()=>{
+        NProgress.start()
+        const timeout = setTimeout(() => {
+            NProgress.done()
+        }, 300)
+        return () => clearTimeout(timeout)
+    },[])
     const [rules,setRules] = useState([
           {
               q:'قیمت بنزین در دبی چقدر است؟',

@@ -12,6 +12,10 @@ import SkeletonSingleCar from "../components/SkeletonSingleCar";
 import SearchPopup from "../components/SearchPopup";
 import SearchFilterPopup from "../components/SearchFilterPopup";
 import DescriptionPopup from "../components/DescriptionPopup";
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useEffect } from "react";
+
 
 export default function SearchResultPage(){
     const descriptionPopup = useSelector((state)=>state.global.descriptionPopup)
@@ -20,7 +24,13 @@ export default function SearchResultPage(){
     const carList = useSelector((state) => state.carList.carList)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
     const roadMapStep = useSelector((state) => state.global.roadMapStep)
-    // console.log(carList)
+    useEffect(()=>{
+                NProgress.start()
+                const timeout = setTimeout(() => {
+                NProgress.done()
+                }, 300)
+                return () => clearTimeout(timeout)
+            },[])
     return(
         <>
             <Header/>

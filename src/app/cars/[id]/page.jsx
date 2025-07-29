@@ -9,12 +9,22 @@ import SingleCarPopupGallery from "@/app/components/SingleCarPopupGallery";
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 export default function CarsPage(){
     const descriptionPopup = useSelector((state)=>state.global.descriptionPopup)
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     const isSingleGalleryOpen = useSelector((state)=>state.global.isSingleGalleryOpen)
+    useEffect(()=>{
+            NProgress.start()
+            const timeout = setTimeout(() => {
+            NProgress.done()
+            }, 300)
+            return () => clearTimeout(timeout)
+        },[])
     return(
         <>
             <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">

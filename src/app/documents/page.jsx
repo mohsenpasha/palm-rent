@@ -1,11 +1,19 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CommonQuestionSection from "../components/CommonQuestionSection"
 import Image from "next/image"
-
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 export default function DocumentsPage(){
+    useEffect(()=>{
+                NProgress.start()
+                const timeout = setTimeout(() => {
+                NProgress.done()
+                }, 300)
+                return () => clearTimeout(timeout)
+            },[])
     const [rules,setRules] = useState([
         {
             q:'مدارک مورد نیاز جهت اجاره خودرو در دبی',

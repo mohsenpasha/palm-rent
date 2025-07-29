@@ -3,8 +3,18 @@ import Image from "next/image";
 import SingleCarPopupGallery from "../components/SingleCarPopupGallery";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSingleGalleryStatus } from "@/redux/slices/globalSlice";
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useEffect } from "react";
 
 export default function GalleryPage(){
+    useEffect(()=>{
+                NProgress.start()
+                const timeout = setTimeout(() => {
+                NProgress.done()
+                }, 300)
+                return () => clearTimeout(timeout)
+            },[])
     const isSingleGalleryOpen = useSelector((state)=>state.global.isSingleGalleryOpen)
     const dispatch = useDispatch()
     function openPopup(){

@@ -11,9 +11,10 @@ import SingleCar from "@/app/components/SingleCar";
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Image from "next/image";
 import { useParams, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 
 export default function BranchPage(){
@@ -36,6 +37,13 @@ export default function BranchPage(){
               a:'به طور معمول، در فرودگاه ممکن است یک سیم‌کارت رایگان با ۲ گیگابایت اینترنت به شما هدیه داده شود. اما اگر این امکان وجود ندارد، می‌توانید از غرفه‌های شرکت اتصالات که در تمام نقاط دبی فعالیت دارند، سیم‌کارت خود را تهیه کنید. برای یک بسته اینترنتی ۷ روزه، هزینه تقریبی میان ۷۰ الی ۱۰۰ درهم است. حتماً توصیه می‌شود که سیم‌کارت را دریافت کنید، زیرا برای استفاده از سرویس‌هایی مانند گوگل‌مپ و یافتن مسیرها، اتصال به اینترنت ضروری است.'
           },
       ])
+    useEffect(()=>{
+        NProgress.start()
+        const timeout = setTimeout(() => {
+        NProgress.done()
+        }, 300)
+        return () => clearTimeout(timeout)
+    },[])
     return(
         <>
         <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">

@@ -1,9 +1,18 @@
 'use client'
 import Image from "next/image"
 import { FirstAboutSection } from "../about-us/page"
-
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useEffect } from "react"
 
 export default function ContactUsPage(){
+    useEffect(()=>{
+                NProgress.start()
+                const timeout = setTimeout(() => {
+                NProgress.done()
+                }, 300)
+                return () => clearTimeout(timeout)
+            },[])
     return(
         <>
             <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">

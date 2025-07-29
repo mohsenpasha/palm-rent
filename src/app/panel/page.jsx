@@ -1,6 +1,17 @@
+'use client'
 import { IconPerson } from "../components/Icons"
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useEffect } from "react"
 
 export default function PanelPage(){
+    useEffect(()=>{
+                NProgress.start()
+                const timeout = setTimeout(() => {
+                NProgress.done()
+                }, 300)
+                return () => clearTimeout(timeout)
+            },[])
     return(
         <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
             <div className="flex gap-4">
