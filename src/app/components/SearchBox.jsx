@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react";
-import { IconCarExtra, IconCoupeCar, IconCrookCar, IconDiamond2, IconHandCoin, IconRocket, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3, IconStandard, IconSuitcase, IconSuv } from "./Icons";
+import { IconCarExtra, IconClose, IconCoupeCar, IconCrookCar, IconDiamond2, IconHandCoin, IconRocket, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3, IconStandard, IconSuitcase, IconSuv } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilterStatus, changeSearchStatus } from "@/redux/slices/globalSlice";
 
@@ -48,7 +48,9 @@ export function SearchBox(){
                                 <input onChange={()=>sortChangeHandler(item.id)} checked={true} className="peer hidden" value={item.id} type="checkbox" />
                                 <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
                                     {item.title}
-                                    {item.icon}
+                                    <span className="size-4 flex items-center">
+                                        <IconClose/>
+                                    </span>
                                 </div>
                             </label>
                         )
@@ -65,7 +67,7 @@ export function SearchBox(){
                             return(
                                 <label key={index} className="flex gap-2 select-none">
                                     <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
-                                    <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
+                                    <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] hover:bg-[#7CABF9] hover:text-white peer-checked:text-white flex gap-2 cursor-pointer items-center">
                                         {item.title}
                                         {item.icon}
                                     </div>
