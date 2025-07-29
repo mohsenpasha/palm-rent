@@ -21,8 +21,8 @@ export default function SingleCar({data,noBtn = false}){
                     <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2 w-full flex-wrap">
                         {data.options.map((item,index)=>{
                             return(
-                                <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="py-1 group px-2 rounded-4xl bg-white relative" key={index}>
-                                    <span className="">{optionList[item].title}</span>
+                                <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="py-1 group px-2 rounded-4xl bg-[#3b82f6] relative hover:scale-[105%] transition-all" key={index}>
+                                    <span className="text-white font-bold">{optionList[item].title}</span>
                                     <div className="absolute top-0 hidden group-hover:flex animate-opacity pb-3 z-50 left-1/2 -translate-x-1/2 -translate-y-full">
                                         <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-sm rounded-lg border-[1px] p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                                             {optionList[item].description}
