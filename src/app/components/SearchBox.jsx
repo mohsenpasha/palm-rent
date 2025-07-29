@@ -41,6 +41,15 @@ export function SearchBox(){
     }
     return(
         <div className={`bg-white sticky ${isHeaderClose ? 'top-[10px]' : 'top-18'} z-30 transition-all rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap`}>
+            <div className="bg-[#F4F4F4] rounded-xl flex items-center p-4 py-3 relative mb-2">
+                <span>
+                    <IconSearch2/>
+                </span>
+                <input className="w-full px-4 outline-0" type="search" placeholder="جستجوی خودرو" />
+                <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
+                    <IconSetting/>
+                </button>
+            </div>
             <div className="flex md:gap-2 gap-1 overflow-auto">
                 {sortList.filter((item)=>item.selected == true).map((item,index)=>{
                         return(
@@ -58,7 +67,6 @@ export function SearchBox(){
             </div>
             <div className="flex md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-base md:text-sm text-xs">
                 <div className="flex md:w-auto w-full items-center gap-2 lg:text-base md:text-sm text-xs">
-                    
                     <span className="flex">
                         <IconSort/>
                         مرتب سازی :
@@ -78,19 +86,13 @@ export function SearchBox(){
 
                     </div>
                 </div>
-                <div className="flex gap-2 md:w-auto w-full justify-between">
-                    <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
-                        <IconSetting/>
-                        <span className="">
-                            فیلتر ها
-                        </span>
-                    </button>
+                {/* <div className="flex gap-2 md:w-auto w-full justify-between">
                     <button onClick={openSearchPopup} className="flex bg-[#3B82F6] py-2 px-4 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
                         <span className="">
                             جستجو
                         </span>
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
