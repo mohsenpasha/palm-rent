@@ -3,12 +3,15 @@ import { IconArrow, IconGrate, IconInfo, IconSort1, IconTick2 } from "./Icons"
 import Image from "next/image"
 import { SingleCarOptions } from "./SingleCar"
 import Link from "next/link"
-import { changeDescriptionPopup, changeRoadMapStep } from "@/redux/slices/globalSlice"
+import { changeAreLocationsSame, changeDescriptionPopup, changeIsLocationPopupOpen, changeRoadMapStep } from "@/redux/slices/globalSlice"
 import { useDispatch, useSelector } from "react-redux"
 import DescriptionPopup from "./DescriptionPopup"
 import { useTranslation } from "react-i18next"
+import LocationPopup from "./LocationPopup"
 
 export default function InformationStep(){
+    const isLocationPopupOpen = useSelector((state)=>state.global.isLocationPopupOpen)
+    const [isLocationReturn,setIsLocationReturn] = useState(false)
     const dispatch = useDispatch()
     function nextStep(){
         dispatch(changeRoadMapStep(3))
@@ -17,7 +20,7 @@ export default function InformationStep(){
         <>
             <div className="flex w-full flex-1 gap-4 lg:flex-nowrap flex-wrap">
                 <div className="flex flex-col flex-1 lg:w-auto w-full h-fit">
-                    <DeliverySpot/>
+                    <DeliverySpot isLocationReturn={isLocationReturn} setIsLocationReturn={setIsLocationReturn} />
                     <ExtraServices/>
                     <FineDeposit/>
                     <PaymentDetail/>
@@ -33,32 +36,56 @@ export default function InformationStep(){
                     <SideCarDetail/>
                 </div>
             </div>
+            {isLocationPopupOpen && 
+                <LocationPopup isReturn={isLocationReturn}/>
+            }
         </>
     )
 }
 
-export function DeliverySpot(){
-    const [otherSpotChecked,setOtherSpotChecked] = useState(false)
+export function DeliverySpot({setIsLocationReturn}){
+    const dispatch = useDispatch()
+    const areLocationsSame = useSelector((state)=>state.global.areLocationsSame)
+    const allLocations = useSelector((state)=>state.global.locations)
+    function openLocationPopup(isLocationReturn=false){
+        if(isLocationReturn){
+            setIsLocationReturn(true)
+        }
+        else{
+            setIsLocationReturn(false)
+        }
+        dispatch(changeIsLocationPopupOpen(true))
+    }
+    function sameLocationChange(){
+        dispatch(changeAreLocationsSame(!areLocationsSame))
+    }
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">دوست دارید خودرو خود را کجا تحویل بگیرید ؟</div>
             </div>
             <div>
-                <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <div onClick={()=>openLocationPopup(false)} className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div>
                         <div>مکان محل تحویل خود را انتخاب کنید </div>
-                        <div className="text-[#545454] text-sm">از 9 مکان موجود انتخاب کنید</div>
+                        <div className="text-[#545454] text-sm">از {allLocations.length} مکان موجود انتخاب کنید</div>
                     </div>
                     <IconArrow className={'rotate-90'}/>
                 </div>
-                <label className="flex gap-2 items-center my-2 mt-4 lg:text-base md:text-sm text-xs" htmlFor="anotherSpotDelivery">
+                <label className="flex gap-2 items-center my-2 mt-4 lg:text-base md:text-sm text-xs">
                     <div className="bg-[#B5B5B5] transition-all has-[:checked]:bg-[#55FF55] md:w-[61px] md:h-[30px] w-[45px] h-[20px] rounded-[20px] relative shadow-[inset_0_1px_2px_0px_rgba(0,0,0,.25)]">
-                        <input id="anotherSpotDelivery" className="peer hidden" type="checkbox" />
+                        <input checked={!areLocationsSame} onChange={(event)=>sameLocationChange()} className="peer hidden" type="checkbox" />
                         <span className="absolute md:size-[30px] size-[20px] bg-white transition-all rounded-full translate-0 peer-checked:left-full peer-checked:-translate-x-full left-0 shadow-[-2px_1px_4px_0px_rgba(0,0,0,.15)]"></span>
                     </div>
                     خودرو را در محل دیگری تحویل میدهم
                 </label>
+                <div onClick={()=>openLocationPopup(true)} className={`${areLocationsSame ? 'max-h-0 p-0 opacity-0' : 'max-h-32 p-4 opacity-100'} overflow-hidden duration-300 transition-all md:text-base mt-4 sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl flex items-center justify-between cursor-pointer`}>
+                    <div>
+                        <div>مکان محل عودت خود را انتخاب کنید </div>
+                        <div className="text-[#545454] text-sm">از {allLocations.length} مکان موجود انتخاب کنید</div>
+                    </div>
+                    <IconArrow className={'rotate-90'}/>
+                </div>
             </div>
         </div>
     )
@@ -183,7 +210,7 @@ export function ExtraServices(){
             <div className="flex flex-col gap-4">
                 {services.map((item,index)=>{
                     return(
-                        <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between">
+                        <div key={index} className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between">
                             <div className="flex gap-2 items-center">
                                 <label className="flex gap-2 items-center cursor-pointer">
                                     <input type="checkbox" className="peer hidden" />
@@ -385,7 +412,6 @@ export function PersonalInfoBox(){
                 </span>
                 <div>در پالم رنت ، رزرو خودرو رایگان است  و تا 15 دقیقه بررسی شده ، سپس پیامک تاییدیه با لینک پیش پرداخت ارسال میشود.</div>
             </div>
-            
         </div>
     )
 }

@@ -31,11 +31,29 @@ const initialState = {
   isDateSelectOpen:false,
   isTranslatePopupOpen:false,
   isSearchPopupOpen:false,
-  roadMapStep:1,
+  roadMapStep:2,
   cities:['dubai','istanbul','kayseri','kish','ezmir','georgia','oman','samsun','antalya','ankara'],
   selectedCity:null,
   isDateJalili:true,
-  descriptionPopup:{title:null,description:null}
+  descriptionPopup:{title:null,description:null},
+  locations:[
+    {
+      id:1,
+      title:'در آفیس پالم رنت (رایگان)'
+    },
+    {
+      id:2,
+      title:'در محل شرکت  (رایگان)'
+    },
+    {
+      id:3,
+      title:'فرودگاه جدید استانبول  (رایگان)'
+    },
+  ],
+  deliveryLocation:{isDesired:false,location:null},
+  returnLocation:{isDesired:false,location:null},
+  areLocationsSame:true,
+  isLocationPopupOpen:false
   // singleCar:{}
 }
 
@@ -85,9 +103,20 @@ const globalSlice = createSlice({
     changeDescriptionPopup: (state,action) => {
       state.descriptionPopup = action.payload
     },
-    
+    changeDeliveryLocation: (state,action) => {
+      state.deliveryLocation = action.payload
+    },
+    changeReturnLocation: (state,action) => {
+      state.returnLocation = action.payload
+    },
+    changeAreLocationsSame: (state,action) => {
+      state.areLocationsSame = action.payload
+    },
+    changeIsLocationPopupOpen: (state,action) => {
+      state.isLocationPopupOpen = action.payload
+    },
   },
 })
 
-export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen, changeSelectedCity, changeIsDateJalili, changeDescriptionPopup } = globalSlice.actions
+export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen, changeSelectedCity, changeIsDateJalili, changeDescriptionPopup, changeDeliveryLocation, changeReturnLocation, changeAreLocationsSame, changeIsLocationPopupOpen } = globalSlice.actions
 export default globalSlice.reducer
