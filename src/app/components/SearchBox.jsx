@@ -58,6 +58,7 @@ export function SearchBox(){
             </div>
             <div className="flex md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-base md:text-sm text-xs">
                 <div className="flex md:w-auto w-full items-center gap-2 lg:text-base md:text-sm text-xs">
+                    
                     <span className="flex">
                         <IconSort/>
                         مرتب سازی :
