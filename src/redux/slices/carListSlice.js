@@ -1,6 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = { 
+  optionList:{
+    1:{
+      title:'بدون دپوزیت',
+      description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
+    },
+    2:{
+      title:'تحویل رایگان',
+      description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
+    },
+    3:{
+      title:'بیمه رایگان',
+      description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
+    },
+    4:{
+      title:'کیلومتر نامحدود',
+      description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
+    },
+  },
   carList:[
     {
       id:1,
@@ -12,7 +30,7 @@ const initialState = {
         '30:':{previousPrice:107,currentPrice:59},
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
-      options:['بدون دپوزیت','بیمه رایگان','کیلومتر نامحدود'],
+      options:[1,3,4],
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
@@ -31,7 +49,7 @@ const initialState = {
         '30:':{previousPrice:107,currentPrice:59},
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
-      options:['بدون دپوزیت','تحویل رایگان','بیمه رایگان','کیلومتر نامحدود'],
+      options:[1,2,3,4],
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
@@ -50,7 +68,7 @@ const initialState = {
         '30:':{previousPrice:107,currentPrice:59},
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
-      options:['بدون دپوزیت','تحویل رایگان','بیمه رایگان','کیلومتر نامحدود'],
+      options:[1,2,3,4],
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
@@ -69,7 +87,7 @@ const initialState = {
         '30:':{previousPrice:107,currentPrice:59},
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
-      options:['بدون دپوزیت','تحویل رایگان','بیمه رایگان'],
+      options:[1,2,3],
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
@@ -88,7 +106,7 @@ const initialState = {
         '30:':{previousPrice:107,currentPrice:59},
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
-      options:['بدون دپوزیت','تحویل رایگان','کیلومتر نامحدود'],
+      options:[1,2,4],
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
