@@ -17,6 +17,7 @@ const initialState = {
       passengers:5,
       suitcase:3,
       gasType:'بنزین',
+      discount:null
 
 
     },
@@ -34,7 +35,8 @@ const initialState = {
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین'
+      gasType:'بنزین',
+      discount:34
 
 
     },
@@ -52,7 +54,8 @@ const initialState = {
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین'
+      gasType:'بنزین',
+      discount:null
 
 
     },
@@ -70,7 +73,8 @@ const initialState = {
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین'
+      gasType:'بنزین',
+      discount:53
 
 
     },
@@ -88,7 +92,8 @@ const initialState = {
       gearbox:'دنده‌ای',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین'
+      gasType:'بنزین',
+      discount:10
 
 
     },

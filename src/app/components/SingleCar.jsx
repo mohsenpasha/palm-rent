@@ -22,6 +22,11 @@ export default function SingleCar({data,noBtn = false}){
                         })}
                     </div>
                 }
+                {data.discount && 
+                    <div className="absolute bottom-4 bg-[#DF900A] py-1.5 px-2.5 text-white right-0 rounded-lg rounded-r-[0]">
+                        {data.discount}% تخفیف
+                    </div>
+                }
             </SingleCarGallery>
             <div className="text-left my-2 lg:text-xl sm:text-lg text-base">{data.title}</div>
             <SingleCarOptions data={data}/>
