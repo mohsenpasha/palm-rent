@@ -9,7 +9,6 @@ import DescriptionPopup from "./DescriptionPopup"
 import { useTranslation } from "react-i18next"
 
 export default function InformationStep(){
-    const descriptionPopup = useSelector((state)=>state.global.descriptionPopup)
     const dispatch = useDispatch()
     function nextStep(){
         dispatch(changeRoadMapStep(3))
@@ -34,9 +33,6 @@ export default function InformationStep(){
                     <SideCarDetail/>
                 </div>
             </div>
-            {descriptionPopup.description && 
-                <DescriptionPopup/>
-            }
         </>
     )
 }
@@ -131,8 +127,12 @@ export function DetailGallery(){
 }
 
 export function ReservedServices(){
+    const dispatch = useDispatch()
+    function openDescriptionPopup(){
+        dispatch(changeDescriptionPopup({title:'test',description:'test'}))
+    }
     return(
-        <div className="w-full my-4 border-b-[1px] border-b-[#E2E2E2]">
+        <div className="w-full my-4 border-b-[1px] last:border-b-0 border-b-[#E2E2E2]">
             <div>خدمات موجود در رزرو شما :</div>
             <div className="flex flex-col justify-between items-center">
 
@@ -148,7 +148,7 @@ export function ReservedServices(){
                             با انتخاب گزینه بدون دپوزیت (ودیعه خلافی)
                         </div>
                     </div>
-                    <div className="text-xs text-[#B0B0B0] flex items-center gap-1">
+                    <div onClick={openDescriptionPopup} className="text-xs text-[#B0B0B0] flex items-center gap-1 cursor-pointer">
                         <IconInfo/>
                         توضیحات
                     </div>
@@ -213,8 +213,12 @@ export function ExtraServices(){
 }
 
 export function FineDeposit({borderLess}){
+    const dispatch = useDispatch()
+    function openDescriptionPopup(){
+        dispatch(changeDescriptionPopup({title:'ودیعه خلافی',description:'test'}))
+    }
     return(
-        <div className={`${!borderLess == 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl'} my-4 flex-1 bg-white`}>
+        <div className={`${!borderLess ? 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-1 rounded-2xl' : 'bg-white'} my-4 flex-1`}>
             <div className="flex flex-col gap-4">
 
                 <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
@@ -223,7 +227,9 @@ export function FineDeposit({borderLess}){
                             <IconSort1/>
                         </span>
                         <div>ودیعه خلافی</div>
-                        <IconInfo/>
+                        <div onClick={openDescriptionPopup}>
+                            <IconInfo/>
+                        </div>
                     </div>
                     <div className="text-[#545454]">
                         490 درهم

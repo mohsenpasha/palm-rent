@@ -1,5 +1,6 @@
 'use client'
 import CarSlider, { ImageGallery22 } from "@/app/components/CarSlider";
+import DescriptionPopup from "@/app/components/DescriptionPopup";
 import { IconInfo2, IconMoney } from "@/app/components/Icons";
 import { FineDeposit, ReservedServices } from "@/app/components/InformationStep";
 import SearchBar from "@/app/components/SearchBar";
@@ -11,6 +12,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 
 export default function CarsPage(){
+    const descriptionPopup = useSelector((state)=>state.global.descriptionPopup)
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     const isSingleGalleryOpen = useSelector((state)=>state.global.isSingleGalleryOpen)
     return(
@@ -36,6 +38,9 @@ export default function CarsPage(){
             </div>
             {isSingleGalleryOpen && 
                 <SingleCarPopupGallery/>
+            }
+            {descriptionPopup.description && 
+                <DescriptionPopup/>
             }
         </>
     )
