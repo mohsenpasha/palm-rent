@@ -3,33 +3,41 @@ import { IconArrow, IconGrate, IconInfo, IconSort1, IconTick2 } from "./Icons"
 import Image from "next/image"
 import { SingleCarOptions } from "./SingleCar"
 import Link from "next/link"
-import { changeRoadMapStep } from "@/redux/slices/globalSlice"
-import { useDispatch } from "react-redux"
+import { changeDescriptionPopup, changeRoadMapStep } from "@/redux/slices/globalSlice"
+import { useDispatch, useSelector } from "react-redux"
+import DescriptionPopup from "./DescriptionPopup"
+import { useTranslation } from "react-i18next"
 
 export default function InformationStep(){
+    const descriptionPopup = useSelector((state)=>state.global.descriptionPopup)
     const dispatch = useDispatch()
     function nextStep(){
         dispatch(changeRoadMapStep(3))
     }
     return(
-        <div className="flex w-full flex-1 gap-4 lg:flex-nowrap flex-wrap">
-            <div className="flex flex-col flex-1 lg:w-auto w-full h-fit">
-                <DeliverySpot/>
-                <ExtraServices/>
-                <FineDeposit/>
-                <PaymentDetail/>
-                <PersonalInfoBox/>
-                <button onClick={nextStep} className="w-10/12 bottom-4 m-auto sticky bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 lg:text-xl sm:text-lg text-sm my-2">
-                    خودرو خود را رزرو کنید
-                </button>
-                <div className="text-center text-[#8A8A8A] md:text-sm text-xs pb-4">
-                    در ثبت اولیه نیازی به پرداخت نیست
+        <>
+            <div className="flex w-full flex-1 gap-4 lg:flex-nowrap flex-wrap">
+                <div className="flex flex-col flex-1 lg:w-auto w-full h-fit">
+                    <DeliverySpot/>
+                    <ExtraServices/>
+                    <FineDeposit/>
+                    <PaymentDetail/>
+                    <PersonalInfoBox/>
+                    <button onClick={nextStep} className="w-10/12 bottom-4 m-auto sticky bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 lg:text-xl sm:text-lg text-sm my-2">
+                        خودرو خود را رزرو کنید
+                    </button>
+                    <div className="text-center text-[#8A8A8A] md:text-sm text-xs pb-4">
+                        در ثبت اولیه نیازی به پرداخت نیست
+                    </div>
+                </div>
+                <div className="w-1/3 lg:flex hidden h-fit sticky top-[100px]">
+                    <SideCarDetail/>
                 </div>
             </div>
-            <div className="w-1/3 lg:flex hidden h-fit sticky top-[100px]">
-                <SideCarDetail/>
-            </div>
-        </div>
+            {descriptionPopup.description && 
+                <DescriptionPopup/>
+            }
+        </>
     )
 }
 
@@ -155,64 +163,49 @@ export function ReservedServices(){
 }
 
 export function ExtraServices(){
+    const [services,setServices] = useState([
+        {
+            title:'صندلی کودک',
+            price:{amount:29,currency:'AED'},
+            description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.'
+        }
+    ])
+    const { t, i18n } = useTranslation();
+    const dispatch = useDispatch()
+    function openDescriptionPopup(targetIndex){
+        dispatch(changeDescriptionPopup({title:services[targetIndex].title,description:services[targetIndex].description}))
+    }
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
             </div>
             <div className="flex flex-col gap-4">
-
-                <label className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
-                    <div className="flex gap-2 items-center">
-                        <input type="checkbox" className="peer hidden" />
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                            <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
-                            <IconTick2 className={'absolute z-10'}/>
+                {services.map((item,index)=>{
+                    return(
+                        <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between">
+                            <div className="flex gap-2 items-center">
+                                <label className="flex gap-2 items-center cursor-pointer">
+                                    <input type="checkbox" className="peer hidden" />
+                                    <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
+                                        <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
+                                        <IconTick2 className={'absolute z-10'}/>
+                                    </div>
+                                    <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
+                                    >
+                                    </div>
+                                    <div>صندلی کودک</div>
+                                </label>
+                                <div onClick={()=>openDescriptionPopup(index)} className="cursor-pointer">
+                                    <IconInfo/>
+                                </div>
+                            </div>
+                            <div className="text-[#545454]">
+                                قیمت روزانه {item.price.amount} {t(item.price.currency)}
+                            </div>
                         </div>
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
-                        >
-                        </div>
-                        <div>صندلی کودک</div>
-                        <IconInfo/>
-                    </div>
-                    <div className="text-[#545454]">
-                        قیمت روزانه 29 درهم
-                    </div>
-                </label>
-                <label className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
-                    <div className="flex gap-2 items-center">
-                        <input type="checkbox" className="peer hidden" />
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                            <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
-                            <IconTick2 className={'absolute z-10'}/>
-                        </div>
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
-                        >
-                        </div>
-                        <div>صندلی کودک</div>
-                        <IconInfo/>
-                    </div>
-                    <div className="text-[#545454]">
-                        قیمت روزانه 29 درهم
-                    </div>
-                </label>
-                <label className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
-                    <div className="flex gap-2 items-center">
-                        <input type="checkbox" className="peer hidden" />
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                            <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
-                            <IconTick2 className={'absolute z-10'}/>
-                        </div>
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
-                        >
-                        </div>
-                        <div>صندلی کودک</div>
-                        <IconInfo/>
-                    </div>
-                    <div className="text-[#545454]">
-                        قیمت روزانه 29 درهم
-                    </div>
-                </label>
+                    )
+                })}
             </div>
             
         </div>
