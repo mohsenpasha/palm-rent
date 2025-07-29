@@ -18,6 +18,24 @@ export default {
             transform: 'translateY(0)',
            },
         },
+        opacity: {
+          "0%": { 
+            opacity: '0',
+           },
+          "100%": {
+            opacity: '1',
+           },
+        },
+        fadeIn2: {
+          "0%": { 
+            opacity: '0',
+            transform: 'scale(0.8)',
+           },
+          "100%": {
+            opacity: '1',
+            transform: 'scale(1)',
+           },
+        },
         skeleton: {
           "0%": { 
             background: 'linear-gradient(90deg, #EDEDED 30%, #DCDCDC 50%,	#EDEDED 70%);',
@@ -33,6 +51,8 @@ export default {
         },
       },
       animation: {
+        opacity: "opacity 0.2s ease-out forwards",
+        fadeIn2: "fadeIn2 0.2s ease-out forwards",
         fadeIn: "fadeIn 0.2s ease-out forwards",
         skeleton : "skeleton 1.5s infinite linear"
       }
