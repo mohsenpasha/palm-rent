@@ -5,6 +5,7 @@ import { useMediaQuery } from "../hooks/useMediaQuery"
 import { useDispatch, useSelector } from "react-redux"
 import { changeActiveIndex, changeReelActive } from "@/redux/slices/reelsSlice"
 import useDisableScroll from "../hooks/useDisableScroll"
+import Link from "next/link"
 
 export default function PopupReels(){
     const dispatch = useDispatch()
@@ -185,6 +186,20 @@ export function SingleReel({ref,reelIndex,activeIndex,video}){
                 </span>
             }
             <video loop muted className="w-full h-full object-cover sm:rounded-lg" src={video}>Your browser does not support the video tag.</video>
+            <div onClick={(event)=>event.stopPropagation()} className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[#21262d] w-[calc(100%-16px)] rounded-lg p-2 flex justify-between">
+                <Link href={'#'} className="flex w-auto bg-[#3B82F6] outline-0 py-2 px-8 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">اجاره</Link>
+                <div className="flex flex-col items-end gap-1">
+                    <div>
+                        <div className="text-white gap-1 flex">
+                            <span>100</span>
+                            <span>درهم</span>
+                        </div>
+                    </div>
+                    <div className="text-[#8c98ab] sm:text-xs text-[10px]">
+                        Bentley Continental GTC V12 (White), 2021
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
