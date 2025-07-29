@@ -10,10 +10,14 @@ import SearchPopup from "@/app/components/SearchPopup";
 import SingleCar from "@/app/components/SingleCar";
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Image from "next/image";
+import { useParams, usePathname } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+
+
 export default function BranchPage(){
+    const params = useParams()
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     const isSearchOpen = useSelector((state) => state.global.isSearchOpen)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)

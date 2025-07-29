@@ -12,15 +12,16 @@ import persian from "react-date-object/calendars/persian"
 import gregorian from "react-date-object/calendars/gregorian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import gregorian_en from "react-date-object/locales/gregorian_en"
-
 import { useDispatch, useSelector } from "react-redux";
 import { changeCarDates, changeDeliveryTime, changeIsDateJalili, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime, changeSelectedCity } from "@/redux/slices/globalSlice";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useClickOutside } from "../hooks/useClickOutside";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { useParams } from "next/navigation";
 
 export default function SearchBar({isPopup=false}){
+    const params = useParams()
     const carDates = useSelector((state) => state.global.carDates)
     const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const selectedCity = useSelector((state) => state.global.selectedCity)
@@ -70,17 +71,30 @@ export default function SearchBar({isPopup=false}){
               }
               {!isPopup &&
                 <div className="md:text-xl sm:text-lg text-center md:text-right text-md font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
-                    اجاره آنلاین خودرو در همه شهر ها با بهترین قیمت
+                    {params.cityName ?
+                        <h2>
+                          اجاره آنلاین خودرو در {t(params.cityName)} با بهترین قیمت
+                        </h2>
+                      :
+                        <h2>
+                          اجاره آنلاین خودرو در همه شهر ها با بهترین قیمت
+                        </h2>
+                    }
+                    
                 </div>
                 }
                 <div className={`flex lg:gap-2 gap-4 items-end lg:flex-nowrap flex-wrap px-2 md:px-6 ${isPopup ? `bg-white rounded-lg justify-center ${isDateSelectOpen ? 'md:w-10/12 w-full md:p-8 md:my-4' : 'p-8 w-10/12 my-4'} absolute  left-1/2 -translate-x-1/2` : ''}`}>
                     <div ref={citySelectRef} className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
                         <span className="text-sm">مقصد</span>
-                        <div onClick={()=>setCityToggle(!cityToggle)} className="border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1">
+                        <div onClick={()=>params.cityName ? ()=>{} :setCityToggle(!cityToggle)} className={`${params.cityName && 'bg-gray-100'} border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1`}>
                             <span className="size-6">
                                 <IconLocation/>
                             </span>
-                            {t(selectedCity) || 'انتخاب کنید'}
+                            {params.cityName ?
+                                t(params.cityName)
+                            :
+                                t(selectedCity) || 'انتخاب کنید'
+                            }
                         </div>
                         {cityToggle &&
                             <CityDropDown>
@@ -239,10 +253,6 @@ export function getDiffInShamsiDays(date1, date2) {
     if(!date1 || !date2) return
   return getDaysSinceEpoch(date2) - getDaysSinceEpoch(date1)
 }
-
-
-
-
 
 export function DatePicker2({datePickerRef}) {
     const carDates = useSelector((state) => state.global.carDates)

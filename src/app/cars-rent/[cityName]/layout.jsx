@@ -1,15 +1,18 @@
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
+// import { useParams } from "next/navigation";
 
-export const metadata = {
-  title: "سامانه آنلاین اجاره خودرو بدون دپوزیت | پالم رنت",
-  description: "اجاره خودرو در دبی، استانبول و عمان بدون دپوزیت!  رزرو آسان، پرداخت ریالی، بیمه رایگان و تحویل در محل. بهترین قیمت و پشتیبانی ۲۴/۷.",
-  icons: {
-    icon: '/favicon.png',
-  },
-};
+// export const metadata = {
+//   title: "سامانه آنلاین اجاره خودرو بدون دپوزیت | پالم رنت",
+//   description: "اجاره خودرو در دبی، استانبول و عمان بدون دپوزیت!  رزرو آسان، پرداخت ریالی، بیمه رایگان و تحویل در محل. بهترین قیمت و پشتیبانی ۲۴/۷.",
+//   icons: {
+//     icon: '/favicon.png',
+//   },
+// };
 
-export default function BranchLayout({ children }) {
+export default function BranchLayout({ children,params }) {
+  const cityList = ["dubai", "istanbul", "kayseri", "kish", "ezmir", "georgia", "oman", "samsun", "antalya", "ankara"]
+  if(!cityList.includes(params.cityName)) return
   return (
     <>
         <Header/>
