@@ -48,7 +48,7 @@ export default function BranchPage(){
       ])
     return(
         <>
-        <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
+        <div className="w-[85vw] max-w-[1100px] block m-auto">
             <div className="text-center">
                 <h2 className="inline-block text-2xl font-bold my-8">
                     لیست خودرو های {t(params.cityName)}
