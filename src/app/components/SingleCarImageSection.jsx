@@ -3,12 +3,21 @@ import { SingleCarOptions } from "./SingleCar";
 import { IconCalender, IconSend, IconStickyNote, IconWhatsapp } from "./Icons";
 import { useDispatch } from "react-redux";
 import { changeSingleGalleryStatus } from "@/redux/slices/globalSlice";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export function SingleCarImageSection(){
+    const path = usePathname()
+    console.log(path)
     const dispatch = useDispatch()
     function popupGalleryHandler(){
         dispatch(changeSingleGalleryStatus(true))
     }
+    const [whatsappText,setWhatsappText] = useState()
+    useEffect(()=>{
+        setWhatsappText(`سلام بنده علاقه‌مند به رزرو خودرو (Renault Megane 2024) در (استانبول) هستم و درخواست دارم تا اطلاعات تکمیلی و شرایط اجاره را در اختیارم قرار دهید. https://palmrentcar.com${path}`)
+    },[])
     return(
         <div className="border-[1px] w-full border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] sm:px-4 px-2 py-4 rounded-4xl bg-white my-4">
             <div className="flex justify-between w-full md:text-base text-sm">
@@ -53,10 +62,10 @@ export function SingleCarImageSection(){
                         <IconSend/>
                         رزرو فوری
                     </button>
-                    <button className="text-[#10B981] md:w-auto w-full md:rounded-2xl sm:rounded-xl rounded-lg justify-center border-[1px] border-[#10B981] hover:text-white hover:bg-[#10B981] bg-transparent flex gap-2 py-3 px-4 outline-0 cursor-pointer transition-all">
+                    <Link href={`https://wa.me/971556061134?text=${encodeURIComponent(whatsappText)}`} className="text-[#10B981] md:w-auto w-full md:rounded-2xl sm:rounded-xl rounded-lg justify-center border-[1px] border-[#10B981] hover:text-white hover:bg-[#10B981] bg-transparent flex gap-2 py-3 px-4 outline-0 cursor-pointer transition-all">
                         <IconWhatsapp/>
                         واتس اپ
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
