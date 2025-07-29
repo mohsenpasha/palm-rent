@@ -31,7 +31,7 @@ const initialState = {
   isDateSelectOpen:false,
   isTranslatePopupOpen:false,
   isSearchPopupOpen:false,
-  roadMapStep:1,
+  roadMapStep:2,
   cities:['dubai','istanbul','kayseri','kish','ezmir','georgia','oman','samsun','antalya','ankara'],
   selectedCity:null,
   isDateJalili:true

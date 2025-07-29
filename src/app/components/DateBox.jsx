@@ -21,7 +21,7 @@ export function DateBox({isSticky=false}){
 
     return(
         <>
-            <div className={`${isSticky ? 'sticky mb-10' : 'my-4'} ${isHeaderClose ? 'top-8' : 'top-18'} transition-all z-30 w-full p-4 py-4 rounded-2xl bg-[#EBEBEB] flex md:flex-row flex-col lg:text-base text-sm items-center justify-center gap-2 md:gap-0`}>
+            <div className={`${isSticky ? 'sticky mb-10' : 'my-4'} ${isHeaderClose ? 'top-8' : 'top-18'} transition-all z-30 w-full p-4 py-4 rounded-2xl bg-[#EBEBEB] flex md:flex-row flex-col text-sm items-center justify-center gap-2 md:gap-0`}>
                 <div className="flex items-center w-full gap-2 lg:justify-start justify-center">
                     <span className="flex items-center gap-2">
                         <IconCalender className={'sm:flex hidden'}/>
