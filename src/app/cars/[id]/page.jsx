@@ -48,7 +48,7 @@ export default function CarsPage(){
             </div>
             {isSingleGalleryOpen && 
                 <SingleCarPopupGallery/>
-            }
+            } 
             {descriptionPopup.description && 
                 <DescriptionPopup/>
             }
