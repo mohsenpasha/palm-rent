@@ -1,8 +1,4 @@
 'use client'
-import Image from "next/image";
-import SingleCarPopupGallery from "../components/SingleCarPopupGallery";
-import { useDispatch, useSelector } from "react-redux";
-import { changeSingleGalleryStatus } from "@/redux/slices/globalSlice";
 import CommonQuestionSection from "../components/CommonQuestionSection";
 import { useEffect, useState } from "react";
 import NProgress from 'nprogress'
