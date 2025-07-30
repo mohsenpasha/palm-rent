@@ -382,6 +382,9 @@ export function SinglePaymentDet({title,subtitle,price}){
         </div>
     )
 }
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 
 export function PersonalInfoBox(){
     return(
@@ -391,16 +394,24 @@ export function PersonalInfoBox(){
             </div>
             <div className="flex flex-col gap-4">
                 <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder="نام و نام خانوادگی ..." />
-                <div className="border-[1px] flex flex-row-reverse items-center border-[#B0B0B0] rounded-xl">
-                    <select dir="ltr" className="p-2 text-center outline-0" name="" id="">
+                {/* <div className="border-[1px] flex flex-row-reverse items-center border-[#B0B0B0] rounded-xl"> */}
+                    <PhoneInput
+                        country={'ir'}
+                        enableSearch={true}
+                        // value={phone}
+                        onChange={(value, country) => {
+                            console.log(value, country);
+                        }}
+                        />
+                    {/* <select dir="ltr" className="p-2 text-center outline-0" name="" id="">
                         <option value="98">+98</option>
                         <option value="98">+98</option>
                         <option value="98">+98</option>
                         <option value="98">+98</option>
                     </select>
                     <span className="inline-block h-8 w-[1px] bg-[#919191]"></span>
-                    <input className="text-left w-full outline-0 p-3" placeholder="091*********" type="text" />
-                </div>
+                    <input className="text-left w-full outline-0 p-3" placeholder="091*********" type="text" /> */}
+                {/* </div> */}
                 <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder="ایمیل ..." />
             </div>
             <div className="flex justify-center py-2 gap-1 sm:text-xs text-[10px]">

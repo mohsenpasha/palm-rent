@@ -175,3 +175,50 @@ rmdp-week{
     width: 100%;
   }
 }
+
+ .react-tel-input{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+ }
+ .react-tel-input .form-control {
+  width: 100%!important;
+  padding-left: 60px!important;
+ }
+ .react-tel-input .selected-flag{
+  width: 50px!important;
+  padding: 18px!important;
+ }
+ .react-tel-input .selected-flag .arrow{
+  left: 10px!important;
+ }
+ .react-tel-input .country-list .country{
+  display: flex!important;
+  justify-content: space-between;
+  border-bottom: 1px solid #cccccc;
+ }
+ .react-tel-input .country-list .search-emoji{
+  display: none;
+ }
+ .react-tel-input .search{
+  display: flex;
+  justify-content: center;
+  padding-left: 0!important;
+  direction: ltr;
+ }
+ .react-tel-input .search-box{
+  width: 90%;
+  margin: 0!important;
+ }
+ .react-tel-input .country-list {
+  border-radius: 8px!important;
+ }
+
+ .react-tel-input .country-list {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: auto;
+}
