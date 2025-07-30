@@ -26,55 +26,55 @@ export default function Footer(){
                             صفحات
                         </div>
                         <div className="flex flex-wrap gap-2 text-[#303030] lg:text-base md:text-sm text-xs">
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            <Link className="flex items-center w-[calc(50%-4px)]" href='/'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 خانه
                             </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            {/* <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 شعبه های پالم رنت
-                            </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            </Link> */}
+                            {/* <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 انواع خودرو ها
-                            </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            </Link> */}
+                            <Link className="flex items-center w-[calc(50%-4px)]" href='/documents'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 مدارک مورد نیاز
                             </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            <Link className="flex items-center w-[calc(50%-4px)]" href='/contact-us'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 تماس با ما
                             </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            <Link className="flex items-center w-[calc(50%-4px)]" href='/blogs'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 مجله پام رنت
                             </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            <Link className="flex items-center w-[calc(50%-4px)]" href='/gallery'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 گالری تصاویر
                             </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            <Link className="flex items-center w-[calc(50%-4px)]" href='/about-us'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>
                                 درباره پالم رنت
                             </Link>
-                            <Link className="flex items-center w-[calc(50%-4px)]" href='#'>
+                            <Link className="flex items-center w-[calc(50%-4px)]" href='/rules'>
                                 <span className="size-4">
                                     <IconArrowDoubled/>
                                 </span>

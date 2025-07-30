@@ -126,7 +126,7 @@ export function HeaderMenu({ isActive, closeMenu }){
             </div>
             <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0!' : '')} translate-x-full lg:translate-x-0 pt-15 lg:pt-0 fixed transition-all h-[100vh] lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible`}>
                 <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
-                    <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='#'>
+                    <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='/'>
                         خانه
                     </Link>
                 </li>
