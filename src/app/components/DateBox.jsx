@@ -1,24 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IconCalender, IconEdit, IconVideoTime } from "./Icons";
-import SearchBar, { getDiffInShamsiDays } from "./SearchBar";
+import SearchBar, { DatePickerBox, getDiffInShamsiDays } from "./SearchBar";
 import { useEffect, useState } from "react";
-import { changeIsSearchPopupOpen } from "@/redux/slices/globalSlice";
+import { changeIsDateSelectOpen } from "@/redux/slices/globalSlice";
+import useDisableScroll from "../hooks/useDisableScroll";
 
 export function DateBox({isSticky=false}){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
     const carDates = useSelector((state)=> state.global.carDates)
     const returnTime = useSelector((state)=> state.global.returnTime)
     const deliveryTime = useSelector((state)=> state.global.deliveryTime)
-    const isSearchPopupOpen = useSelector((state)=> state.global.isSearchPopupOpen)
+    const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
     const [carDayCount,setCarDayCount] = useState()
     const dispatch = useDispatch()
-    function openSearchPopup(){
-        dispatch(changeIsSearchPopupOpen(true))
-    }
     useEffect(()=>{
         setCarDayCount(getDiffInShamsiDays(carDates[0],carDates[1]))
     },[carDates])
-
+    function openDateSelect(){
+        dispatch(changeIsDateSelectOpen(true))
+    }
     return(
         <>
             <div className={`${isSticky ? 'sticky mb-10' : 'my-4'} ${isHeaderClose ? 'top-8' : 'top-18'} transition-all z-30 w-full p-4 py-4 rounded-2xl bg-[#EBEBEB] flex md:flex-row flex-col text-sm items-center justify-center gap-2 md:gap-0`}>
@@ -61,17 +61,35 @@ export function DateBox({isSticky=false}){
                         {carDayCount} روز فراموش نشدنی در دبی 
                     </span>
                 </div>
-                <button onClick={openSearchPopup} className="text-[#3B82F6] flex items-center text-nowrap gap-2 cursor-pointer">
+                <button onClick={openDateSelect} className="text-[#3B82F6] flex items-center text-nowrap gap-2 cursor-pointer">
                     <IconEdit/>
                     <span className="flex lg:flex md:hidden">
                         تغییر جستجو
                     </span>
                 </button>
             </div>
-            {isSearchPopupOpen && 
-                <SearchBar isPopup={true}/>
+            {isDateSelectOpen && 
+                <DatePopup/>
             }
         </>
 
+    )
+}
+
+export function DatePopup(){
+    useDisableScroll()
+    const dispatch = useDispatch()
+    function closeDateSelect(){
+        dispatch(changeIsDateSelectOpen(false))
+    }
+    return(
+        <div className="fixed w-[100vw] h-[100vw] top-0 right-0 z-50">
+            <div className="animate-opacity">
+                <div onClick={closeDateSelect} className="absolute top-0 right-0 w-full h-full bg-black opacity-60"></div>
+            </div>
+            {/* <div className="absolute left-1/2 top-1/2 -translate-1/2 bg-white z-10"> */}
+                <DatePickerBox isPopup={true}/>
+            {/* </div> */}
+        </div>
     )
 }

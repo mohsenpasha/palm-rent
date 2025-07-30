@@ -15,7 +15,7 @@ export function ApplicationSection(){
                         <div className="flex flex-col gap-2 sm:items-start items-center md:text-base text-sm">
                             <div className="lg:text-2xl text-lg font-bold">اپلیکیشن پالم رنت</div>
                             <div>اجاره آنلاین خودرو سریع‌تر و مطمئن‌تر</div>
-                            <Link className="flex items-center md:my-4 my-2 text-[#3b82f6]" href={'#'}>
+                            <Link className="flex items-center md:my-4 my-2  text-[#3b82f6]" href={'#'}>
                                 <span>
                                     مشاهده لینک های دانلود
                                 </span>

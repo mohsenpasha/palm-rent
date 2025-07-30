@@ -23,15 +23,12 @@ import { useParams } from "next/navigation";
 export default function SearchBar({isPopup=false}){
     const params = useParams()
     const carDates = useSelector((state) => state.global.carDates)
-    const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const selectedCity = useSelector((state) => state.global.selectedCity)
     const cities = useSelector((state) => state.global.cities)
     const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
     const deliveryTime = useSelector((state) => state.global.deliveryTime)
     const returnTime = useSelector((state) => state.global.returnTime)
     const [cityToggle,setCityToggle] = useState(false)
-    const [dataToggle,setDateToggle] = useState(false)
-    const datePickerRef = useRef()
     const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function closeSearchBar(){
@@ -50,17 +47,7 @@ export default function SearchBar({isPopup=false}){
         console.log('open')
         dispatch(changeIsDateSelectOpen(true))
     }
-    function changeDeliveryTimeHandler(newTime){
-        dispatch(changeDeliveryTime(newTime))
-    }
-    function changeReturnTimeHandler(newTime){
-        dispatch(changeReturnTime(newTime))
-    }
-    function toggleIsJalili(){
-      dispatch(changeCarDates([]))
-      console.log(carDates)
-      dispatch(changeIsDateJalili(!isDateJalili))
-    }
+    
     return(
         <>
             <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-10 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
@@ -109,7 +96,7 @@ export default function SearchBar({isPopup=false}){
                     <div className={`relative lg:w-6/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2`}>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
                             <span className="text-sm">تاریخ و زمان تحویل</span>
-                            <div onClick={()=>setDateToggle(true)} className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
+                            <div className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] gap-1 items-center">
                                     <IconClock/>
                                     <span>{carDates[0] || 'تاریخ'}</span>
@@ -122,7 +109,7 @@ export default function SearchBar({isPopup=false}){
                         </div>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
                             <span className="text-sm">تاریخ و زمان عودت</span>
-                            <div onClick={()=>setDateToggle(true)} className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
+                            <div className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1">
                                     <IconClock/>
                                     <span>{carDates[1] || 'تاریخ'}</span>
@@ -134,41 +121,7 @@ export default function SearchBar({isPopup=false}){
                             </div>
                         </div>
                         {isDateSelectOpen && 
-                            <div ref={ref} className="bg-white md:absolute fixed w-[100vw] h-[100vh] md:w-auto md:h-auto top-0 right-0 md:top-auto md:right-auto md:z-auto z-50 md:bottom-0 bottom-[unset] md:translate-y-full md:left-1/2 md:-translate-x-1/2 border-[1px] border-[#0000001f] rounded-lg lg:max-w-[524px]">
-                                <div className="p-2 px-4 flex justify-end border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
-                                  {/* <button onClick={goToToday} className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
-                                    <span>برو امروز</span>
-                                  </button> */}
-                                  <button onClick={toggleIsJalili} className="flex items-center gap-0.5 cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
-                                    <span className="size-4 flex items-center">
-                                      <IconCalender/>
-                                    </span>
-                                    <span>{isDateJalili ? 'تقویم میلادی' : 'تقویم شمسی'}</span>
-                                  </button>
-                                </div>
-                                <div className="relative z-20 flex w-full justify-center gap-8 border-b-[1px] border-[#0000001f] p-4 px-2">
-                                    <div className="w-full md:w-auto">
-                                        <span>زمان تحویل</span>
-                                        <TimeSelectBox selected={deliveryTime} setSelected={changeDeliveryTimeHandler}/>
-                                    </div>
-                                    <div className="w-full md:w-auto">
-                                        <span>زمان عودت</span>
-                                        <TimeSelectBox selected={returnTime} setSelected={changeReturnTimeHandler}/>
-                                    </div>
-                                </div>
-                                <div dir={isDateJalili ? "rtl" : "ltr"} className="date-picker-holder flex relative z-10 md:w-full m-auto sm:w-10/12 w-full justify-center md:my-auto p-4 my-6">
-                                    <DatePicker2 datePickerRef={datePickerRef}/>
-                                </div>
-                                <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
-                                  <div className="md:flex hidden text-xs">
-                                    <div>تحویل <span className="font-bold text-sm">{carDates[0] || 'انتخاب کنید'}</span> -</div>
-                                    <div>عودت <span className="font-bold text-sm">{carDates[1]}</span></div>
-                                  </div>
-                                  <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
-                                    تایید
-                                  </button>
-                                </div>
-                            </div>
+                            <DatePickerBox ref={ref}/>
                         }
                     </div>
                     {!isPopup ?
@@ -186,6 +139,70 @@ export default function SearchBar({isPopup=false}){
         </>
     )
 }
+
+
+
+
+
+export function DatePickerBox({ref,isPopup=false}){
+  const isDateJalili = useSelector((state) => state.global.isDateJalili)
+  const deliveryTime = useSelector((state) => state.global.deliveryTime)
+  const returnTime = useSelector((state) => state.global.returnTime)
+  const carDates = useSelector((state) => state.global.carDates)
+  const dispatch = useDispatch()
+  function changeDeliveryTimeHandler(newTime){
+        dispatch(changeDeliveryTime(newTime))
+    }
+    function changeReturnTimeHandler(newTime){
+        dispatch(changeReturnTime(newTime))
+    }
+    function toggleIsJalili(){
+      dispatch(changeCarDates([]))
+      console.log(carDates)
+      dispatch(changeIsDateJalili(!isDateJalili))
+    }
+    function closeDateSelect(){
+        dispatch(changeIsDateSelectOpen(false))
+    }
+  return(
+    <div ref={ref} className={`bg-white w-[100vw] h-[100vh] md:w-auto ${!isPopup ? 'md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto lg:max-w-[524px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border-[1px] border-[#0000001f] rounded-lg`}>
+      <div className="p-2 px-4 flex justify-end border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
+        {/* <button onClick={goToToday} className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
+          <span>برو امروز</span>
+        </button> */}
+        <button onClick={toggleIsJalili} className="flex items-center gap-0.5 cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
+          <span className="size-4 flex items-center">
+            <IconCalender/>
+          </span>
+          <span>{isDateJalili ? 'تقویم میلادی' : 'تقویم شمسی'}</span>
+        </button>
+      </div>
+      <div className="relative z-20 flex w-full justify-center gap-8 border-b-[1px] border-[#0000001f] p-4 px-2">
+          <div className="w-full md:w-auto">
+              <span>زمان تحویل</span>
+              <TimeSelectBox selected={deliveryTime} setSelected={changeDeliveryTimeHandler}/>
+          </div>
+          <div className="w-full md:w-auto">
+              <span>زمان عودت</span>
+              <TimeSelectBox selected={returnTime} setSelected={changeReturnTimeHandler}/>
+          </div>
+      </div>
+      <div dir={isDateJalili ? "rtl" : "ltr"} className="date-picker-holder flex relative z-10 m-auto sm:w-8/12 w-11/12 justify-center md:my-auto p-4 my-6">
+          <DatePicker2/>
+      </div>
+      <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
+        <div className="md:flex hidden text-xs">
+          <div>تحویل <span className="font-bold text-sm">{carDates[0] || 'انتخاب کنید'}</span> -</div>
+          <div>عودت <span className="font-bold text-sm">{carDates[1]}</span></div>
+        </div>
+        <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
+          تایید
+        </button>
+      </div>
+  </div>
+  )
+}
+
 
 export function CityDropDown({children}){
     return(
@@ -254,7 +271,7 @@ export function getDiffInShamsiDays(date1, date2) {
   return getDaysSinceEpoch(date2) - getDaysSinceEpoch(date1)
 }
 
-export function DatePicker2({datePickerRef}) {
+export function DatePicker2() {
     const carDates = useSelector((state) => state.global.carDates)
     const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const [value, setValue] = useState([])
@@ -332,7 +349,6 @@ export function DatePicker2({datePickerRef}) {
       <Calendar
         range
         weekDays={isDateJalili ? ["ش", "ی", "د", "س", "چ", "پ", "ج"] : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
-        ref={datePickerRef}
         calendar={isDateJalili ? persian : gregorian}
         locale={isDateJalili ? persian_fa : gregorian_en}
         format={"YYYY/MM/DD"}
