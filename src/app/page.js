@@ -13,6 +13,7 @@ import { Why2Section } from "./components/Why2Section";
 import WhySection from "./components/WhySection";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { ApplicationSection } from "./components/ApplicationSection";
 NProgress.configure({ showSpinner: false })
 export default function Home() {
       useEffect(()=>{
@@ -43,6 +44,7 @@ export default function Home() {
       {/* <CarCategorySection/> */}
       <BranchSection/>
       <WhySection/>
+      <ApplicationSection/>
       <CommonQuestionSection rules={rules} setRules={setRules}/>
       <CommentSection/>
       <Why2Section/>
