@@ -24,7 +24,7 @@ export default function DescriptionSection(){
     };
     return(
         <section ref={sectionRef} className="my-12">
-            <div className="w-[85vw] max-w-[1100px] m-auto">
+            <div className="w-[85vw] max-w-[1336px] m-auto">
                 <div className="md:flex hidden md:justify-between justify-center items-center overflow-hidden">
                     <div className="text-[#3B82F6] lg:text-4xl md:text-3xl font-bold lg:max-w-[400px] md:max-w-[300px] lg:leading-18 md:text-right text-center">
                         پالم رنت شرکتی پیشرو در اجاره خودرو

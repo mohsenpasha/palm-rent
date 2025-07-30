@@ -4,7 +4,7 @@ import { IconTick } from "./Icons";
 export default function WhySection(){
     return(
         <section className="bg-white py-16 my-16">
-            <div className="w-[85vw] max-w-[1100px] m-auto">
+            <div className="w-[85vw] max-w-[1336px] m-auto">
                 <div className="flex justify-between lg:text-right text-center">
                     <div className="lg:w-[580px]">
                         <div className="lg:text-2xl md:text-xl text-lg font-bold">

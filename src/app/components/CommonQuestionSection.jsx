@@ -5,7 +5,7 @@ import { useState } from "react"
 export default function CommonQuestionSection({newVersion = false,rules,setRules}){
     return(
         <section className="my-12">
-            <div className="w-[85vw] max-w-[1100px] m-auto">
+            <div className="w-[85vw] max-w-[1336px] m-auto">
                 {!newVersion && 
                     <div className='text-center pb-6 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]'>
                         سوالات متداول

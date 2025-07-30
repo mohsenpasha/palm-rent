@@ -46,7 +46,7 @@ export default function BranchPage(){
     },[])
     return(
         <>
-        <div className="w-[85vw] max-w-[1100px] block m-auto">
+        <div className="w-[85vw] max-w-[1336px] block m-auto">
             <div>
                 {!isUnderLg && 
                     <Image className="object-contain" src={'/images/search-bg.png'} height={320} width={1440} alt=""></Image>

@@ -5,7 +5,7 @@ import { IconArrow } from "./Icons";
 export function ApplicationSection(){
     return(
         <section className="lg:py-16 lg:mt-16">
-            <div className="w-[85vw] max-w-[1100px] block m-auto">
+            <div className="w-[85vw] max-w-[1336px] block m-auto">
                 <div className="w-full border-[1px] bg-white border-[#EBF3FE] rounded-lg shadow-[0_4px_43px_0_#3B82F64D] flex lg:justify-between justify-center lg:px-16 px-8 py-8">
                     <div className="flex sm:flex-row flex-col items-center gap-4">
                         <div className="border-[1px] border-[#0000001F] rounded-lg p-2 flex flex-col gap-2">

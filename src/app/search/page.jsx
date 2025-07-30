@@ -55,7 +55,7 @@ export default function SearchResultPage(){
             <div className="absolute left-4 top-24 text-red-600 md:flex hidden">
                 {timerValue}
             </div>
-            <div className="w-[90vw] max-w-[1100px] m-auto">
+            <div className="w-[90vw] max-w-[1336px] m-auto">
                 {roadMapStep < 3 && 
                     <>
                         <RoadMap step={roadMapStep}/>

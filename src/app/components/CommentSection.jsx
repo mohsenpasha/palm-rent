@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 export default function CommentSection(){
     return(
         <section className='my-8 bg-[#F6F6F6] py-12 pb-14'>
-            <div className='w-[85vw] max-w-[1100px] m-auto'>
+            <div className='w-[85vw] max-w-[1336px] m-auto'>
                 <div className='md:text-right text-center pb-6 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]'>
                     نظرات مشتریان عزیز
                 </div>
