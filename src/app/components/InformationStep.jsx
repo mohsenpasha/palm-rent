@@ -1,17 +1,21 @@
 import { useState } from "react"
-import { IconArrow, IconGrate, IconInfo, IconSort1, IconTick2 } from "./Icons"
+import { IconArrow, IconGrate, IconInfo, IconPersonSearch, IconSort1, IconTick2 } from "./Icons"
 import Image from "next/image"
 import { SingleCarOptions } from "./SingleCar"
 import Link from "next/link"
-import { changeAreLocationsSame, changeDescriptionPopup, changeIsLocationPopupOpen, changeRoadMapStep } from "@/redux/slices/globalSlice"
+import { changeAreLocationsSame, changeDescriptionPopup, changeIsInfoListOpen, changeIsLocationPopupOpen, changeRoadMapStep } from "@/redux/slices/globalSlice"
 import { useDispatch, useSelector } from "react-redux"
-import DescriptionPopup from "./DescriptionPopup"
 import { useTranslation } from "react-i18next"
 import LocationPopup from "./LocationPopup"
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import InfoListPopup from "./InfoListPopup"
 
 export default function InformationStep(){
     const isLocationPopupOpen = useSelector((state)=>state.global.isLocationPopupOpen)
+    const isInfoListOpen = useSelector((state)=>state.global.isInfoListOpen)
     const [isLocationReturn,setIsLocationReturn] = useState(false)
+    
     const dispatch = useDispatch()
     function nextStep(){
         dispatch(changeRoadMapStep(3))
@@ -38,6 +42,9 @@ export default function InformationStep(){
             </div>
             {isLocationPopupOpen && 
                 <LocationPopup isReturn={isLocationReturn}/>
+            }
+            {isInfoListOpen &&
+                <InfoListPopup/>
             }
         </>
     )
@@ -382,15 +389,22 @@ export function SinglePaymentDet({title,subtitle,price}){
         </div>
     )
 }
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-
 
 export function PersonalInfoBox(){
+    const dispatch = useDispatch()
+    function openInfoList(){
+        dispatch(changeIsInfoListOpen(true))
+    }
     return(
         <div className="lg:text-base md:text-sm text-xs pb-12 border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
-            <div className="mb-4">
+            <div className="mb-4 flex justify-between items-center">
                 <div className="lg:text-lg sm:text-base text-sm font-semibold">اطلاعات شخصی خود را وارد کنید</div>
+                <button onClick={openInfoList} className="text-[#3B82F6] hover:text-white hover:bg-[#3B82F6] transition-all cursor-pointer text-sm items-center flex gap-2 border-[1px] border-[#3B82F6] hover:border-white rounded-lg px-3 py-1 font-bold">
+                    <span className="size-6 inline-block">
+                        <IconPersonSearch/>
+                    </span>
+                    <span>انتخاب از لیست</span>
+                </button>
             </div>
             <div className="flex flex-col gap-4">
                 <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder="نام و نام خانوادگی ..." />
