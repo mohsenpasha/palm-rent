@@ -131,7 +131,7 @@ rmdp-week{
   background-color: #A5C6FB!important;
 }
 .rmdp-day{
-  /* transition: all .2s; */
+  transition: all .2s;
 }
 .rmdp-range{
   background-color: #A5C6FB!important;
