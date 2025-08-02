@@ -30,8 +30,9 @@ export function SingleCarImageSection(){
             </div>
             <div className="rounded-2xl flex xl:h-[324px] lg:h-[290px] md:h-[260px] sm:h-[200px] gap-1 my-4 sm:flex-nowrap flex-wrap">
                 <div className="sm:w-8/12 w-full h-full flex gap-1">
-                    <div className="w-8/12 sm:h-full h-[140px] flex relative sm:rounded-2xl rounded-bl-[0] rounded-tl-[0]">
-                        <Image onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image>
+                    <div className="w-8/12 sm:h-full h-[140px] flex relative sm:rounded-2xl sm:rounded-bl-[0] sm:rounded-tl-[0]">
+                        <video onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" autoPlay muted src="/videos/test-vid-1.mp4"></video>
+                        {/* <Image onClick={()=>popupGalleryHandler()} className="w-full object-cover rounded-[inherit]" src={'/images/singlecar-1.png'} fill={true} alt=""></Image> */}
                     </div>
                     <div className="w-4/12 sm:h-full h-[140px] flex flex-col gap-1">
                         <div className="relative flex-1 w-full">
