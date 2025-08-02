@@ -1,3 +1,4 @@
+import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 
 export default function CarsLayout({children}){
@@ -5,6 +6,7 @@ export default function CarsLayout({children}){
         <>
             <Header/>
             {children}
+            <Footer/>
         </>
     )
 }
