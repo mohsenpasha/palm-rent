@@ -82,7 +82,9 @@ export function SingleCarGallery({children,noBtn}){
                     <div className={`${hoverList[3] ? 'z-10' : ''} rounded-lg w-full h-full absolute`}>
                         <div className={`absolute w-full h-full rounded-lg ${hoverList[3] ? 'z-20' : ''} bg-[#000000aa] text-white flex flex-col items-center justify-center`}>
                             <span className="flex items-center justify-center border-2 border-white rounded-full size-16 rotate-135">
-                                <IconArrowHandle/>
+                                <span className="flex size-6">
+                                    <IconArrowHandle/>
+                                </span>
                             </span>
                             عکس های بیشتر
                         </div>
