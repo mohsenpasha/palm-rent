@@ -27,7 +27,7 @@ export default function CarsPage(){
         },[])
     return(
         <>
-            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
+            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
                 <div>
                     {!isUnderLg && 
                         <Image className="object-contain" src={'/images/search-bg.png'} height={320} width={1440} alt=""></Image>

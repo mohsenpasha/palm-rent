@@ -19,7 +19,7 @@ export default function CarCategorySection() {
 
   return (
     <section>
-      <div className="w-[85vw] m-auto my-16">
+      <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px] overflow-hidden my-16">
         <div className="text-center text-xl font-semibold mb-6">
           دسته بندی خودرو ها
         </div>

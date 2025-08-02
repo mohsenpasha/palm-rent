@@ -13,7 +13,7 @@ export default function PanelPage(){
                 return () => clearTimeout(timeout)
             },[])
     return(
-        <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
+        <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
             <div className="flex gap-4">
                 <div className="w-3/12">
                     <PanelSideBar/>

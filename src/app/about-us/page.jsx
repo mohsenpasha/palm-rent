@@ -15,7 +15,7 @@ export default function AboutUsPage(){
         },[])
     return(
         <>
-            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
+            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
                 <div className="py-4">
                     <div className="text-center py-4 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
                         درباره ما
@@ -31,7 +31,7 @@ export default function AboutUsPage(){
 export function FirstAboutSection(){
     return(
         <section>
-            <div className="xl:w-[60vw] w-[95vw] m-auto max-w-[1500x]">
+            <div className="xl:w-[60vw] w-[95vw] m-auto max-w-[1336px]">
                 <div className="shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] bg-white rounded-lg p-4">
                     <div className="text-center lg:text-2xl md:text-lg text-md font-bold my-4">
                         درباره شرکت اجاره خودرو پالم رنت

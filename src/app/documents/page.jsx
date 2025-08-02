@@ -95,7 +95,7 @@ export default function DocumentsPage(){
     ])
     return(
         <>
-            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
+            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
                 <div className="py-4">
                     <div className="text-center py-4 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
                         مدارک مورد نیاز
@@ -113,7 +113,7 @@ export default function DocumentsPage(){
 
 export function DocumentImages(){
     return(
-        <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1500x]">
+        <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
             <div className="flex flex-col w-full items-center justify-center gap-2">
                 <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
                     <div>تصویر نمونه برای شناسایی خودروهای بدون نیاز به دپوزیت</div>
