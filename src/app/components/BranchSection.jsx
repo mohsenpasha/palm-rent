@@ -39,42 +39,42 @@ export function Slider() {
             }}
             >
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/dubai.webp'} title={'شعبه دبی'}/>
+            <SingleBranchCity link={'/cars-rent/dubai'} image={'/images/dubai.webp'} title={'شعبه دبی'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/antalya.webp'} title={'آنتالیا ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/antalya'} image={'/images/antalya.webp'} title={'آنتالیا ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/kayseri-min.jpg'} title={'قیصریه ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/kayseri'} image={'/images/kayseri-min.jpg'} title={'قیصریه ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/georgia-min.jpg'} title={'تفلیس گرجستان'}/>
+            <SingleBranchCity link={'/cars-rent/georgia'} image={'/images/georgia-min.jpg'} title={'تفلیس گرجستان'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/istanbul.webp'} title={'شعبه استانبول'}/>
+            <SingleBranchCity link={'/cars-rent/istanbul'} image={'/images/istanbul.webp'} title={'شعبه استانبول'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/oman-min.jpg'} title={'شعبه عمان'}/>
+            <SingleBranchCity link={'/cars-rent/oman'} image={'/images/oman-min.jpg'} title={'شعبه عمان'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/kish-min.jpg'} title={'شعبه کیش'}/>
+            <SingleBranchCity link={'/cars-rent/kish'} image={'/images/kish-min.jpg'} title={'شعبه کیش'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/samsun.webp'} title={'سامسون ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/samsun'} image={'/images/samsun.webp'} title={'سامسون ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/ezmir.webp'} title={'ازمیر ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/ezmir'} image={'/images/ezmir.webp'} title={'ازمیر ترکیه'}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'#'} image={'/images/ankara.webp'} title={'آنکارا ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/ankara'} image={'/images/ankara.webp'} title={'آنکارا ترکیه'}/>
         </SwiperSlide>
         </Swiper>
-        <div className="swiper-button-next cursor-pointer custom-arrow absolute top-1/2 left-0 z-10 -translate-y-1/2 lg:-translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+        {/* <div className="swiper-button-next cursor-pointer custom-arrow absolute top-1/2 left-0 z-10 -translate-y-1/2 lg:-translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <IconArrow className={'rotate-90'}/>
         </div>
         <div className="swiper-button-prev cursor-pointer custom-arrow absolute top-1/2 right-0 z-10 -translate-y-1/2 lg:translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <IconArrow className={'-rotate-90'}/>
-        </div>
+        </div> */}
     </div>
   );
 }
