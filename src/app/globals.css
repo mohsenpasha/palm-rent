@@ -222,3 +222,6 @@ rmdp-week{
   scrollbar-width: none;
   overflow: auto;
 }
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}

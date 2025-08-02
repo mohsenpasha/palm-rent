@@ -1,6 +1,6 @@
 'use client'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 
 import 'swiper/css';
 import { IconArrow, IconArrowHandle, IconWSOSD } from './Icons';
@@ -21,23 +21,21 @@ export default function BranchSection(){
 export function Slider() {
   return (
     <div className='relative'>
-        <Swiper spaceBetween={10} slidesPerView={1} modules={[Navigation]} loop={true} navigation={{
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }} 
+        <Swiper
+            spaceBetween={10}
+            slidesPerView={2}
+            loop={true}
+            speed={3000} // سرعت انیمیشن بین هر اسلاید
+            autoplay={{
+                delay: 0,         // بدون توقف بین اسلایدها
+                disableOnInteraction: false,
+            }}
+            modules={[Navigation, Autoplay]}
             breakpoints={{
-                400: {
-                slidesPerView: 2,
-                },
-                768: {
-                slidesPerView: 3,
-                },
-                1024: {
-                slidesPerView: 4,
-                },
-                1280: {
-                slidesPerView: 5,
-                },
+                400: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+                1280: { slidesPerView: 5 },
             }}
             >
         <SwiperSlide>
@@ -87,8 +85,10 @@ export function SingleBranchCity({link,image,title}){
                 <Image className='w-full rounded-lg object-cover h-[140px]' src={image} width={218} height={181} alt=''></Image>
                 <div className='absolute left-2 top-2'>
                     <IconWSOSD/>
-                    <span className='absolute w-13 h-13 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] group-hover:text-white top-0 left-0 transition-all'>
-                        <IconArrowHandle/>
+                    <span className='absolute size-10 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] group-hover:text-white top-2 left-2 transition-all'>
+                        <span className='flex size-4'>
+                            <IconArrowHandle/>
+                        </span>
                     </span>
                 </div>
                 <div className='border-[1px] border-[#0000001f] rounded-lg mt-2 p-3'>
