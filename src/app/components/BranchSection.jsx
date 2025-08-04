@@ -6,12 +6,14 @@ import 'swiper/css';
 import { IconArrow, IconArrowHandle, IconWSOSD } from './Icons';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 export default function BranchSection(){
+    const { t, i18n } = useTranslation();
     return(
         <section className='bg-[#F6F6F6] py-8'>
             <div className='w-[85vw] max-w-[1336px] m-auto'>
             <div className='text-center pb-6 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]'>
-                شعبه های پالم رنت
+                {t('branches')}
             </div>
                 <Slider/>
             </div>
@@ -19,15 +21,16 @@ export default function BranchSection(){
     )
 }
 export function Slider() {
+    const { t, i18n } = useTranslation();
   return (
-    <div className='relative'>
+    <div dir='rtl' className='relative'>
         <Swiper
             spaceBetween={10}
             slidesPerView={2}
             loop={true}
-            speed={3000} // سرعت انیمیشن بین هر اسلاید
+            speed={3000}
             autoplay={{
-                delay: 0,         // بدون توقف بین اسلایدها
+                delay: 0,
                 disableOnInteraction: false,
             }}
             modules={[Navigation, Autoplay]}
@@ -39,34 +42,34 @@ export function Slider() {
             }}
             >
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/dubai'} image={'/images/dubai.webp'} title={'شعبه دبی'}/>
+            <SingleBranchCity link={'/cars-rent/dubai'} image={'/images/dubai.webp'} title={t('dubai')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/antalya'} image={'/images/antalya.webp'} title={'آنتالیا ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/antalya'} image={'/images/antalya.webp'} title={t('antalya')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/kayseri'} image={'/images/kayseri-min.jpg'} title={'قیصریه ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/kayseri'} image={'/images/kayseri-min.jpg'} title={t('kayseri')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/georgia'} image={'/images/georgia-min.jpg'} title={'تفلیس گرجستان'}/>
+            <SingleBranchCity link={'/cars-rent/georgia'} image={'/images/georgia-min.jpg'} title={t('georgia')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/istanbul'} image={'/images/istanbul.webp'} title={'شعبه استانبول'}/>
+            <SingleBranchCity link={'/cars-rent/istanbul'} image={'/images/istanbul.webp'} title={t('istanbul')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/oman'} image={'/images/oman-min.jpg'} title={'شعبه عمان'}/>
+            <SingleBranchCity link={'/cars-rent/oman'} image={'/images/oman-min.jpg'} title={t('oman')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/kish'} image={'/images/kish-min.jpg'} title={'شعبه کیش'}/>
+            <SingleBranchCity link={'/cars-rent/kish'} image={'/images/kish-min.jpg'} title={t('kish')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/samsun'} image={'/images/samsun.webp'} title={'سامسون ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/samsun'} image={'/images/samsun.webp'} title={t('samsun')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/ezmir'} image={'/images/ezmir.webp'} title={'ازمیر ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/ezmir'} image={'/images/ezmir.webp'} title={t('ezmir')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/ankara'} image={'/images/ankara.webp'} title={'آنکارا ترکیه'}/>
+            <SingleBranchCity link={'/cars-rent/ankara'} image={'/images/ankara.webp'} title={t('ankara')}/>
         </SwiperSlide>
         </Swiper>
         {/* <div className="swiper-button-next cursor-pointer custom-arrow absolute top-1/2 left-0 z-10 -translate-y-1/2 lg:-translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">

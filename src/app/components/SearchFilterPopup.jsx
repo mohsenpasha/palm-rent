@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { IconClose, IconSearch2 } from "./Icons";
 
 export default function SearchFilterPopup(){
+  const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function closePopup(){
         dispatch(changeFilterStatus(false))
@@ -15,7 +16,7 @@ export default function SearchFilterPopup(){
             <div className="bg-white lg:w-[80%] sm:w-[90%] w-[95%] pb-6 absolute top-1/2 left-1/2 -translate-1/2 rounded-2xl animate-fade-in2">
                 <div className="border-b-[1px] border-[#B0B0B0CC] md:text-base text-sm p-4 font-bold relative">
                     <span>
-                        فیلتر‌ها
+                      {t('filters')}
                     </span>
                     <span onClick={closePopup} className="absolute top-1/2 rtl:left-4 ltr:right-4 -translate-y-1/2 transition-all cursor-pointer rounded-sm sm:p-2 p-1">
                         <IconClose/>
@@ -32,6 +33,7 @@ export default function SearchFilterPopup(){
 import { Range } from 'react-range'
 import { useState } from 'react'
 import { changeFilterStatus } from "@/redux/slices/globalSlice";
+import { useTranslation } from "react-i18next";
 
 export function PriceRange(){
   const STEP = 100000

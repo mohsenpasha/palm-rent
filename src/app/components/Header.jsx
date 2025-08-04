@@ -89,7 +89,7 @@ export default function Header(){
                                 <Link href={'/login'} className="h-full w-full flex gap-2">
                                     <IconLogin/>
                                     <span className="xl:block hidden">
-                                        ورود / ثبت نام
+                                        {t('loginHeader')}
                                     </span>
                                 </Link>
                             </div>
@@ -106,6 +106,7 @@ export default function Header(){
 }
 
 export function HeaderMenu({ isActive, closeMenu }){
+    const { t, i18n } = useTranslation();
     const [dropMenuToggle,setDropMenuToggle] = useState([false,false,false,false])
     function toggleMenu(targetIndex){
         setDropMenuToggle(dropMenuToggle.map((item,index)=>{
@@ -127,70 +128,70 @@ export function HeaderMenu({ isActive, closeMenu }){
             <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0!' : '')} translate-x-full lg:translate-x-0 pt-15 lg:pt-0 fixed transition-all h-[100vh] lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible`}>
                 <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
                     <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='/'>
-                        خانه
+                        {t('home')}
                     </Link>
                 </li>
                 <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:gap-2 flex-wrap">
                     <div onClick={()=>toggleMenu(0)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
-                        شعبه های پالم رنت
+                        {t('branches')}
                         <IconArrow/>
                     </div>
                     <DropDown isActive={dropMenuToggle[0]}>
-                        <DropDownItem text={'دبی'} href={'/cars-rent/dubai'}/>
-                        <DropDownItem text={'استانبول'} href={'/cars-rent/istanbul'}/>
-                        <DropDownItem text={'عمان'} href={'/cars-rent/oman'}/>
-                        <DropDownItem text={'کیش'} href={'/cars-rent/kish'}/>
-                        <DropDownItem text={'ازمیر ترکیه'} href={'/cars-rent/ezmir'}/>
-                        <DropDownItem text={'آنکارا ترکیه'} href={'/cars-rent/ankara'}/>
-                        <DropDownItem text={'آنتالیا ترکیه'} href={'/cars-rent/antalya'}/>
-                        <DropDownItem text={'سامسون ترکیه'} href={'/cars-rent/samsun'}/>
-                        <DropDownItem text={'قیصریه ترکیه'} href={'/cars-rent/kayseri'}/>
-                        <DropDownItem text={'تفلیس گرجستان'} href={'/cars-rent/georgia'}/>
+                        <DropDownItem text={t('dubai')} href={'/cars-rent/dubai'}/>
+                        <DropDownItem text={t('istanbul')} href={'/cars-rent/istanbul'}/>
+                        <DropDownItem text={t('oman')} href={'/cars-rent/oman'}/>
+                        <DropDownItem text={t('kish')} href={'/cars-rent/kish'}/>
+                        <DropDownItem text={t('ezmir')} href={'/cars-rent/ezmir'}/>
+                        <DropDownItem text={t('ankara')} href={'/cars-rent/ankara'}/>
+                        <DropDownItem text={t('antalya')} href={'/cars-rent/antalya'}/>
+                        <DropDownItem text={t('samsun')} href={'/cars-rent/samsun'}/>
+                        <DropDownItem text={t('kayseri')} href={'/cars-rent/kayseri'}/>
+                        <DropDownItem text={t('georgia')} href={'/cars-rent/georgia'}/>
                     </DropDown>
                 </li>
                 <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
                     <div onClick={()=>toggleMenu(1)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
-                        لیست خودرو ها
+                        {t('carList')}
                         <IconArrow/>
                     </div>
                     <DropDown isActive={dropMenuToggle[1]}>
-                        <DropDownItem text={'دبی'} href={'/cars-list/dubai'}/>
-                        <DropDownItem text={'استانبول'} href={'/cars-list/istanbul'}/>
-                        <DropDownItem text={'عمان'} href={'/cars-list/oman'}/>
-                        <DropDownItem text={'کیش'} href={'/cars-list/kish'}/>
-                        <DropDownItem text={'ازمیر ترکیه'} href={'/cars-list/ezmir'}/>
-                        <DropDownItem text={'آنکارا ترکیه'} href={'/cars-list/ankara'}/>
-                        <DropDownItem text={'آنتالیا ترکیه'} href={'/cars-list/antalya'}/>
-                        <DropDownItem text={'سامسون ترکیه'} href={'/cars-list/samsun'}/>
-                        <DropDownItem text={'قیصریه ترکیه'} href={'/cars-list/kayseri'}/>
-                        <DropDownItem text={'تفلیس گرجستان'} href={'/cars-list/georgia'}/>
+                        <DropDownItem text={t('dubai')} href={'/cars-list/dubai'}/>
+                        <DropDownItem text={t('istanbul')} href={'/cars-list/istanbul'}/>
+                        <DropDownItem text={t('oman')} href={'/cars-list/oman'}/>
+                        <DropDownItem text={t('kish')} href={'/cars-list/kish'}/>
+                        <DropDownItem text={t('ezmir')} href={'/cars-list/ezmir'}/>
+                        <DropDownItem text={t('ankara')} href={'/cars-list/ankara'}/>
+                        <DropDownItem text={t('antalya')} href={'/cars-list/antalya'}/>
+                        <DropDownItem text={t('samsun')} href={'/cars-list/samsun'}/>
+                        <DropDownItem text={t('kayseri')} href={'/cars-list/kayseri'}/>
+                        <DropDownItem text={t('georgia')} href={'/cars-list/georgia'}/>
                     </DropDown>
                 </li>
                 <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
                     <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='/documents'>
-                        مدارک مورد نیاز
+                        {t('documents')}
                     </Link>
                 </li>
                 <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
                     <div onClick={()=>toggleMenu(2)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
-                        تماس با ما
+                        {t('contactUs')}
                         <IconArrow/>
                     </div>
                     <DropDown isActive={dropMenuToggle[2]}>
-                        <DropDownItem text={'درباره پالم رنت'} href={'/about-us'}/>
-                        <DropDownItem text={'تماس با ما'} href={'/contact-us'}/>
+                        <DropDownItem text={t('aboutUs')} href={'/about-us'}/>
+                        <DropDownItem text={t('aboutUs')} href={'/contact-us'}/>
                     </DropDown>
                 </li>
                 <li className="relative group lg:p-1 lg:px-2 2xl:px-3 underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
                     <div onClick={()=>toggleMenu(3)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
-                        بیشتر
+                        {t('more')}
                         <IconArrow/>
                     </div>
                     <DropDown isActive={dropMenuToggle[3]}>
-                        <DropDownItem text={'مجله پالم رنت'} href={'/blogs'}/>
-                        <DropDownItem text={'گالری تصاویر'} href={'/gallery'}/>
-                        <DropDownItem text={'سوالات متداول'} href={'/faq'}/>
-                        <DropDownItem text={'قوانین اجاره خودرو'} href={'/rules'}/>
+                        <DropDownItem text={t('blog')} href={'/blogs'}/>
+                        <DropDownItem text={t('gallery')} href={'/gallery'}/>
+                        <DropDownItem text={t('commonQ')} href={'/faq'}/>
+                        <DropDownItem text={t('rules')} href={'/rules'}/>
                     </DropDown>
                 </li>
             </ul>

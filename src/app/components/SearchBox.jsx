@@ -40,19 +40,19 @@ export function SearchBox(){
         {
             id:1,
             icon:<span className="flex size-[18px]"><IconSort1/></span>,
-            title:'بدون دیپوزیت',
+            title:'noDeposite',
             selected:false
         },
         {
             id:2,
             icon:<IconSort2/>,
-            title:'خودرو لوکس',
+            title:'luxCar',
             selected:false
         },
         {
             id:3,
             icon:<IconSort3/>,
-            title:'خودرو اقتصادی',
+            title:'economicCar',
             selected:false
         }
     ])
@@ -68,7 +68,7 @@ export function SearchBox(){
                 <span>
                     <IconSearch2/>
                 </span>
-                <input className="w-full px-4 outline-0" type="search" placeholder="جستجوی خودرو" />
+                <input className="w-full px-4 outline-0" type="search" placeholder={t('carSearch')} />
                 <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
                     <IconSetting/>
                 </button>
@@ -79,7 +79,7 @@ export function SearchBox(){
                             <label key={index} className="flex gap-2 mb-2 select-none">
                                 <input onChange={()=>sortChangeHandler(item.id)} checked={true} className="peer hidden" value={item.id} type="checkbox" />
                                 <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
-                                    {item.title}
+                                    {t(item.title)}
                                     <span className="size-4 flex items-center">
                                         <IconClose/>
                                     </span>
@@ -93,7 +93,7 @@ export function SearchBox(){
                     <div className="flex relative">
                         <span onClick={openSortPopup} className="flex items-center gap-1 p-2 py-1 rounded-lg bg-[#E3E3E3] cursor-pointer">
                             <IconSort/>
-                            {t(searchOrder) || 'مرتب سازی'}
+                            {t(searchOrder) || t('sort')}
                             {searchOrder && 
                                 <span onClick={(event)=>clearSort(event)} className={`size-4 transition-all flex items-center overflow-hidden`}>
                                     <IconClose/>
@@ -103,9 +103,9 @@ export function SearchBox(){
                         {isSortOpen && 
                             <div ref={sortRef} className=" bottom-0 left-1/2 -translate-x-1/2 translate-y-full absolute pt-2">
                                 <div className="flex flex-col bg-white p-2 border-[1px] border-[#cccccc] rounded-lg">
-                                    <div onClick={()=>changeSortType('sortType1')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">بروزترین</div>
-                                    <div onClick={()=>changeSortType('sortType2')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">کمترین قیمت</div>
-                                    <div onClick={()=>changeSortType('sortType3')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">بیشترین قیمت</div>
+                                    <div onClick={()=>changeSortType('sortType1')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort1')}</div>
+                                    <div onClick={()=>changeSortType('sortType2')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort2')}</div>
+                                    <div onClick={()=>changeSortType('sortType3')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort3')}</div>
                                     <div className="w-0 h-0 absolute top-0 left-1/2 border-l-8 border-r-8 border-t-0 border-b-8 border-l-transparent -translate-x-1/2 border-r-transparent border-b-[#EFEFEF]"></div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@ export function SearchBox(){
                                 <label key={index} className="flex gap-2 select-none">
                                     <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
                                     <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] hover:bg-[#7CABF9] hover:text-white peer-checked:text-white flex gap-2 cursor-pointer items-center">
-                                        {item.title}
+                                        {t(item.title)}
                                         {item.icon}
                                     </div>
                                 </label>

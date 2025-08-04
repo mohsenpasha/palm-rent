@@ -50,21 +50,21 @@ export default function SearchBar({isPopup=false}){
     
     return(
         <>
-            <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-10 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
+            <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-40 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
               {isPopup &&
                 <div onClick={closeSearchBar} className="absolute top-0 right-0 w-full h-full bg-[#00000066]">
 
                 </div>
               }
               {!isPopup &&
-                <div className="md:text-xl sm:text-lg text-center md:text-right text-md font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
+                <div className="md:text-xl sm:text-lg text-center md:text-right ltr:md:text-left text-md font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
                     {params.cityName ?
                         <h2>
-                          اجاره آنلاین خودرو در {t(params.cityName)} با بهترین قیمت
+                          {t('searchBarB')} {t(params.cityName)} {t('searchBarA')}
                         </h2>
                       :
                         <h2>
-                          اجاره آنلاین خودرو در همه شهر ها با بهترین قیمت
+                          {t('searchBarTitle')}
                         </h2>
                     }
                     
@@ -72,7 +72,7 @@ export default function SearchBar({isPopup=false}){
                 }
                 <div className={`flex lg:gap-2 gap-4 items-end lg:flex-nowrap flex-wrap px-2 md:px-6 ${isPopup ? `bg-white rounded-lg justify-center ${isDateSelectOpen ? 'md:w-10/12 w-full md:p-8 md:my-4' : 'p-8 w-10/12 my-4'} absolute  left-1/2 -translate-x-1/2` : ''}`}>
                     <div ref={citySelectRef} className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
-                        <span className="text-sm">مقصد</span>
+                        <span className="text-sm">{t('city')}</span>
                         <div onClick={()=>params.cityName ? ()=>{} :setCityToggle(!cityToggle)} className={`${params.cityName && 'bg-gray-100'} border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1`}>
                             <span className="size-6">
                                 <IconLocation/>
@@ -80,7 +80,7 @@ export default function SearchBar({isPopup=false}){
                             {params.cityName ?
                                 t(params.cityName)
                             :
-                                t(selectedCity) || 'انتخاب کنید'
+                                t(selectedCity) || t('choose')
                             }
                         </div>
                         {cityToggle &&
@@ -95,28 +95,28 @@ export default function SearchBar({isPopup=false}){
                     </div>
                     <div className={`relative lg:w-6/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2`}>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
-                            <span className="text-sm">تاریخ و زمان تحویل</span>
+                            <span className="text-sm">{t('deliveryTD')}</span>
                             <div className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] gap-1 items-center">
                                     <IconClock/>
-                                    <span>{carDates[0] || 'تاریخ'}</span>
+                                    <span>{carDates[0] || t('date')}</span>
                                 </div>
-                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 border-r-[1px] border-[#B5B5B5B2]">
+                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 rtl:border-r-[1px] ltr:border-l-[1px] border-[#B5B5B5B2]">
                                     <IconCalender/> 
-                                    <span>{deliveryTime || 'زمان'}</span>
+                                    <span>{deliveryTime || t('time')}</span>
                                 </div>
                             </div>
                         </div>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
-                            <span className="text-sm">تاریخ و زمان عودت</span>
+                            <span className="text-sm">{t('returnTD')}</span>
                             <div className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1">
                                     <IconClock/>
-                                    <span>{carDates[1] || 'تاریخ'}</span>
+                                    <span>{carDates[1] || t('date')}</span>
                                 </div>
-                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 border-r-[1px] border-[#B5B5B5B2]">
+                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 rtl:border-r-[1px] ltr:border-l-[1px] border-[#B5B5B5B2]">
                                     <IconCalender/> 
-                                    <span>{returnTime || 'زمان'}</span>
+                                    <span>{returnTime || t('time')}</span>
                                 </div>
                             </div>
                         </div>
@@ -127,11 +127,11 @@ export default function SearchBar({isPopup=false}){
                     {!isPopup ?
                       <Link href={'/search'} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
                           <IconSearch/>
-                          جستجوی خودرو ها
+                          {t('searchCar')}
                       </Link>
                       :
                       <button onClick={closeSearchBar} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
-                          تایید
+                          {t('done')}
                       </button>
                     }
                 </div>
@@ -145,6 +145,7 @@ export default function SearchBar({isPopup=false}){
 
 
 export function DatePickerBox({ref,isPopup=false}){
+  const { t, i18n } = useTranslation();
   const isDateJalili = useSelector((state) => state.global.isDateJalili)
   const deliveryTime = useSelector((state) => state.global.deliveryTime)
   const returnTime = useSelector((state) => state.global.returnTime)
@@ -174,16 +175,16 @@ export function DatePickerBox({ref,isPopup=false}){
           <span className="size-4 flex items-center">
             <IconCalender/>
           </span>
-          <span>{isDateJalili ? 'تقویم میلادی' : 'تقویم شمسی'}</span>
+          <span>{isDateJalili ? t('gregorianDate') : t('jaliliDate')}</span>
         </button>
       </div>
       <div className="relative z-20 flex w-full justify-center gap-8 border-b-[1px] border-[#0000001f] p-4 px-2">
           <div className="w-full md:w-auto">
-              <span>زمان تحویل</span>
+              <span>{t('deliveryT')}</span>
               <TimeSelectBox selected={deliveryTime} setSelected={changeDeliveryTimeHandler}/>
           </div>
           <div className="w-full md:w-auto">
-              <span>زمان عودت</span>
+              <span>{t('returnT')}</span>
               <TimeSelectBox selected={returnTime} setSelected={changeReturnTimeHandler}/>
           </div>
       </div>
@@ -192,11 +193,11 @@ export function DatePickerBox({ref,isPopup=false}){
       </div>
       <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
         <div className="md:flex hidden text-xs">
-          <div>تحویل <span className="font-bold text-sm">{carDates[0] || 'انتخاب کنید'}</span> -</div>
-          <div>عودت <span className="font-bold text-sm">{carDates[1]}</span></div>
+          <div>{t('delivery')} <span className="font-bold text-sm">{carDates[0] || t('choose')}</span> -</div>
+          <div>{t('return')} <span className="font-bold text-sm">{carDates[1]}</span></div>
         </div>
         <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
-          تایید
+          {t('done')}
         </button>
       </div>
   </div>
@@ -272,13 +273,14 @@ export function getDiffInShamsiDays(date1, date2) {
 }
 
 export function DatePicker2() {
+    const { t, i18n } = useTranslation();
     const carDates = useSelector((state) => state.global.carDates)
     const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const [value, setValue] = useState([])
     const dispatch = useDispatch()
     const [hovered, setHovered] = useState(null)
     const [isValueSync,setIsValueSync] = useState(false)
-    const [hoverText,setHoverText] = useState('تاریخ رفت')
+    const [hoverText,setHoverText] = useState(t('goneDate'))
     const isUnderMd = useMediaQuery("(max-width: 767.9px)");
     const [currentDate, setCurrentDate] = useState(new DateObject());
     function hoverHandler(date){
@@ -333,14 +335,14 @@ export function DatePicker2() {
     useEffect(()=>{
         let dateDistance =  getDiffInShamsiDays(convertToEnglishDigits(value[0]?.format("YYYY/MM/DD")),convertToEnglishDigits(hovered?.format("YYYY/MM/DD")))
         if(dateDistance < 0){
-            setHoverText('تاریخ رفت')
+            setHoverText(t('goneDate'))
         }
         else{
             if(value.length == 1){
-                setHoverText('تاریخ برگشت')
+                setHoverText(t('returnDate'))
             }
             else{
-                setHoverText('تاریخ رفت')
+                setHoverText(t('goneDate'))
             }
         }
     },[hovered])
@@ -429,7 +431,7 @@ export function TimeSelectBox({selected,setSelected}) {
         onClick={() => setShowList((prev) => !prev)}
         className="border rounded-lg px-4 py-2 cursor-pointer bg-white shadow-sm"
       >
-        {selected || 'انتخاب زمان'}
+        {selected || t('chooseTime')}
       </div>
 
       {showList && (

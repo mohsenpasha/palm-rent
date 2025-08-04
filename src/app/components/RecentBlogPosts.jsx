@@ -1,18 +1,20 @@
 import Link from "next/link";
 import { IconArrow } from "./Icons";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 export function RecentBlogPosts(){
+    const { t, i18n } = useTranslation();
     return(
         <section className='my-8 bg-[#F6F6F6] py-8 pb-24'>
             <div className='xl:w-[85vw] w-[95vw]  max-w-[1336px] m-auto'>
                 <div className='flex w-full mb-4 justify-between md:pb-6'>
                     <div className="md:text-right text-center md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
-                        آخرین مقالات پالم رنت
+                        {t('latestBlogs')}
                     </div>
-                    <Link href={'#'} className="flex gap-2 items-center font-medium cursor-pointer">
-                        مشاهده همه
-                        <IconArrow className={'rotate-90'}/>
+                    <Link href={'/blogs'} className="flex gap-2 items-center font-medium cursor-pointer">
+                        {t('viewAll')}
+                        <IconArrow className={'rtl:rotate-90 ltr:-rotate-90'}/>
                     </Link>
                 </div>
                 <div className="flex gap-8 lg:flex-nowrap flex-wrap lg:flex-row flex-col-reverse">

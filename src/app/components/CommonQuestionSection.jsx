@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from "react"
+import { useTranslation } from "react-i18next";
 
 export default function CommonQuestionSection({newVersion = false,rules,setRules}){
+    const { t, i18n } = useTranslation();
     return(
         <section className="my-12">
             <div className="w-[85vw] max-w-[1336px] m-auto">
                 {!newVersion && 
                     <div className='text-center pb-6 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]'>
-                        سوالات متداول
+                        {t('commonQ')}
                     </div>
                 }
                 <QBox rules={rules} setRules={setRules}/>

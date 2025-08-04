@@ -8,8 +8,10 @@ import Link from "next/link";
 import { getDiffInShamsiDays } from "./SearchBar";
 import { changeRoadMapStep } from "@/redux/slices/globalSlice";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function SingleCar({data,noBtn = false}){
+    const { t, i18n } = useTranslation();
     const optionList = useSelector((state)=>state.carList.optionList)
     const [isHovering,setIsHovering] = useState(false)
     
@@ -17,11 +19,11 @@ export default function SingleCar({data,noBtn = false}){
         <div className={`${isHovering && 'z-30'} flex w-full flex-col hover:scale-[97%] bg-white cursor-pointer transition-all rounded-2xl md:text-base text-sm border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]`}>
             <SingleCarGallery noBtn={noBtn}>
                 {!noBtn && 
-                    <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 right-2 w-full flex-wrap">
+                    <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
                         {data.options.map((item,index)=>{
                             return(
                                 <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="py-1 group px-2 rounded-4xl bg-[#3b82f6] relative hover:scale-[105%] transition-all" key={index}>
-                                    <span className="text-white font-bold">{optionList[item].title}</span>
+                                    <span className="text-white font-bold">{t(optionList[item].title)}</span>
                                     <div className="absolute top-0 hidden group-hover:flex animate-opacity pb-3 z-50 left-1/2 -translate-x-1/2 -translate-y-full">
                                         <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-sm rounded-lg border-[1px] p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                                             {optionList[item].description}
@@ -35,7 +37,7 @@ export default function SingleCar({data,noBtn = false}){
                 }
                 {data.discount && 
                     <div className="absolute bottom-4 bg-[#DF900A] py-1.5 px-2.5 text-white right-0 rounded-lg rounded-r-[0]">
-                        {data.discount}% تخفیف
+                        {data.discount}% {t('discount')}
                     </div>
                 }
             </SingleCarGallery>
@@ -50,6 +52,7 @@ export default function SingleCar({data,noBtn = false}){
 }
 
 export function SingleCarGallery({children,noBtn}){
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     const [hoverList,setHoverList] = useState([true,false,false,false])
     function galleryHoverHandler(targetIndex){
@@ -86,7 +89,7 @@ export function SingleCarGallery({children,noBtn}){
                                     <IconArrowHandle/>
                                 </span>
                             </span>
-                            عکس های بیشتر
+                            {t('morePic')}
                         </div>
                         <Image className={`${hoverList[3] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
                     </div>
@@ -119,36 +122,38 @@ export function SingleCarGallery({children,noBtn}){
     )
 }
 export function SingleCarOptions({data,bigFont=false}){
+    const { t, i18n } = useTranslation();
     return(
-        <div className={`flex w-full text-[#787878] border-t-[1px] border-[#0000001F] pt-4 ${bigFont ? 'xl:text-2xl lg:text-xl md:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs'}`}>
+        <div className={`flex w-full text-[#787878] border-t-[1px] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-2xl lg:text-xl md:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs'}`}>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
                     <IconGas/>
                 </span>
-                {data.gasType}
+                {t(data.gasType)}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
                     <IconGearBox/>
                 </span>
-                {data.gearbox}
+                {t(data.gearbox)}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
                     <IconBag/>
                 </span>
-                {data.suitcase} چمدان
+                {data.suitcase} {t('suitCase')}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
                     <IconPerson/>
                 </span>
-                {data.passengers} نفر
+                {data.passengers} {t('people')}
             </div>
         </div>
     )
 }
 export function SingleCarPriceList({priceList}){
+    const { t, i18n } = useTranslation();
     const [rentDay,setRentDay] = useState(null)
     const [finalDayPrice,setFinalDayPrice] = useState(null)
     const carDates = useSelector((state)=>state.global.carDates)
@@ -181,7 +186,7 @@ export function SingleCarPriceList({priceList}){
             <div className="flex flex-col gap-2 my-4 border-t-[1px] pt-2 border-[#0000001f]">
                 {finalDayPrice ?
                 <div className="flex justify-between items-center">
-                    <span>قیمت روزانه برای {rentDay} روز</span>
+                    <span>{t('BAPrice')}{rentDay} {t('day')}</span>
                     <div className="lg:text-lg text-base flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
                             {finalDayPrice.previousPrice}
@@ -189,7 +194,7 @@ export function SingleCarPriceList({priceList}){
                         <span className="text-[#10B981]">
                             {finalDayPrice.currentPrice}
                         </span>
-                        درهم روزانه
+                        {t('AED')} {t('daily')}
                     </div>
                 </div>
                 : 
@@ -199,9 +204,9 @@ export function SingleCarPriceList({priceList}){
                             {(() => {
                                 const [from, to] = key.split(":");
                                 return to.length === 0 ? (
-                                    <>بیشتر {from} روز</>
+                                    <>{t('moreThan')} {from} {t('day')}</>
                                 ) : (
-                                    <>از {from} تا {to} روز</>
+                                    <>{t('from')} {from} {t('to')} {to} {t('day')}</>
                                 );
                             })()}
                         </div>
@@ -212,7 +217,7 @@ export function SingleCarPriceList({priceList}){
                             <span className="text-[#10B981]">
                                 {currentPrice}
                             </span>
-                            درهم روزانه
+                            {t('AED')} {t('daily')}
                         </div>
                     </div>
                     ))}
@@ -235,6 +240,7 @@ export function SingleCarButtonHolder1(){
     )
 }
 export function SingleCarButtonHolder2(){
+    const { t, i18n } = useTranslation();
     const [whatsappText,setWhatsappText] = useState()
     const text = ''
     const carDates = useSelector((state)=> state.global.carDates)
@@ -251,11 +257,11 @@ export function SingleCarButtonHolder2(){
     return(
         <div className="flex w-full gap-2">
             <button onClick={nextStep} className="rounded-xl py-2 flex justify-center gap-2 w-full cursor-pointer bg-[#3B82F6] text-white">
-                انتخاب خودرو
+                {t('chooseCar')}
             </button>
             <Link href={`https://wa.me/971556061134?text=${encodeURIComponent(whatsappText)}`} target="_blank" className="rounded-xl py-2 flex justify-center gap-2 w-fit text-nowrap px-2 cursor-pointer bg-[#10B981] text-white">
                 <IconWhatsapp/>
-                واتس اپ
+                {t('whatsapp')}
             </Link>
         </div>
     )

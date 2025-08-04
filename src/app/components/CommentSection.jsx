@@ -6,12 +6,14 @@ import 'swiper/css';
 import { IconArrow, IconArrowHandle, IconComma, IconWSOSD } from './Icons';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 export default function CommentSection(){
+    const { t, i18n } = useTranslation();
     return(
         <section className='my-8 bg-[#F6F6F6] py-12 pb-14'>
             <div className='w-[85vw] max-w-[1336px] m-auto'>
-                <div className='md:text-right text-center pb-6 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]'>
-                    نظرات مشتریان عزیز
+                <div className='rtl:md:text-right ltr:md:text-left text-center pb-6 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]'>
+                    {t('commentSectionTitle')}
                 </div>
                 <CommentSlider/>
             </div>
@@ -38,7 +40,7 @@ const [swiperInstance, setSwiperInstance] = useState(null);
     }, [swiperInstance]);
 
   return (
-    <div className='relative'>
+    <div dir='rtl' className='relative'>
         <Swiper spaceBetween={10} slidesPerView={1} modules={[Navigation,Pagination ]} pagination={{ clickable: true,el: paginationRef.current }} navigation={{
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',

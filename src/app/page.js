@@ -14,6 +14,8 @@ import WhySection from "./components/WhySection";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { ApplicationSection } from "./components/ApplicationSection";
+// import '../i18n/index'
+
 NProgress.configure({ showSpinner: false })
 export default function Home() {
       useEffect(()=>{

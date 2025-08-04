@@ -2,8 +2,10 @@
 import Image from "next/image";
 import { IconCoupon, IconDiamond, IconFewCars, IconGlobCar, IconHandBreak, IconLuxCar, IconStars } from "./Icons";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function DescriptionSection(){
+    const { t, i18n } = useTranslation();
     const [carTransition,setCarTransition] = useState(0)
     const sectionRef = useRef()
     useEffect(() => {
@@ -25,9 +27,9 @@ export default function DescriptionSection(){
     return(
         <section ref={sectionRef} className="my-12">
             <div className="w-[85vw] max-w-[1336px] m-auto">
-                <div className="md:flex hidden md:justify-between justify-center items-center overflow-hidden">
-                    <div className="text-[#3B82F6] lg:text-4xl md:text-3xl font-bold lg:max-w-[400px] md:max-w-[300px] lg:leading-18 md:text-right text-center">
-                        پالم رنت شرکتی پیشرو در اجاره خودرو
+                <div className="md:flex hidden rtl:md:justify-between ltr:md:justify-start justify-center items-center overflow-hidden">
+                    <div className="text-[#3B82F6] lg:text-4xl md:text-3xl font-bold lg:max-w-[400px] md:max-w-[300px] lg:leading-18 rtl:md:text-right ltr:md:text-left text-center">
+                        {t('slogan2')}
                     </div>
                     <div style={{transform:`translateX(${carTransition}px)`}} className="md:block hidden">
                         <Image src={'/images/company-car.png'} width={360} height={190} alt=""></Image>
@@ -35,26 +37,26 @@ export default function DescriptionSection(){
                 </div>
                 <div className="flex gap-4 lg:flex-nowrap flex-wrap lg:justify-between justify-center">
                     <DescriptionItem 
-                        title={'لوکس یا اقتصادی'}
-                        text={'دلایل زیادی برای اجاره خودرو در دبی وجود دارد. متخصصان کسب و کار اغلب خودرویی مانند یک موتور شیک را اجاره می‌کنند تا مشتریان را تحت تأثیر قرار دهند و حس ثروت و موفقیت را القا کنند. بسیاری از گردشگران برای تجربه سبک زندگی لوکس دبی، خودرو اجاره می‌کنند. اما لیست ما فقط شامل سوپراسپرت‌های سطح بالا مانند فراری و لامبورگینی نمی‌شود. ما همچنین طیف متنوعی از SUVها و خودروهای اقتصادی را ارائه می‌دهیم که برای گشت و گذار در تمام آنچه دبی ارائه می‌دهد، عالی هستند. بهترین شرکت اجاره خودرو '}
+                        title={t('reasonTitle1')}
+                        text={t('reasonDescription1')}
                         icon={<IconDiamond/>}
                     />
                     <DescriptionItem 
-                        title={'انتخاب فوق‌العاده'}
-                        text={'خدمات یکپارچه رنتی، حق انتخاب فوق‌العاده و بهترین ارزش در صنعت را به مشتریان ارائه می‌دهد. تمام خودروهای فهرست‌شده در رنتی کاملاً بررسی و با کیفیت بالا هستند. ما رویه‌های کنترل کیفیت سختگیرانه‌ای را اجرا می‌کنیم. و ما فقط با نمایندگی‌هایی کار می‌کنیم که خدمات عالی و ارزش عالی را تضمین می‌کنند. راننده می‌تواند هنگام اجاره خودرو در رنتی از بالاترین استانداردها اطمینان حاصل کند. پلتفرم ما یک فرآیند اجاره خودرو ساده و واضح را در اختیار شما قرار می‌دهد. اگر می‌خواهید یک ماشین لوکس اجاره کنید، '}
+                        title={t('reasonTitle2')}
+                        text={t('reasonDescription2')}
                         icon={<IconLuxCar/>}
                         />
                     <DescriptionItem 
-                        title={'پلتفرم اجاره خودرو'}
-                        text={'پالم رنت یک سرویس اجاره خودرو آنلاین پیشرو است که در زمینه خودروهای لوکس، خودروهای اقتصادی، خودروهای تجاری و ون تخصص دارد. ما هم به گردشگران عادی و هم به متخصصان تجاری که به دنبال اجاره خودرو لوکس و کاملاً آزمایش شده در دبی و امارات متحده عربی هستند، خدمات ارائه می‌دهیم. پلتفرم ما مجموعه‌ای جامع از خودروهای برتر از تمام ارائه دهندگان خدمات اصلی در دبی، ابوظبی، شارجه و راس الخیمه را ارائه می‌دهد.'}
+                        title={t('reasonTitle3')}
+                        text={t('reasonDescription3')}
                         icon={<IconGlobCar/>}
                         />
                 </div>
                 <div className="flex my-16 gap-4 lg:flex-nowrap flex-wrap">
-                    <OptionItem icon={<IconCoupon/>} title={'بهترین قیمت‌های اجاره خودرو'}/>
-                    <OptionItem icon={<IconHandBreak/>} title={'راحت‌ترین راه برای اجاره ماشین '}/>
-                    <OptionItem icon={<IconFewCars/>} title={'طیف گسترده‌ای از خودروهای اجاره‌ای'}/>
-                    <OptionItem icon={<IconStars/>} title={'بهترین شرکت اجاره خودرو '}/>
+                    <OptionItem icon={<IconCoupon/>} title={t('whyOption1')}/>
+                    <OptionItem icon={<IconHandBreak/>} title={t('whyOption2')}/>
+                    <OptionItem icon={<IconFewCars/>} title={t('whyOption3')}/>
+                    <OptionItem icon={<IconStars/>} title={t('whyOption4')}/>
                 </div>
             </div>
             
@@ -63,7 +65,7 @@ export default function DescriptionSection(){
 }
 export function DescriptionItem({icon,title,text}){
     return(
-        <div className="bg-white p-[30px] lg:w-[calc(33%-16px)] md:w-[calc(50%-16px)] md:text-right text-center w-full border-[1px] border-[#F4F4F4] rounded-2xl flex flex-col gap-2 shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+        <div className="bg-white p-[30px] lg:w-[calc(33%-16px)] md:w-[calc(50%-16px)] rtl:md:text-right ltr:md:text-left text-center w-full border-[1px] border-[#F4F4F4] rounded-2xl flex flex-col gap-2 shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <div className="h-12 flex justify-center md:justify-start">
                 {icon}
             </div>

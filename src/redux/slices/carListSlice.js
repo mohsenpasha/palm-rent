@@ -3,19 +3,19 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = { 
   optionList:{
     1:{
-      title:'بدون دپوزیت',
+      title:'noDeposite',
       description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
     },
     2:{
-      title:'تحویل رایگان',
+      title:'freeDelivery',
       description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
     },
     3:{
-      title:'بیمه رایگان',
+      title:'freeinsurance',
       description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
     },
     4:{
-      title:'کیلومتر نامحدود',
+      title:'unlimitedKilometers',
       description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
     },
   },
@@ -31,10 +31,10 @@ const initialState = {
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
       options:[1,3,4],
-      gearbox:'دنده‌ای',
+      gearbox:'geared',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین',
+      gasType:'gasoline',
       discount:null
 
 
@@ -50,10 +50,10 @@ const initialState = {
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
       options:[1,2,3,4],
-      gearbox:'دنده‌ای',
+      gearbox:'geared',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین',
+      gasType:'gasoline',
       discount:34
 
 
@@ -69,10 +69,10 @@ const initialState = {
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
       options:[1,2,3,4],
-      gearbox:'دنده‌ای',
+      gearbox:'geared',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین',
+      gasType:'gasoline',
       discount:null
 
 
@@ -88,10 +88,10 @@ const initialState = {
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
       options:[1,2,3],
-      gearbox:'دنده‌ای',
+      gearbox:'geared',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین',
+      gasType:'gasoline',
       discount:53
 
 
@@ -107,10 +107,10 @@ const initialState = {
       },
       images:['/images/singlecar-1.png','/images/singlecar-2.jpg','/images/singlecar-3.jpg'],
       options:[1,2,4],
-      gearbox:'دنده‌ای',
+      gearbox:'geared',
       passengers:5,
       suitcase:3,
-      gasType:'بنزین',
+      gasType:'gasoline',
       discount:10
 
 

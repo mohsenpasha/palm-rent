@@ -18,7 +18,7 @@ export function LoginBox({children}){
     return(
         <div className="rounded-4xl bg-[#FFFFFF] flex p-8 flex-col gap-4 w-[487px]]">
             <Link className="w-full flex justify-center" href={'#'}>
-                <Image className="filter-[invert(1)]" src="/images/logo.png" width={170} height={76}/>
+                <Image className="filter-[invert(1)]" src="/images/logo.png" width={170} height={76} alt="logo"/>
             </Link>
             {children}
             <div className="flex justify-center gap-2 text-sm">
@@ -97,7 +97,7 @@ export function LoginStage2(){
                 <div className="flex lg:gap-4 md:gap-2 gap-1 flex-row-reverse rounded-xl">
                     {inputValue.map((item,index)=>{
                         return(
-                            <input onClick={()=>inputRef.current[index].select()} ref={(el) => (inputRef.current[index] = el)} onInput={(event)=>inputChangeHandler(index,event)} maxLength={1} className="text-center border-[1px] ld:rounded-2xl rounded-lg max-w-[70px] lg:text-[40px] text-3xl border-[#B0B0B0] w-full outline-0 p-1" value={inputValue[index]} type="text" />
+                            <input key={index} onClick={()=>inputRef.current[index].select()} ref={(el) => (inputRef.current[index] = el)} onInput={(event)=>inputChangeHandler(index,event)} maxLength={1} className="text-center border-[1px] ld:rounded-2xl rounded-lg max-w-[70px] lg:text-[40px] text-3xl border-[#B0B0B0] w-full outline-0 p-1" value={inputValue[index]} type="text" />
                         )
                     })}
                 </div>
