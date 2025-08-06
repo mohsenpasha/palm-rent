@@ -75,7 +75,7 @@
 //             {({ zoomIn, zoomOut, resetTransform }) => (
 //                 <>
 //                 {/* Optional Zoom Controls */}
-//                 <div className="absolute top-4 left-4 z-50 flex gap-2 font-bold text-2xl">
+//                 <div className="absolute top-4 left-4 z-50 flex gap-2 font-bold text-xl">
 //                     <button onClick={()=>zoomIn()} className="size-[50px] text-white flex items-center pt-1 justify-center rounded-lg bg-[#ffffff26] hover:bg-[#ffffff4d] cursor-pointer">+</button>
 //                     <button onClick={()=>zoomOut()} className="size-[50px] text-white flex items-center pt-1 justify-center rounded-lg bg-[#ffffff26] hover:bg-[#ffffff4d] cursor-pointer">-</button>
 //                     {/* <button onClick={resetTransform} className="bg-white/20 px-2 py-1 text-white rounded">Reset</button> */}

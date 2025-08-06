@@ -12,7 +12,7 @@ export default function CommentSection(){
     return(
         <section className='my-8 bg-[#F6F6F6] py-12 pb-14'>
             <div className='w-[85vw] max-w-[1336px] m-auto'>
-                <div className='rtl:md:text-right ltr:md:text-left text-center pb-6 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]'>
+                <div className='rtl:md:text-right ltr:md:text-left text-center pb-6 md:text-xl sm:text-lg text-base font-bold text-[#3B82F6]'>
                     {t('commentSectionTitle')}
                 </div>
                 <CommentSlider/>
@@ -110,13 +110,13 @@ export function SliderSingleComment({image,personName,personFrom,comment}){
                             <Image className='rounded-full' src={image} width={63} height={63} alt=''></Image>
                         </div>
                         <div className='h-full flex flex-col justify-center'>
-                            <div className='md:text-xl sm:text-lg text-base font-bold'>{personName}</div>
-                            <div className='md:text-sm text-xs'>{personFrom}</div>
+                            <div className='md:text-lg sm:text-base text-sm font-bold'>{personName}</div>
+                            <div className='md:text-xs text-xs'>{personFrom}</div>
                         </div>
                     </div>
                     <IconComma/>
                 </div>
-                <p className='text-[#363636] sm:text-sm text-xs leading-[180%]'>{comment}</p>
+                <p className='text-[#363636] sm:text-xs text-xs leading-[180%]'>{comment}</p>
             </div>
     )
 }

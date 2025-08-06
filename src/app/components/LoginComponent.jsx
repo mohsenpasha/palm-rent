@@ -21,7 +21,7 @@ export function LoginBox({children}){
                 <Image className="filter-[invert(1)]" src="/images/logo.png" width={170} height={76} alt="logo"/>
             </Link>
             {children}
-            <div className="flex justify-center gap-2 text-sm">
+            <div className="flex justify-center gap-2 text-xs">
                 دیدن <Link className="text-[#1E40AF]" href={'#'}>قوانین و مقررات</Link> و <Link href={'#'} className="text-[#1E40AF]">حریم خصوصی</Link>
             </div>
         </div>
@@ -31,10 +31,10 @@ export function LoginBox({children}){
 export function LoginStage1(){
     return(
         <div className="text-[#1A1A1A] flex flex-col gap-2">
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
                 ورود به حساب کاربری
             </div>
-            <div className="text-sm">
+            <div className="text-xs">
                 لطفا برای ورود به حساب کاربری خود شماره موبایل خود را در کادر زیر وارد نمایید !
             </div>
             <div>
@@ -86,10 +86,10 @@ export function LoginStage2(){
 
     return(
         <div className="text-[#1A1A1A] flex flex-col gap-2">
-            <div className="text-2xl font-bold">
+            <div className="text-xl font-bold">
                 کد تایید را وارد کنید
             </div>
-            <div className="text-sm">
+            <div className="text-xs">
                 کد تایید برای شماره <span>09101284</span> پیامک شد
             </div>
             <div>
@@ -97,7 +97,7 @@ export function LoginStage2(){
                 <div className="flex lg:gap-4 md:gap-2 gap-1 flex-row-reverse rounded-xl">
                     {inputValue.map((item,index)=>{
                         return(
-                            <input key={index} onClick={()=>inputRef.current[index].select()} ref={(el) => (inputRef.current[index] = el)} onInput={(event)=>inputChangeHandler(index,event)} maxLength={1} className="text-center border-[1px] ld:rounded-2xl rounded-lg max-w-[70px] lg:text-[40px] text-3xl border-[#B0B0B0] w-full outline-0 p-1" value={inputValue[index]} type="text" />
+                            <input key={index} onClick={()=>inputRef.current[index].select()} ref={(el) => (inputRef.current[index] = el)} onInput={(event)=>inputChangeHandler(index,event)} maxLength={1} className="text-center border-[1px] ld:rounded-2xl rounded-lg max-w-[70px] lg:text-[40px] text-2xl border-[#B0B0B0] w-full outline-0 p-1" value={inputValue[index]} type="text" />
                         )
                     })}
                 </div>

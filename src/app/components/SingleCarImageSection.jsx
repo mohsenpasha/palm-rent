@@ -20,7 +20,7 @@ export function SingleCarImageSection(){
     },[])
     return(
         <div className="border-[1px] w-full border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] sm:px-4 px-2 py-4 rounded-4xl bg-white my-4">
-            <div className="flex justify-between w-full md:text-base text-sm">
+            <div className="flex justify-between w-full md:text-sm text-xs">
                 <div>
                     تویوتا یاریس 2025
                 </div>
@@ -51,10 +51,10 @@ export function SingleCarImageSection(){
                 </div>
             </div>
             <div className="flex justify-between w-full md:flex-nowrap flex-wrap">
-                <div className="flex md:w-1/2 w-full text-5xl md:py-0 pb-4">
+                <div className="flex md:w-1/2 w-full text-4xl md:py-0 pb-4">
                     <SingleCarOptions bigFont data={{gasType:'بنزین',gearbox:'اتوماتیک',suitcase:3,passengers:3}} />
                 </div>
-                <div className="md:w-1/2 w-full flex md:gap-4 sm:gap-2 gap-1 justify-end md:text-base text-sm">
+                <div className="md:w-1/2 w-full flex md:gap-4 sm:gap-2 gap-1 justify-end md:text-sm text-xs">
                     {/* <button className="text-white rounded-2xl border-[1px] border-[#204887] bg-[#204887] flex gap-2 py-3 px-4">
                         <IconStickyNote/>
                         رزرو آنلاین

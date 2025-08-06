@@ -42,7 +42,7 @@ export default function CarsPage(){
                     <CarInfoText/>
                 </div>
                 <div className="bg-white p-2 rounded-2xl">
-                    <div className="lg:text-xl text-base py-2 font-bold">شاید دوست داشته باشید !</div>
+                    <div className="lg:text-lg text-sm py-2 font-bold">شاید دوست داشته باشید !</div>
                     <CarSlider/>
                 </div>
             </div>
@@ -60,7 +60,7 @@ export default function CarsPage(){
 export function PriceServiceBox(){
     return(
         <div className="border-[1px] w-full border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl bg-white">
-            <div className="flex items-center lg:text-xl md:text-base text-sm font-semibold gap-2">
+            <div className="flex items-center lg:text-lg md:text-sm text-xs font-semibold gap-2">
                 <span className="size-7">
                     <IconMoney/>
                 </span>
@@ -103,9 +103,9 @@ export function PriceServiceBox(){
 }
 export function SinglePrice({title,value}){
     return(
-        <div className="border-b-[1px] last:border-b-0 border-[#D4D4D480] p-5 flex justify-between xl:text-base text-sm">
+        <div className="border-b-[1px] last:border-b-0 border-[#D4D4D480] p-5 flex justify-between xl:text-sm text-xs">
             <div>{title}</div>
-            <div className="flex gap-1 xl:text-lg text-base">
+            <div className="flex gap-1 xl:text-base text-sm">
                 {value}
             </div>
         </div>
@@ -114,12 +114,12 @@ export function SinglePrice({title,value}){
 export function CarInfoText(){
     return(
         <div className="border-[1px] w-full border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl bg-white">
-            <div className="flex items-center lg:text-xl md:text-base text-sm font-semibold gap-2">
+            <div className="flex items-center lg:text-lg md:text-sm text-xs font-semibold gap-2">
                 <IconInfo2/>
                 اطلاعات خودرو
             </div>
             <div className="flex flex-col gap-2 my-6">
-                <p className="xl:text-lg lg:text-base text-sm text-justify">
+                <p className="xl:text-base lg:text-sm text-xs text-justify">
                     تویوتا یاریس ۲۰۲۴ یکی از خودروهای کامپکت و محبوب برای اجاره در دبی است این خودرو با طراحی زیبا و امکانات پیشرفته، تجربه ای راحت و مطمئن را برای رانندگان و مسافران فراهم می کند. اگر به دنبال اجاره خودرو در دبی هستید تویوتا یاریس یکی از بهترین گزینه ها برای شماست. این خودرو علاوه بر مصرف سوخت بهینه و امکانات ایمنی ،پیشرفته دارای فضای داخلی مدرن و طراحی جذاب است شرکت پالم رنت با ارائه خدمات بینظیر و پشتیبانی شبانه روزی بهترین تجربه اجاره خودرو را برای مشتریان خود فراهم می کند شما میتوانید با استفاده از خدمات اجاره خودرو در دبی از پالم رنت، سفری راحت و بی دغدغه را تجربه کنید.تویوتا یاریس ۲۰۲۴ یکی از خودروهای کامپکت و محبوب برای اجاره در دبی است این خودرو با طراحی زیبا و امکانات پیشرفته، تجربه ای راحت و مطمئن را برای رانندگان و مسافران فراهم می کند. اگر به دنبال اجاره خودرو در دبی هستید تویوتا یاریس یکی از بهترین گزینه ها برای شماست. این خودرو علاوه بر مصرف سوخت بهینه و امکانات ایمنی ،پیشرفته دارای فضای داخلی مدرن و طراحی جذاب است شرکت پالم رنت با ارائه خدمات بینظیر و پشتیبانی شبانه روزی بهترین تجربه اجاره خودرو را برای مشتریان خود فراهم می کند شما میتوانید با استفاده از خدمات اجاره خودرو در دبی از پالم رنت، سفری راحت و بی دغدغه را تجربه کنید.
                 </p>
                 <Link className="text-[#3B82F6] text-left text-xs my-2" href={'#'}>بیشتر بخوانید !</Link>

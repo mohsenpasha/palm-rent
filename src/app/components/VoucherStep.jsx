@@ -14,7 +14,7 @@ export function VoucherStep(){
             <div className="lg:w-[85vw] sm:w-[90vw] w-[95vw] max-w-[1336px] m-auto">
                 <div className="flex sm:flex-row flex-col-reverse flex-wrap gap-4 my-4">
                     <PersonalInfoShow/>
-                    <div className="xl:w-1/3 md:w-3/12 w-full xl:text-lg text-sm text-center bg-white rounded-2xl flex flex-col items-center justify-between py-4">
+                    <div className="xl:w-1/3 md:w-3/12 w-full xl:text-base text-xs text-center bg-white rounded-2xl flex flex-col items-center justify-between py-4">
                         <div className="text-[#DF900A]">{t('qrText')}</div>
                         <Image src={'/images/barcode.png'} width={306} height={287} alt=""></Image>
                         <button className="bg-[#3B82F61A] cursor-pointer rounded-lg flex items-center gap-4 py-2 px-4 text-[#3B82F6] mt-4">
@@ -42,15 +42,15 @@ export function VoucherHead(){
                 <span className="lg:size-20 md:size-16 sm:size-12 size-10 text-[#10B981] inline-block">
                     <IconTick2/>
                 </span>
-                <div className="lg:text-2xl md:text-xl sm:text-lg text-base font-bold text-center">
-                    <div className="text-[#10B981] lg:text-[40px] md:text-3xl sm:text-2xl text-xl">{t('resTitle')}</div>
+                <div className="lg:text-xl md:text-lg sm:text-base text-sm font-bold text-center">
+                    <div className="text-[#10B981] lg:text-[40px] md:text-2xl sm:text-xl text-lg">{t('resTitle')}</div>
                     <div>{t('resSubtitle')}</div>
                 </div>
             </div>
             <div className="w-full lg:h-[80px] h-[66px] bg-[#EBEBEB] my-6 relative flex justify-center">
                 <div className="absolute top-0 right-0 lg:w-[120px] md:w-[80px] w-[110px] bg-[url('/images/voucher-header-side.png')] bg-cover h-full"></div>
                 <div className="absolute top-0 left-0 rotate-180 lg:w-[120px] md:w-[80px] w-[110px] bg-[url('/images/voucher-header-side.png')] bg-cover h-full"></div>
-                <div className="lg:w-[calc(100%-200px)] md:w-[calc(100%-120px)] sm:w-[calc(100%-120px)] flex md:justify-between justify-center items-center text-[#383838] font-bold xl:text-xl lg:text-base md:text-sm text-xs">
+                <div className="lg:w-[calc(100%-200px)] md:w-[calc(100%-120px)] sm:w-[calc(100%-120px)] flex md:justify-between justify-center items-center text-[#383838] font-bold xl:text-lg lg:text-sm md:text-xs text-xs">
                     <div className="md:flex hidden">{t('bannerTitle')}</div>
                     <div className="flex items-center">
                         <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={120} height={33} alt=""></Image>
@@ -65,7 +65,7 @@ export function PersonalInfoShow(){
     const { t, i18n } = useTranslation();
     return(
         <div className="border-[1px] flex flex-col border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
-            <div className="flex items-center lg:text-xl md:text-base text-sm font-semibold gap-2">
+            <div className="flex items-center lg:text-lg md:text-sm text-xs font-semibold gap-2">
                 <IconContact/>
                 {t('personalInfo')}
             </div>
@@ -115,7 +115,7 @@ export function PersonalInfoShow(){
 
 export function PersonalInfoShowSingle({title,value}){
     return(
-        <div className="sm:w-1/2 w-full sm:border-l-[1px] even:border-l-0 border-b-[1px] last:border-b-0 sm:nth-[5]:border-b-0 border-[#0000001f] flex items-center justify-between lg:py-8 py-4 px-4 lg:text-base text-sm">
+        <div className="sm:w-1/2 w-full sm:border-l-[1px] even:border-l-0 border-b-[1px] last:border-b-0 sm:nth-[5]:border-b-0 border-[#0000001f] flex items-center justify-between lg:py-8 py-4 px-4 lg:text-sm text-xs">
             <div className="flex gap-2 items-center">
                 {title}
             </div>
@@ -133,7 +133,7 @@ export function ReservationDetail(){
         <div className="border-[1px] flex md:flex-nowrap flex-wrap lg:gap-12 gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
             <div className="md:w-1/2 w-full flex flex-col gap-4">
                 <div className="flex justify-between">
-                    <div className="flex gap-2 lg:text-xl md:text-base text-sm font-semibold items-center">
+                    <div className="flex gap-2 lg:text-lg md:text-sm text-xs font-semibold items-center">
                         <IconReceipt/>
                         {t('resDetail')}
                     </div>
@@ -203,7 +203,7 @@ export function ReservationDetail(){
 
 export function SingleReservationDetail({title,value}){
     return(
-        <div className="flex bg-[#F4F4F4] rounded-2xl lg:py-4 py-3 lg:px-6 md:px-4 px-2 xl:text-lg lg:text-base sm:text-sm text-xs items-center justify-between">
+        <div className="flex bg-[#F4F4F4] rounded-2xl lg:py-4 py-3 lg:px-6 md:px-4 px-2 xl:text-base lg:text-sm sm:text-xs text-xs items-center justify-between">
             <div className="flex items-center lg:gap-4 gap-2">
                 {title}
             </div>
@@ -217,8 +217,8 @@ export function SingleReservationDetail({title,value}){
 export function FinalDetail(){
     const { t, i18n } = useTranslation();
     return(
-        <div className="border-[1px] flex gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white flex-col xl:text-lg lg:text-base md:text-sm text-xs">
-            <div className="flex gap-2 items-center text-black lg:text-xl md:text-base text-sm font-semibold">
+        <div className="border-[1px] flex gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white flex-col xl:text-base lg:text-sm md:text-xs text-xs">
+            <div className="flex gap-2 items-center text-black lg:text-lg md:text-sm text-xs font-semibold">
                 <IconInfo2/>
                 {t('additionalInformation')}
             </div>
@@ -240,7 +240,7 @@ export function FinalDetail(){
 
 export function SocialBox(){
     return(
-        <div className="flex justify-between my-12 xl:text-xl md:text-base sm:text-sm text-xs font-bold flex-wrap gap-4">
+        <div className="flex justify-between my-12 xl:text-lg md:text-sm sm:text-xs text-xs font-bold flex-wrap gap-4">
             <div className="py-3 px-6 lg:w-auto sm:w-[calc(50%-8px)] w-full justify-center bg-[#FFFFFF66] rounded-2xl flex items-center gap-4 text-[#3B82F6] shadow-[inset_-8px_-8px_8px_0_#FFFFFF12,inset_-8px_-8px_8px_0_#C2C2C212,0_4px_14px_-4px_#10B98140]">
                 palmrent.com
                 <IconGlobalSearch/>

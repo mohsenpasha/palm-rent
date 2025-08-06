@@ -14,7 +14,7 @@ export default function SearchFilterPopup(){
               <div onClick={closePopup} className="absolute w-full h-full bg-black opacity-40"></div>
             </div>
             <div className="bg-white lg:w-[80%] sm:w-[90%] w-[95%] pb-6 absolute top-1/2 left-1/2 -translate-1/2 rounded-2xl animate-fade-in2">
-                <div className="border-b-[1px] border-[#B0B0B0CC] md:text-base text-sm p-4 font-bold relative">
+                <div className="border-b-[1px] border-[#B0B0B0CC] md:text-sm text-xs p-4 font-bold relative">
                     <span>
                       {t('filters')}
                     </span>
@@ -88,7 +88,7 @@ export function PriceRange(){
         />
       </div>
 
-      <div className="flex justify-between text-sm mt-4 px-1 text-gray-600">
+      <div className="flex justify-between text-xs mt-4 px-1 text-gray-600">
         <span>حداقل: {values[0].toLocaleString()} تومان</span>
         <span>حداکثر: {values[1].toLocaleString()} تومان</span>
       </div>

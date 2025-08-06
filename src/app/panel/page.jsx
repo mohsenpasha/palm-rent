@@ -63,7 +63,7 @@ export function PanelStartElm(){
                     <div>09370514658</div>
                 </div>
             </div>
-            <div className="text-[#B0B0B0] text-sm flex flex-col gap-1">
+            <div className="text-[#B0B0B0] text-xs flex flex-col gap-1">
                 <div>
                     موجودی حساب
                 </div>
@@ -83,7 +83,7 @@ export function PanelStartElm(){
 export function PanelAccountInfo(){
     return(
         <div className="flex flex-col items-center justify-between border-[1px] bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
-            <div className="flex gap-2 w-full items-center font-bold lg:text-lg text-base">
+            <div className="flex gap-2 w-full items-center font-bold lg:text-base text-sm">
                 <span className="size-6">
                     <IconPerson />
                 </span>
@@ -127,7 +127,7 @@ export function PanelAccountInfo(){
 //                     <div>09370514658</div>
 //                 </div>
 //             </div>
-//             <div className="text-[#B0B0B0] text-sm">
+//             <div className="text-[#B0B0B0] text-xs">
 //                 <div>
 //                     موجودی حساب
 //                 </div>

@@ -69,7 +69,7 @@ export default function FaqPage(){
         <>
             <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
                 <div className="py-4">
-                    <div className="text-center py-4 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
+                    <div className="text-center py-4 md:text-xl sm:text-lg text-base font-bold text-[#3B82F6]">
                         {t('commonQ')}
                     </div>
                     <CommonQuestionSection newVersion gotTanslation rules={rules} setRules={setRules}/>

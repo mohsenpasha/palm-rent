@@ -15,8 +15,8 @@ export function ApplicationSection(){
                             <Image src={'/images/barcode.png'} width={200} height={200} alt=""/>
                             <div className="text-center font-bold">{t('downloadScan')}</div>
                         </div>
-                        <div className="flex flex-col gap-2 sm:items-start items-center md:text-base text-sm">
-                            <div className="lg:text-2xl text-lg font-bold">{t('applicationTitle')}</div>
+                        <div className="flex flex-col gap-2 sm:items-start items-center md:text-sm text-xs">
+                            <div className="lg:text-xl text-base font-bold">{t('applicationTitle')}</div>
                             <div>{t('slogan')}</div>
                             <Link className="flex items-center md:my-4 my-2  text-[#3b82f6]" href={'#'}>
                                 <span>

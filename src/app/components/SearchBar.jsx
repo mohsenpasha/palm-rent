@@ -57,7 +57,7 @@ export default function SearchBar({isPopup=false}){
                 </div>
               }
               {!isPopup &&
-                <div className="md:text-xl sm:text-lg text-center md:text-right ltr:md:text-left text-base font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
+                <div className="md:text-lg sm:text-base text-center md:text-right ltr:md:text-left text-sm font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
                     {params.cityName ?
                         <h2>
                           {t('searchBarB')} {t(params.cityName)} {t('searchBarA')}
@@ -72,7 +72,7 @@ export default function SearchBar({isPopup=false}){
                 }
                 <div className={`flex lg:gap-2 gap-4 items-end lg:flex-nowrap flex-wrap px-2 md:px-6 ${isPopup ? `bg-white rounded-lg justify-center ${isDateSelectOpen ? 'md:w-10/12 w-full md:p-8 md:my-4' : 'p-8 w-10/12 my-4'} absolute  left-1/2 -translate-x-1/2` : ''}`}>
                     <div ref={citySelectRef} className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
-                        <span className="text-sm">{t('city')}</span>
+                        <span className="text-xs">{t('city')}</span>
                         <div onClick={()=>params.cityName ? ()=>{} :setCityToggle(!cityToggle)} className={`${params.cityName && 'bg-gray-100'} border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1`}>
                             <span className="size-6">
                                 <IconLocation/>
@@ -95,8 +95,8 @@ export default function SearchBar({isPopup=false}){
                     </div>
                     <div className={`relative lg:w-6/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2`}>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
-                            <span className="text-sm">{t('deliveryTD')}</span>
-                            <div className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
+                            <span className="text-xs">{t('deliveryTD')}</span>
+                            <div className="border-[1px] border-[#B5B5B5B2] text-xs md:text-sm flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] gap-1 items-center">
                                     <IconClock/>
                                     <span>{carDates[0] || t('date')}</span>
@@ -108,8 +108,8 @@ export default function SearchBar({isPopup=false}){
                             </div>
                         </div>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
-                            <span className="text-sm">{t('returnTD')}</span>
-                            <div className="border-[1px] border-[#B5B5B5B2] text-sm md:text-base flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
+                            <span className="text-xs">{t('returnTD')}</span>
+                            <div className="border-[1px] border-[#B5B5B5B2] text-xs md:text-sm flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1">
                                     <IconClock/>
                                     <span>{carDates[1] || t('date')}</span>
@@ -193,8 +193,8 @@ export function DatePickerBox({ref,isPopup=false}){
       </div>
       <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
         <div className="md:flex hidden text-xs">
-          <div>{t('delivery')} <span className="font-bold text-sm">{carDates[0] || t('choose')}</span> -</div>
-          <div>{t('return')} <span className="font-bold text-sm">{carDates[1]}</span></div>
+          <div>{t('delivery')} <span className="font-bold text-xs">{carDates[0] || t('choose')}</span> -</div>
+          <div>{t('return')} <span className="font-bold text-xs">{carDates[1]}</span></div>
         </div>
         <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
           {t('done')}
@@ -426,7 +426,7 @@ export function TimeSelectBox({selected,setSelected}) {
   }, [search]);
 
   return (
-    <div ref={timeSelectRef} className="relative z-50 md:w-52 w-full text-sm">
+    <div ref={timeSelectRef} className="relative z-50 md:w-52 w-full text-xs">
       <div
         onClick={() => setShowList((prev) => !prev)}
         className="border rounded-lg px-4 py-2 cursor-pointer bg-white shadow-sm"

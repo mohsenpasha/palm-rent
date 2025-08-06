@@ -189,7 +189,7 @@ export function SingleReel({ref,reelIndex,activeIndex,video}){
             }
             <video loop muted className="w-full h-full object-cover sm:rounded-lg" src={video}>Your browser does not support the video tag.</video>
             <div onClick={(event)=>event.stopPropagation()} className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[#21262d] w-[calc(100%-16px)] rounded-lg p-2 flex justify-between">
-                <Link href={'#'} className="flex w-auto bg-[#3B82F6] outline-0 py-2 px-8 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">{t('rent')}</Link>
+                <Link href={'#'} className="flex w-auto bg-[#3B82F6] outline-0 py-2 px-8 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">{t('rent')}</Link>
                 <div className="flex flex-col items-end gap-1">
                     <div>
                         <div className="text-white gap-1 flex">

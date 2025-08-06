@@ -29,10 +29,10 @@ export default function InformationStep(){
                     <FineDeposit/>
                     <PaymentDetail/>
                     <PersonalInfoBox/>
-                    <button onClick={nextStep} className="w-10/12 bottom-4 m-auto sticky bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 lg:text-xl sm:text-lg text-sm my-2">
+                    <button onClick={nextStep} className="w-10/12 bottom-4 m-auto sticky bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 lg:text-lg sm:text-base text-xs my-2">
                         {t('resButton')}
                     </button>
-                    <div className="text-center text-[#8A8A8A] md:text-sm text-xs pb-4">
+                    <div className="text-center text-[#8A8A8A] md:text-xs text-xs pb-4">
                         {t('paymentNRequired')}
                     </div>
                 </div>
@@ -70,27 +70,27 @@ export function DeliverySpot({setIsLocationReturn}){
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('deliveryTitle')}</div>
+                <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('deliveryTitle')}</div>
             </div>
             <div>
-                <div onClick={()=>openLocationPopup(false)} className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <div onClick={()=>openLocationPopup(false)} className="md:text-sm sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div>
                         <div>{t('chooseDeliveryLoc')}</div>
-                        <div className="text-[#545454] text-sm">{t('from')} {allLocations.length} {t('afterDeliveryNum')}</div>
+                        <div className="text-[#545454] text-xs">{t('from')} {allLocations.length} {t('afterDeliveryNum')}</div>
                     </div>
                     <IconArrow className={'rotate-90'}/>
                 </div>
-                <label className="flex gap-2 items-center my-2 mt-4 lg:text-base md:text-sm text-xs">
+                <label className="flex gap-2 items-center my-2 mt-4 lg:text-sm md:text-xs text-xs">
                     <div className="bg-[#B5B5B5] transition-all has-[:checked]:bg-[#55FF55] md:w-[61px] md:h-[30px] w-[45px] h-[20px] rounded-[20px] relative shadow-[inset_0_1px_2px_0px_rgba(0,0,0,.25)]">
                         <input checked={!areLocationsSame} onChange={(event)=>sameLocationChange()} className="peer hidden" type="checkbox" />
                         <span className="absolute md:size-[30px] size-[20px] bg-white transition-all rounded-full translate-0 peer-checked:left-full peer-checked:-translate-x-full left-0 shadow-[-2px_1px_4px_0px_rgba(0,0,0,.15)]"></span>
                     </div>
                     {t('otherPlaces')}
                 </label>
-                <div onClick={()=>openLocationPopup(true)} className={`${areLocationsSame ? 'max-h-0 p-0 opacity-0' : 'max-h-32 p-4 opacity-100'} overflow-hidden duration-300 transition-all md:text-base mt-4 sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl flex items-center justify-between cursor-pointer`}>
+                <div onClick={()=>openLocationPopup(true)} className={`${areLocationsSame ? 'max-h-0 p-0 opacity-0' : 'max-h-32 p-4 opacity-100'} overflow-hidden duration-300 transition-all md:text-sm mt-4 sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl flex items-center justify-between cursor-pointer`}>
                     <div>
                         <div>{t('chooseReturnLoc')}</div>
-                        <div className="text-[#545454] text-sm">{t('from')} {allLocations.length} {t('afterDeliveryNum')}</div>
+                        <div className="text-[#545454] text-xs">{t('from')} {allLocations.length} {t('afterDeliveryNum')}</div>
                     </div>
                     <IconArrow className={'rotate-90'}/>
                 </div>
@@ -105,7 +105,7 @@ export function SideCarDetail(){
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('onlinePur')}</div>
+                <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('onlinePur')}</div>
             </div>
             <DetailGallery/>
             <div className="py-3 border-b-[1px] border-[#0000001f]">
@@ -115,7 +115,7 @@ export function SideCarDetail(){
                             {t('BSPrice')} <span className="text-[#3B82F6]">8 {t('days')}</span> {t('reservation')}
                         </div>
                         <div className="flex gap-1 items-center">
-                            <span className="text-[#A7A7A7] text-sm">140</span>
+                            <span className="text-[#A7A7A7] text-xs">140</span>
                             <span className="text-[#10B981]">98</span>
                             <span>{t('AED')}</span>
                         </div>
@@ -215,12 +215,12 @@ export function ExtraServices(){
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('extraSerTitle')}</div>
+                <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('extraSerTitle')}</div>
             </div>
             <div className="flex flex-col gap-4">
                 {services.map((item,index)=>{
                     return(
-                        <div key={index} className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between">
+                        <div key={index} className="md:text-sm sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between">
                             <div className="flex gap-2 items-center">
                                 <label className="flex gap-2 items-center cursor-pointer">
                                     <input type="checkbox" className="peer hidden" />
@@ -259,7 +259,7 @@ export function FineDeposit({borderLess}){
         <div className={`${!borderLess ? 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-1 rounded-2xl' : 'bg-white'} my-4 flex-1`}>
             <div className="flex flex-col gap-4">
 
-                <div className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                <div className="md:text-sm sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div className="flex gap-2 items-center">
                         <span className="flex size-9 p-1 text-[#7C7C7C]">
                             <IconSort1/>
@@ -286,18 +286,18 @@ export function PaymentDetail({borderLess=false}){
     return(
         <div className={`${!borderLess && 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
             <div className="mb-4 flex justify-between">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('reviewTitle')}</div>
+                <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('reviewTitle')}</div>
                 <div className="text-[#3B82F6] cursor-pointer">{t('gotDiscount')}</div>
             </div>
             <div className="flex relative bg-[#EFFBF6] my-12 py-2">
                 <div className="absolute top-0 -translate-y-8 right-0 w-full">
                     <IconGrate/>
                 </div>
-                <div className="flex flex-col justify-center items-center w-full md:text-base text-sm">
+                <div className="flex flex-col justify-center items-center w-full md:text-sm text-xs">
                     <SinglePaymentDet
                         title={'قیمت اجاره 3 روزه'}
                         subtitle={
-                            <div className="text-[#545454] text-sm flex gap-2">
+                            <div className="text-[#545454] text-xs flex gap-2">
                                 <span className="line-through">110</span>
                                 <span className="text-[#0FA875]"> 99 درهم روزانه</span>
                             </div>
@@ -333,7 +333,7 @@ export function PaymentDetail({borderLess=false}){
                         <div className="rounded-2xl bg-white w-full">
                             <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between">
                                 <div className="flex flex-col gap-2">
-                                    <div className="lg:text-xl md:text-lg text-sm font-semibold">
+                                    <div className="lg:text-lg md:text-base text-xs font-semibold">
                                         {t('prepayment')}
                                     </div>
                                     <div className="flex gap-2">
@@ -341,7 +341,7 @@ export function PaymentDetail({borderLess=false}){
                                         <Image src={'/images/zarinpal.png'} width={60} height={29} alt=""></Image>
                                     </div>
                                 </div>
-                                <div className="flex flex-col items-end gap-1 md:text-base text-sm">
+                                <div className="flex flex-col items-end gap-1 md:text-sm text-xs">
                                     <div className="font-bold">
                                         170 درهم
                                     </div>
@@ -354,14 +354,14 @@ export function PaymentDetail({borderLess=false}){
 
                             <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between border-t-[1px] border-[#0000001f]">
                                 <div className="flex flex-col gap-2">
-                                    <div className="lg:text-lg md sm:text-sm text-xs font-semibold">
+                                    <div className="lg:text-base md sm:text-xs text-xs font-semibold">
                                         {t('debt')}
                                     </div>
-                                    <div className="text-[#545454] lg:text-base md:text-sm text-xs">
+                                    <div className="text-[#545454] lg:text-sm md:text-xs text-xs">
                                         {t('debtDescription')}
                                     </div>
                                 </div>
-                                <div className="flex flex-col items-end gap-1 md:text-base text-sm">
+                                <div className="flex flex-col items-end gap-1 md:text-sm text-xs">
                                     800 درهم
                                 </div>
                             </div>
@@ -384,7 +384,7 @@ export function SinglePaymentDet({title,subtitle,price}){
                 <div>
                     {title}
                 </div>
-                <div className="text-[#545454] text-sm">
+                <div className="text-[#545454] text-xs">
                     {subtitle}
                 </div>
             </div>
@@ -402,10 +402,10 @@ export function PersonalInfoBox(){
         dispatch(changeIsInfoListOpen(true))
     }
     return(
-        <div className="lg:text-base md:text-sm text-xs pb-12 border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
+        <div className="lg:text-sm md:text-xs text-xs pb-12 border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4 flex justify-between items-center">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('personalInfoTitle')}</div>
-                <button onClick={openInfoList} className="text-[#3B82F6] hover:text-white hover:bg-[#3B82F6] transition-all cursor-pointer text-sm items-center flex gap-2 border-[1px] border-[#3B82F6] hover:border-white rounded-lg px-3 py-1 font-bold">
+                <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('personalInfoTitle')}</div>
+                <button onClick={openInfoList} className="text-[#3B82F6] hover:text-white hover:bg-[#3B82F6] transition-all cursor-pointer text-xs items-center flex gap-2 border-[1px] border-[#3B82F6] hover:border-white rounded-lg px-3 py-1 font-bold">
                     <span className="size-6 inline-block">
                         <IconPersonSearch/>
                     </span>
@@ -453,7 +453,7 @@ export function PersonalInfoBox(){
 //     return(
 //         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
 //             <div className="mb-4">
-//                 <div className="lg:text-lg sm:text-base text-sm font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
+//                 <div className="lg:text-base sm:text-sm text-xs font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
 //             </div>
 //         </div>
 //     )

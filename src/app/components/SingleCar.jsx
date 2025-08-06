@@ -16,7 +16,7 @@ export default function SingleCar({data,noBtn = false}){
     const [isHovering,setIsHovering] = useState(false)
     
     return(
-        <div className={`${isHovering && 'z-30'} flex w-full flex-col hover:scale-[97%] bg-white cursor-pointer transition-all rounded-2xl md:text-base text-sm border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]`}>
+        <div className={`${isHovering && 'z-30'} flex w-full flex-col hover:scale-[97%] bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]`}>
             <SingleCarGallery noBtn={noBtn}>
                 {!noBtn && 
                     <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
@@ -25,7 +25,7 @@ export default function SingleCar({data,noBtn = false}){
                                 <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="py-1 group px-2 rounded-4xl bg-[#3b82f6] relative hover:scale-[105%] transition-all" key={index}>
                                     <span className="text-white font-bold">{t(optionList[item].title)}</span>
                                     <div className="absolute top-0 hidden group-hover:flex animate-opacity pb-3 z-50 left-1/2 -translate-x-1/2 -translate-y-full">
-                                        <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-sm rounded-lg border-[1px] p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+                                        <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-xs rounded-lg border-[1px] p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                                             {optionList[item].description}
                                             <div className="w-0 h-0 rotate-180 absolute bottom-0 left-1/2 border-l-16 border-r-16 border-t-0 border-b-16 border-l-transparent -translate-x-1/2 border-r-transparent border-b-white"></div>
                                         </div>
@@ -41,7 +41,7 @@ export default function SingleCar({data,noBtn = false}){
                     </div>
                 }
             </SingleCarGallery>
-            <div className="text-left my-2 lg:text-xl sm:text-lg text-base">{data.title}</div>
+            <div className="text-left my-2 lg:text-lg sm:text-base text-sm">{data.title}</div>
             <SingleCarOptions data={data}/>
             <SingleCarPriceList priceList={data.priceList}/>
             {!noBtn && 
@@ -124,7 +124,7 @@ export function SingleCarGallery({children,noBtn}){
 export function SingleCarOptions({data,bigFont=false}){
     const { t, i18n } = useTranslation();
     return(
-        <div className={`flex w-full text-[#787878] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-lg sm:text-base text-xs filter-[brightness(0.5)]' :'text-xs border-t-[1px]'}`}>
+        <div className={`flex w-full text-[#787878] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs border-t-[1px]'}`}>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGas/>
@@ -187,7 +187,7 @@ export function SingleCarPriceList({priceList}){
                 {finalDayPrice ?
                 <div className="flex justify-between items-center">
                     <span>{t('BSPrice')} {rentDay} {t('day')}</span>
-                    <div className="lg:text-lg text-base flex gap-2">
+                    <div className="lg:text-base text-sm flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
                             {finalDayPrice.previousPrice}
                         </span>
@@ -210,7 +210,7 @@ export function SingleCarPriceList({priceList}){
                                 );
                             })()}
                         </div>
-                        <div className="lg:text-lg text-base flex gap-2">
+                        <div className="lg:text-base text-sm flex gap-2">
                             <span className="text-[#A7A7A7] line-through">
                                 {previousPrice}
                             </span>

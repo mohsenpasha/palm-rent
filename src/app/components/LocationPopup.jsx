@@ -102,7 +102,7 @@ export default function LocationPopup({isReturn}){
                         </div>
                     </div>
                     
-                    <button onClick={closePopup} className="w-full cursor-pointer m-auto bg-[#3B82F6] rounded-lg text-[#FFFFFF] p-2 lg:text-xl sm:text-lg text-sm my-2 mt-4">
+                    <button onClick={closePopup} className="w-full cursor-pointer m-auto bg-[#3B82F6] rounded-lg text-[#FFFFFF] p-2 lg:text-lg sm:text-base text-xs my-2 mt-4">
                         {t('done')}
                     </button>
                 </div>

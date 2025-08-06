@@ -9,12 +9,12 @@ export default function WhySection(){
             <div className="w-[85vw] max-w-[1336px] m-auto">
                 <div className="flex justify-between rtl:lg:text-right ltr:lg:text-left text-center">
                     <div className="lg:w-[580px]">
-                        <div className="lg:text-2xl md:text-xl text-lg font-bold">
+                        <div className="lg:text-xl md:text-lg text-base font-bold">
                             {t('whoAreWe')}
                         </div>
-                        <div className="lg:text-[32px] md:text-[24px] text-2xl font-bold my-4">{t('whyB')} <span className="text-[#3B82F6]">{t('palmRent')}</span> {t('whyA')}</div>
-                        <p className="text-[#636363] md:text-base sm:text-sm text-xs">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، </p>
-                        <div className="flex lg:justify-between justify-around my-6 md:text-base sm:text-sm text-xs sm:p-0 px-2">
+                        <div className="lg:text-[32px] md:text-[24px] text-xl font-bold my-4">{t('whyB')} <span className="text-[#3B82F6]">{t('palmRent')}</span> {t('whyA')}</div>
+                        <p className="text-[#636363] md:text-sm sm:text-xs text-xs">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، </p>
+                        <div className="flex lg:justify-between justify-around my-6 md:text-sm sm:text-xs text-xs sm:p-0 px-2">
                             <div className="flex flex-col gap-1">
                                 <span className="flex items-center gap-1">
                                     <IconTick/>

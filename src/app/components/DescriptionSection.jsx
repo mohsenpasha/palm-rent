@@ -28,7 +28,7 @@ export default function DescriptionSection(){
         <section ref={sectionRef} className="my-12">
             <div className="w-[85vw] max-w-[1336px] m-auto">
                 <div className="md:flex hidden rtl:md:justify-between ltr:md:justify-start justify-center items-center overflow-hidden">
-                    <div className="text-[#3B82F6] lg:text-4xl md:text-3xl font-bold lg:max-w-[400px] md:max-w-[300px] lg:leading-18 rtl:md:text-right ltr:md:text-left text-center">
+                    <div className="text-[#3B82F6] lg:text-3xl md:text-2xl font-bold lg:max-w-[400px] md:max-w-[300px] lg:leading-18 rtl:md:text-right ltr:md:text-left text-center">
                         {t('slogan2')}
                     </div>
                     <div style={{transform:`translateX(${carTransition}px)`}} className="md:block hidden">
@@ -69,15 +69,15 @@ export function DescriptionItem({icon,title,text}){
             <div className="h-12 flex justify-center md:justify-start">
                 {icon}
             </div>
-            <div className="lg:text-lg md:text-base text-sm">{title}</div>
-            <p className="text-[#5D5D5D] lg:text-lg md:text-base text-sm leading-8">{text}</p>
+            <div className="lg:text-base md:text-sm text-xs">{title}</div>
+            <p className="text-[#5D5D5D] lg:text-base md:text-sm text-xs leading-8">{text}</p>
         </div>
     )
 }
 
 export function OptionItem({icon,title}){
     return(
-        <div className="rounded-2xl lg:w-full md:w-[calc(50%-16px)] w-full md:text-base text-sm bg-white p-4 gap-4 flex items-center">
+        <div className="rounded-2xl lg:w-full md:w-[calc(50%-16px)] w-full md:text-sm text-xs bg-white p-4 gap-4 flex items-center">
             {icon}
             {title}
         </div>

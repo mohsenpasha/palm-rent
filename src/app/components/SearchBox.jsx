@@ -69,7 +69,7 @@ export function SearchBox(){
                     <IconSearch2/>
                 </span>
                 <input className="w-full px-4 outline-0" type="search" placeholder={t('carSearch')} />
-                <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
+                <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">
                     <IconSetting/>
                 </button>
             </div>
@@ -88,8 +88,8 @@ export function SearchBox(){
                         )
                     })}
             </div>
-            <div className="flex md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-base md:text-sm text-xs">
-                <div className="flex md:w-auto w-full items-center gap-2 lg:text-base md:text-sm text-xs">
+            <div className="flex md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-sm md:text-xs text-xs">
+                <div className="flex md:w-auto w-full items-center gap-2 lg:text-sm md:text-xs text-xs">
                     <div className="flex relative">
                         <span onClick={openSortPopup} className="flex items-center gap-1 p-2 py-1 rounded-lg bg-[#E3E3E3] cursor-pointer">
                             <IconSort/>
@@ -127,7 +127,7 @@ export function SearchBox(){
                     </div>
                 </div>
                 {/* <div className="flex gap-2 md:w-auto w-full justify-between">
-                    <button onClick={openSearchPopup} className="flex bg-[#3B82F6] py-2 px-4 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-sm cursor-pointer">
+                    <button onClick={openSearchPopup} className="flex bg-[#3B82F6] py-2 px-4 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">
                         <span className="">
                             جستجو
                         </span>

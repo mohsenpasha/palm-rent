@@ -10,13 +10,13 @@ export function Why2Section(){
             <div className="w-[90vw] max-w-[1336px] m-auto">
                 <div className="flex sm:flex-nowrap flex-wrap bg-white p-6 justify-between rounded-2xl items-center font-bold">
                     <div className="sm:w-auto w-full text-center lg:text-right my-2 gap-2">
-                        <div className="text-[#3B82F6] lg:text-[32px] md:text-2xl">
+                        <div className="text-[#3B82F6] lg:text-[32px] md:text-xl">
                             {t('whySection2Title')}
                         </div>
                         <div className="text-[#545454]">{t('whySection2Sub')}</div>
                     </div>
                     <div className="flex w-full sm:w-auto">
-                        <div className="text-[#1E40AF] lg:text-2xl text-xl font-bold relative flex-col items-end ml-10 mt-2 text-nowrap lg:block hidden">
+                        <div className="text-[#1E40AF] lg:text-xl text-lg font-bold relative flex-col items-end ml-10 mt-2 text-nowrap lg:block hidden">
                             <span>{t('rate')}</span>
                             <IconCurveArrow className={'-translate-x-1/2 absolute left-0'}/>
                         </div>

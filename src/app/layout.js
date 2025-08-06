@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html>
+    <html dir="rtl">
       <body>
         <ReduxProvider>
           {children}

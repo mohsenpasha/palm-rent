@@ -40,7 +40,7 @@ export default function LanguageCurrencyPopup(){
                 <div onClick={closePopup} className="absolute w-full h-full bg-black opacity-40"></div>
             </div>
             <div className="bg-white sm:w-xl w-[90%] pb-6 absolute top-1/2 left-1/2 -translate-1/2 rounded-2xl animate-fade-in2">
-                <div className="border-b-[1px] border-[#B0B0B0CC] md:text-base text-sm p-4 font-bold relative">
+                <div className="border-b-[1px] border-[#B0B0B0CC] md:text-sm text-xs p-4 font-bold relative">
                     <span>
                         {t('settings')}
                     </span>
@@ -48,7 +48,7 @@ export default function LanguageCurrencyPopup(){
                         <IconClose/>
                     </span>
                 </div>
-                <div className="flex justify-between md:text-base sm:text-sm text-xs">
+                <div className="flex justify-between md:text-sm sm:text-xs text-xs">
                     <div className="flex-1">
                         <div className="p-4 py-2">{t('chooselang')}</div>
                         <div className="flex flex-col">

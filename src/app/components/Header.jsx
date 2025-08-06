@@ -62,7 +62,7 @@ export default function Header({shadowLess=false}){
     return(
         <>
             <header className={`min-h-[64px] flex items-center`}>
-                <div className={`p-4 px-3 2xl:px-6 text-sm text-[#4b5952] fixed z-50 transition-all right-0 bg-white w-full ${shadowLess ? '' : 'shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]'} ${isHeaderClose ? '-top-16' : 'top-0'}`}>
+                <div className={`p-4 px-3 2xl:px-6 text-xs text-[#4b5952] fixed z-50 transition-all right-0 bg-white w-full ${shadowLess ? '' : 'shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]'} ${isHeaderClose ? '-top-16' : 'top-0'}`}>
                     <div className="lg:w-[90vw] md:w-[90vw] max-w-[1200px] m-auto flex justify-between">
 
                     {/* {t("greeting")} */}

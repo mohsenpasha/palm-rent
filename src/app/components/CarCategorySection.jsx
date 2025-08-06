@@ -22,7 +22,7 @@ export default function CarCategorySection() {
   return (
     <section>
       <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px] overflow-hidden my-16">
-        <div className="text-center text-xl font-semibold mb-6">
+        <div className="text-center text-lg font-semibold mb-6">
           {t('carCategoryTitle')}
         </div>
 
@@ -53,7 +53,7 @@ export default function CarCategorySection() {
             <SwiperSlide key={index}>
               <div className="flex flex-col items-center justify-between gap-2 rounded-2xl bg-white w-full py-4 shadow-md">
                 {item.icon}
-                <div className="text-sm font-medium">
+                <div className="text-xs font-medium">
                   {t(item.name)}
                 </div>
               </div>
