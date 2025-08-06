@@ -357,7 +357,7 @@ export function PaymentDetail({borderLess=false}){
                                     <div className="lg:text-lg md sm:text-sm text-xs font-semibold">
                                         {t('debt')}
                                     </div>
-                                    <div className="text-[#545454] lg:text-xl md:text-lg sm:text-sm text-xs">
+                                    <div className="text-[#545454] lg:text-base md:text-sm text-xs">
                                         {t('debtDescription')}
                                     </div>
                                 </div>
