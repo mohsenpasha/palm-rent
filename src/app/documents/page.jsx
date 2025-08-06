@@ -118,27 +118,27 @@ export function DocumentImages(){
     return(
         <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
             <div className="flex flex-col w-full items-center justify-center gap-2">
-                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
+                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-base text-sm text-center gap-2">
                     <div>{t('documentItem1')}</div>
                     <Image src={'/images/check_editor_1726312961_deposit.webp'} width={1000} height={1000} alt=""/>
                 </div>
-                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
+                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-base text-sm text-center gap-2">
                     <div>{t('documentItem2')}</div>
                     <Image src={'/images/check_editor_1726313214_نمونه عکس از گواهینامه بین_المللی.webp'} width={500} height={1000} alt=""/>
                 </div>
-                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
+                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-base text-sm text-center gap-2">
                     <div>{t('documentItem3')}</div>
                     <Image src={'/images/check_editor_1726314604_11 (2).webp'} width={500} height={1000} alt=""/>
                 </div>
-                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
+                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-base text-sm text-center gap-2">
                     <div>{t('documentItem4')}</div>
                     <Image src={'/images/check_editor_1726313736_نمونه عکس از ویزا توریستی.webp'} width={500} height={1000} alt=""/>
                 </div>
-                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
+                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-base text-sm text-center gap-2">
                     <div>{t('documentItem5')}</div>
                     <Image src={'/images/check_editor_1726313986_نمونه عکس از کارت اقامت امارات (آی دی کارت).webp'} width={500} height={1000} alt=""/>
                 </div>
-                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
+                <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-base text-sm text-center gap-2">
                     <div>{t('documentItem6')}</div>
                     <Image src={'/images/check_editor_1726314441_نمونه عکس از گواهینامه رانندگی امارات.webp'} width={500} height={1000} alt=""/>
                 </div>

@@ -57,7 +57,7 @@ export default function SearchBar({isPopup=false}){
                 </div>
               }
               {!isPopup &&
-                <div className="md:text-xl sm:text-lg text-center md:text-right ltr:md:text-left text-md font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
+                <div className="md:text-xl sm:text-lg text-center md:text-right ltr:md:text-left text-base font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
                     {params.cityName ?
                         <h2>
                           {t('searchBarB')} {t(params.cityName)} {t('searchBarA')}
