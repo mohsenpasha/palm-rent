@@ -15,7 +15,7 @@ export default function InformationStep(){
     const isLocationPopupOpen = useSelector((state)=>state.global.isLocationPopupOpen)
     const isInfoListOpen = useSelector((state)=>state.global.isInfoListOpen)
     const [isLocationReturn,setIsLocationReturn] = useState(false)
-    
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function nextStep(){
         dispatch(changeRoadMapStep(3))
@@ -30,10 +30,10 @@ export default function InformationStep(){
                     <PaymentDetail/>
                     <PersonalInfoBox/>
                     <button onClick={nextStep} className="w-10/12 bottom-4 m-auto sticky bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 lg:text-xl sm:text-lg text-sm my-2">
-                        خودرو خود را رزرو کنید
+                        {t('resButton')}
                     </button>
                     <div className="text-center text-[#8A8A8A] md:text-sm text-xs pb-4">
-                        در ثبت اولیه نیازی به پرداخت نیست
+                        {t('paymentNRequired')}
                     </div>
                 </div>
                 <div className="w-1/3 lg:flex hidden h-fit sticky top-[100px]">
@@ -51,6 +51,7 @@ export default function InformationStep(){
 }
 
 export function DeliverySpot({setIsLocationReturn}){
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     const areLocationsSame = useSelector((state)=>state.global.areLocationsSame)
     const allLocations = useSelector((state)=>state.global.locations)
@@ -69,13 +70,13 @@ export function DeliverySpot({setIsLocationReturn}){
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">دوست دارید خودرو خود را کجا تحویل بگیرید ؟</div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('deliveryTitle')}</div>
             </div>
             <div>
                 <div onClick={()=>openLocationPopup(false)} className="md:text-base sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
                     <div>
-                        <div>مکان محل تحویل خود را انتخاب کنید </div>
-                        <div className="text-[#545454] text-sm">از {allLocations.length} مکان موجود انتخاب کنید</div>
+                        <div>{t('chooseDeliveryLoc')}</div>
+                        <div className="text-[#545454] text-sm">{t('from')} {allLocations.length} {t('afterDeliveryNum')}</div>
                     </div>
                     <IconArrow className={'rotate-90'}/>
                 </div>
@@ -84,12 +85,12 @@ export function DeliverySpot({setIsLocationReturn}){
                         <input checked={!areLocationsSame} onChange={(event)=>sameLocationChange()} className="peer hidden" type="checkbox" />
                         <span className="absolute md:size-[30px] size-[20px] bg-white transition-all rounded-full translate-0 peer-checked:left-full peer-checked:-translate-x-full left-0 shadow-[-2px_1px_4px_0px_rgba(0,0,0,.15)]"></span>
                     </div>
-                    خودرو را در محل دیگری تحویل میدهم
+                    {t('otherPlaces')}
                 </label>
                 <div onClick={()=>openLocationPopup(true)} className={`${areLocationsSame ? 'max-h-0 p-0 opacity-0' : 'max-h-32 p-4 opacity-100'} overflow-hidden duration-300 transition-all md:text-base mt-4 sm:text-sm text-xs bg-[#F4F4F4] rounded-2xl flex items-center justify-between cursor-pointer`}>
                     <div>
-                        <div>مکان محل عودت خود را انتخاب کنید </div>
-                        <div className="text-[#545454] text-sm">از {allLocations.length} مکان موجود انتخاب کنید</div>
+                        <div>{t('chooseReturnLoc')}</div>
+                        <div className="text-[#545454] text-sm">{t('from')} {allLocations.length} {t('afterDeliveryNum')}</div>
                     </div>
                     <IconArrow className={'rotate-90'}/>
                 </div>
@@ -100,27 +101,28 @@ export function DeliverySpot({setIsLocationReturn}){
 
 
 export function SideCarDetail(){
+    const { t, i18n } = useTranslation();
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">به صورت آنلاین خودرو خود را رزرو کنید </div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('onlinePur')}</div>
             </div>
             <DetailGallery/>
             <div className="py-3 border-b-[1px] border-[#0000001f]">
                 <div className="flex w-full justify-between my-2">
                     <div className="flex gap-3">
                         <div className="text-[#1D1D1D]">
-                            قیمت روزانه برای <span className="text-[#3B82F6]">8 روز</span> رزرو
+                            {t('BSPrice')} <span className="text-[#3B82F6]">8 {t('days')}</span> {t('reservation')}
                         </div>
                         <div className="flex gap-1 items-center">
                             <span className="text-[#A7A7A7] text-sm">140</span>
                             <span className="text-[#10B981]">98</span>
-                            <span>درهم</span>
+                            <span>{t('AED')}</span>
                         </div>
                     </div>
                     Audi r8 2022
                 </div>
-                <SingleCarOptions data={{gasType:'بنزین',gearbox:'دنده‌ای',suitcase:3,passengers:4}}/>
+                <SingleCarOptions data={{gasType:'gasoline',gearbox:'geared',suitcase:3,passengers:4}}/>
             </div>
             <ReservedServices/>
             <div className="flex flex-col gap-2 mb-6">
@@ -161,13 +163,14 @@ export function DetailGallery(){
 }
 
 export function ReservedServices(){
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function openDescriptionPopup(){
         dispatch(changeDescriptionPopup({title:'test',description:'test'}))
     }
     return(
         <div className="w-full my-4 border-b-[1px] last:border-b-0 border-b-[#E2E2E2]">
-            <div>خدمات موجود در رزرو شما :</div>
+            <div>{t('yourResServices')}</div>
             <div className="flex flex-col justify-between items-center">
 
                 <div className="flex w-full justify-between my-2">
@@ -184,7 +187,7 @@ export function ReservedServices(){
                     </div>
                     <div onClick={openDescriptionPopup} className="text-xs text-[#B0B0B0] flex items-center gap-1 cursor-pointer">
                         <IconInfo/>
-                        توضیحات
+                        {t('description')}
                     </div>
                 </div>
                 
@@ -199,7 +202,7 @@ export function ReservedServices(){
 export function ExtraServices(){
     const [services,setServices] = useState([
         {
-            title:'صندلی کودک',
+            title:'service1',
             price:{amount:29,currency:'AED'},
             description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.'
         }
@@ -212,7 +215,7 @@ export function ExtraServices(){
     return(
         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('extraSerTitle')}</div>
             </div>
             <div className="flex flex-col gap-4">
                 {services.map((item,index)=>{
@@ -228,14 +231,14 @@ export function ExtraServices(){
                                     <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
                                     >
                                     </div>
-                                    <div>صندلی کودک</div>
+                                    <div>{t(item.title)}</div>
                                 </label>
                                 <div onClick={()=>openDescriptionPopup(index)} className="cursor-pointer">
                                     <IconInfo/>
                                 </div>
                             </div>
                             <div className="text-[#545454]">
-                                قیمت روزانه {item.price.amount} {t(item.price.currency)}
+                                {t('BSPrice2')} {item.price.amount} {t(item.price.currency)}
                             </div>
                         </div>
                     )
@@ -247,9 +250,10 @@ export function ExtraServices(){
 }
 
 export function FineDeposit({borderLess}){
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function openDescriptionPopup(){
-        dispatch(changeDescriptionPopup({title:'ودیعه خلافی',description:'test'}))
+        dispatch(changeDescriptionPopup({title:'fineTitle',description:'test'}))
     }
     return(
         <div className={`${!borderLess ? 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-1 rounded-2xl' : 'bg-white'} my-4 flex-1`}>
@@ -260,7 +264,7 @@ export function FineDeposit({borderLess}){
                         <span className="flex size-9 p-1 text-[#7C7C7C]">
                             <IconSort1/>
                         </span>
-                        <div>ودیعه خلافی</div>
+                        <div>{t('fineTitle')}</div>
                         <div onClick={openDescriptionPopup}>
                             <IconInfo/>
                         </div>
@@ -278,11 +282,12 @@ export function FineDeposit({borderLess}){
 
 
 export function PaymentDetail({borderLess=false}){
+    const { t, i18n } = useTranslation();
     return(
         <div className={`${!borderLess && 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
             <div className="mb-4 flex justify-between">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">جزئیات پرداخت خود را مرور کنید </div>
-                <div className="text-[#3B82F6] cursor-pointer">کد تخفیف دارم !</div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('reviewTitle')}</div>
+                <div className="text-[#3B82F6] cursor-pointer">{t('gotDiscount')}</div>
             </div>
             <div className="flex relative bg-[#EFFBF6] my-12 py-2">
                 <div className="absolute top-0 -translate-y-8 right-0 w-full">
@@ -297,30 +302,30 @@ export function PaymentDetail({borderLess=false}){
                                 <span className="text-[#0FA875]"> 99 درهم روزانه</span>
                             </div>
                         }
-                        price={'رایگان'}
+                        price={t('free')}
                     />
                     <SinglePaymentDet
-                        title={'هزینه تحویل'}
-                        subtitle={'فرودگاه دبی ترمینال 1'}
-                        price={'رایگان'}
+                        title={t('deliveryPrice')}
+                        subtitle={t('location3')}
+                        price={t('free')}
                     />
                     <SinglePaymentDet
-                        title={'هزینه عودت'}
-                        subtitle={'در هتل هیلتونی '}
+                        title={t('returnPrice')}
+                        subtitle={t('location2')}
                         price={'+70 درهم'}
                     />
                     <SinglePaymentDet
                         title={'هزینه 2 صندلی کودک'}
-                        subtitle={'در هتل هیلتونی '}
+                        subtitle={t('location1')}
                         price={'+95 درهم'}
                     />
                     <SinglePaymentDet
-                        title={'بدون دیپوزیت'}
+                        title={t('noDeposite')}
                         subtitle={'قیمت روزانه 29 درهم'}
                         price={'+36 درهم'}
                     />
                     <SinglePaymentDet
-                        title={<div className="font-bold">هزینه نهایی برای 3 روز</div>}
+                        title={<div className="font-bold">{t('finalPriceB')} 3 {t('days')}</div>}
                         subtitle={<div className="text-[#3B82F6]">تخفیف لحاظ شده برای این رزرو 150 درهم معادل 15.200.000 ریال است.</div>}
                         price={<div className="font-bold">+970 درهم</div>}
                     />
@@ -329,7 +334,7 @@ export function PaymentDetail({borderLess=false}){
                             <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between">
                                 <div className="flex flex-col gap-2">
                                     <div className="lg:text-xl md:text-lg text-sm font-semibold">
-                                        پیش پرداخت
+                                        {t('prepayment')}
                                     </div>
                                     <div className="flex gap-2">
                                         <Image src={'/images/shaparak.png'} width={47} height={27} alt=""></Image>
@@ -350,10 +355,10 @@ export function PaymentDetail({borderLess=false}){
                             <div className="py-4 md:px-5 px-2 flex w-full items-center justify-between border-t-[1px] border-[#0000001f]">
                                 <div className="flex flex-col gap-2">
                                     <div className="lg:text-lg md sm:text-sm text-xs font-semibold">
-                                        مانده ، پرداخت هنگام تحویل خودرو
+                                        {t('debt')}
                                     </div>
                                     <div className="text-[#545454] lg:text-xl md:text-lg sm:text-sm text-xs">
-                                        پرداخت : نقدی دلار ، درهم ، کارت بانک بین المللی
+                                        {t('debtDescription')}
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-end gap-1 md:text-base text-sm">
@@ -391,6 +396,7 @@ export function SinglePaymentDet({title,subtitle,price}){
 }
 
 export function PersonalInfoBox(){
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function openInfoList(){
         dispatch(changeIsInfoListOpen(true))
@@ -398,16 +404,16 @@ export function PersonalInfoBox(){
     return(
         <div className="lg:text-base md:text-sm text-xs pb-12 border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4 flex justify-between items-center">
-                <div className="lg:text-lg sm:text-base text-sm font-semibold">اطلاعات شخصی خود را وارد کنید</div>
+                <div className="lg:text-lg sm:text-base text-sm font-semibold">{t('personalInfoTitle')}</div>
                 <button onClick={openInfoList} className="text-[#3B82F6] hover:text-white hover:bg-[#3B82F6] transition-all cursor-pointer text-sm items-center flex gap-2 border-[1px] border-[#3B82F6] hover:border-white rounded-lg px-3 py-1 font-bold">
                     <span className="size-6 inline-block">
                         <IconPersonSearch/>
                     </span>
-                    <span>انتخاب از لیست</span>
+                    <span>{t('chooseInfoTitle')}</span>
                 </button>
             </div>
             <div className="flex flex-col gap-4">
-                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder="نام و نام خانوادگی ..." />
+                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder={t('nameLastname')} />
                 {/* <div className="border-[1px] flex flex-row-reverse items-center border-[#B0B0B0] rounded-xl"> */}
                     <PhoneInput
                         country={'ir'}
@@ -426,16 +432,16 @@ export function PersonalInfoBox(){
                     <span className="inline-block h-8 w-[1px] bg-[#919191]"></span>
                     <input className="text-left w-full outline-0 p-3" placeholder="091*********" type="text" /> */}
                 {/* </div> */}
-                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder="ایمیل ..." />
+                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder={t('email') + "..."} />
             </div>
             <div className="flex justify-center py-2 gap-1 sm:text-xs text-[10px]">
-                رزرو این خودرو به منزله پذیرفتن کلیه <Link className="text-[#3B82F6]" href={'#'}>قوانین و مقررات</Link> پالم رانت میباشد
+                {t('rulesB')} <Link className="text-[#3B82F6]" href={'#'}>{t('rules2')}</Link> {t('rulesA')}
             </div>
             <div className="pr-8 relative">
                 <span className="absolute right-0">
                     <IconInfo/>
                 </span>
-                <div>در پالم رنت ، رزرو خودرو رایگان است  و تا 15 دقیقه بررسی شده ، سپس پیامک تاییدیه با لینک پیش پرداخت ارسال میشود.</div>
+                <div>{t('rulesDescription')}</div>
             </div>
         </div>
     )

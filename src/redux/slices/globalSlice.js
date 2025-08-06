@@ -39,15 +39,15 @@ const initialState = {
   locations:[
     {
       id:1,
-      title:'در آفیس پالم رنت (رایگان)'
+      title:'location1'
     },
     {
       id:2,
-      title:'در محل شرکت  (رایگان)'
+      title:'location2'
     },
     {
       id:3,
-      title:'فرودگاه جدید استانبول  (رایگان)'
+      title:'location3'
     },
   ],
   deliveryLocation:{isDesired:false,location:null},

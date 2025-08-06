@@ -5,8 +5,10 @@ import CommonQuestionSection from "../components/CommonQuestionSection"
 import Image from "next/image"
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { useTranslation } from "react-i18next"
 
 export default function DocumentsPage(){
+    const { t, i18n } = useTranslation();
     useEffect(()=>{
                 NProgress.start()
                 const timeout = setTimeout(() => {
@@ -84,7 +86,7 @@ export default function DocumentsPage(){
                         <ul className="pr-4">
                             <li>ارائه گواهینامه رانندگی صادرشده از عمان</li>
                             <li>ارائه کپی کارت اقامت معتبر در عمان</li>
-                            <li>داشتن ویزای معتبر عمانی</li>
+                            <li>{t('home')}</li>
                             <li>ارائه پاسپورت معتبر عمانی</li>
                             <li>پرداخت ودیعه به عنوان ضمانت (Deposit)</li>
                         </ul>
@@ -98,7 +100,7 @@ export default function DocumentsPage(){
             <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
                 <div className="py-4">
                     <div className="text-center py-4 md:text-2xl sm:text-xl text-lg font-bold text-[#3B82F6]">
-                        مدارک مورد نیاز
+                        {t('documents')}
                     </div>
                     <div>
                         <CommonQuestionSection rules={rules} setRules={setRules}/>
@@ -112,31 +114,32 @@ export default function DocumentsPage(){
 }
 
 export function DocumentImages(){
+    const { t, i18n } = useTranslation();
     return(
         <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
             <div className="flex flex-col w-full items-center justify-center gap-2">
                 <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
-                    <div>تصویر نمونه برای شناسایی خودروهای بدون نیاز به دپوزیت</div>
+                    <div>{t('documentItem1')}</div>
                     <Image src={'/images/check_editor_1726312961_deposit.webp'} width={1000} height={1000} alt=""/>
                 </div>
                 <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
-                    <div>نمونه عکس از گواهینامه بین‌المللی </div>
+                    <div>{t('documentItem2')}</div>
                     <Image src={'/images/check_editor_1726313214_نمونه عکس از گواهینامه بین_المللی.webp'} width={500} height={1000} alt=""/>
                 </div>
                 <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
-                    <div>نمونه عکس از پاسپورت ایرانی</div>
+                    <div>{t('documentItem3')}</div>
                     <Image src={'/images/check_editor_1726314604_11 (2).webp'} width={500} height={1000} alt=""/>
                 </div>
                 <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
-                    <div>نمونه عکس از ویزا توریستی امارات </div>
+                    <div>{t('documentItem4')}</div>
                     <Image src={'/images/check_editor_1726313736_نمونه عکس از ویزا توریستی.webp'} width={500} height={1000} alt=""/>
                 </div>
                 <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
-                    <div>نمونه عکس از کارت اقامت امارات (آی دی کارت)</div>
+                    <div>{t('documentItem5')}</div>
                     <Image src={'/images/check_editor_1726313986_نمونه عکس از کارت اقامت امارات (آی دی کارت).webp'} width={500} height={1000} alt=""/>
                 </div>
                 <div className="relative p-4 border-[1px] border-[#0000001f] bg-white rounded-lg w-fit flex flex-col item-center justify-center font-bold lg:text-lg md:text-base sm:text-md text-sm text-center gap-2">
-                    <div>نمونه عکس از گواهینامه رانندگی امارات</div>
+                    <div>{t('documentItem6')}</div>
                     <Image src={'/images/check_editor_1726314441_نمونه عکس از گواهینامه رانندگی امارات.webp'} width={500} height={1000} alt=""/>
                 </div>
             </div>

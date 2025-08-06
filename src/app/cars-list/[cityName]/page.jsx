@@ -50,8 +50,8 @@ export default function BranchPage(){
         <>
         <div className="w-[85vw] max-w-[1336px] block m-auto">
             <div className="text-center">
-                <h2 className="inline-block text-2xl font-bold my-8">
-                    لیست خودرو های {t(params.cityName)}
+                <h2 className="flex justify-center ltr:flex-row-reverse text-2xl font-bold my-8 gap-2">
+                    {t('carListTitle')} <span>{t(params.cityName)}</span>
                 </h2>
             </div>
             <div className="flex flex-wrap gap-4 mb-8">

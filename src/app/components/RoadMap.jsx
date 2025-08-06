@@ -2,29 +2,30 @@
 
 import { useState } from "react";
 import { IconCircledTick, IconRoadMap1, IconRoadMap2, IconRoadMap3 } from "./Icons";
+import { useTranslation } from "react-i18next";
 
 export default function RoadMap({step}){
-    console.log(step)
+    const { t, i18n } = useTranslation();
     const [roadMapList,setRoadMapList] = useState([
         {
-            title:'انتخاب تاریخ و ساعت',
+            title:'roadMap1',
             icon:<IconCircledTick/>
         },
         {
-            title:'انتخاب خودرو',
+            title:'roadMap2',
             icon:<IconRoadMap1/>
         },
         {
-            title:'ثبت اطلاعات',
+            title:'roadMap3',
             icon:<IconRoadMap2/>
         },
         {
-            title:'صدور واچر',
+            title:'roadMap4',
             icon:<IconRoadMap3/>
         },
     ])
     return(
-        <div className="sm:flex hidden w-full my-12 justify-center">
+        <div dir="rtl" className="sm:flex hidden w-full my-12 justify-center">
             {roadMapList.map((item,index)=>{
                 return(
                     <div key={index} className="flex flex-col items-center justify-center gap-0.5 xl:w-[280px] lg:w-[260px] w-[240px]">
@@ -42,7 +43,7 @@ export default function RoadMap({step}){
                             }
                         </div>
                         <span className={`text-xs ${index == step ? 'text-[#3b82f6] font-bold' : (index > step ? 'text-[#BEC6CC]' : 'text-black')}`}>
-                            {item.title}
+                            {t(item.title)}
                         </span>
                     </div>
                 )

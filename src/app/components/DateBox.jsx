@@ -4,6 +4,7 @@ import SearchBar, { DatePickerBox, getDiffInShamsiDays } from "./SearchBar";
 import { useEffect, useState } from "react";
 import { changeIsDateSelectOpen } from "@/redux/slices/globalSlice";
 import useDisableScroll from "../hooks/useDisableScroll";
+import { useTranslation } from "react-i18next";
 
 export function DateBox({isSticky=false}){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
@@ -12,6 +13,7 @@ export function DateBox({isSticky=false}){
     const deliveryTime = useSelector((state)=> state.global.deliveryTime)
     const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
     const [carDayCount,setCarDayCount] = useState()
+    const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     useEffect(()=>{
         setCarDayCount(getDiffInShamsiDays(carDates[0],carDates[1]))
@@ -25,7 +27,7 @@ export function DateBox({isSticky=false}){
                 <div className="flex items-center w-full gap-2 lg:justify-start justify-center">
                     <span className="flex items-center gap-2">
                         <IconCalender className={'sm:flex hidden'}/>
-                        تاریخ  و ساعت تحویل:
+                        {t('deliveryTD')}
                     </span>
                     <span className="flex gap-2">
                         <div>
@@ -40,7 +42,7 @@ export function DateBox({isSticky=false}){
                 <div className="flex items-center w-full gap-2 lg:justify-start justify-center">
                     <span className="flex items-center gap-2">
                         <IconCalender className={'sm:flex hidden'}/>
-                        تاریخ  و ساعت عودت:
+                        {t('returnTD')}
                     </span>
                     <span className="flex gap-2">
                         <div>
@@ -55,16 +57,16 @@ export function DateBox({isSticky=false}){
                 <div className="items-center w-full gap-2 xl:flex hidden">
                     <span className="flex items-center gap-2">
                         <IconVideoTime/>
-                        مدت زمان اجاره :
+                        {t('rentDurationB')}
                     </span>
                     <span>
-                        {carDayCount} روز فراموش نشدنی در دبی 
+                        {carDayCount} {t('rentDurationA')} {t('dubai')} 
                     </span>
                 </div>
                 <button onClick={openDateSelect} className="text-[#3B82F6] flex items-center text-nowrap gap-2 cursor-pointer">
                     <IconEdit/>
                     <span className="flex lg:flex md:hidden">
-                        تغییر جستجو
+                        {t('changeSearch')}
                     </span>
                 </button>
             </div>

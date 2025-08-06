@@ -179,7 +179,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                     </div>
                     <DropDown isActive={dropMenuToggle[2]}>
                         <DropDownItem text={t('aboutUs')} href={'/about-us'}/>
-                        <DropDownItem text={t('aboutUs')} href={'/contact-us'}/>
+                        <DropDownItem text={t('contactUs')} href={'/contact-us'}/>
                     </DropDown>
                 </li>
                 <li className="relative group lg:p-1 lg:px-2 2xl:px-3 underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">

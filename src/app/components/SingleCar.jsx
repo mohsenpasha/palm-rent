@@ -186,7 +186,7 @@ export function SingleCarPriceList({priceList}){
             <div className="flex flex-col gap-2 my-4 border-t-[1px] pt-2 border-[#0000001f]">
                 {finalDayPrice ?
                 <div className="flex justify-between items-center">
-                    <span>{t('BAPrice')}{rentDay} {t('day')}</span>
+                    <span>{t('BSPrice')} {rentDay} {t('day')}</span>
                     <div className="lg:text-lg text-base flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
                             {finalDayPrice.previousPrice}
