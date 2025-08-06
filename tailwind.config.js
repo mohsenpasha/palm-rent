@@ -26,6 +26,17 @@ export default {
             opacity: '1',
            },
         },
+        opacity2: {
+          "0%": { 
+            opacity: '0',
+           },
+          "99%": {
+            opacity: '0',
+           },
+           "100%": {
+            opacity: '1',
+           },
+        },
         fadeIn2: {
           "0%": { 
             opacity: '0',
@@ -52,6 +63,7 @@ export default {
       },
       animation: {
         opacity: "opacity 0.2s ease-out forwards",
+        opacity2: "opacity2 0.15s ease-out forwards",
         fadeIn2: "fadeIn2 0.2s ease-out forwards",
         fadeIn: "fadeIn 0.2s ease-out forwards",
         skeleton : "skeleton 1.5s infinite linear"

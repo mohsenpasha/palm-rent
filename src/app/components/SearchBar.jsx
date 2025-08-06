@@ -166,7 +166,7 @@ export function DatePickerBox({ref,isPopup=false}){
         dispatch(changeIsDateSelectOpen(false))
     }
   return(
-    <div ref={ref} className={`bg-white w-[100vw] h-[100vh] md:w-auto ${!isPopup ? 'md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto lg:max-w-[524px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border-[1px] border-[#0000001f] rounded-lg`}>
+    <div ref={ref} className={`bg-white w-[100vw] h-[100vh] md:w-auto ${!isPopup ? 'animate-opacity2 md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto xl:min-w-[642px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border-[1px] border-[#0000001f] rounded-lg`}>
       <div className="p-2 px-4 flex justify-end border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
         {/* <button onClick={goToToday} className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
           <span>برو امروز</span>
