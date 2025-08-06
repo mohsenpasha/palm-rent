@@ -15,6 +15,7 @@ import DescriptionPopup from "../components/DescriptionPopup";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect, useRef, useState } from "react";
+import Footer from "../components/Footer";
 
 function pad(num, size) {
     num = num.toString();
@@ -99,6 +100,7 @@ export default function SearchResultPage(){
             {descriptionPopup.description && 
                 <DescriptionPopup/>
             }
+            <Footer/>
         </>
     )
 }
