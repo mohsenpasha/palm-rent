@@ -52,15 +52,14 @@ export default function SearchResultPage(){
     },[])
     return(
         <>
-            <Header/>
-            <div className="absolute left-4 top-24 text-red-600 md:flex hidden">
-                {timerValue}
-            </div>
+            <Header shadowLess/>
+                {roadMapStep < 3 && 
+                    <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
+                }
             <div className="w-[90vw] max-w-[1336px] m-auto">
                 {roadMapStep < 3 && 
                     <>
                         <RoadMap step={roadMapStep}/>
-                        <DateBox isSticky={roadMapStep == 2 ? true : false}/>
                     </>
                 }
                 {
