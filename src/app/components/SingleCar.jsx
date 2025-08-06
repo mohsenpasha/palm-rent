@@ -124,27 +124,27 @@ export function SingleCarGallery({children,noBtn}){
 export function SingleCarOptions({data,bigFont=false}){
     const { t, i18n } = useTranslation();
     return(
-        <div className={`flex w-full text-[#787878] border-t-[1px] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-2xl lg:text-xl md:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs'}`}>
+        <div className={`flex w-full text-[#787878] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-lg sm:text-base text-xs filter-[brightness(0.5)]' :'text-xs border-t-[1px]'}`}>
             <div className="w-full flex items-center gap-1 justify-center">
-                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGas/>
                 </span>
                 {t(data.gasType)}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
-                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGearBox/>
                 </span>
                 {t(data.gearbox)}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
-                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconBag/>
                 </span>
                 {data.suitcase} {t('suitCase')}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
-                <span className={bigFont ? 'xl:size-7 lg:size-6 md:size-5 size-4' :`size-4`}>
+                <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconPerson/>
                 </span>
                 {data.passengers} {t('people')}
