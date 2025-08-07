@@ -249,30 +249,33 @@ export function ExtraServices(){
     )
 }
 
-export function FineDeposit({borderLess}){
+export function FineDeposit({borderLess=false}){
     const { t, i18n } = useTranslation();
     const dispatch = useDispatch()
     function openDescriptionPopup(){
         dispatch(changeDescriptionPopup({title:'fineTitle',description:'test'}))
     }
     return(
-        <div className={`${!borderLess ? 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-1 rounded-2xl' : 'bg-white'} my-4 flex-1`}>
-            <div className="flex flex-col gap-4">
+        <div className={`${!borderLess ? 'bg-white p-4 my-4 rounded-2xl' : ''}`}>
 
-                <div className="md:text-sm sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
-                    <div className="flex gap-2 items-center">
-                        <span className="flex size-9 p-1 text-[#7C7C7C]">
-                            <IconSort1/>
-                        </span>
-                        <div>{t('fineTitle')}</div>
-                        <div onClick={openDescriptionPopup}>
-                            <IconInfo/>
+            <div className={`${!borderLess ? 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] rounded-2xl' : 'bg-white p-1'} flex-1`}>
+                <div className="flex flex-col gap-4">
+
+                    <div className="md:text-sm sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
+                        <div className="flex gap-2 items-center">
+                            <span className="flex size-9 p-1 text-[#7C7C7C]">
+                                <IconSort1/>
+                            </span>
+                            <div>{t('fineTitle')}</div>
+                            <div onClick={openDescriptionPopup}>
+                                <IconInfo/>
+                            </div>
                         </div>
-                    </div>
-                    <div className="text-[#545454]">
-                        490 درهم
-                    </div>
-                </div>    
+                        <div className="text-[#545454]">
+                            490 درهم
+                        </div>
+                    </div>    
+                </div>
             </div>
             
         </div>
