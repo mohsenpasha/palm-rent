@@ -73,11 +73,11 @@ export default function LocationPopup({isReturn}){
                         return(
                             <label key={index} className="flex gap-2 items-center cursor-pointer p-2">
                                 <input checked={isReturn ? !returnLocation.isDesired && returnLocation.location == item.id : !deliveryLocation.isDesired && deliveryLocation.location == item.id} onChange={(event)=>inputChangeHandler(event.target.value)} type="radio" value={item.id} name="location" className="peer hidden" />
-                                <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                                    <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
+                                <div className="md:size-[28px] sm:size-[26px] size-[24px] text-[#3B82F6] rounded-sm overflow-hidden relative hidden peer-checked:flex">
+                                    <div className="absolute z-1 w-full h-full border-[6px] border-[#3B82F6] top-0 right-0"></div>
                                     <IconTick2 className={'absolute z-10'}/>
                                 </div>
-                                <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
+                                <div className="md:size-[28px] sm:size-[26px] size-[24px] border-2 border-[#3B82F6] rounded-sm overflow-hidden relative peer-checked:hidden"
                                 >
                                 </div>
                                 <div>{t(item.title)}</div>
@@ -86,11 +86,11 @@ export default function LocationPopup({isReturn}){
                     })}
                     <label className="flex gap-2 items-center cursor-pointer p-2">
                         <input checked={isReturn ? returnLocation.isDesired : deliveryLocation.isDesired} onChange={(event)=>inputChangeHandler(event.target.value)} type="radio" name="location" value={'desired'} className="peer hidden" />
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] text-[#3B82F6] rounded-lg overflow-hidden relative hidden peer-checked:flex">
-                            <div className="absolute z-1 w-full h-full md:border-[10px] sm:border-[8px] border-[6px] border-[#3B82F6] top-0 right-0"></div>
+                        <div className="md:size-[28px] sm:size-[26px] size-[24px] text-[#3B82F6] rounded-sm overflow-hidden relative hidden peer-checked:flex">
+                            <div className="absolute z-1 w-full h-full border-[6px] border-[#3B82F6] top-0 right-0"></div>
                             <IconTick2 className={'absolute z-10'}/>
                         </div>
-                        <div className="md:size-[40px] sm:size-[36px] size-[30px] border-2 border-[#3B82F6] rounded-lg overflow-hidden relative peer-checked:hidden"
+                        <div className="md:size-[28px] sm:size-[26px] size-[24px] border-2 border-[#3B82F6] rounded-sm overflow-hidden relative peer-checked:hidden"
                         >
                         </div>
                         <div>{t('optionalLocation')}</div>
