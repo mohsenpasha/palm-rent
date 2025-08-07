@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IconCalender, IconEdit, IconVideoTime } from "./Icons";
+import { IconCalender, IconClock, IconEdit, IconVideoTime } from "./Icons";
 import SearchBar, { DatePickerBox, getDiffInShamsiDays } from "./SearchBar";
 import { useEffect, useState } from "react";
 import { changeIsDateSelectOpen } from "@/redux/slices/globalSlice";
@@ -70,8 +70,11 @@ export function DateBox({isSticky=false,timerValue}){
                             {t('changeSearch')}
                         </span>
                     </button>
-                    <div className="text-red-600 md:flex hidden rtl:mr-8 ltr:ml-8">
+                    <div className="text-red-600 items-center gap-1 md:flex hidden rtl:mr-8 ltr:ml-8">
                         {timerValue}
+                        <span className="size-6 flex items-center">
+                            <IconClock/>
+                        </span>
                     </div>
                     </div>
                 </div>
