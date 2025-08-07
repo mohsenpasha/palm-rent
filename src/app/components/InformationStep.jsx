@@ -416,7 +416,12 @@ export function PersonalInfoBox(){
                 </button>
             </div>
             <div className="flex flex-col gap-4">
-                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder={t('nameLastname')} />
+                <label className="border-[1px] border-[#B0B0B0B2] rounded-[5px] relative">
+                    <input className="p-3 outline-0 w-full peer" type="text" placeholder=" " />
+                    <span className="absolute -translate-y-1/2 right-2 transition-all px-2 text-[#8A8A8A] cursor-pointer bg-white top-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:!scale-100 peer-focus:top-0 scale-75 peer-focus:!scale-75">
+                        {t('nameLastname')}
+                    </span>
+                </label>
                 {/* <div className="border-[1px] flex flex-row-reverse items-center border-[#B0B0B0] rounded-xl"> */}
                     <PhoneInput
                         country={'ir'}
@@ -435,7 +440,12 @@ export function PersonalInfoBox(){
                     <span className="inline-block h-8 w-[1px] bg-[#919191]"></span>
                     <input className="text-left w-full outline-0 p-3" placeholder="091*********" type="text" /> */}
                 {/* </div> */}
-                <input className="border-[1px] border-[#B0B0B0B2] rounded-xl p-3 outline-0" type="text" placeholder={t('email') + "..."} />
+                <label className="border-[1px] border-[#B0B0B0B2] rounded-[5px] relative">
+                    <input className="p-3 outline-0 w-full peer" type="text" placeholder=" " />
+                    <span className="absolute -translate-y-1/2 right-2 transition-all px-2 text-[#8A8A8A] cursor-pointer bg-white top-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:!scale-100 peer-focus:top-0 scale-75 peer-focus:!scale-75">
+                        {t('email')}
+                    </span>
+                </label>
             </div>
             <div className="flex justify-center py-2 gap-1 sm:text-xs text-[10px]">
                 {t('rulesB')} <Link className="text-[#3B82F6]" href={'#'}>{t('rules2')}</Link> {t('rulesA')}

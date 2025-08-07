@@ -180,10 +180,18 @@ rmdp-week{
   width: 100%;
   display: flex;
   flex-direction: row-reverse;
+}
+.react-tel-input .country-list:dir(rtl) {
+   left: 0;
+ }
+ .react-tel-input .country-list:dir(ltr) {
+   right: 0;
  }
  .react-tel-input .form-control {
   width: 100%!important;
+  height: 40px!important;
   padding-left: 60px!important;
+
  }
  .react-tel-input .selected-flag{
   width: 50px!important;
