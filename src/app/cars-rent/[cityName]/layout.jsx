@@ -10,9 +10,10 @@ import Header from "@/app/components/Header";
 //   },
 // };
 
-export default function BranchLayout({ children,params }) {
+export default async function BranchLayout({ children,params }) {
+  const { cityName } = await params;
   const cityList = ["dubai", "istanbul", "kayseri", "kish", "ezmir", "georgia", "oman", "samsun", "antalya", "ankara"]
-  if(!cityList.includes(params.cityName)) return
+  if(!cityList.includes(cityName)) return
   return (
     <>
         <Header/>
