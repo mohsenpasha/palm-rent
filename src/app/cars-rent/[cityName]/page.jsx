@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import BranchDescriotion from "@/app/components/BranchDescription";
+import CarBrandSection from "@/app/components/CarBrandSection";
 
 
 export default function BranchPage(){
@@ -58,6 +59,7 @@ export default function BranchPage(){
             </div>
             <BranchDescriotion/>
             <CarCategorySection/>
+            <CarBrandSection/>
             <SearchBox/>
             <div className="flex flex-wrap gap-4">
                 {/* <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full"> */}
