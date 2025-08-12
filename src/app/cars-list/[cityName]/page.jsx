@@ -48,7 +48,7 @@ export default function BranchPage(){
       ])
     return(
         <>
-        <div className="w-[85vw] max-w-[1336px] block m-auto">
+        <div className="xl:w-[85vw] w-[95vw] max-w-[1336px] block m-auto">
             <div className="text-center">
                 <h2 className="flex justify-center ltr:flex-row-reverse text-xl font-bold my-8 gap-2">
                     {t('carListTitle')} <span>{t(params.cityName)}</span>

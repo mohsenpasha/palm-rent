@@ -7,7 +7,7 @@ export function RecentBlogPosts(){
     const { t, i18n } = useTranslation();
     return(
         <section className='my-8 bg-[#F6F6F6] py-8 pb-24'>
-            <div className='xl:w-[85vw] w-[95vw]  max-w-[1336px] m-auto'>
+            <div className='xl:w-[85vw] w-[95vw] max-w-[1336px] m-auto'>
                 <div className='flex w-full mb-4 justify-between md:pb-6'>
                     <div className="md:text-right text-center md:text-xl sm:text-lg text-base font-bold text-[#3B82F6]">
                         {t('latestBlogs')}
