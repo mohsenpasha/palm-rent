@@ -18,9 +18,7 @@ export default function DescriptionSection(){
     const scrollHandler = () => {
         const elmTop = sectionRef.current.getBoundingClientRect().top
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        console.log(sectionRef.current.getBoundingClientRect().bottom)
         if(elmTop < window.innerHeight / 2 && elmTop > 0){
-            console.log(elmTop - elmTop)
             setCarTransition(elmTop)
         }
     };
