@@ -13,49 +13,37 @@ import '../i18n/index'
 export default function Header({shadowLess=false}){
     const { t, i18n } = useTranslation();
     const [menuToggle,setMenuToggle] = useState(false)
-    const touchStart = useRef(0)
     const dispatch = useDispatch()
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
     const isTranslateOpen = useSelector((state)=> state.global.isTranslatePopupOpen)
     function setIsHeaderClose(st){
         dispatch(changeIsHeaderClose(st))
     }
-    function touchStartHandler(event){
-        console.log(event.touches[0].clientY)
-        touchStart.current = event.touches[0].clientY
-    }
-    function touchMoveHandler(event){
-        console.log(touchStart.current,event.touches[0].clientY)
-        if(touchStart.current < event.touches[0].clientY){
+
+    useEffect(() => {
+        let lastScrollTop = 0;
+
+        const handleScroll = () => {
+        const currentScroll = window.scrollY;
+        if(currentScroll < 100){
             setIsHeaderClose(false)
         }
         else{
-            setIsHeaderClose(true)
+            if (currentScroll > lastScrollTop) {
+                setIsHeaderClose(true)
+            } else if (currentScroll < lastScrollTop) {
+                setIsHeaderClose(false)
+            }
         }
-    }
-    function touchEndHandler(){
-        // setTouchStart(0)
-    }
-    useEffect(()=>{
-        window.addEventListener('wheel',(event)=>scrollHandler(event))
-        window.addEventListener('touchstart', touchStartHandler)
-        window.addEventListener('touchmove', touchMoveHandler)
-        window.addEventListener('touchend', touchEndHandler)
-        return () => {
-            window.removeEventListener('wheel',(event)=>scrollHandler(event))
-            window.removeEventListener('touchstart', touchStartHandler)
-            window.removeEventListener('touchmove', touchMoveHandler)
-            window.removeEventListener('touchend', touchEndHandler)
-        }
-    },[])
-    function scrollHandler(event){
-        if(event.wheelDelta < 0 && event.pageY > 350){
-            setIsHeaderClose(true)
-        }
-        else{
-            setIsHeaderClose(false)
-        }
-    }
+
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     function openTranslatePopup(){
         dispatch(changeIsTranslatePopupOpen(true))
     }
