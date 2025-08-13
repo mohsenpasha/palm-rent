@@ -24,53 +24,69 @@ export function DateBox({isSticky=false,timerValue}){
     return(
         <>
             <div className={`${isSticky ? 'sticky mb-10' : ''} ${isHeaderClose ? 'top-0' : 'top-16'} transition-all z-30 w-full p-4 py-4 bg-white text-xs items-center justify-center gap-2 md:gap-0`}>
-                <div className="lg:w-[90vw] md:w-[90vw] max-w-[1200px] m-auto flex md:flex-row items-center flex-col">
-                    <div className="flex items-center w-full gap-2 lg:justify-start justify-center">
-                        <span className="flex items-center gap-2">
-                            <IconCalender className={'sm:flex hidden'}/>
-                            {t('deliveryTD')}
-                        </span>
-                        <span className="flex gap-2">
-                            <div>
-                                {carDates[0]}
+                <div className="lg:w-[90vw] md:w-[90vw] max-w-[1200px] m-auto flex items-center">
+                    <div className="w-full flex md:flex-row flex-col items-center sm:gap-0 gap-2 md:justify-between justify-center">
+                        <div className="flex xl:w-2/3 w-full gap-4">
+                            <div className="flex items-center lg:w-full w-fit gap-2">
+                                <span className="flex items-center gap-2">
+                                    <IconCalender/>
+                                    <span className="xl:block hidden">
+                                        {t('deliveryTD')}
+                                    </span>
+                                    <span className="xl:hidden block">
+                                        {t('from')}
+                                    </span>
+                                </span>
+                                <span className="flex gap-2">
+                                    <div>
+                                        {carDates[0]}
+                                    </div>
+                                    <div>
+                                        {deliveryTime}
+                                    </div>
+                                    {/* 3 مرداد ساعت 15:30 */}
+                                </span>
                             </div>
-                            <div>
-                                {deliveryTime}
+                            <div className="flex items-center lg:w-full w-fit gap-2">
+                                <span className="flex items-center gap-2">
+                                    <IconCalender className={'sm:flex hidden'}/>
+                                    <span className="xl:block hidden">
+                                        {t('returnTD')}
+                                    </span>
+                                    <span className="xl:hidden block">
+                                        {t('to')}
+                                    </span>
+                                </span>
+                                <span className="flex gap-2">
+                                    <div>
+                                        {carDates[1]}
+                                    </div>
+                                    <div>
+                                        {returnTime}
+                                    </div>
+                                    {/* 3 مرداد ساعت 15:30 */}
+                                </span>
                             </div>
-                            {/* 3 مرداد ساعت 15:30 */}
-                        </span>
+                        </div>
+
+                        <div className="items-center xl:w-1/3 w-full gap-2 flex">
+                            <span className="flex items-center gap-2">
+                                <IconVideoTime/>
+                                {t('rentDurationB')}
+                            </span>
+                            <span>
+                                {carDayCount} {t('rentDurationA')} {t('dubai')} 
+                            </span>
+                        </div>
                     </div>
-                    <div className="flex items-center w-full gap-2 lg:justify-start justify-center">
-                        <span className="flex items-center gap-2">
-                            <IconCalender className={'sm:flex hidden'}/>
-                            {t('returnTD')}
-                        </span>
-                        <span className="flex gap-2">
-                            <div>
-                                {carDates[1]}
-                            </div>
-                            <div>
-                                {returnTime}
-                            </div>
-                            {/* 3 مرداد ساعت 15:30 */}
-                        </span>
-                    </div>
-                    <div className="items-center w-full gap-2 xl:flex hidden">
-                        <span className="flex items-center gap-2">
-                            <IconVideoTime/>
-                            {t('rentDurationB')}
-                        </span>
-                        <span>
-                            {carDayCount} {t('rentDurationA')} {t('dubai')} 
-                        </span>
-                    </div>
-                    <button onClick={openDateSelect} className="text-[#3B82F6] flex items-center text-nowrap gap-2 cursor-pointer">
+
+                    <button onClick={openDateSelect} className="sm:text-[#3B82F6] sm:bg-transparent bg-[#3B82F6] p-1 rounded-lg text-white flex items-center text-nowrap gap-2 cursor-pointer size-8">
                         <IconEdit/>
-                        <span className="flex lg:flex md:hidden">
+                        <span className="sm:flex hidden">
                             {t('changeSearch')}
                         </span>
                     </button>
-                    <div className="text-red-600 items-center gap-1 md:flex hidden rtl:mr-8 ltr:ml-8">
+                    <div className="text-red-600 items-center gap-1 lg:flex hidden rtl:mr-8 ltr:ml-8">
                         {timerValue}
                         <span className="size-6 flex items-center">
                             <IconClock/>
