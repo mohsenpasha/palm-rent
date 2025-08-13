@@ -14,17 +14,37 @@ import WhySection from "./components/WhySection";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { ApplicationSection } from "./components/ApplicationSection";
+import { useDispatch } from "react-redux";
+import { changeBranches, changeHomeBlogs, changeHomeComments } from "@/redux/slices/globalSlice";
+import { useTranslation } from "react-i18next";
 // import '../i18n/index'
 
 NProgress.configure({ showSpinner: false })
 export default function Home() {
+  const dispatch = useDispatch()
+  const { t, i18n } = useTranslation();
+  const [data,setData] = useState(null)
       useEffect(()=>{
         NProgress.start()
         const timeout = setTimeout(() => {
           NProgress.done()
         }, 300)
+
         return () => clearTimeout(timeout)
       },[])
+      useEffect(()=>{
+        fetch("https://palmrentcar.com/api/home/" + i18n.language)
+        .then((res) => res.json())
+        .then((json) => setData(json.data))
+        .catch((err) => console.error(err));
+        console.log(i18n.language)
+      },[i18n.language])
+      useEffect(()=>{
+        if(!data) return
+        dispatch(changeBranches(data.branches))
+        dispatch(changeHomeComments(data.comments))
+        dispatch(changeHomeBlogs(data.blogs))
+      },[data])
       const [rules,setRules] = useState([
           {
               q:'قیمت بنزین در دبی چقدر است؟',
@@ -39,11 +59,12 @@ export default function Home() {
               a:'به طور معمول، در فرودگاه ممکن است یک سیم‌کارت رایگان با ۲ گیگابایت اینترنت به شما هدیه داده شود. اما اگر این امکان وجود ندارد، می‌توانید از غرفه‌های شرکت اتصالات که در تمام نقاط دبی فعالیت دارند، سیم‌کارت خود را تهیه کنید. برای یک بسته اینترنتی ۷ روزه، هزینه تقریبی میان ۷۰ الی ۱۰۰ درهم است. حتماً توصیه می‌شود که سیم‌کارت را دریافت کنید، زیرا برای استفاده از سرویس‌هایی مانند گوگل‌مپ و یافتن مسیرها، اتصال به اینترنت ضروری است.'
           },
       ])
+      // if(!data) return
+      // console.log(data.branches)
   return (
     <>
       <Header />
       <LandingFirstView/>
-      {/* <CarCategorySection/> */}
       <BranchSection/>
       <WhySection/>
       <ApplicationSection/>

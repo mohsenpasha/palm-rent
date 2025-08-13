@@ -24,7 +24,8 @@ export default function SearchBar({isPopup=false}){
     const params = useParams()
     const carDates = useSelector((state) => state.global.carDates)
     const selectedCity = useSelector((state) => state.global.selectedCity)
-    const cities = useSelector((state) => state.global.cities)
+    // const cities = useSelector((state) => state.global.cities)
+    const branches = useSelector((state) => state.global.branches)
     const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
     const deliveryTime = useSelector((state) => state.global.deliveryTime)
     const returnTime = useSelector((state) => state.global.returnTime)
@@ -47,7 +48,7 @@ export default function SearchBar({isPopup=false}){
         console.log('open')
         dispatch(changeIsDateSelectOpen(true))
     }
-    
+    const lang = i18n.language
     return(
         <>
             <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-40 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
@@ -80,12 +81,12 @@ export default function SearchBar({isPopup=false}){
                             {params.cityName ?
                                 t(params.cityName)
                             :
-                                t(selectedCity) || t('choose')
+                                selectedCity ? selectedCity.title : t('choose')
                             }
                         </div>
                         {cityToggle &&
                             <CityDropDown>
-                              {cities.map((item,index)=>{
+                              {branches.map((item,index)=>{
                                 return(
                                   <SingleCityItem closeDropDown={()=>setCityToggle(false)} key={index} value={item}/>
                                 )
@@ -217,19 +218,22 @@ export function CityDropDown({children}){
 
 
 export function SingleCityItem({value,closeDropDown}){
-    const dispatch = useDispatch()
-    function changeCity(){
-      dispatch(changeSelectedCity(value))
-      closeDropDown()
-    }
-    const { t, i18n } = useTranslation();
+  
+  console.log(value)
+  const dispatch = useDispatch()
+  function changeCity(){
+    dispatch(changeSelectedCity(value))
+    closeDropDown()
+  }
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language
     return(
         <div onClick={changeCity} className="text-[#4b5259] text-nowrap px-3 transition-all hover:bg-[#f2f9ff] last-of-type:border-0 flex items-center cursor-pointer">
             <div className="flex border-b-[1px] border-[#0000001f] w-full gap-1 py-4">
                 <span className="size-6">
                     <IconLocation/>
                 </span>
-                {t(value)}
+                {value.title}
             </div>
         </div>
     )

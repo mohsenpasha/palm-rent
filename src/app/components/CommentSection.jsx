@@ -7,23 +7,36 @@ import { IconArrow, IconArrowHandle, IconComma, IconWSOSD } from './Icons';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 export default function CommentSection(){
+    const homeComments = useSelector((state)=>state.global.homeComments)
+    console.log(homeComments)
     const { t, i18n } = useTranslation();
+    if(homeComments){
+        if(homeComments.length == 0) return
+    }
     return(
         <section className='my-8 bg-[#F6F6F6] py-12 pb-14'>
             <div className='w-[85vw] max-w-[1336px] m-auto'>
                 <div className='rtl:md:text-right ltr:md:text-left text-center pb-6 md:text-xl sm:text-lg text-base font-bold text-[#3B82F6]'>
                     {t('commentSectionTitle')}
                 </div>
-                <CommentSlider/>
+                {!homeComments ? 
+                    <div>
+                        Loading
+                    </div>
+                :
+                    <CommentSlider/>
+                }
             </div>
         </section>
     )
 }
 
 export function CommentSlider() {
-const paginationRef = useRef(null);
-const [swiperInstance, setSwiperInstance] = useState(null);
+    const homeComments = useSelector((state)=>state.global.homeComments)
+    const paginationRef = useRef(null);
+    const [swiperInstance, setSwiperInstance] = useState(null);
     useEffect(() => {
         if (
         swiperInstance &&
@@ -66,11 +79,14 @@ const [swiperInstance, setSwiperInstance] = useState(null);
                 },
             }}
             >
-            <SwiperSlide>
-                <SliderSingleComment image={'/images/comment-p-3.png'} personName={'عباس احمدی'} personFrom={'مشتری استانبول'} 
-                comment={'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، '}/>
-            </SwiperSlide>
-            <SwiperSlide>
+        {homeComments.map((item,index)=>{
+            return(
+                <SwiperSlide key={index}>
+                    <SliderSingleComment image={'/images/comment-p-3.png'} personName={item.name} personFrom={''} comment={item.text}/>
+                </SwiperSlide>
+            )
+        })}
+            {/* <SwiperSlide>
                 <SliderSingleComment image={'/images/comment-p-2.png'} personName={'مطهره عزیزی'} personFrom={'مشتری کیش'} 
                 comment={'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، '}/>
             </SwiperSlide>
@@ -89,7 +105,7 @@ const [swiperInstance, setSwiperInstance] = useState(null);
             <SwiperSlide>
                 <SliderSingleComment image={'/images/comment-p-1.png'} personName={'زینب قادری'} personFrom={'مشتری دبی'} 
                 comment={'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، '}/>
-            </SwiperSlide>
+            </SwiperSlide> */}
         </Swiper>
         <div ref={paginationRef} className="swiper-pagination" />
         <div className="swiper-button-next hover:bg-[linear-gradient(#4554AF,#3B82F6)] group transition-all cursor-pointer custom-arrow absolute top-1/2 -left-2 z-10 -translate-y-1/2 -translate-x-full rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">

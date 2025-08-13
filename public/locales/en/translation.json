@@ -253,5 +253,6 @@
   "commonA10": "Individuals who rent a car from Palm Rent and, after paying the deposit and completing the reservation, cancel one day, the amount for canceling that day will be deducted from the paid amount.",
   "commonA11": "In Dubai, the transfer cost to various destinations, including the airport, hotel, or any other location, is 50 dirhams for each one-way trip and 50 dirhams for the return. However, in Sharjah, the cost for each round trip is 200 dirhams.",
   "commonA12": "Regarding car rental in Istanbul, the price is determined based on the type of rental car and whether it is daily or monthly.",
-  "rent":"Rent"
+  "rent":"Rent",
+  "readMore":"read More"
 }

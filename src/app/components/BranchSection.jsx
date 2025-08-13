@@ -7,21 +7,32 @@ import { IconArrow, IconArrowHandle, IconWSOSD } from './Icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 export default function BranchSection(){
     const { t, i18n } = useTranslation();
+    const branches = useSelector((state)=>state.global.branches)
     return(
         <section className='bg-[#F6F6F6] py-8'>
             <div className='w-[85vw] max-w-[1336px] m-auto'>
+                
             <div className='text-center pb-6 md:text-xl sm:text-lg text-base font-bold text-[#3B82F6]'>
                 {t('branches')}
             </div>
-                <Slider/>
+                {!branches ?
+                    <div>loading</div>
+                 :
+                    <Slider/>
+                }
             </div>
         </section>
     )
 }
 export function Slider() {
+    const branches = useSelector((state)=>state.global.branches)
     const { t, i18n } = useTranslation();
+    const lang = i18n.language
+    console.log(lang)
   return (
     <div dir='rtl' className='relative'>
         <Swiper
@@ -41,10 +52,14 @@ export function Slider() {
                 1280: { slidesPerView: 5 },
             }}
             >
-        <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/dubai'} image={'/images/dubai.webp'} title={t('dubai')}/>
-        </SwiperSlide>
-        <SwiperSlide>
+                {branches && branches.map((item,index)=>{
+                    return(
+                        <SwiperSlide>
+                            <SingleBranchCity link={'/cars-rent/dubai'} image={item.photo} title={item.title}/>
+                        </SwiperSlide>
+                    )
+                })}
+        {/* <SwiperSlide>
             <SingleBranchCity link={'/cars-rent/antalya'} image={'/images/antalya.webp'} title={t('antalya')}/>
         </SwiperSlide>
         <SwiperSlide>
@@ -70,7 +85,7 @@ export function Slider() {
         </SwiperSlide>
         <SwiperSlide>
             <SingleBranchCity link={'/cars-rent/ankara'} image={'/images/ankara.webp'} title={t('ankara')}/>
-        </SwiperSlide>
+        </SwiperSlide> */}
         </Swiper>
         {/* <div className="swiper-button-next cursor-pointer custom-arrow absolute top-1/2 left-0 z-10 -translate-y-1/2 lg:-translate-x-1/2 rounded-full bg-white w-8 h-8 md:flex hidden items-center justify-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <IconArrow className={'rotate-90'}/>
@@ -81,6 +96,26 @@ export function Slider() {
     </div>
   );
 }
+// export function BranchSkelton(){
+//     return(
+//         <div className='flex'>
+//             <div className='border-[1px] group border-[#0000001f] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
+//                 <Image className='w-full rounded-lg object-cover h-[140px]' src={image} width={218} height={181} alt=''></Image>
+//                 <div className='absolute left-2 top-2'>
+//                     <IconWSOSD/>
+//                     <span className='absolute size-10 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] group-hover:text-white top-2 left-2 transition-all'>
+//                         <span className='flex size-4'>
+//                             <IconArrowHandle/>
+//                         </span>
+//                     </span>
+//                 </div>
+//                 <div className='border-[1px] border-[#0000001f] rounded-lg mt-2 p-3'>
+//                     {title}
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
 
 export function SingleBranchCity({link,image,title}){
     return(
