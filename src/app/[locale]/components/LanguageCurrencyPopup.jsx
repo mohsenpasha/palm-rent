@@ -4,42 +4,33 @@ import { IconClose, IconTick2 } from "./Icons";
 import { changeIsTranslatePopupOpen } from "@/redux/slices/globalSlice";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-// import { usePathname } from "next/navigation";
 import { useRouter, usePathname } from 'next/navigation';
-
-// import { usePathname, useRouter } from "@/i18n/navigation";
-// import {useRouter, usePathname} from '@/i18n/navigation';
-
-// import { useRouter, usePathname } from "@/i18n/navigation";
-export default function LanguageCurrencyPopup(){
-    // const router = useRouter();
-    // const pathname = usePathname();
-    const router = useRouter();
-    // const pathname = usePathname();
+export default function LanguageCurrencyPopup({params}){
+    const locales = ['fa','en','ar','tr'];
     const pathname = usePathname();
+    const router = useRouter();
     const t = useTranslations();
     const [currentLang,setCurrentLang] = useState('fa')
+    useEffect(()=>{
+        const currentLocale = locales.find(l => pathname.startsWith(`/${l}`)) || 'fa';
+        setCurrentLang(currentLocale)
+        console.log(currentLocale)
+    },[])
     const dispatch = useDispatch()
-    // const [locale, setLocale] = useState('fa');
     function closePopup(){
         dispatch(changeIsTranslatePopupOpen(false))
     }
     function changeLanguageHandler(lang) {
         setCurrentLang(lang);
-
-        // حذف prefix زبان قبلی
         const locales = ['fa', 'en', 'ar', 'tr'];
         let newPath = pathname;
-
-        // اگر مسیر با هر کدوم از زبان‌ها شروع می‌شه، حذفش کن
         for (const l of locales) {
             if (newPath.startsWith(`/${l}/`) || newPath === `/${l}`) {
                 newPath = newPath.replace(`/${l}`, '') || '/';
                 break;
             }
         }
-
-        // اضافه کردن زبان جدید
+        
         router.push(`/${lang}${newPath}`, undefined, { shallow: true });
     }
 
