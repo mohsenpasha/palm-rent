@@ -1,0 +1,60 @@
+'use client'
+import Image from "next/image"
+import { FirstAboutSection } from "../about-us/page"
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useEffect } from "react"
+import { useTranslations } from "next-intl"
+
+export default function ContactUsPage(){
+    const t = useTranslations();
+    useEffect(()=>{
+                NProgress.start()
+                const timeout = setTimeout(() => {
+                NProgress.done()
+                }, 300)
+                return () => clearTimeout(timeout)
+            },[])
+    return(
+        <>
+            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
+                <div className="py-4">
+                    <div className="text-center py-4 md:text-xl sm:text-lg text-base font-bold text-[#3B82F6]">
+                        {t('contactUs')}
+                    </div>
+                    <ContactUsForm/>
+                    <FirstAboutSection/>
+                </div>
+            </div>
+        </>
+
+    )
+}
+export function ContactUsForm(){
+    const t = useTranslations();
+    return(
+        <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
+            <div className="flex justify-between items-center gap-8 my-4">
+                <div className="lg:w-6/12 w-full flex flex-col gap-4">
+                    <div className="border-[1px] flex border-[#B0B0B0] bg-white rounded-lg w-full">
+                        <input className="w-full outline-0 p-3" placeholder={t('yourName')} type="text" />
+                    </div>
+                    <div className="border-[1px] flex border-[#B0B0B0] bg-white rounded-lg w-full">
+                        <input className="w-full outline-0 p-3" placeholder={t('yourEmail')} type="text" />
+                    </div>
+                    <div className="border-[1px] flex border-[#B0B0B0] bg-white rounded-lg w-full">
+                        <textarea className="w-full outline-0 p-3 resize-none h-32" name="" id="" placeholder={t('message')}></textarea>
+                    </div>
+                    <div className="flex justify-end">
+                        <button className="text-white bg-[#3B82F6] py-2 px-4 rounded-lg flex items-center text-nowrap gap-2 cursor-pointer">
+                            {t('send')}
+                        </button>
+                    </div>
+                </div>
+                <div className="lg:flex hidden">
+                    <Image className="rounded-lg w-full object-cover" src={'/images/contact-us.jpg'} width={500} height={500} alt="" />
+                </div>
+            </div>
+        </div>
+    )
+}
