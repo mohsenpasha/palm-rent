@@ -1,4 +1,3 @@
-import { SingleBranchCity } from "../components/BranchSection";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { ResNavigationBar } from "../components/ResponseNavigationBar";
