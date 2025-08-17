@@ -17,6 +17,7 @@ import { ApplicationSection } from "./components/ApplicationSection";
 import { useDispatch } from "react-redux";
 import { changeBranches, changeHomeBlogs, changeHomeComments } from "@/redux/slices/globalSlice";
 import { useTranslations } from "next-intl";
+import { ResNavigationBar } from "./components/ResponseNavigationBar";
 
 NProgress.configure({ showSpinner: false })
 export default function Home() {
@@ -71,6 +72,7 @@ export default function Home() {
       <Why2Section/>
       <DescriptionSection/>
       <RecentBlogPosts/>
+      <ResNavigationBar />
       <Footer/>
       
     </>
