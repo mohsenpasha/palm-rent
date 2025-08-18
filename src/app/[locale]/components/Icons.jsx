@@ -936,6 +936,98 @@ export function IconHome({active=false}){
                 <path d="M19 23.2501H17C14.58 23.2501 13.25 21.9201 13.25 19.5001V17.5001C13.25 15.0801 14.58 13.7501 17 13.7501H19C21.42 13.7501 22.75 15.0801 22.75 17.5001V19.5001C22.75 21.9201 21.42 23.2501 19 23.2501ZM17 15.2501C15.42 15.2501 14.75 15.9201 14.75 17.5001V19.5001C14.75 21.0801 15.42 21.7501 17 21.7501H19C20.58 21.7501 21.25 21.0801 21.25 19.5001V17.5001C21.25 15.9201 20.58 15.2501 19 15.2501H17Z" fill="currentColor"/>
                 <path d="M7 23.2501H5C2.58 23.2501 1.25 21.9201 1.25 19.5001V17.5001C1.25 15.0801 2.58 13.7501 5 13.7501H7C9.42 13.7501 10.75 15.0801 10.75 17.5001V19.5001C10.75 21.9201 9.42 23.2501 7 23.2501ZM5 15.2501C3.42 15.2501 2.75 15.9201 2.75 17.5001V19.5001C2.75 21.0801 3.42 21.7501 5 21.7501H7C8.58 21.7501 9.25 21.0801 9.25 19.5001V17.5001C9.25 15.9201 8.58 15.2501 7 15.2501H5Z" fill="currentColor"/>
             </svg>)
-        )
-        
+        )        
+}
+export function IconLogout(){
+    return(
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.5002 13.5V15.76C21.5002 20.23 19.7102 22.02 15.2402 22.02H15.1102C11.0902 22.02 9.24016 20.57 8.91016 17.03" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M8.90039 8.06C9.21039 4.46 11.0604 2.99 15.1104 2.99H15.2404C19.7104 2.99 21.5004 4.78 21.5004 9.25" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M14.9991 12.5H3.61914" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.85 9.15L2.5 12.5L5.85 15.85" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+
+export function IconPersonNew(){
+    return(
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.38749 1.88126C8.86249 1.48126 8.2125 1.25 7.5 1.25C5.775 1.25 4.375 2.65 4.375 4.375C4.375 6.1 5.775 7.5 7.5 7.5C9.225 7.5 10.625 6.1 10.625 4.375" stroke="#FF7600" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12.8684 13.75C12.8684 11.3313 10.4621 9.375 7.49961 9.375C4.53711 9.375 2.13086 11.3313 2.13086 13.75" stroke="#FF7600" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+export function IconMenu(){
+    return(
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.375 1.75H11.125C9.875 1.75 9.25 2.375 9.25 3.625V4.875C9.25 6.125 9.875 6.75 11.125 6.75H12.375C13.625 6.75 14.25 6.125 14.25 4.875V3.625" stroke="#6759FF" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3.625 14.25H4.875C6.125 14.25 6.75 13.625 6.75 12.375V11.125C6.75 9.875 6.125 9.25 4.875 9.25H3.625C2.375 9.25 1.75 9.875 1.75 11.125V12.375" stroke="#6759FF" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M4.25 6.75C5.63071 6.75 6.75 5.63071 6.75 4.25C6.75 2.86929 5.63071 1.75 4.25 1.75C2.86929 1.75 1.75 2.86929 1.75 4.25C1.75 5.63071 2.86929 6.75 4.25 6.75Z" stroke="#6759FF" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M11.75 14.25C13.1307 14.25 14.25 13.1307 14.25 11.75C14.25 10.3693 13.1307 9.25 11.75 9.25C10.3693 9.25 9.25 10.3693 9.25 11.75C9.25 13.1307 10.3693 14.25 11.75 14.25Z" stroke="#6759FF" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+
+export function IconNote(){
+    return(
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 9.9V11.75C13 13.625 11.8813 14.25 10.5 14.25H5.5C4.11875 14.25 3 13.625 3 11.75V5.65625C3 3.625 4.11875 3.15625 5.5 3.15625C5.5 3.54375 5.65623 3.89375 5.91248 4.15C6.16873 4.40625 6.51875 4.5625 6.90625 4.5625H9.09375C9.86875 4.5625 10.5 3.93125 10.5 3.15625C11.8813 3.15625 13 3.625 13 5.65625V6.79375" stroke="#0A7400" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M10.5 3.15625C10.5 3.93125 9.86875 4.5625 9.09375 4.5625H6.90625C6.51875 4.5625 6.16873 4.40625 5.91248 4.15C5.65623 3.89375 5.5 3.54375 5.5 3.15625C5.5 2.38125 6.13125 1.75 6.90625 1.75H9.09375C9.48125 1.75 9.83127 1.90625 10.0875 2.1625C10.3438 2.41875 10.5 2.76875 10.5 3.15625Z" stroke="#0A7400" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.5 8.625H8" stroke="#0A7400" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.5 11.125H10.5" stroke="#0A7400" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+
+
+export function IconClock2(){
+    return(
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.3195 9.98751L8.38203 8.83126C8.04453 8.63126 7.76953 8.15001 7.76953 7.75626V5.19376" stroke="#00AAFF" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3 4.25C2.21875 5.29375 1.75 6.59375 1.75 8C1.75 11.45 4.55 14.25 8 14.25C11.45 14.25 14.25 11.45 14.25 8C14.25 4.55 11.45 1.75 8 1.75C7.10625 1.75 6.25 1.9375 5.48125 2.28125" stroke="#00AAFF" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+export function IconCalling(){
+    return(
+        <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.8707 4.28359C5.9832 4.43984 6.06445 4.58359 6.1207 4.72109C6.17695 4.85234 6.2082 4.98359 6.2082 5.10234C6.2082 5.25234 6.16445 5.40234 6.07695 5.54609C5.9957 5.68984 5.87695 5.83984 5.72695 5.98984L5.25195 6.48359C5.1832 6.55234 5.15195 6.63359 5.15195 6.73359C5.15195 6.78359 5.1582 6.82734 5.1707 6.87734C5.18945 6.92734 5.2082 6.96484 5.2207 7.00234C5.3332 7.20859 5.52695 7.47734 5.80195 7.80234C6.0832 8.12734 6.3832 8.45859 6.7082 8.78984C7.0457 9.12109 7.3707 9.42734 7.70195 9.70859C8.02695 9.98359 8.2957 10.1711 8.5082 10.2836C8.53945 10.2961 8.57695 10.3148 8.6207 10.3336C8.6707 10.3523 8.7207 10.3586 8.77695 10.3586C8.8832 10.3586 8.96445 10.3211 9.0332 10.2523L9.5082 9.78359C9.66445 9.62734 9.81445 9.50859 9.9582 9.43359C10.102 9.34609 10.2457 9.30234 10.402 9.30234C10.5207 9.30234 10.6457 9.32734 10.7832 9.38359C10.9207 9.43984 11.0645 9.52109 11.2207 9.62734L13.2895 11.0961C13.452 11.2086 13.5645 11.3398 13.6332 11.4961C13.6957 11.6523 13.7332 11.8086 13.7332 11.9836C13.7332 12.2086 13.6832 12.4398 13.577 12.6648C13.4707 12.8898 13.3332 13.1023 13.152 13.3023C12.8457 13.6398 12.5082 13.8836 12.127 14.0398C11.752 14.1961 11.3457 14.2773 10.9082 14.2773C10.2707 14.2773 9.58945 14.1273 8.8707 13.8211C8.15195 13.5148 7.4332 13.1023 6.7207 12.5836C6.00195 12.0586 5.3207 11.4773 4.6707 10.8336C4.02695 10.1836 3.4457 9.50234 2.92695 8.78984C2.41445 8.07734 2.00195 7.36484 1.70195 6.65859C1.40195 5.94609 1.25195 5.26484 1.25195 4.61484C1.25195 4.18984 1.32695 3.78359 1.47695 3.40859C1.62695 3.02734 1.86445 2.67734 2.1957 2.36484C2.5957 1.97109 3.0332 1.77734 3.4957 1.77734C3.6707 1.77734 3.8457 1.81484 4.00195 1.88984C4.16445 1.96484 4.3082 2.07734 4.4207 2.23984" stroke="#044E93" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M11.5645 6.15234C11.5645 5.77734 11.2707 5.20234 10.8332 4.73359C10.4332 4.30234 9.90195 3.96484 9.37695 3.96484" stroke="#044E93" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M10.6332 1.95859C10.2332 1.83984 9.81445 1.77734 9.37695 1.77734" stroke="#044E93" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M13.7512 6.15236C13.7512 4.67111 13.0137 3.35861 11.8887 2.57111" stroke="#044E93" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+export function IconShare(){
+    return(
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.6016 3.85626C11.8516 4.72501 12.7141 6.10626 12.8891 7.70001" stroke="#6E4FC8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M2.18359 7.73126C2.34609 6.14376 3.19609 4.76251 4.43359 3.88751" stroke="#6E4FC8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.12109 13.0875C5.84609 13.4562 6.67109 13.6625 7.53984 13.6625C8.37734 13.6625 9.16484 13.475 9.87109 13.1312" stroke="#6E4FC8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.80273 3.07499C5.80273 4.03124 6.57773 4.81249 7.54023 4.81249C8.50273 4.81249 9.27773 4.03749 9.27773 3.07499C9.27773 2.11249 8.50273 1.33749 7.54023 1.33749" stroke="#6E4FC8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3.0207 12.45C3.9803 12.45 4.7582 11.6721 4.7582 10.7125C4.7582 9.75291 3.9803 8.97501 3.0207 8.97501C2.06111 8.97501 1.2832 9.75291 1.2832 10.7125C1.2832 11.6721 2.06111 12.45 3.0207 12.45Z" stroke="#6E4FC8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M13.7152 10.7125C13.7152 9.75626 12.9402 8.97501 11.9777 8.97501C11.0152 8.97501 10.2402 9.75001 10.2402 10.7125C10.2402 11.675 11.0152 12.45 11.9777 12.45" stroke="#6E4FC8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+export function IconLike(){
+    return(
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.9258 7.96873C14.2383 7.09373 13.6758 6.34373 12.7383 6.34373H10.2383C9.86328 6.34373 9.55078 6.03123 9.61328 5.59373L9.92578 3.59373C10.0508 3.03123 9.67578 2.40623 9.11328 2.21873C8.61328 2.03123 7.98828 2.28123 7.73828 2.65623L5.17578 6.46873" stroke="#24AACF" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.17578 11.9687L7.11328 13.4687C7.36328 13.7187 7.92578 13.8437 8.30078 13.8437H10.6758C11.4258 13.8437 12.2383 13.2812 12.4258 12.5312L13.2008 10.175" stroke="#24AACF" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M1.98828 11.9687V5.84369C1.98828 4.96869 2.36328 4.65619 3.23828 4.65619H3.86328C4.73828 4.65619 5.11328 4.96869 5.11328 5.84369V11.9687C5.11328 12.8437 4.73828 13.1562 3.86328 13.1562H3.23828C2.36328 13.1562 1.98828 12.8437 1.98828 11.9687Z" stroke="#24AACF" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+
+export function IconCards(){
+    return(
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.75 8.38123H12.375" stroke="#292D32" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M7.21249 13.625H4.11252C2.22502 13.625 1.75 13.1562 1.75 11.2938V6.925C1.75 5.2375 2.14375 4.69375 3.625 4.60625C3.775 4.6 3.93752 4.59375 4.11252 4.59375H10.0125C11.9 4.59375 12.375 5.0625 12.375 6.925V11.3938C12.3563 13.175 11.8687 13.625 10.0125 13.625" stroke="#292D32" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M14.25 4.70625V9.075C14.25 10.7625 13.8562 11.3063 12.375 11.3938V6.925C12.375 5.0625 11.9 4.59375 10.0125 4.59375H4.11252C3.93752 4.59375 3.775 4.6 3.625 4.60625C3.64375 2.825 4.13127 2.375 5.98752 2.375H11.8875C13.775 2.375 14.25 2.84375 14.25 4.70625Z" stroke="#292D32" strokeWidth="0.9375" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M3.78125 11.6313H4.85623" stroke="#292D32" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M6.19336 11.6313H8.34336" stroke="#292D32" strokeWidth="0.9375" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
 }
