@@ -74,3 +74,20 @@ export function SingleBlogPost({bigPost=false,smallFont=false,title='',descripti
         </Link>
     )
 }
+
+
+export function SkeletonSingleBlogPost(){
+    return(
+        <div className="flex flex-col justify-between gap-4 h-full">
+            <div className="animate-skeleton w-full h-40 rounded-lg"></div>
+            <div className="animate-skeleton w-full h-8 rounded-sm"></div>
+            <div className="flex flex-col w-full rounded-lg gap-2">
+                <div className="animate-skeleton w-full h-4 rounded-sm"></div>
+                <div className="animate-skeleton w-full h-4 rounded-sm"></div>
+                <div className="animate-skeleton w-full h-4 rounded-sm"></div>
+                <div className="animate-skeleton w-full h-4 rounded-sm"></div>
+            </div>
+            <div className="animate-skeleton w-1/2 h-8 rounded-sm"></div>
+        </div>
+    )
+}
