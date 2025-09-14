@@ -4,10 +4,10 @@ import { IconArrowDoubled, IconFacebook, IconLinkedIn, IconPhone, IconTwitter, I
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-export default function Footer(){
+export default function Footer({NMG=false}){
     const t = useTranslations();
     return(
-        <footer className="bg-white pt-12 mt-12">
+        <footer className={`bg-white pt-12 ${NMG ? '' : 'mt-12'}`}>
             <div className="w-[90vw] max-w-[1336px] m-auto">
                 <div className="flex lg:flex-nowrap flex-wrap sm:gap-0 gap-4">
                     <div className="xl:w-3/12 lg:w-4/12 sm:w-1/2 w-full lg:px-6 md:px-4 px-2">
@@ -125,7 +125,7 @@ export default function Footer(){
                         <div className="md:inline hidden">
                             {t('followUs')}
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 text-[#1E40AF]">
                             <Link href={'#'} className="size-8 rounded-full flex items-center justify-center bg-white">
                                 <IconYoutube/>
                             </Link>
