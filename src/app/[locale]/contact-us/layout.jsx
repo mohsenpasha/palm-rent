@@ -11,7 +11,7 @@ export default function ContactUsLayout({children}){
         <>
             <Header/>
             {children}
-            <Footer/>
+            <Footer NMG/>
         </>
     )
 } 
