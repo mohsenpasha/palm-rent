@@ -4,7 +4,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from "react"
 import { useTranslations } from "next-intl"
-import { IconFacebook, IconInstagram2, IconPerson3, IconPhone, IconSend, IconTwitter, IconYoutube, Shape1, Shape2 } from "../components/Icons"
+import { IconEmail, IconEmail2, IconFacebook, IconInstagram2, IconPerson3, IconPhone, IconSend, IconTwitter, IconYoutube, Shape1, Shape2 } from "../components/Icons"
 import Link from "next/link"
 
 export default function ContactUsPage(){
@@ -44,9 +44,10 @@ export function ContactUsForm(){
                     {t('contactUs')}
                 </h1>
                 <div className="flex my-4 flex-wrap justify-between gap-4">
-                    <InputCustom placeholder="نام و نام خانوادگی" icon={<IconPerson3/>}/>
-                    <InputCustom placeholder="نام و نام خانوادگی" icon={<IconPerson3/>}/>
-                    <InputCustom placeholder="نام و نام خانوادگی" icon={<IconPerson3/>}/>
+                    <InputCustom placeholder={t('nameLastname')} icon={<IconPerson3/>}/>
+                    <InputCustom placeholder={t('yourEmail')} icon={<IconEmail2/>}/>
+                    <InputCustom placeholder={t('phoneNumber')} icon={<span className="flex size-6"><IconPhone/></span>}/>
+                    
                     <select className="flex border-[1px] border-[#0000001f] bg-[#F8F8F8] rounded-lg items-center md:w-[calc(50%-16px)] w-full p-4 text-[#8A8A8A]" name="" id="">
                         <option value="">تعیین ساعت تماس</option>
                     </select>
