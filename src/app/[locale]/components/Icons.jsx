@@ -1128,3 +1128,10 @@ export function IconQHead4(){
         </svg>
     )
 }
+export function IconAboutBack(){
+    return(
+        <svg width="870" height="678" viewBox="0 0 870 678" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 106.557C0 91.0687 11.7902 78.1265 27.2112 76.6867L837.211 1.06132C854.805 -0.581294 870 13.2614 870 30.9314V647.069C870 664.739 854.805 678.581 837.211 676.939L27.2112 601.313C11.7902 599.873 0 586.931 0 571.443V106.557Z" fill="#EBF3FE"/>
+        </svg>
+    )
+}
