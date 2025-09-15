@@ -254,5 +254,15 @@
   "commonA11": "Dubai'de havaalanı, otel veya diğer herhangi bir yere transfer maliyeti, her bir gidiş yolculuğu için 50 dirhem ve dönüş için 50 dirhemdir. Ancak Sharjah'da her gidiş-dönüş yolculuğu için maliyet 200 dirhemdir.",
   "commonA12": "İstanbul'da araç kiralama konusunda fiyat, kiralık araç türüne ve günlük veya aylık olmasına göre belirlenir.",
   "rent":"kira",
-  "readMore":"Devamını oku"
+  "readMore":"Devamını oku",
+  "qHead1": "Genel",
+  "qHead2": "İade",
+  "qHead3": "Ödeme Şartları",
+  "qHead4": "Araç Kiralama",
+  "faqText1": "Aşağıdaki bölümde istediğiniz alt kategoride sorularınızı bulabilir ve yanıtlarınıza ulaşabilirsiniz.",
+  "faqText2": "Sorunuzu Palm Rent'te bulamadınız mı?!",
+  "faqText3": "Sorunuzu aşağıdaki formdan danışmanlarımıza iletin; Palm Rent danışmanları en kısa sürede sizinle iletişime geçecektir.",
+  "faqText4": "Bize mesajınızı gönderin!",
+  "yourMessage": "Mesajınız",
+  "sendMessage": "Mesaj Gönder"
   }

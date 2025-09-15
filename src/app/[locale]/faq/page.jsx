@@ -139,8 +139,7 @@ export default function FaqPage(){
                             {t('commonQ')}
                         </div>
                         <div className="text-center w-[400px] text-[#6B6B6B]">
-                            در بخش زیر میتوانید در هر زیر مجموعه دلخواه خود سوالات خودتان
-                            را پیدا کنید و به جواب خود برسید
+                            {t("faqText1")}
                         </div>
                         <div className="flex mt-8 md:gap-8 gap-4 md:flex-nowrap flex-wrap">
                             {qInfo.map((item,index)=>{
@@ -174,26 +173,27 @@ export default function FaqPage(){
 
 
 export function QContactForm(){
+    const t = useTranslations();
     return(
         <>
             <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1100px]">
                 <div className="flex items-end w-full justify-between sm:mb-8">
                     <div className="lg:text-4xl sm:text-2xl text-lg font-bold lg:w-96 leading-12">
-                        سوال خود را در پالم رنت پیدا نکردید ؟!
+                        {t('faqText2')}
                     </div>
                     <div className="w-96 text-[#545E70] lg:block hidden">
-                        در فرم زیر سوال خود را از مشاوران ما بپرسید تا در اسرع وقت مشاوران پالم رنت با شما تماس بگیرند
+                        {t('faqText3')}
                     </div>
                 </div>
                 <div className="flex w-full justify-between gap-4">
                     <div className="bg-[#FFFFFF] lg:w-7/12 w-full rounded-xl p-4 flex flex-col">
-                        <div className="text-xl font-bold mb-4">پیام خود را به ما ارسال کنید !</div>
+                        <div className="text-xl font-bold mb-4">{t('faqText4')}</div>
                         <div className="flex flex-col gap-4 flex-1 justify-between">
-                            <input className="w-full bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" type="text" placeholder="نام شما"/>
-                            <input className="w-full bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" type="text" placeholder="ایمیل شما"/>
-                            <input className="w-full bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" type="text" placeholder="شماره تلفن"/>
-                            <textarea className="w-full resize-none h-32 bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" placeholder="متن پیام شما" ></textarea>
-                            <button className="bg-[#3B82F6] text-white rounded-lg p-3 grow-0 sm:w-fit w-full px-8 cursor-pointer">ارسال پیام</button>
+                            <input className="w-full bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" type="text" placeholder={t('yourName')}/>
+                            <input className="w-full bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" type="text" placeholder={t('yourEmail')}/>
+                            <input className="w-full bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" type="text" placeholder={t('phoneNumber')}/>
+                            <textarea className="w-full resize-none h-32 bg-[#F5F5F5] p-3 rounded-lg border-[1px] border-[#0000001f] outline-0" placeholder={t('yourMessage')}></textarea>
+                            <button className="bg-[#3B82F6] text-white rounded-lg p-3 grow-0 sm:w-fit w-full px-8 cursor-pointer">{t('sendMessage')}</button>
                         </div>
                     </div>
                     <div className="flex-1 lg:block hidden">

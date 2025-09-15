@@ -254,5 +254,15 @@
   "commonA11": "In Dubai, the transfer cost to various destinations, including the airport, hotel, or any other location, is 50 dirhams for each one-way trip and 50 dirhams for the return. However, in Sharjah, the cost for each round trip is 200 dirhams.",
   "commonA12": "Regarding car rental in Istanbul, the price is determined based on the type of rental car and whether it is daily or monthly.",
   "rent":"Rent",
-  "readMore":"read More"
+  "readMore":"read More",
+  "qHead1": "General",
+  "qHead2": "Refund",
+  "qHead3": "Payment Terms",
+  "qHead4": "Car Rental",
+  "faqText1": "In the section below you can find your questions in any subcategory and get your answers.",
+  "faqText2": "Didn't find your question on Palm Rent?!",
+  "faqText3": "Ask your question to our consultants using the form below and Palm Rent consultants will contact you as soon as possible.",
+  "faqText4": "Send us your message!",
+  "yourMessage": "Your message",
+  "sendMessage": "Send Message"
 }
