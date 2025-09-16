@@ -1135,3 +1135,23 @@ export function IconAboutBack(){
         </svg>
     )
 }
+export function IconLogin2(){
+    return(
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 12H14.88" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12.6504 8.65002L16.0004 12L12.6504 15.35" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M21.5002 13V15.26C21.5002 19.73 19.7102 21.52 15.2402 21.52H15.1102C11.0902 21.52 9.24016 20.07 8.91016 16.53" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M8.90039 7.55999C9.21039 3.95999 11.0604 2.48999 15.1104 2.48999H15.2404C19.7104 2.48999 21.5004 4.27999 21.5004 8.74999" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+
+export function IconHeartTick(){
+    return(
+        <svg width="134" height="134" viewBox="0 0 134 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M42.2094 17.3082C52.3152 17.3082 61.3602 22.2218 66.9994 29.7593C72.6385 22.2218 81.6835 17.3082 91.7893 17.3082C108.93 17.3082 122.833 31.2667 122.833 48.5192C122.833 59.5184 119.985 69.2332 115.519 77.664C110.605 72.4715 103.682 69.2335 96.0327 69.2335C81.2369 69.2335 69.2327 81.2376 69.2327 96.0334C69.2327 102.901 71.8569 109.154 76.1002 113.9C74.0344 114.849 72.136 115.631 70.461 116.189C68.5627 116.859 65.436 116.859 63.5377 116.189C47.346 110.662 11.166 87.6025 11.166 48.5192C11.166 39.865 14.6277 32.0483 20.2669 26.4091" stroke="#D1D3D4" stroke-width="8.375" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M122.836 96.0335C122.836 101.058 121.441 105.804 118.928 109.824C114.294 117.585 105.807 122.833 96.0363 122.833C86.2655 122.833 77.723 117.585 73.1446 109.824C70.688 105.804 69.2363 101.058 69.2363 96.0335C69.2363 81.2376 81.2405 69.2335 96.0363 69.2335C110.832 69.2335 122.836 81.2376 122.836 96.0335Z" stroke="#D1D3D4" stroke-width="8.375" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M85.5938 96.0334L92.1821 102.622L106.475 89.4451" stroke="#D1D3D4" stroke-width="8.375" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    )
+}

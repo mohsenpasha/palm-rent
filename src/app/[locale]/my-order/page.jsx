@@ -1,16 +1,21 @@
+import Image from "next/image"
 import { SingleCarGallery } from "../components/SingleCar"
+import { IconLogin } from "../components/Icons"
+import { EmptyList, LoginRequired } from "../components/PanelStuff"
 
 export default function MyOrderPage(){
     return(
         <div className='w-[85vw] max-w-[1336px] m-auto'>
+            {/* <LoginRequired/> */}
+            {/* <EmptyList/> */}
             <div className="flex my-8 gap-2 flex-wrap">
                 <SingleResCar/>
                 <SingleResCar/>
+                {/* <SingleResCar/>
                 <SingleResCar/>
                 <SingleResCar/>
                 <SingleResCar/>
-                <SingleResCar/>
-                <SingleResCar/>
+                <SingleResCar/> */}
             </div>
         </div>
     )
@@ -30,3 +35,4 @@ export function SingleResCar(){
         </div>
     )
 }
+
