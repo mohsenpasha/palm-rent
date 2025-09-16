@@ -1,7 +1,4 @@
-import Image from "next/image"
 import { SingleCarGallery } from "../components/SingleCar"
-import { IconLogin } from "../components/Icons"
-import { EmptyList, LoginRequired } from "../components/PanelStuff"
 
 export default function MyOrderPage(){
     return(
