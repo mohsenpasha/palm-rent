@@ -42,7 +42,7 @@ export function FirstAboutSection(){
             </div>
             <div className="flex w-full gap-8 justify-between items-center">
                 <div className="xl:p-8 p-4 flex flex-col gap-4 items-center">
-                    <div className="py-4 md:text-4xl lg:text-2xl sm:text-xl text-lg font-bold xl:w-[500px] flex flex-col xl:text-right text-center gap-4">
+                    <div className="py-4 lg:text-4xl md:text-2xl sm:text-xl text-lg font-bold xl:w-[500px] flex flex-col xl:text-right text-center gap-4">
                         <div className="text-[#3B82F6]">
                             {t('aboutUs')}
                         </div>
