@@ -48,7 +48,7 @@ export function PanelSideBar(){
                 </div>
             </div>
             <div>
-                <button className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
+                <Link href={'/panel/edit/account/'} className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
                     <div className="flex items-center gap-2">
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconPersonNew/>
@@ -58,8 +58,8 @@ export function PanelSideBar(){
                     <div>
                         <IconArrow className={'rotate-90'}/>
                     </div>
-                </button>
-                <button className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
+                </Link>
+                <Link href={'/panel/edit/personal'} className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
                     <div className="flex items-center gap-2">
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconMenu/>
@@ -69,8 +69,8 @@ export function PanelSideBar(){
                     <div>
                         <IconArrow className={'rotate-90'}/>
                     </div>
-                </button>
-                <button className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
+                </Link>
+                <Link href={'/panel/edit/bank'} className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
                     <div className="flex items-center gap-2">
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconNote/>
@@ -80,7 +80,7 @@ export function PanelSideBar(){
                     <div>
                         <IconArrow className={'rotate-90'}/>
                     </div>
-                </button>
+                </Link>
                 <Link href={'/favorite'} className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
                     <div className="flex items-center gap-2">
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
