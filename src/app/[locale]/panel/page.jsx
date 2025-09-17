@@ -4,6 +4,7 @@ import { IconArrow, IconCalling, IconCards, IconClock2, IconEdit2, IconLike, Ico
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from "react"
+import Link from "next/link"
 
 export default function PanelPage(){
     useEffect(()=>{
@@ -15,14 +16,14 @@ export default function PanelPage(){
             },[])
     return(
         <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
-            <div className="flex gap-4">
-                <div className="w-3/12">
+            <div className="flex gap-4 justify-center">
+                <div className="sm:w-[400px] w-full">
                     <PanelSideBar/>
                 </div>
-                <div className="w-8/12">
-                    <PanelStartElm/>
-                    <PanelAccountInfo/>
-                </div>
+                {/* <div className="w-8/12"> */}
+                    {/* <PanelStartElm/> */}
+                    {/* <PanelAccountInfo/> */}
+                {/* </div> */}
             </div>
         </div>
     )
@@ -80,7 +81,7 @@ export function PanelSideBar(){
                         <IconArrow className={'rotate-90'}/>
                     </div>
                 </button>
-                <button className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
+                <Link href={'/favorite'} className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
                     <div className="flex items-center gap-2">
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconClock2/>
@@ -90,7 +91,7 @@ export function PanelSideBar(){
                     <div>
                         <IconArrow className={'rotate-90'}/>
                     </div>
-                </button>
+                </Link>
                 <button className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
                     <div className="flex items-center gap-2">
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">

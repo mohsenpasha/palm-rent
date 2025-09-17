@@ -1,5 +1,4 @@
-import Footer from "@/app/[locale]/components/Footer";
-import Header from "@/app/[locale]/components/Header";
+import { ResNavigationBar } from "../components/ResponseNavigationBar";
 
 export const metadata = {
   title: "سامانه آنلاین اجاره خودرو بدون دپوزیت | پالم رنت",
@@ -12,9 +11,11 @@ export const metadata = {
 export default function PanelLayout({ children }) {
   return (
     <>
-        <Header/>
+        {/* <Header/> */}
         { children }
-        <Footer/>
+        <ResNavigationBar />
+        
+        {/* <Footer/> */}
     </>
   );
 }
