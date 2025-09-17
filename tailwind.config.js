@@ -18,6 +18,16 @@ export default {
             transform: 'translateY(0)',
            },
         },
+        fromBottom: {
+          "0%": { 
+            opacity: '0',
+            transform: 'translateY(100%)',
+           },
+          "100%": {
+            opacity: '1',
+            transform: 'translateY(0)',
+           },
+        },
         opacity: {
           "0%": { 
             opacity: '0',
@@ -66,7 +76,9 @@ export default {
         opacity2: "opacity2 0.15s ease-out forwards",
         fadeIn2: "fadeIn2 0.2s ease-out forwards",
         fadeIn: "fadeIn 0.2s ease-out forwards",
-        skeleton : "skeleton 1.5s infinite linear"
+        skeleton : "skeleton 1.5s infinite linear",
+        fromBottom : "fromBottom .3s"
+        
       }
     },
   },

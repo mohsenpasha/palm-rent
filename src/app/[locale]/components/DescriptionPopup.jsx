@@ -18,7 +18,7 @@ export default function DescriptionPopup(){
             <div className="animate-opacity">
                 <div onClick={closePopup} className="absolute w-full h-full top-0 right-0 bg-black opacity-40"></div>
             </div>
-            <div className="absolute sm:w-xl w-[90%] top-1/2 animate-fade-in2 left-1/2 -translate-1/2 bg-white z-10 rounded-lg">
+            <div className="bg-white sm:w-xl w-[90%] pb-6 absolute sm:top-1/2 left-1/2 sm:-translate-1/2 -translate-x-1/2 sm:bottom-auto bottom-0 sm:rounded-2xl rounded-t-2xl sm:animate-fade-in2 animate-fromBottom">
                 <div className="w-full border-b-[1px] border-[#0000001F] p-2 flex justify-between items-center">
                     <span>
                         {t(descriptionPopup.title) || t('description')}
