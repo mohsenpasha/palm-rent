@@ -233,3 +233,11 @@ rmdp-week{
 .swiper-wrapper {
   transition-timing-function: linear !important;
 }
+.rmdp-top-class, .rmdp-wrapper{
+  background-color: unset!important;
+  display: flex;
+  justify-content: center;
+}
+.rmdp-calendar{
+  background-color: #FFFFFF;
+}
