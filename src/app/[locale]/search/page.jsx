@@ -7,7 +7,6 @@ import RoadMap from "../components/RoadMap";
 import { SearchBox } from "../components/SearchBox";
 import SingleCar from "../components/SingleCar";
 import InformationStep from "../components/InformationStep";
-import { VoucherStep } from "../components/VoucherStep";
 import SkeletonSingleCar from "../components/SkeletonSingleCar";
 import SearchPopup from "../components/SearchPopup";
 import SearchFilterPopup from "../components/SearchFilterPopup";
@@ -50,43 +49,48 @@ export default function SearchResultPage(){
         }, 300)
         return () => clearTimeout(timeout)
     },[])
+    // const router = useRouter();
+    const previousPage = document.referrer;
+
+    console.log(previousPage);
     return(
         <>
             <Header shadowLess/>
-                {roadMapStep < 3 && 
-                    <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
-                }
-            <div className="w-[90vw] max-w-[1336px] m-auto">
-                {roadMapStep < 3 && 
-                    <>
-                        <RoadMap step={roadMapStep}/>
-                    </>
-                }
-                {
-                    roadMapStep == 1 &&
-                    <>
-                        <SearchBox/>
-                        <div className="flex flex-wrap gap-4">
-                            <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                <SkeletonSingleCar/>
-                            </div>
-                            {carList.map((item,index)=>{
-                                return(
-                                    <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                        <SingleCar data={item}/>
-                                    </div>
-                                )
-                            })}
+                <div className="w-[90vw] max-w-[1336px] m-auto">
+                <div className="flex flex-col max-sm:flex-col-reverse">
+                    {roadMapStep < 3 && 
+                        <div className="w-[100vw] -mr-[5vw]">
+                            <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
                         </div>
-                    </>
-                }
-                {roadMapStep == 2 &&
-                    <InformationStep/>
-                }
-            </div>
-            {roadMapStep == 3 &&
-                <VoucherStep/>
-            }
+                    }
+                    {roadMapStep < 3 && 
+                        <>
+                            <RoadMap step={roadMapStep}/>
+                        </>
+                    }
+                    </div>
+                    {
+                        roadMapStep == 1 &&
+                        <>
+                            <SearchBox/>
+                            <div className="flex flex-wrap gap-4">
+                                <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                                    <SkeletonSingleCar/>
+                                </div>
+                                {carList.map((item,index)=>{
+                                    return(
+                                        <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                                            <SingleCar data={item}/>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </>
+                    }
+                    {roadMapStep == 2 &&
+                        <InformationStep/>
+                    }
+                </div>
             {isReelActive && 
                 <PopupReels/>
             }
