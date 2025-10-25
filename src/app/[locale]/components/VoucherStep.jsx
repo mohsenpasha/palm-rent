@@ -2,38 +2,17 @@
 import Image from "next/image";
 import { IconBarcode, IconCalender2, IconCalenderTick, IconClock, IconContact, IconDownload, IconEmail, IconGlobalSearch, IconInfo2, IconInstagram, IconLocation, IconLocationTick, IconPerson2, IconPhone, IconReceipt, IconSmsTracking, IconTick2 } from "./Icons";
 import { FineDeposit, PaymentDetail } from "./InformationStep";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SingleCarOptions } from "./SingleCar";
 import { useTranslations } from "next-intl";
 
-export function VoucherStep(){
-    const t = useTranslations();
-    return(
-        <div>
-            <VoucherHead/>
-            <div className="lg:w-[85vw] sm:w-[90vw] w-[95vw] max-w-[1336px] m-auto">
-                <div className="flex sm:flex-row flex-col-reverse flex-wrap gap-4 my-4">
-                    <PersonalInfoShow/>
-                    <div className="xl:w-1/3 md:w-3/12 w-full xl:text-base text-xs text-center bg-white rounded-2xl flex flex-col items-center justify-between py-4">
-                        <div className="text-[#DF900A]">{t('qrText')}</div>
-                        <Image src={'/images/barcode.png'} width={306} height={287} alt=""></Image>
-                        <button className="bg-[#3B82F61A] cursor-pointer rounded-lg flex items-center gap-4 py-2 px-4 text-[#3B82F6] mt-4">
-                            <IconDownload/>
-                            {t('downloadVoucher')}
-                        </button>
-                    </div>
-                </div>
-                <ReservationDetail/>
-                <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
-                    <PaymentDetail borderLess={true}/>
-                    <FineDeposit borderLess={true}/>
-                </div>
-                <FinalDetail/>
-                <SocialBox/>
-            </div>
-        </div>
-    )
+
+function formatDate(isoString) {
+  const date = new Date(isoString);
+  return date.toLocaleString('fa-IR'); // فرمت فارسی
 }
+
+
 export function VoucherHead(){
     const t = useTranslations();
     return(
@@ -61,7 +40,11 @@ export function VoucherHead(){
         </>
     )
 }
-export function PersonalInfoShow(){
+export function PersonalInfoShow({name,resTime,phoneNumber,resCode,email,branch}){
+    const [dateFormated,setDateFormated] = useState(['',''])
+    useEffect(()=>{
+        setDateFormated(formatDate(resTime).split(','))
+    },[])
     const t = useTranslations();
     return(
         <div className="border-[1px] flex flex-col border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
@@ -75,13 +58,13 @@ export function PersonalInfoShow(){
                         <IconPerson2/>
                         {t('nameLastname')}:
                     </>
-                } value={'علی جرفی'}/>
+                } value={name}/>
                 <PersonalInfoShowSingle title={
                     <>
                         <IconClock/>
                         {t('resTime')}
                     </>
-                } value={'12:30 -  1403/12/23'}/>
+                } value={dateFormated[1] + ' - ' + dateFormated[0]}/>
                 <PersonalInfoShowSingle title={
                     <>
                         <span className="size-8">
@@ -89,25 +72,25 @@ export function PersonalInfoShow(){
                         </span>
                         {t('phoneNumber')}:
                     </>
-                } value={'09104992005'}/>
+                } value={phoneNumber}/>
                 <PersonalInfoShowSingle title={
                     <>
                         <IconBarcode/>
                         {t('resCode')}:
                     </>
-                } value={'12824hjd823'}/>
+                } value={resCode}/>
                 <PersonalInfoShowSingle title={
                     <>
                         <IconEmail/>
                         {t('email')}:
                     </>
-                } value={''}/>
+                } value={email}/>
                 <PersonalInfoShowSingle title={
                     <>
                         <IconLocationTick/>
                         {t('branch')}:
                     </>
-                } value={t('dubai')}/>
+                } value={t(branch.toLowerCase())}/>
             </div>
         </div>
     )
@@ -126,9 +109,15 @@ export function PersonalInfoShowSingle({title,value}){
     )
 }
 
-export function ReservationDetail(){
+export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car_gearbox,car_fuel,bag_count,person_count,options=[],car_name,car_year}){
+    const [fromDate,setFromDate] = useState(['',''])
+    const [toDate,setToDate] = useState(['',''])
+    useEffect(()=>{
+       setFromDate(formatDate(from).split(','))
+       setToDate(formatDate(to).split(','))
+    },[])
     const t = useTranslations();
-    const [options,setOptions] = useState(['noDeposite','freeDelivery','unlimitedKilometers','freeinsurance'])
+    // const [options,setOptions] = useState(['noDeposite','freeDelivery','unlimitedKilometers','freeinsurance'])
     return(
         <div className="border-[1px] flex md:flex-nowrap flex-wrap lg:gap-12 gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
             <div className="md:w-1/2 w-full flex flex-col gap-4">
@@ -138,7 +127,7 @@ export function ReservationDetail(){
                         {t('resDetail')}
                     </div>
                     <div>
-                        AUDI R8 2022
+                        {car_name + ' ' + car_year}
                     </div>
                 </div>
                 <div className="relative w-full">
@@ -152,7 +141,7 @@ export function ReservationDetail(){
                     </div>
                 </div>
                 <div className="sm:w-10/12 w-full m-auto">
-                    <SingleCarOptions data={{gasType:'gasoline',gearBox:'geared',suitcase:3,passengers:3}} />
+                    <SingleCarOptions data={{gasType:car_fuel,gearBox:car_gearbox,suitcase:bag_count,passengers:person_count}} />
                 </div>
             </div>
             <div className="flex-1 flex flex-col justify-around gap-2">
@@ -163,7 +152,7 @@ export function ReservationDetail(){
                     </span>
                     {t('deliveryTD')} :
                  </>   
-                } value={'12:30 -  1403/12/23'}/>
+                } value={fromDate[1] + ' - ' + fromDate[0]}/>
                 <SingleReservationDetail title={
                  <>
                     <span className="text-[#7C7C7C]">
@@ -171,7 +160,7 @@ export function ReservationDetail(){
                     </span>
                     {t('returnTD')} :
                  </>   
-                } value={'12:30 -  1403/12/23'}/>
+                } value={toDate[1] + ' - ' + toDate[0]}/>
                 <SingleReservationDetail title={
                  <>
                     <span className="text-[#7C7C7C] size-8">
@@ -179,7 +168,7 @@ export function ReservationDetail(){
                     </span>
                     {t('deliveryLoc')}
                  </>   
-                } value={t('location3')}/>
+                } value={deliveryPlace}/>
                 <SingleReservationDetail title={
                  <>
                     <span className="text-[#7C7C7C]">
@@ -187,7 +176,8 @@ export function ReservationDetail(){
                     </span>
                     {t('returnLoc')}
                  </>   
-                } value={t('location2')}/>
+                //  t('location2')
+                } value={returnPlace}/>
                 <SingleReservationDetail title={
                  <>
                     <span className="text-[#7C7C7C]">
@@ -195,7 +185,7 @@ export function ReservationDetail(){
                     </span>
                     {t('resDayCount')}
                  </>   
-                } value={'3' + " " + t('days')}/>
+                } value={resDays + " " + t('days')}/>
             </div>
         </div>
     )

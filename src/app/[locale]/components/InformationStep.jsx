@@ -284,7 +284,7 @@ export function FineDeposit({borderLess=false}){
 
 
 
-export function PaymentDetail({borderLess=false}){
+export function PaymentDetail({borderLess=false,data}){
     const t = useTranslations();
     return(
         <div className={`${!borderLess && 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
@@ -298,7 +298,7 @@ export function PaymentDetail({borderLess=false}){
                 </div>
                 <div className="flex flex-col justify-center items-center w-full md:text-sm text-xs">
                     <SinglePaymentDet
-                        title={'قیمت اجاره 3 روزه'}
+                        title={'قیمت اجاره ' + data.rent_days + ' روزه'}
                         subtitle={
                             <div className="text-[#545454] text-xs flex gap-2">
                                 <span className="line-through">110</span>
@@ -310,12 +310,12 @@ export function PaymentDetail({borderLess=false}){
                     <SinglePaymentDet
                         title={t('deliveryPrice')}
                         subtitle={t('location3')}
-                        price={t('free')}
+                        price={data.rent_delivery_price == 0 ? t('free') : data.rent_delivery_price}
                     />
                     <SinglePaymentDet
                         title={t('returnPrice')}
                         subtitle={t('location2')}
-                        price={'+70 درهم'}
+                        price={data.rent_return_price == 0 ? t('free') : data.rent_return_price}
                     />
                     <SinglePaymentDet
                         title={'هزینه 2 صندلی کودک'}
