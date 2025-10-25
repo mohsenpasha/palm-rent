@@ -945,13 +945,13 @@ export function IconHome({active=false}){
             </svg>)
         )        
 }
-export function IconLogout(){
+export function IconLogout({color='#AA2B2B'}){
     return(
         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21.5002 13.5V15.76C21.5002 20.23 19.7102 22.02 15.2402 22.02H15.1102C11.0902 22.02 9.24016 20.57 8.91016 17.03" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M8.90039 8.06C9.21039 4.46 11.0604 2.99 15.1104 2.99H15.2404C19.7104 2.99 21.5004 4.78 21.5004 9.25" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M14.9991 12.5H3.61914" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M5.85 9.15L2.5 12.5L5.85 15.85" stroke="#AA2B2B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M21.5002 13.5V15.76C21.5002 20.23 19.7102 22.02 15.2402 22.02H15.1102C11.0902 22.02 9.24016 20.57 8.91016 17.03" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M8.90039 8.06C9.21039 4.46 11.0604 2.99 15.1104 2.99H15.2404C19.7104 2.99 21.5004 4.78 21.5004 9.25" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M14.9991 12.5H3.61914" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5.85 9.15L2.5 12.5L5.85 15.85" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
     )
 }

@@ -1,10 +1,11 @@
 'use client'
 import Image from "next/image"
-import { IconArrow, IconCalling, IconCards, IconClock2, IconEdit2, IconLike, IconLogout, IconMenu, IconNote, IconPerson, IconPersonNew, IconShare } from "../components/Icons"
+import { IconArrow, IconCalling, IconCards, IconClock2, IconClose, IconEdit2, IconLike, IconLogout, IconMenu, IconNote, IconPerson, IconPersonNew, IconShare } from "../components/Icons"
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
 export default function PanelPage(){
     useEffect(()=>{
@@ -30,6 +31,8 @@ export default function PanelPage(){
 }
 
 export function PanelSideBar(){
+    const [popupStatus,setPopupStatus] = useState(false)
+    const t = useTranslations();
     return(
         <>
         <div className="flex flex-col border-[1px] border-[#0000001f] my-4 rounded-lg overflow-hidden">
@@ -43,7 +46,7 @@ export function PanelSideBar(){
                         <div>09370514658</div>
                     </div>
                 </div>
-                <div className="size-[40px] flex justify-center items-center rounded-full cursor-pointer border-[1px] border-[#0000001f]">
+                <div onClick={()=>setPopupStatus(true)} className="size-[40px] flex justify-center items-center rounded-full cursor-pointer border-[1px] border-[#0000001f]">
                     <IconLogout/>
                 </div>
             </div>
@@ -53,7 +56,7 @@ export function PanelSideBar(){
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconPersonNew/>
                         </span>
-                        <span>حساب کاربری</span>
+                        <span>{t('account')}</span>
                     </div>
                     <div>
                         <IconArrow className={'rotate-90'}/>
@@ -64,7 +67,7 @@ export function PanelSideBar(){
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconMenu/>
                         </span>
-                        <span>اطلاعات شخصی</span>
+                        <span>{t('personalInfo')}</span>
                     </div>
                     <div>
                         <IconArrow className={'rotate-90'}/>
@@ -75,7 +78,7 @@ export function PanelSideBar(){
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconNote/>
                         </span>
-                        <span>اطلاعات حساب بانکی</span>
+                        <span>{t('bankInfo')}</span>
                     </div>
                     <div>
                         <IconArrow className={'rotate-90'}/>
@@ -86,7 +89,7 @@ export function PanelSideBar(){
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconClock2/>
                         </span>
-                        <span>مورد علاقه های من</span>
+                        <span>{t('myFav')}</span>
                     </div>
                     <div>
                         <IconArrow className={'rotate-90'}/>
@@ -97,7 +100,7 @@ export function PanelSideBar(){
                         <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                             <IconCards/>
                         </span>
-                        <span>موجودی و تراکنش ها</span>
+                        <span>{t('balanceTransaction')}</span>
                     </div>
                     <div>
                         <IconArrow className={'rotate-90'}/>
@@ -111,7 +114,7 @@ export function PanelSideBar(){
                     <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                         <IconLike/>
                     </span>
-                    <span>نظرات مشتریان</span>
+                    <span>{t('customerComments')}</span>
                 </div>
                 <div>
                     <IconArrow className={'rotate-90'}/>
@@ -122,7 +125,7 @@ export function PanelSideBar(){
                     <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                         <IconShare/>
                     </span>
-                    <span>دعوت از دوستان</span>
+                    <span>{t('inviteFriends')}</span>
                 </div>
                 <div>
                     <IconArrow className={'rotate-90'}/>
@@ -133,19 +136,58 @@ export function PanelSideBar(){
                     <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
                         <IconCalling/>
                     </span>
-                    <span>درخواست پشتیبانی</span>
+                    <span>{t('requestBackup')}</span>
                 </div>
                 <div>
                     <IconArrow className={'rotate-90'}/>
                 </div>
             </button>
         </div>
+        {popupStatus &&
+            <LogoutPopup closePopup={()=>setPopupStatus(false)}/>
+        }
         </>
 
     )
 }
 
+
+export function LogoutPopup({closePopup}){
+    const t = useTranslations();
+    return(
+        <div className="fixed w-[100vw] h-[100vh] top-0 right-0 z-50">
+            <div className="animate-opacity">
+                <div onClick={closePopup} className="absolute w-full h-full top-0 right-0 bg-black opacity-40"></div>
+            </div>
+            <div className="bg-white sm:w-xl w-[90%] pb-6 absolute sm:top-1/2 left-1/2 sm:-translate-1/2 -translate-x-1/2 sm:bottom-auto bottom-0 sm:rounded-2xl rounded-t-2xl sm:animate-fade-in2 animate-fromBottom">
+                <div className="w-full sm:border-b-[1px] border-[#0000001F] flex gap-2 p-6 justify-between">
+                    <span className="font-bold text-xl">
+                        {t('logout')}             
+                    </span>
+                    <span onClick={closePopup} className="size-4 hidden items-center cursor-pointer sm:flex">
+                        <IconClose/>
+                    </span>
+                </div>
+                <div className="text-[#353535] sm:p-6 px-6 p-2 sm:text-base text-sm">{t('logoutDescription')}</div>
+                <div className="p-2 px-4">
+                    <div className="flex gap-2 font-bold">
+                        <button onClick={closePopup} className="w-full flex justify-center py-2 border border-black rounded-lg cursor-pointer">
+                            {t('back')}
+                        </button>
+                        <button className="w-full flex justify-center py-2 rounded-lg text-white bg-[#DD2C2C] gap-2 cursor-pointer">
+                            {t('close')}
+                            <IconLogout color="#FFFFFF" className={'text-white'}/>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export function PanelStartElm(){
+    const t = useTranslations();
     return(
         <div className="flex items-center justify-between border-[1px] bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
             <div className="flex gap-2">
@@ -159,13 +201,13 @@ export function PanelStartElm(){
             </div>
             <div className="text-[#B0B0B0] text-xs flex flex-col gap-1">
                 <div>
-                    موجودی حساب
+                    {t('moneyBalance')}
                 </div>
                 <div className="flex gap-2">
                     <span className="text-black font-bold">0</span>تومان
                 </div>
                 <div className="flex items-center gap-1 text-[#3B82F6] cursor-pointer">
-                    افزایش موجودی
+                    {t('increaseBalance')}
                     <IconArrow className={'rotate-90'}/>
                 </div>
             </div>

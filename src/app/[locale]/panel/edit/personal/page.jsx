@@ -46,7 +46,7 @@ export default function PanelPage(){
                         </select>
                     </SingleInputElm>
                     <SingleInputElm title={'تاریخ تولد'}>
-                        <div onClick={calanedarToggleHandler} className='flex w-full items-center'>
+                        <div onClick={calanedarToggleHandler} className='flex w-full items-center h-12'>
                             <div className='p-3 w-full'>{birthDate ? birthDate.format?.("YYYY/MM/DD") : ''}</div>
                             <span className='ml-2 cursor-pointer'>
                                 <IconCalender/>

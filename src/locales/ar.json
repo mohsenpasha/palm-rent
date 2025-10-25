@@ -264,5 +264,18 @@
   "faqText3": "اطرح سؤالك على مستشارينا في النموذج أدناه وسيتواصل معك مستشارو بالم رنت في أقرب وقت ممكن.",
   "faqText4": "أرسل رسالتك إلينا!",
   "yourMessage": "نص رسالتك",
-  "sendMessage": "إرسال الرسالة"
+  "sendMessage": "إرسال الرسالة",
+  "logout": "تسجيل الخروج",
+  "logoutDescription": "هل أنت متأكد أنك تريد تسجيل الخروج من التطبيق؟!",
+  "exit": "خروج",
+  "back": "عودة",
+  "account": "الحساب",
+  "bankInfo": "معلومات الحساب البنكي",
+  "myFav": "المفضلة",
+  "balanceTransaction": "الرصيد والمعاملات",
+  "customerComments": "تعليقات العملاء",
+  "inviteFriends": "دعوة الأصدقاء",
+  "requestBackup": "طلب الدعم",
+  "moneyBalance": "رصيد الحساب",
+  "increaseBalance": "زيادة الرصيد"
 }

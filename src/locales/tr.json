@@ -264,5 +264,18 @@
   "faqText3": "Sorunuzu aşağıdaki formdan danışmanlarımıza iletin; Palm Rent danışmanları en kısa sürede sizinle iletişime geçecektir.",
   "faqText4": "Bize mesajınızı gönderin!",
   "yourMessage": "Mesajınız",
-  "sendMessage": "Mesaj Gönder"
+  "sendMessage": "Mesaj Gönder",
+  "logout": "Çıkış Yap",
+  "logoutDescription": "Uygulamadan çıkış yapmak istediğinizden emin misiniz?!",
+  "exit": "Çıkış",
+  "back": "Geri",
+  "account": "Hesap",
+  "bankInfo": "Banka Hesap Bilgileri",
+  "myFav": "Favorilerim",
+  "balanceTransaction": "Bakiye ve İşlemler",
+  "customerComments": "Müşteri Yorumları",
+  "inviteFriends": "Arkadaşları Davet Et",
+  "requestBackup": "Destek Talebi",
+  "moneyBalance": "Hesap Bakiyesi",
+  "increaseBalance": "Bakiye Yükle"
   }

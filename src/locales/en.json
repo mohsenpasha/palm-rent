@@ -264,5 +264,18 @@
   "faqText3": "Ask your question to our consultants using the form below and Palm Rent consultants will contact you as soon as possible.",
   "faqText4": "Send us your message!",
   "yourMessage": "Your message",
-  "sendMessage": "Send Message"
+  "sendMessage": "Send Message",
+  "logout": "Logout",
+  "logoutDescription": "Are you sure you want to logout from the application?!",
+  "exit": "Exit",
+  "back": "Back",
+  "account": "Account",
+  "bankInfo": "Bank Account Information",
+  "myFav": "My Favorites",
+  "balanceTransaction": "Balance and Transactions",
+  "customerComments": "Customer Comments",
+  "inviteFriends": "Invite Friends",
+  "requestBackup": "Support Request",
+  "moneyBalance": "Account Balance",
+  "increaseBalance": "Increase Balance"
 }
