@@ -80,9 +80,9 @@ export function DateBox({isSticky=false,timerValue}){
                         </div>
                     </div>
 
-                    <button onClick={openDateSelect} className="sm:text-[#3B82F6] sm:bg-transparent bg-[#3B82F6] p-1 rounded-lg text-white flex items-center text-nowrap gap-2 cursor-pointer size-8">
+                    <button onClick={openDateSelect} className=" sm:bg-transparent bg-[#3B82F6] p-1 rounded-lg text-white flex items-center text-nowrap gap-2 cursor-pointer size-8 sm:ml-[100px]">
                         <IconEdit/>
-                        <span className="sm:flex hidden">
+                        <span className="sm:flex hidden sm:text-[#3B82F6] text-white">
                             {t('changeSearch')}
                         </span>
                     </button>
