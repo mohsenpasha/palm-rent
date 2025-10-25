@@ -58,9 +58,12 @@ export default function Header({shadowLess=false}){
                                 <Image className="filter-[invert(1)]" src={'/images/logo.png'} width={85} height={38} alt="palmrent logo"></Image>
                             </Link>
                             <div onClick={()=>setMenuToggle(!menuToggle)} className="z-50 flex flex-col w-6 relative cursor-pointer lg:hidden">
-                                <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black ${menuToggle && 'absolute -rotate-45'}`}></div>
-                                <div className={`h-1 scale-y-50 mt-1 transition-all w-full bg-black ${menuToggle && 'opacity-0'}`}></div>
-                                <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black ${menuToggle && 'absolute rotate-45'}`}></div>
+                                <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black`}></div>
+                                <div className={`h-1 scale-y-50 mt-1 transition-all w-full bg-black`}></div>
+                                <div className={`h-1 scale-y-50 mt-1 transition-all w-full origin-center bg-black`}></div>
+                            </div>
+                            <div className="brightness-0 z-50 w-fit sm:hidden">
+                                <Image src={'/images/logo.png'} width={120} height={75} alt=""/>
                             </div>
                             <HeaderMenu isActive={menuToggle} closeMenu={()=>setMenuToggle(false)}/>
                         </div>
@@ -112,7 +115,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                 <div onClick={closeMenu} className={`absolute w-[100vw] h-[100vh] bg-black opacity-40 z-40 top-0 right-0 lg:hidden`}>
                 </div>
             </div>
-            <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0!' : '')} translate-x-full lg:translate-x-0 pt-15 lg:pt-0 fixed transition-all h-[100vh] lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible`}>
+            <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0!' : '')} translate-x-full lg:translate-x-0 pt-15 lg:pt-0 fixed transition-all h-[100vh] lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible rounded-tl-4xl`}>
                 <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
                     <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='/'>
                         {t('home')}
