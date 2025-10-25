@@ -22,10 +22,10 @@ export default function BranchesPage(){
     const t = useTranslations();
     return(
         
-        <div className="flex flex-wrap gap-2 w-[85vw] max-w-[1336px] m-auto my-8">
+        <div className="flex flex-wrap sm:gap-2 gap-1 w-[85vw] max-w-[1336px] m-auto my-8">
             {data && data.map((item,index)=>{
                     return(
-                        <div key={index} className="lg:w-[calc(25%-6px)] md:w-[calc(33%-3.5px)] sm:w-[calc(50%-8px)] w-full">
+                        <div key={index} className="lg:w-[calc(25%-6px)] sm:w-[calc(33%-3.5px)] w-[calc(50%-3.5px)]">
                             <SingleBranchCity link={'/cars-rent/dubai'} image={item.photo} title={item.title}/>
                         </div>
                     )

@@ -103,7 +103,7 @@ export function IconSearch({className}){
 export function IconWSOSD(){
     // weird shape of stupid designer
     return(
-        <svg width="73" height="72" viewBox="0 0 73 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 73 72" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0.0866089H58.5V50.5866C58.5 55.0049 54.9183 58.5866 50.5 58.5866H0V0.0866089Z" fill="#FFFFFF"/>
             <path d="M58 0.0866089C58 0.0866089 74.0207 0.0902901 72.0207 0.102502C70.0208 0.114713 65.4999 1.36441 62 4.08661C58.5001 6.80881 58.5 13.0866 58.5 13.0866L58 0.0866089Z" fill="#FFFFFF"/>
             <path d="M0 58.5C0 58.5 16.0204 58.6015 14.0204 58.6015C12.0204 58.6015 7.51643 59.2992 4 62C0.483573 64.7008 0 71.5 0 71.5L0 58.5Z" fill="#FFFFFF"/>

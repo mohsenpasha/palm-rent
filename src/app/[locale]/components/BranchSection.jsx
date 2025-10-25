@@ -117,16 +117,18 @@ export function Slider() {
 export function SingleBranchCity({link,image,title}){
     return(
             <Link href={link} className='border-[1px] group border-[#0000001f] bg-white inline-block w-full rounded-lg overflow-hidden relative p-2 cursor-pointer'>
-                <Image className='w-full rounded-lg object-cover h-[140px]' src={image} width={218} height={181} alt=''></Image>
-                <div className='absolute left-2 top-2'>
+                <div className='w-full max-sm:aspect-square'>
+                    <Image className='w-full rounded-lg object-cover h-full md:h-[140px]' src={image} width={218} height={181} alt=''></Image>
+                </div>
+                <div className='absolute left-2 top-2 sm:size-[72px] size-[40px]'>
                     <IconWSOSD/>
-                    <span className='absolute size-10 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] group-hover:text-white top-2 left-2 transition-all'>
-                        <span className='flex size-4'>
+                    <span className='absolute sm:size-10 size-5 flex items-center justify-center rounded-full group-hover:bg-[#3B82F6] group-hover:text-white top-2 left-2 transition-all'>
+                        <span className='flex size-3 sm:size-6'>
                             <IconArrowHandle/>
                         </span>
                     </span>
                 </div>
-                <div className='border-[1px] border-[#0000001f] rounded-lg mt-2 p-3'>
+                <div className='border-[1px] border-[#0000001f] rounded-lg mt-2 p-3 md:text-base sm:text-sm text-xs'>
                     {title}
                 </div>
             </Link>
