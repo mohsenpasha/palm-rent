@@ -32,7 +32,7 @@ const initialState = {
   isTranslatePopupOpen:false,
   isSearchPopupOpen:false,
   roadMapStep:1,
-  cities:['dubai','istanbul','kayseri','kish','ezmir','georgia','oman','samsun','antalya','ankara'],
+  cities:['dubai','istanbul','kayseri','kish','izmir','georgia','oman','samsun','antalya','ankara'],
   branches:null,
   homeComments:null,
   homeBlogs:null,

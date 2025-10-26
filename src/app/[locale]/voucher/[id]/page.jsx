@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { IconDownload } from "../../components/Icons";
 import { FineDeposit, PaymentDetail } from "../../components/InformationStep";
 import { FinalDetail, PersonalInfoShow, ReservationDetail, SocialBox, VoucherHead } from "../../components/VoucherStep";
-import Image from "next/image";
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { notFound } from 'next/navigation';
@@ -16,6 +15,7 @@ export default function VoucherPage(){
     const [data,setData]= useState(null)
     const [is404,setIs404] = useState(false)
     const [currentUrl, setCurrentUrl] = useState('');
+    const [options,setOptions] = useState(['noDeposite','freeDelivery','unlimitedKilometers','freeinsurance'])
     async function fetchData(id){
         await fetch("https://palmrentcar.com/api/car/rent/"+id+"/en/receipt")
         .then((res) => res.json())
@@ -34,8 +34,22 @@ export default function VoucherPage(){
     const t = useTranslations();
     useEffect(()=>{
         if(!data) return
+        let optionsHolder = []
         console.log(data)
         console.log(data.item.phone)
+        if(data.item.insurance_complete_price == 0){
+            optionsHolder.push('freeinsurance')
+        }
+        if(data.item.car_km != 'yes'){
+            optionsHolder.push('unlimitedKilometers')
+        }
+        if(data.item.car_free_delivery == 'yes'){
+            optionsHolder.push('freeDelivery')
+        }
+        if(data.item.car_deposit != 'yes'){
+            optionsHolder.push('noDeposite')
+        }
+        setOptions(optionsHolder)
     },[data])
     if(is404) {
         notFound()  
@@ -78,12 +92,15 @@ export default function VoucherPage(){
                     person_count={data.item.car_person}
                     car_name={data.item.car_name}
                     car_year={data.item.car_year}
+                    options={options}
                     />
                     <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
-                        <PaymentDetail data={data.item} borderLess={true}/>
-                        <FineDeposit borderLess={true}/>
+                        <PaymentDetail data={data.item} currency={data.currency} borderLess={true}/>
+                        {data.item.car_deposit == 'yes' && 
+                            <FineDeposit price={data.item.car_deposit_price} currency={data.currency} borderLess={true}/>
+                        }
                     </div>
-                    <FinalDetail/>
+                    <FinalDetail data={data.item} currency={data.currency} />
                     <SocialBox/>
                 </div>     
             </div>

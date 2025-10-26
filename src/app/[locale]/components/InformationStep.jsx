@@ -249,7 +249,7 @@ export function ExtraServices(){
     )
 }
 
-export function FineDeposit({borderLess=false}){
+export function FineDeposit({borderLess=false,price,currency}){
     const t = useTranslations();
     const dispatch = useDispatch()
     function openDescriptionPopup(){
@@ -272,7 +272,7 @@ export function FineDeposit({borderLess=false}){
                             </div>
                         </div>
                         <div className="text-[#545454]">
-                            490 درهم
+                            {price} {t(currency)}
                         </div>
                     </div>    
                 </div>
@@ -284,7 +284,7 @@ export function FineDeposit({borderLess=false}){
 
 
 
-export function PaymentDetail({borderLess=false,data}){
+export function PaymentDetail({borderLess=false,data,currency}){
     const t = useTranslations();
     return(
         <div className={`${!borderLess && 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
@@ -301,36 +301,53 @@ export function PaymentDetail({borderLess=false,data}){
                         title={'قیمت اجاره ' + data.rent_days + ' روزه'}
                         subtitle={
                             <div className="text-[#545454] text-xs flex gap-2">
-                                <span className="line-through">110</span>
-                                <span className="text-[#0FA875]"> 99 درهم روزانه</span>
+                                {/* <span className="line-through">110</span> */}
+                                <span className="text-[#0FA875]"> {data.rent_price_day} {t(currency)} روزانه</span>
                             </div>
                         }
-                        price={t('free')}
+                        price={data.rent_price_day + ' ' +  t(currency)}
                     />
+                    {data.options.map((item)=>{
+                        return(
+                            <SinglePaymentDet
+                                title={t('expense') + ' ' + (item.sum_price / data.rent_days) / item.price + ' ' + t(String(item.title).replace('.',''))}
+                                subtitle={t('daily') + ' ' + item.price + ' ' + t(currency)}
+                                price={item.sum_price + ' ' + t(currency)}
+                            />
+                        )
+                    })}
                     <SinglePaymentDet
                         title={t('deliveryPrice')}
-                        subtitle={t('location3')}
-                        price={data.rent_delivery_price == 0 ? t('free') : data.rent_delivery_price}
+                        subtitle={t(data.rent_delivery)}
+                        price={data.rent_delivery_price == 0 ? t('free') : data.rent_delivery_price + ' ' + t(currency)}
                     />
                     <SinglePaymentDet
                         title={t('returnPrice')}
-                        subtitle={t('location2')}
-                        price={data.rent_return_price == 0 ? t('free') : data.rent_return_price}
+                        subtitle={t(data.rent_return)}
+                        price={data.rent_return_price == 0 ? t('free') : data.rent_return_price + ' ' + t(currency)}
                     />
-                    <SinglePaymentDet
-                        title={'هزینه 2 صندلی کودک'}
-                        subtitle={t('location1')}
-                        price={'+95 درهم'}
-                    />
-                    <SinglePaymentDet
+                    {data.insurance_complete_price != 0 && 
+                        <SinglePaymentDet
+                            title={t('insurancePrice')}
+                            subtitle={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                            price={data.insurance_complete_price == 0 ? t('free') : data.insurance_complete_price + ' ' + t(currency)}
+                        />
+                    }
+                    {/* <SinglePaymentDet
                         title={t('noDeposite')}
                         subtitle={'قیمت روزانه 29 درهم'}
-                        price={'+36 درهم'}
+                        price={'+36 ' + t(currency)}
+                    /> */}
+                    <SinglePaymentDet
+                        title={t('tax Title')}
+                        subtitle={data.tax_percent + ' ' + t('percent')}
+                        price={data.tax_price + ' ' + t(currency)}
                     />
                     <SinglePaymentDet
-                        title={<div className="font-bold">{t('finalPriceB')} 3 {t('days')}</div>}
-                        subtitle={<div className="text-[#3B82F6]">تخفیف لحاظ شده برای این رزرو 150 درهم معادل 15.200.000 ریال است.</div>}
-                        price={<div className="font-bold">+970 درهم</div>}
+                        title={<div className="font-bold">{t('finalPriceB')} {data.rent_days} {t('days')}</div>}
+                        // subtitle={<div className="text-[#3B82F6]">تخفیف لحاظ شده برای این رزرو 150 {t(currency)} معادل 15.200.000 ریال است.</div>}
+                        subtitle={<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>}
+                        price={<div className="font-bold">{data.total} {t(currency)}</div>}
                     />
                     <div className="p-4 w-full">
                         <div className="rounded-2xl bg-white w-full">
@@ -346,7 +363,7 @@ export function PaymentDetail({borderLess=false,data}){
                                 </div>
                                 <div className="flex flex-col items-end gap-1 md:text-sm text-xs">
                                     <div className="font-bold">
-                                        170 درهم
+                                        {data.pre_pay} {t(currency)}
                                     </div>
                                     <div className="text-[#10B981]">
                                         5.400.000 تومان
@@ -365,7 +382,7 @@ export function PaymentDetail({borderLess=false,data}){
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-end gap-1 md:text-sm text-xs">
-                                    800 درهم
+                                    {data.balance} {t(currency)}
                                 </div>
                             </div>
 

@@ -131,7 +131,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                         <DropDownItem text={t('istanbul')} href={'/cars-rent/istanbul'}/>
                         <DropDownItem text={t('oman')} href={'/cars-rent/oman'}/>
                         <DropDownItem text={t('kish')} href={'/cars-rent/kish'}/>
-                        <DropDownItem text={t('ezmir')} href={'/cars-rent/ezmir'}/>
+                        <DropDownItem text={t('izmir')} href={'/cars-rent/izmir'}/>
                         <DropDownItem text={t('ankara')} href={'/cars-rent/ankara'}/>
                         <DropDownItem text={t('antalya')} href={'/cars-rent/antalya'}/>
                         <DropDownItem text={t('samsun')} href={'/cars-rent/samsun'}/>
@@ -149,7 +149,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                         <DropDownItem text={t('istanbul')} href={'/cars-list/istanbul'}/>
                         <DropDownItem text={t('oman')} href={'/cars-list/oman'}/>
                         <DropDownItem text={t('kish')} href={'/cars-list/kish'}/>
-                        <DropDownItem text={t('ezmir')} href={'/cars-list/ezmir'}/>
+                        <DropDownItem text={t('izmir')} href={'/cars-list/izmir'}/>
                         <DropDownItem text={t('ankara')} href={'/cars-list/ankara'}/>
                         <DropDownItem text={t('antalya')} href={'/cars-list/antalya'}/>
                         <DropDownItem text={t('samsun')} href={'/cars-list/samsun'}/>

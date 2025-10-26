@@ -141,7 +141,7 @@ export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car
                     </div>
                 </div>
                 <div className="sm:w-10/12 w-full m-auto">
-                    <SingleCarOptions data={{gasType:car_fuel,gearBox:car_gearbox,suitcase:bag_count,passengers:person_count}} />
+                    <SingleCarOptions data={{gasType:car_fuel,gearBox:String(car_gearbox),suitcase:bag_count,passengers:person_count}} />
                 </div>
             </div>
             <div className="flex-1 flex flex-col justify-around gap-2">
@@ -168,7 +168,7 @@ export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car
                     </span>
                     {t('deliveryLoc')}
                  </>   
-                } value={deliveryPlace}/>
+                } value={t(deliveryPlace)}/>
                 <SingleReservationDetail title={
                  <>
                     <span className="text-[#7C7C7C]">
@@ -177,7 +177,7 @@ export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car
                     {t('returnLoc')}
                  </>   
                 //  t('location2')
-                } value={returnPlace}/>
+                } value={t(returnPlace)}/>
                 <SingleReservationDetail title={
                  <>
                     <span className="text-[#7C7C7C]">
@@ -204,9 +204,17 @@ export function SingleReservationDetail({title,value}){
     )
 }
 
-export function FinalDetail(){
+export function FinalDetail({data,currency}){
+    const [startDate,setStartDate]  = useState([])
+    const [endDate,setEndDate]  = useState([])
+    useEffect(()=>{
+        setEndDate(formatDate(data.rent_from).split(','))
+        setStartDate(formatDate(data.rent_to).split(','))
+
+    },[])
     const t = useTranslations();
     return(
+        
         <div className="border-[1px] flex gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white flex-col xl:text-base lg:text-sm md:text-xs text-xs">
             <div className="flex gap-2 items-center text-black lg:text-lg md:text-sm text-xs font-semibold">
                 <IconInfo2/>
@@ -214,8 +222,8 @@ export function FinalDetail(){
             </div>
             <ul className="list-disc rtl:pr-6 ltr:pl-6 text-[#1B3A9F]">
                 <li>اجاره یک دستگاه هیوندای اکسنت ۲۰۲٤ </li>
-                <li>{t('from')} ۱۲:۰۰ ۱٦/۱۱/۱۴۰۳ {t('to')} ۲۰/۱۱/۱۴۰۳ ١٦:٠٠ {t('for')} ۵ {t('days')}</li>
-                <li>{t('debt')} : 525 {t('AED')}</li>
+                <li>{t('from')} {startDate[1] + ' - ' + startDate[0]} {t('to')} {endDate[1] + ' - ' + endDate[0]} {t('for')} {data.rent_days} {t('days')}</li>
+                <li>{t('debt')} : {data.balance} {t(currency)}</li>
             </ul>
             <ul className="list-disc rtl:pr-6 ltr:pl-6 text-[#333333] flex flex-col gap-4">
                 <li>{t('additionalInfo1')}</li>

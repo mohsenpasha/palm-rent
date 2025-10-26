@@ -11,7 +11,7 @@ import Header from "@/app/[locale]/components/Header";
 // };
 
 export default function BranchLayout({ children,params }) {
-  const cityList = ["dubai", "istanbul", "kayseri", "kish", "ezmir", "georgia", "oman", "samsun", "antalya", "ankara"]
+  const cityList = ["dubai", "istanbul", "kayseri", "kish", "izmir", "georgia", "oman", "samsun", "antalya", "ankara"]
   if(!cityList.includes(params.cityName)) return
   return (
     <>

@@ -78,7 +78,7 @@ export function Slider() {
             <SingleBranchCity link={'/cars-rent/samsun'} image={'/images/samsun.webp'} title={t('samsun')}/>
         </SwiperSlide>
         <SwiperSlide>
-            <SingleBranchCity link={'/cars-rent/ezmir'} image={'/images/ezmir.webp'} title={t('ezmir')}/>
+            <SingleBranchCity link={'/cars-rent/izmir'} image={'/images/izmir.webp'} title={t('izmir')}/>
         </SwiperSlide>
         <SwiperSlide>
             <SingleBranchCity link={'/cars-rent/ankara'} image={'/images/ankara.webp'} title={t('ankara')}/>

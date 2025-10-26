@@ -123,19 +123,20 @@ export function SingleCarGallery({children,noBtn}){
 }
 export function SingleCarOptions({data,bigFont=false}){
     const t = useTranslations();
+    console.log(data.gearBox)
     return(
         <div className={`flex w-full text-[#787878] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs border-t-[1px]'}`}>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGas/>
                 </span>
-                {t(data.gasType)}
+                {t(data.gasType == 'بنزین' ? 'gasoline' : data.gasType)}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGearBox/>
                 </span>
-                {t(data.gearbox)}
+                {t(data.gearBox)}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>

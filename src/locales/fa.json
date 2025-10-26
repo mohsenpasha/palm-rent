@@ -7,7 +7,7 @@
   "istanbul":"استانبول",
   "kayseri":"قیصریه ترکیه",
   "kish":"کیش",
-  "ezmir":"ازمیر ترکیه",
+  "izmir":"ازمیر ترکیه",
   "georgia":"تفلیس گرجستان",
   "oman":"عمان",
   "samsun":"سامسون ترکیه",
@@ -156,8 +156,8 @@
   "paymentNRequired":"در ثبت اولیه نیازی به پرداخت نیست",
   "yourResServices":"خدمات موجود در رزرو شما :",
   "location1":"در آفیس پالم رنت (رایگان)",
-  "location2":"در محل شرکت (رایگان)",
-  "location3":"فرودگاه جدید استانبول (رایگان)",
+  "company location":"در محل شرکت (رایگان)",
+  "Istanbul Airport IST":"فرودگاه جدید استانبول (رایگان)",
   "optionalLocation":"لوکیشن دلخواه خود ( 50 دلار )",
   "optionalTitle":"لطفا نام هتل یا لوکیشن خود را وارد کنید",
   "chooseDelLoc":"مکان محل تحویل را انتخاب کنید",
@@ -277,5 +277,16 @@
   "inviteFriends":"دعوت از دوستان",
   "requestBackup":"درخواست پشتیبانی",
   "moneyBalance":"موجودی حساب",
-  "increaseBalance":"افزایش موجودی"
+  "increaseBalance":"افزایش موجودی",
+  "Dubai International Airport - Terminal 1":"فرودگاه دبی ترمینال یک",
+  "Dubai International Airport - Terminal 2":"فرودگاه دبی ترمینال 2",
+  "Dubai International Airport - Terminal 3":"فرودگاه دبی ترمینال 3",
+  "Delivery at the hotel door in Dubai":"تحویل درب هتل در دبی",
+  "Izmir Airport":"فرودگاه ازمیر",
+  "tax Title":"هزینه مالیات",
+  "percent":"درصد",
+  "Extra driver":"راننده اضافه",
+  "Child baby":"صندلی کودک",
+  "insurancePrice":"هزینه بیمه"
+
 }
