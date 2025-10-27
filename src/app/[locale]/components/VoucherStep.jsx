@@ -109,7 +109,7 @@ export function PersonalInfoShowSingle({title,value}){
     )
 }
 
-export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car_gearbox,car_fuel,bag_count,person_count,options=[],car_name,car_year}){
+export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car_gearbox,car_fuel,bag_count,person_count,options=[],car_name,car_year,image}){
     const [fromDate,setFromDate] = useState(['',''])
     const [toDate,setToDate] = useState(['',''])
     useEffect(()=>{
@@ -118,6 +118,7 @@ export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car
     },[])
     const t = useTranslations();
     // const [options,setOptions] = useState(['noDeposite','freeDelivery','unlimitedKilometers','freeinsurance'])
+    console.log(image)
     return(
         <div className="border-[1px] flex md:flex-nowrap flex-wrap lg:gap-12 gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
             <div className="md:w-1/2 w-full flex flex-col gap-4">
@@ -130,8 +131,8 @@ export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car
                         {car_name + ' ' + car_year}
                     </div>
                 </div>
-                <div className="relative w-full">
-                    <Image className={`rounded-lg w-full h-full object-cover`} src={'/images/singlecar-1.png'} width={581} height={307} alt=''></Image>
+                <div className="relative w-full max-h-[350px] animate-skeleton">
+                    <Image className={`rounded-lg w-full h-full object-cover`} src={image} width={581} height={307} alt=''></Image>
                     <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full overflow-hidden flex-wrap">
                         {options.map((item,index)=>{
                             return(
@@ -168,7 +169,7 @@ export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car
                     </span>
                     {t('deliveryLoc')}
                  </>   
-                } value={t(deliveryPlace)}/>
+                } value={t(String(deliveryPlace))}/>
                 <SingleReservationDetail title={
                  <>
                     <span className="text-[#7C7C7C]">
@@ -221,7 +222,7 @@ export function FinalDetail({data,currency}){
                 {t('additionalInformation')}
             </div>
             <ul className="list-disc rtl:pr-6 ltr:pl-6 text-[#1B3A9F]">
-                <li>اجاره یک دستگاه هیوندای اکسنت ۲۰۲٤ </li>
+                <li>اجاره یک دستگاه {data.car_name}  {data.car_year} </li>
                 <li>{t('from')} {startDate[1] + ' - ' + startDate[0]} {t('to')} {endDate[1] + ' - ' + endDate[0]} {t('for')} {data.rent_days} {t('days')}</li>
                 <li>{t('debt')} : {data.balance} {t(currency)}</li>
             </ul>

@@ -284,7 +284,7 @@ export function FineDeposit({borderLess=false,price,currency}){
 
 
 
-export function PaymentDetail({borderLess=false,data,currency}){
+export function PaymentDetail({borderLess=false,data,currency,toman}){
     const t = useTranslations();
     return(
         <div className={`${!borderLess && 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
@@ -307,9 +307,9 @@ export function PaymentDetail({borderLess=false,data,currency}){
                         }
                         price={data.rent_price_day + ' ' +  t(currency)}
                     />
-                    {data.options.map((item)=>{
+                    {data.options.map((item,index)=>{
                         return(
-                            <SinglePaymentDet
+                            <SinglePaymentDet key={index}
                                 title={t('expense') + ' ' + (item.sum_price / data.rent_days) / item.price + ' ' + t(String(item.title).replace('.',''))}
                                 subtitle={t('daily') + ' ' + item.price + ' ' + t(currency)}
                                 price={item.sum_price + ' ' + t(currency)}
@@ -366,7 +366,7 @@ export function PaymentDetail({borderLess=false,data,currency}){
                                         {data.pre_pay} {t(currency)}
                                     </div>
                                     <div className="text-[#10B981]">
-                                        5.400.000 تومان
+                                        {(data.pre_pay * toman).toLocaleString()} تومان
                                     </div>
                                 </div>
                             </div>
@@ -383,6 +383,9 @@ export function PaymentDetail({borderLess=false,data,currency}){
                                 </div>
                                 <div className="flex flex-col items-end gap-1 md:text-sm text-xs">
                                     {data.balance} {t(currency)}
+                                    <div className="text-[#10B981]">
+                                        {(data.balance * toman).toLocaleString()} تومان
+                                    </div>
                                 </div>
                             </div>
 

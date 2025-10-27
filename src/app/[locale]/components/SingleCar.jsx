@@ -130,7 +130,7 @@ export function SingleCarOptions({data,bigFont=false}){
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGas/>
                 </span>
-                {t(data.gasType == 'بنزین' ? 'gasoline' : data.gasType)}
+                {t(String(data.gasType))}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
