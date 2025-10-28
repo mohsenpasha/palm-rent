@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import { IconArrowHandle, IconBag, IconGas, IconGearBox, IconPerson, IconPlay, IconSend, IconWhatsapp } from "./Icons";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeReelActive } from "@/redux/slices/reelsSlice";
 import Link from "next/link";
@@ -9,15 +9,15 @@ import { getDiffInShamsiDays } from "./SearchBar";
 import { changeRoadMapStep } from "@/redux/slices/globalSlice";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { dateDifference } from "@/app/lib/getDateDiffrence";
 
 export default function SingleCar({data,noBtn = false}){
     const t = useTranslations();
     const optionList = useSelector((state)=>state.carList.optionList)
     const [isHovering,setIsHovering] = useState(false)
-    
     return(
         <div className={`${isHovering && 'z-30'} flex w-full flex-col hover:scale-[97%] bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]`}>
-            <SingleCarGallery noBtn={noBtn}>
+            <SingleCarGallery imageList={data.images} noBtn={noBtn ? noBtn : data.video.length == 0}>
                 {!noBtn && 
                     <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
                         {data.options.map((item,index)=>{
@@ -51,7 +51,7 @@ export default function SingleCar({data,noBtn = false}){
     )
 }
 
-export function SingleCarGallery({children,noBtn}){
+export function SingleCarGallery({children,noBtn,imageList}){
     const t = useTranslations();
     const dispatch = useDispatch()
     const [hoverList,setHoverList] = useState([true,false,false,false])
@@ -70,47 +70,47 @@ export function SingleCarGallery({children,noBtn}){
     }
     function activateReel(){
         dispatch(changeReelActive(true))
-        // dispatch(changeReelActive(true))
-    }
-    function imageClickHandler(){
-        
     }
     return(
         <div className="flex relative z-10 w-full lg:h-[220px] h-[220px]">
             <div className="flex h-full">
                 <div className="absolute w-full h-full top-0 right-0 rounded-lg -z-10">
-                    <Image className={`${hoverList[0] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-2.jpg'} width={395} height={253} alt=''></Image>
-                    <Image className={`${hoverList[1] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
-                    <Image className={`${hoverList[2] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-1.png'} width={395} height={253} alt=''></Image>
-                    <div className={`${hoverList[3] ? 'z-10' : ''} rounded-lg w-full h-full absolute`}>
-                        <div className={`absolute w-full h-full rounded-lg ${hoverList[3] ? 'z-20' : ''} bg-[#000000aa] text-white flex flex-col items-center justify-center`}>
-                            <span className="flex items-center justify-center border-2 border-white rounded-full size-16 rotate-135">
-                                <span className="flex size-6">
-                                    <IconArrowHandle/>
-                                </span>
-                            </span>
-                            {t('morePic')}
-                        </div>
-                        <Image className={`${hoverList[3] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={'/images/singlecar-3.jpg'} width={395} height={253} alt=''></Image>
-                    </div>
+                    {imageList.map((item,index)=>{
+                        return(
+                            (index != imageList.length - 1)?
+                                <Image key={index} className={`${hoverList[index] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={item} width={395} height={253} alt=''></Image>
+                            :
+                                <div key={index} href={'test'} className={`${hoverList[index] ? 'z-10' : ''} rounded-lg w-full h-full absolute`}>
+                                    <div className={`absolute w-full h-full rounded-lg ${hoverList[index] ? 'z-20' : ''} bg-[#000000aa] text-white flex flex-col items-center justify-center`}>
+                                        <span className="flex items-center justify-center border-2 border-white rounded-full size-16 rotate-135">
+                                            <span className="flex size-6">
+                                                <IconArrowHandle/>
+                                            </span>
+                                        </span>
+                                        {t('morePic')}
+                                    </div>
+                                    <Image className={`${hoverList[index] ? 'z-10' : ''} rounded-lg w-full h-full object-cover absolute`} src={item} width={395} height={253} alt=''></Image>
+                                </div>
+                        )
+                    })}
                 </div>
                     <div className="z-20">
                         {children}
                     </div>
 
                 <div className="absolute w-full h-full flex items-end flex-row-reverse p-2 cursor-pointer transition-all opacity-0 hover:opacity-100">
-                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(0)} className="w-full h-full flex items-end group px-1">
-                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
-                    </div>
-                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(1)} className="w-full h-full flex items-end group px-1">
-                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
-                    </div>
-                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(2)} className="w-full h-full flex items-end group px-1">
-                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
-                    </div>
-                    <div onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(3)} className="w-full h-full flex items-end group px-1">
-                        <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
-                    </div>
+                    {imageList.map((_,index)=>{
+                        return(
+                            index != imageList.length - 1 ? 
+                            <div key={index} onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(index)} className="w-full h-full flex items-end group px-1">
+                                <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
+                            </div>
+                            :
+                            <Link key={index} href={'test'} onMouseLeave={mouseLeaveHandler} onMouseMove={()=>galleryHoverHandler(index)} className="w-full h-full flex items-end group px-1">
+                                <span className="w-full h-1 rounded-2xl bg-[#00000070] group-hover:bg-white transition-all"></span>
+                            </Link>
+                        )
+                    })}
                 </div>
             </div>
             {!noBtn && 
@@ -123,14 +123,13 @@ export function SingleCarGallery({children,noBtn}){
 }
 export function SingleCarOptions({data,bigFont=false}){
     const t = useTranslations();
-    console.log(data.gearBox)
     return(
         <div className={`flex w-full text-[#787878] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs border-t-[1px]'}`}>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGas/>
                 </span>
-                {t(String(data.gasType))}
+                {t(String(data.gasType).toLowerCase())}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
@@ -158,27 +157,43 @@ export function SingleCarPriceList({priceList}){
     const [rentDay,setRentDay] = useState(null)
     const [finalDayPrice,setFinalDayPrice] = useState(null)
     const carDates = useSelector((state)=>state.global.carDates)
+    
     // const router = useRouter();
     const pathname = usePathname()
     const isInSearchPage = pathname == '/search'
     useEffect(()=>{
         if(!isInSearchPage) return
-        const dayD = parseInt(getDiffInShamsiDays(carDates[0],carDates[1]))
-        setRentDay(dayD)
         Object.entries(priceList).map(([key,value])=>{
-            const splitedData = key.split(':')
-            let st;
-            if(splitedData[1].length == 0){
-                st = parseInt(splitedData[0]) <= dayD
-            }
-            else{
-                st = parseInt(splitedData[0]) <= dayD && dayD <= parseInt(splitedData[1])
-            }
-            if(st){
+            if(key == '1'){
                 setFinalDayPrice(value)
+                setRentDay(dateDifference(carDates[0],carDates[1]).days)
             }
         })
+        if(isInSearchPage){
+
+        }
+        // const dayD = parseInt(getDiffInShamsiDays(carDates[0],carDates[1]))
+        // setRentDay(dayD)
+        // Object.entries(priceList).map(([key,value])=>{
+        //     const splitedData = key.split(':')
+        //     let st;
+        //     if(splitedData[1].length == 0){
+        //         st = parseInt(splitedData[0]) <= dayD
+        //     }
+        //     else{
+        //         st = parseInt(splitedData[0]) <= dayD && dayD <= parseInt(splitedData[1])
+        //     }
+        //     console.log(st)
+        //     if(st){
+        //         setFinalDayPrice(value)
+        //     }
+        // })
     },[carDates])
+    // return(
+    //     <div>
+    //         test
+    //     </div>
+    // )
     return(
         <div>
             {/* <div className="w-full border-b-[1px] border-[#0000001f] py-2">
@@ -190,7 +205,7 @@ export function SingleCarPriceList({priceList}){
                     <span>{t('BSPrice')} {rentDay} {t('day')}</span>
                     <div className="lg:text-base text-sm flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
-                            {finalDayPrice.previousPrice}
+                            {finalDayPrice.previousPrice != finalDayPrice.currentPrice && finalDayPrice.previousPrice}
                         </span>
                         <span className="text-[#10B981]">
                             {finalDayPrice.currentPrice}
@@ -200,27 +215,30 @@ export function SingleCarPriceList({priceList}){
                 </div>
                 : 
                 Object.entries(priceList).map(([key, { previousPrice, currentPrice }]) => (
-                    <div key={key} className="flex justify-between">
-                        <div>
-                            {(() => {
-                                const [from, to] = key.split(":");
-                                return to.length === 0 ? (
-                                    <>{t('moreThan')} {from} {t('day')}</>
-                                ) : (
-                                    <>{t('from')} {from} {t('to')} {to} {t('day')}</>
-                                );
-                            })()}
-                        </div>
-                        <div className="lg:text-base text-sm flex gap-2">
-                            <span className="text-[#A7A7A7] line-through">
-                                {previousPrice}
-                            </span>
-                            <span className="text-[#10B981]">
-                                {currentPrice}
-                            </span>
-                            {t('AED')} {t('daily')}
-                        </div>
+                    <div key={key}>
+                        {key}
                     </div>
+                    // <div key={key} className="flex justify-between">
+                    //     <div>
+                    //         {(() => {
+                    //             const [from, to] = key.split(":");
+                    //             return to.length === 0 ? (
+                    //                 <>{t('moreThan')} {from} {t('day')}</>
+                    //             ) : (
+                    //                 <>{t('from')} {from} {t('to')} {to} {t('day')}</>
+                    //             );
+                    //         })()}
+                    //     </div>
+                    //     <div className="lg:text-base text-sm flex gap-2">
+                    //         <span className="text-[#A7A7A7] line-through">
+                    //             {previousPrice}
+                    //         </span>
+                    //         <span className="text-[#10B981]">
+                    //             {currentPrice}
+                    //         </span>
+                    //         {t('AED')} {t('daily')}
+                    //     </div>
+                    // </div>
                     ))}
             </div>
         </div>

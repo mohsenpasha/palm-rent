@@ -1,5 +1,5 @@
 'use client'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DateBox } from "../components/DateBox";
 import Header from "../components/Header";
 import PopupReels from "../components/PopupReels";
@@ -15,6 +15,23 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
+import { postData } from "@/app/lib/PostData";
+import { notFound } from "next/navigation";
+import { addCarList } from "@/redux/slices/carListSlice";
+import { changeCarDates } from "@/redux/slices/globalSlice";
+
+function getUrlParamsEasy(search = window.location.search) {
+    const params = {};
+    const urlParams = new URLSearchParams(search);
+    
+    for (const [key, value] of urlParams) {
+        params[key] = value;
+    }
+    
+    return params;
+}
+
+
 
 function pad(num, size) {
     num = num.toString();
@@ -22,6 +39,14 @@ function pad(num, size) {
     return num;
 }
 export default function SearchResultPage(){
+    const searchRef = useRef()
+    const loadingRef = useRef(true)
+    const firstTime = useRef(true)
+    const [isLoading,setIsLoading] = useState(true)
+    const [hasMore,setHasMore] = useState(true)
+    const dispatch = useDispatch()
+    const [is404,setIs404]  = useState(false)
+    const [recivedData,setRecivedData] = useState()
     const timerRef = useRef(900)
     const [timerValue,setTimerValue] = useState('00:00')
     const descriptionPopup = useSelector((state)=>state.global.descriptionPopup)
@@ -30,6 +55,57 @@ export default function SearchResultPage(){
     const carList = useSelector((state) => state.carList.carList)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
     const roadMapStep = useSelector((state) => state.global.roadMapStep)
+    function fetchData(){
+        if(!recivedData && !firstTime.current) return
+        firstTime.current = false
+        let url = 'https://palmrentcar.com/api/car/filter/en'
+        const params = getUrlParamsEasy()    
+        if(!params.from,!params.to,!params.branch_id){
+            setIs404(true)
+            return
+        }
+        dispatch(changeCarDates([params.from.split(' ')[0],params.to.split(' ')[0]]))
+        let payload = {
+            from : params.from,
+            to : params.to,
+            branch_id : params.branch_id,
+        }
+        if(!!recivedData){
+            console.log(recivedData)
+            const currentPage = parseInt(recivedData.data.page)
+            const perPage = parseInt(recivedData.data.per_page)
+            const carCount = parseInt(recivedData.data.count_cars)
+            const carRecivedCount = (currentPage * perPage) + 3
+            if(carRecivedCount >= carCount){
+                setHasMore(false)
+                setIsLoading(false)
+                loadingRef.current = false
+                return
+            }
+            payload.page = currentPage + 1
+            console.log(currentPage)
+        }
+        postData(url,payload)
+        .then(data => {
+            setRecivedData(data)
+            setIsLoading(false)
+            loadingRef.current = false
+        })
+        .catch(error => console.error('خطا:', error));
+    }
+    function scrollHandler(){
+        if(!hasMore || loadingRef.current) return
+        if(searchRef.current.getBoundingClientRect().bottom - window.innerHeight <= 100){
+            console.log('testtetet')
+            if(!hasMore) return
+            setIsLoading(true)
+            loadingRef.current = true
+        }
+    }
+    useEffect(()=>{
+        if(!isLoading) return
+        fetchData()
+    },[isLoading])
     function timerStart(){
         setTimeout(()=>{
             const second = pad(timerRef.current % 60,2)
@@ -42,24 +118,38 @@ export default function SearchResultPage(){
         },1000)
     }
     useEffect(()=>{
+        fetchData()
+        // dispatch(addCarList())
         timerStart()
         NProgress.start()
         const timeout = setTimeout(() => {
         NProgress.done()
         }, 300)
-        return () => clearTimeout(timeout)
+        window.addEventListener('scroll',scrollHandler)
+        return () => {
+            clearTimeout(timeout)
+            window.removeEventListener('scroll',scrollHandler)
+        }
     },[])
+    useEffect(()=>{
+        if(!recivedData) return
+        console.log(recivedData)
+        dispatch(addCarList(recivedData.data.cars))
+    },[recivedData])
     // const router = useRouter();
-    const previousPage = document.referrer;
+    // const previousPage = document.referrer;
 
-    console.log(previousPage);
+    // console.log(previousPage);
+    if(is404) {
+            notFound()
+        }
     return(
         <>
             <Header shadowLess/>
-                <div className="w-[90vw] max-w-[1336px] m-auto">
+                <div className="w-[90vw] max-w-[1336px] m-auto relative">
                 <div className="flex flex-col max-sm:flex-col-reverse">
                     {roadMapStep < 3 && 
-                        <div className="w-[100vw] -mr-[5vw]">
+                        <div className="">
                             <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
                         </div>
                     }
@@ -73,10 +163,7 @@ export default function SearchResultPage(){
                         roadMapStep == 1 &&
                         <>
                             <SearchBox/>
-                            <div className="flex flex-wrap gap-4">
-                                <div className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                    <SkeletonSingleCar/>
-                                </div>
+                            <div ref={searchRef} className="flex flex-wrap gap-4">
                                 {carList.map((item,index)=>{
                                     return(
                                         <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
@@ -84,6 +171,15 @@ export default function SearchResultPage(){
                                         </div>
                                     )
                                 })}
+                                {hasMore && isLoading &&
+                                    Array(3).fill(null).map((_,index)=>{
+                                        return(
+                                            <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                                                <SkeletonSingleCar singlePrice={true}/>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </>
                     }

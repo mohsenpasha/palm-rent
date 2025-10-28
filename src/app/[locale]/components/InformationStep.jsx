@@ -122,7 +122,7 @@ export function SideCarDetail(){
                     </div>
                     Audi r8 2022
                 </div>
-                <SingleCarOptions data={{gasType:'gasoline',gearbox:'geared',suitcase:3,passengers:4}}/>
+                <SingleCarOptions data={{gasType:'gasoline',gearBox:'geared',suitcase:3,passengers:4}}/>
             </div>
             <ReservedServices/>
             <div className="flex flex-col gap-2 mb-6">

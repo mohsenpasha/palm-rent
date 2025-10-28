@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IconCalender, IconClock, IconEdit, IconVideoTime } from "./Icons";
-import SearchBar, { DatePickerBox, getDiffInShamsiDays } from "./SearchBar";
+import { DatePickerBox, getDiffInShamsiDays } from "./SearchBar";
 import { useEffect, useState } from "react";
 import { changeIsDateSelectOpen } from "@/redux/slices/globalSlice";
 import useDisableScroll from "@/app/hooks/useDisableScroll";
 import { useTranslations } from "next-intl";
+import { dateDifference } from "@/app/lib/getDateDiffrence";
 
 export function DateBox({isSticky=false,timerValue}){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
@@ -16,7 +17,8 @@ export function DateBox({isSticky=false,timerValue}){
     const t = useTranslations();
     const dispatch = useDispatch()
     useEffect(()=>{
-        setCarDayCount(getDiffInShamsiDays(carDates[0],carDates[1]))
+        console.log()
+        setCarDayCount(dateDifference(carDates[0],carDates[1]).days)
     },[carDates])
     function openDateSelect(){
         dispatch(changeIsDateSelectOpen(true))
@@ -86,7 +88,7 @@ export function DateBox({isSticky=false,timerValue}){
                             {t('changeSearch')}
                         </span>
                     </button>
-                    <div className="text-red-600 items-center gap-1 lg:flex hidden rtl:mr-8 ltr:ml-8">
+                    <div className="text-red-600 items-center gap-1 lg:flex hidden rlt:ml-8 ltr:mr-8">
                         {timerValue}
                         <span className="size-6 flex items-center">
                             <IconClock/>
