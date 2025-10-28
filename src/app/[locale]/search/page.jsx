@@ -17,8 +17,9 @@ import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import { postData } from "@/app/lib/PostData";
 import { notFound } from "next/navigation";
-import { addCarList } from "@/redux/slices/carListSlice";
+import { addCarList, clearCarList } from "@/redux/slices/carListSlice";
 import { changeCarDates } from "@/redux/slices/globalSlice";
+import { changePriceRange, changeSearchCurrency } from "@/redux/slices/searchSlice";
 
 function getUrlParamsEasy(search = window.location.search) {
     const params = {};
@@ -55,11 +56,21 @@ export default function SearchResultPage(){
     const carList = useSelector((state) => state.carList.carList)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
     const roadMapStep = useSelector((state) => state.global.roadMapStep)
+    const search_title = useSelector((state) => state.search.search_title)
+    const search_sort = useSelector((state) => state.search.sort)
+    const priceRange = useSelector((state) => state.search.selectedPriceRange)
+    useEffect(()=>{
+        setRecivedData(null)
+        dispatch(clearCarList())
+        setIsLoading(true)
+        firstTime.current = true
+        loadingRef.current = true
+    },[search_title,search_sort,priceRange])
     function fetchData(){
         if(!recivedData && !firstTime.current) return
         firstTime.current = false
         let url = 'https://palmrentcar.com/api/car/filter/en'
-        const params = getUrlParamsEasy()    
+        const params = getUrlParamsEasy()
         if(!params.from,!params.to,!params.branch_id){
             setIs404(true)
             return
@@ -70,8 +81,17 @@ export default function SearchResultPage(){
             to : params.to,
             branch_id : params.branch_id,
         }
+        if(search_title){
+            payload.search_title = search_title
+        }
+        if(search_sort){
+            payload.sort = search_sort
+        }
+        if(priceRange){
+            payload.min_p = Math.min(...priceRange)
+            payload.max_p = Math.max(...priceRange)
+        }
         if(!!recivedData){
-            console.log(recivedData)
             const currentPage = parseInt(recivedData.data.page)
             const perPage = parseInt(recivedData.data.per_page)
             const carCount = parseInt(recivedData.data.count_cars)
@@ -104,6 +124,7 @@ export default function SearchResultPage(){
     }
     useEffect(()=>{
         if(!isLoading) return
+        console.log('----------------------------------- test -----------------------')
         fetchData()
     },[isLoading])
     function timerStart(){
@@ -133,7 +154,8 @@ export default function SearchResultPage(){
     },[])
     useEffect(()=>{
         if(!recivedData) return
-        console.log(recivedData)
+        dispatch(changePriceRange([recivedData.data.max_price,recivedData.data.min_price]))
+        dispatch(changeSearchCurrency(recivedData.data.currency))
         dispatch(addCarList(recivedData.data.cars))
     },[recivedData])
     // const router = useRouter();

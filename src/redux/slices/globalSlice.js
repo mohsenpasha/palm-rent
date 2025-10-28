@@ -57,7 +57,6 @@ const initialState = {
   returnLocation:{isDesired:false,location:null},
   areLocationsSame:true,
   isLocationPopupOpen:false,
-  searchOrder:null,
   isInfoListOpen:false
   // singleCar:{}
 }
@@ -120,9 +119,6 @@ const globalSlice = createSlice({
     changeIsLocationPopupOpen: (state,action) => {
       state.isLocationPopupOpen = action.payload
     },
-    changeSearchOrder: (state,action) => {
-      state.searchOrder = action.payload
-    },
     changeIsInfoListOpen: (state,action) => {
       state.isInfoListOpen = action.payload
     },
@@ -139,5 +135,5 @@ const globalSlice = createSlice({
   },
 })
 
-export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen, changeSelectedCity, changeIsDateJalili, changeDescriptionPopup, changeDeliveryLocation, changeReturnLocation, changeAreLocationsSame, changeIsLocationPopupOpen, changeSearchOrder, changeIsInfoListOpen, changeBranches, changeHomeBlogs, changeHomeComments } = globalSlice.actions
+export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen, changeSelectedCity, changeIsDateJalili, changeDescriptionPopup, changeDeliveryLocation, changeReturnLocation, changeAreLocationsSame, changeIsLocationPopupOpen, changeIsInfoListOpen, changeBranches, changeHomeBlogs, changeHomeComments } = globalSlice.actions
 export default globalSlice.reducer

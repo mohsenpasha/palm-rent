@@ -20,14 +20,63 @@ export default function InformationStep(){
     function nextStep(){
         dispatch(changeRoadMapStep(3))
     }
+    const data = {
+    "name": null,
+    "phone": null,
+    "email": null,
+    "branch": "Dubai",
+    "created_date": "2024-04-07T16:04:00.000000Z",
+    "code": 3,
+    "car_name": "Kia Rio",
+    "car_year": 2022,
+    "car_fuel": "Petrol",
+    "car_baggage": 3,
+    "car_gearbox": "automatic",
+    "car_person": 5,
+    "car_deposit": "yes",
+    "car_deposit_price": "1000.00",
+    "car_km": "yes",
+    "car_free_delivery": "no",
+    "car_insurance": "yes",
+    "rent_from": "2024-04-08 10:00:00",
+    "rent_to": "2024-04-11 12:00:00",
+    "rent_delivery": "Dubai International Airport - Terminal 2",
+    "rent_delivery_address": "",
+    "rent_return": "Dubai International Airport - Terminal 2",
+    "rent_return_address": "",
+    "rent_days": 4,
+    "rent_price_day": "137.60",
+    "rent_price_sum": "550.40",
+    "rent_delivery_price": 0,
+    "rent_return_price": 0,
+    "insurance_complete_price": 0,
+    "options": [
+        {
+            "title": "Extra driver.",
+            "price": 600,
+            "sum_price": 2400
+        },
+        {
+            "title": "-",
+            "price": 500,
+            "sum_price": 2000
+        }
+    ],
+    "tax_percent": 5,
+    "tax_price": "257.02",
+    "total": "5397.42",
+    "pre_pay": 4038.4,
+    "balance": 1359.02,
+    "photo": "https://palmrentcar.com/assets/uploads/car/car/1402-11-22/photos/photo-04de6b6dad70087a123fcb29df70c6d6.webp"
+}
     return(
         <>
-            <div className="flex w-full flex-1 gap-4 lg:flex-nowrap flex-wrap">
+            <div className="flex w-full lg:flex-row flex-col-reverse flex-1 gap-4 lg:flex-nowrap flex-wrap">
                 <div className="flex flex-col flex-1 lg:w-auto w-full h-fit">
                     <DeliverySpot isLocationReturn={isLocationReturn} setIsLocationReturn={setIsLocationReturn} />
                     <ExtraServices/>
                     <FineDeposit/>
-                    <PaymentDetail/>
+                    <PaymentDetail data={data}/>
                     <PersonalInfoBox/>
                     <button onClick={nextStep} className="w-10/12 bottom-4 m-auto sticky bg-[#3B82F6] rounded-2xl text-[#FFFFFF] p-4 lg:text-lg sm:text-base text-xs my-2">
                         {t('resButton')}
@@ -36,7 +85,7 @@ export default function InformationStep(){
                         {t('paymentNRequired')}
                     </div>
                 </div>
-                <div className="w-1/3 lg:flex hidden h-fit sticky top-[100px]">
+                <div className="lg:w-1/3 w-full flex h-fit lg:sticky top-[100px]">
                     <SideCarDetail/>
                 </div>
             </div>

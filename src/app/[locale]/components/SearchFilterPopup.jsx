@@ -1,8 +1,9 @@
 'use client'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IconClose, IconSearch2 } from "./Icons";
 
 export default function SearchFilterPopup(){
+  const [isPriceConfirmed,setIsPriceConfirmed] = useState(false)
   const t = useTranslations();
     const dispatch = useDispatch()
     function closePopup(){
@@ -23,25 +24,37 @@ export default function SearchFilterPopup(){
                     </span>
                 </div>
                 <div className="p-4">
-                    <PriceRange/>
+                    <PriceRange isPriceConfirmed={isPriceConfirmed} closePopup={closePopup}/>
                 </div>
+              <div className="flex justify-center">
+                <button onClick={()=>setIsPriceConfirmed(true)} className="bg-[#3B82F6] rounded-lg p-3 px-9 text-white font-bold w-fit cursor-pointer">تایید</button>
+              </div>
             </div>
         </div>
     )
 }
 
 import { Range } from 'react-range'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { changeFilterStatus } from "@/redux/slices/globalSlice";
 import { useTranslations } from "next-intl";
+import { changeSelectedPriceRange } from "@/redux/slices/searchSlice";
 
-export function PriceRange(){
-  const STEP = 100000
-  const MIN = 0
-  const MAX = 10000000
+export function PriceRange({isPriceConfirmed,closePopup}){
+  const dispatch = useDispatch()
+  const t = useTranslations();
+  const priceRange = useSelector((state)=> state.search.priceRange)
+  const currency = useSelector((state)=> state.search.currency)
+  const STEP = 10
+  const MIN = Math.min(...priceRange)
+  const MAX = Math.max(...priceRange)
 
-  const [values, setValues] = useState([1000000, 5000000])
-
+  const [values, setValues] = useState([MIN, MAX])
+  useEffect(()=>{
+    if(!isPriceConfirmed) return
+    dispatch(changeSelectedPriceRange(values))
+    closePopup()
+  },[isPriceConfirmed])
   return (
     <div dir="ltr" className="w-full px-4">
       <div className="relative h-10 flex items-center">
@@ -89,8 +102,8 @@ export function PriceRange(){
       </div>
 
       <div className="flex justify-between text-xs mt-4 px-1 text-gray-600">
-        <span>حداقل: {values[0].toLocaleString()} تومان</span>
-        <span>حداکثر: {values[1].toLocaleString()} تومان</span>
+        <span>حداقل: {values[0].toLocaleString()} {t(currency)}</span>
+        <span>حداکثر: {values[1].toLocaleString()} {t(currency)}</span>
       </div>
     </div>
   )

@@ -1,21 +1,63 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconClose, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3 } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilterStatus, changeSearchOrder, changeSearchStatus } from "@/redux/slices/globalSlice";
+import { changeFilterStatus } from "@/redux/slices/globalSlice";
 import { useTranslations } from "next-intl";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
+import { useDebounce } from "@/app/hooks/useDebounce";
+import { changeSearchTitle, changeSort } from "@/redux/slices/searchSlice";
+import { useAddQueryParam } from "@/app/hooks/useAddQueryParam";
 
 export function SearchBox(){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
-    const searchOrder = useSelector((state)=> state.global.searchOrder)
+    const searchOrder = useSelector((state)=> state.search.sort)
+    const priceRange = useSelector((state)=> state.search.priceRange)
+    const selectedPriceRange = useSelector((state)=> state.search.selectedPriceRange)
     const [isSortOpen,setIsSortOpen] = useState(false)
     const t = useTranslations();
+    const searchText = useSelector((state)=> state.search.search)
     const dispatch = useDispatch()
+    const [searchValue,setSearchValue] = useState('')
+    const debouncedSearchTerm = useDebounce(searchValue, 500);
+    const { addQueryParam, removeQueryParam } = useAddQueryParam();
+    useEffect(() => {
+        console.log(debouncedSearchTerm)
+        if(!debouncedSearchTerm) {
+            removeQueryParam('search_title')
+        }
+        else{
+            addQueryParam('search_title', debouncedSearchTerm);
+        }
+        if(!searchOrder) {
+            removeQueryParam('sort')
+        }
+        else{
+            addQueryParam('sort', searchOrder);
+        }
+        if(!selectedPriceRange) {
+            removeQueryParam('min_p')
+            removeQueryParam('max_p')
+        }
+        else{
+            addQueryParam({
+                min_p: Math.min(...selectedPriceRange).toString(),
+                max_p: Math.max(...selectedPriceRange).toString()
+                });
+            // addQueryParam('max_p', Math.max(...selectedPriceRange));
+            // addQueryParam('min_p', Math.min(...selectedPriceRange));
+        }
+        dispatch(changeSearchTitle(searchValue))
+    }, [debouncedSearchTerm,searchOrder,selectedPriceRange]);
+    // console.log(debouncedSearchTerm)
     function changeSortType(sortType){
-        dispatch(changeSearchOrder(sortType))
+        let sort = ''
+        dispatch(changeSort(sortType))
         closeSortPopup()
     }
+    useEffect(()=>{
+        console.log(searchValue)
+    },[searchValue])
     function openSortPopup(){
         setIsSortOpen(true)
     }
@@ -30,7 +72,7 @@ export function SearchBox(){
     }
     function clearSort(event){
         event.stopPropagation()
-        dispatch(changeSearchOrder(null))
+        dispatch(changeSort(null))
     }
     const [sortList,setSortList] = useState([
         {
@@ -64,10 +106,12 @@ export function SearchBox(){
                 <span>
                     <IconSearch2/>
                 </span>
-                <input className="w-full px-4 outline-0" type="search" placeholder={t('carSearch')} />
-                <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">
-                    <IconSetting/>
-                </button>
+                <input value={searchValue} onChange={(event)=>setSearchValue(event.target.value)} className="w-full px-4 outline-0" type="search" placeholder={t('carSearch')} />
+                {priceRange && 
+                    <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">
+                        <IconSetting/>
+                    </button>
+                }
             </div>
             <div className="flex md:gap-2 gap-1 overflow-auto">
                 {sortList.filter((item)=>item.selected == true).map((item,index)=>{
@@ -99,9 +143,9 @@ export function SearchBox(){
                         {isSortOpen && 
                             <div ref={sortRef} className=" bottom-0 left-1/2 -translate-x-1/2 translate-y-full absolute pt-2">
                                 <div className="flex flex-col bg-white p-2 border-[1px] border-[#cccccc] rounded-lg">
-                                    <div onClick={()=>changeSortType('sort1')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort1')}</div>
-                                    <div onClick={()=>changeSortType('sort2')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort2')}</div>
-                                    <div onClick={()=>changeSortType('sort3')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort3')}</div>
+                                    {/* <div onClick={()=>changeSortType('sort1')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort1')}</div> */}
+                                    <div onClick={()=>changeSortType('price_min')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('price_min')}</div>
+                                    <div onClick={()=>changeSortType('price_max')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('price_max')}</div>
                                     <div className="w-0 h-0 absolute top-0 left-1/2 border-l-8 border-r-8 border-t-0 border-b-8 border-l-transparent -translate-x-1/2 border-r-transparent border-b-[#EFEFEF]"></div>
                                 </div>
                             </div>

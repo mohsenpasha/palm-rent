@@ -3,12 +3,14 @@ import reelsReducer from './slices/reelsSlice'
 import carListReducer from './slices/carListSlice'
 import globalReducer from './slices/globalSlice'
 import blogReducer from './slices/blogSlice'
+import searchReducer from './slices/searchSlice'
 
 export const store = configureStore({
   reducer: {
     reels: reelsReducer,
     carList: carListReducer,
     global:globalReducer,
-    blog:blogReducer
+    blog:blogReducer,
+    search:searchReducer
   },
 })

@@ -19,8 +19,7 @@ const initialState = {
       description:'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز'
     },
   },
-  carList:[
-  ],
+  carList:[],
   // carList:[
   //   {
   //     id:1,
@@ -165,9 +164,14 @@ const carListSlice = createSlice({
       });
 
       state.carList = [...state.carList, ...transformedCars];
-    }
+    },
+    clearCarList: (state) => {
+      state.carList = []
+    },
+
+
   },
 })
 
-export const { addCarList } = carListSlice.actions
+export const { addCarList, clearCarList } = carListSlice.actions
 export default carListSlice.reducer
