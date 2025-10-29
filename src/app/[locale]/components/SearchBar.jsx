@@ -299,7 +299,17 @@ export function DatePicker2() {
       setValue([])
     },[isDateJalili])
     function changeHandler(data){
+
         if(data.length == 2){
+            const date1 = convertToEnglishDigits(data[0]?.format("YYYY/MM/DD"));
+            const date2 = convertToEnglishDigits(data[1]?.format("YYYY/MM/DD"));
+            
+            if(date1 === date2) {
+                // اگر دو تاریخ یکسان بودند، فقط تاریخ اول را نگه دار
+                setValue([data[0]]);
+                return;
+            }
+            
             let dateDistance =  getDiffInShamsiDays(convertToEnglishDigits(data[1]?.format("YYYY/MM/DD")),convertToEnglishDigits(hovered?.format("YYYY/MM/DD")))
             if(dateDistance < 0){
                 setValue([data[0]])
