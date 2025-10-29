@@ -27,6 +27,7 @@ export default function SearchBar({isPopup=false}){
     const deliveryTime = useSelector((state) => state.global.deliveryTime)
     const returnTime = useSelector((state) => state.global.returnTime)
     const [cityToggle,setCityToggle] = useState(false)
+    
     const t = useTranslations();
     const dispatch = useDispatch()
     function closeSearchBar(){
@@ -42,9 +43,11 @@ export default function SearchBar({isPopup=false}){
         dispatch(changeIsDateSelectOpen(false))
     }
     function openDateSelect(){
-        console.log('open')
         dispatch(changeIsDateSelectOpen(true))
     }
+    useEffect(()=>{
+      console.log(carDates,returnTime,deliveryTime)
+    },[returnTime,deliveryTime,carDates])
     return(
         <>
             <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-40 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
@@ -122,10 +125,15 @@ export default function SearchBar({isPopup=false}){
                         }
                     </div>
                     {!isPopup ?
-                      <Link href={'/search'} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
-                          <IconSearch/>
-                          {t('searchCar')}
-                      </Link>
+                      (selectedCity && (carDates && (carDates[0] && carDates[1]))) ?
+                        <Link href={`/search?branch_id=${selectedCity ? selectedCity.id : 1}&from=${carDates[0] + ' ' + deliveryTime}&to=${carDates[1] + ' ' + returnTime}`} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+                            <IconSearch/>
+                            {t('searchCar')}
+                        </Link>
+                        :
+                        <button disabled onClick={closeSearchBar} className="lg:flex-1 -z-10 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+                            {t('searchCar')}
+                        </button>
                       :
                       <button onClick={closeSearchBar} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
                           {t('done')}
