@@ -165,7 +165,7 @@ export function SearchBox(){
         }))
     }
     return(
-        <div className={`bg-white overflow-hidden sticky ${isHeaderClose ? 'top-[10px]' : 'top-18'} z-30 transition-all rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap`}>
+        <div className={`bg-white sticky ${isHeaderClose ? 'top-[10px]' : 'top-18'} z-30 transition-all rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap`}>
             <div className="bg-[#F4F4F4] rounded-xl flex items-center p-4 py-3 relative mb-2">
                 <span>
                     <IconSearch2/>
@@ -192,8 +192,8 @@ export function SearchBox(){
                         )
                     })}
             </div>
-            <div className="block md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-sm md:text-xs text-xs overflow-x-auto">
-                <div className="flex md:w-auto w-full items-center gap-2 lg:text-sm md:text-xs text-xs">
+            <div className="block md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-sm md:text-xs text-xs">
+                <div className="flex md:w-auto w-full items-start gap-2 lg:text-sm md:text-xs text-xs">
                     <div className="flex relative">
                         <span onClick={openSortPopup} className="flex items-center gap-1 p-2 py-1 rounded-lg bg-[#E3E3E3] cursor-pointer">
                             <IconSort/>
@@ -215,7 +215,7 @@ export function SearchBox(){
                             </div>
                         }
                     </div>
-                    <div className="w-full">
+                    <div className="w-full block overflow-auto">
                         <div className="flex md:gap-2 gap-1">
                             {sortList.filter((item)=>item.selected == false).map((item,index)=>{
                                 return(
