@@ -61,13 +61,14 @@ export default function SearchResultPage(){
     const search_title = useSelector((state) => state.search.search_title)
     const search_sort = useSelector((state) => state.search.sort)
     const priceRange = useSelector((state) => state.search.selectedPriceRange)
+    const selectedCategories = useSelector((state) => state.search.selectedCategories)
     useEffect(()=>{
         setRecivedData(null)
         dispatch(clearCarList())
         setIsLoading(true)
         firstTime.current = true
         loadingRef.current = true
-    },[search_title,search_sort,priceRange])
+    },[search_title,search_sort,priceRange,selectedCategories])
     function fetchData(){
         if(!recivedData && !firstTime.current) return
         let url = 'https://palmrentcar.com/api/car/filter/en'
@@ -107,6 +108,9 @@ export default function SearchResultPage(){
         if((urlFirstTime.current && (params.min_p && params.max_p)) || priceRange){
             payload.min_p = (urlFirstTime.current && params.min_p) || Math.min(...priceRange)
             payload.max_p = (urlFirstTime.current && params.max_p) || Math.max(...priceRange)
+        }
+        if(selectedCategories.length != 0){
+            payload['cat_id'] = selectedCategories
         }
         urlFirstTime.current = false
         firstTime.current = false

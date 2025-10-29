@@ -1,12 +1,12 @@
 'use client'
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { IconClose, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3 } from "./Icons";
+import { Icon7Plus, IconBusiness, IconClose, IconCoupe, IconCrook, IconEconemy, IconLuxury, IconNoDeposite, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3, IconSport, IconStandard, IconSuv } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilterStatus } from "@/redux/slices/globalSlice";
 import { useTranslations } from "next-intl";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { useDebounce } from "@/app/hooks/useDebounce";
-import { changeSearchTitle, changeSort } from "@/redux/slices/searchSlice";
+import { changeSearchTitle, changeSort, toggleSelectedCategory } from "@/redux/slices/searchSlice";
 import { useQueryParams } from "@/app/hooks/useAddQueryParam";
 import { getUrlParamsEasy } from "../search/page";
 
@@ -22,6 +22,8 @@ export function SearchBox(){
     const dispatch = useDispatch()
     const [searchValue,setSearchValue] = useState('')
     const debouncedSearchTerm = useDebounce(searchValue, 500);
+    const selectedCategories = useSelector((state)=> state.search.selectedCategories)
+
     // const useEffectStatus = useRef(true)
     // const { addQueryParam, removeQueryParam } = useAddQueryParam();
     const { updateURL } = useQueryParams();
@@ -37,11 +39,6 @@ export function SearchBox(){
         notToRemove.current = dontRemove
     },[])
     useLayoutEffect(() => {
-        // if(!useEffectStatus.current) return
-        // useEffectStatus.current = false
-        console.log('edited')
-        console.log('edited')
-        console.log('edited')
         let newParams = {}
         let paramsToRemove = []
         if(!debouncedSearchTerm) {
@@ -64,18 +61,13 @@ export function SearchBox(){
             newParams.min_p = Math.min(...selectedPriceRange).toString()
             newParams.max_p = Math.max(...selectedPriceRange).toString()
         }
-        // removeQueryParam(paramsToRemove)
         const filteredParamsToRemove = paramsToRemove.filter(
             item => !notToRemove.current.includes(item)
         );
         console.log(newParams,filteredParamsToRemove)
         updateURL(newParams,filteredParamsToRemove)
         notToRemove.current = []
-        // addQueryParam(newParams);
         dispatch(changeSearchTitle(searchValue))
-        // setTimeout(()=>{
-        //     useEffectStatus.current = true
-        // },100)
     }, [debouncedSearchTerm,searchOrder,selectedPriceRange]);
     useEffect(()=>{
         dispatch(changeSearchTitle(debouncedSearchTerm))
@@ -104,32 +96,76 @@ export function SearchBox(){
     }
     const [sortList,setSortList] = useState([
         {
-            id:1,
-            icon:<span className="flex size-[18px]"><IconSort1/></span>,
+            id:14,
+            icon:<IconNoDeposite/>,
             title:'noDeposite',
             selected:false
         },
         {
-            id:2,
-            icon:<IconSort2/>,
+            id:3,
+            icon:<IconEconemy/>,
+            title:'economicCar',
+            selected:false
+        },
+        {
+            id:13,
+            icon:<IconLuxury/>,
             title:'luxCar',
             selected:false
         },
         {
-            id:3,
-            icon:<IconSort3/>,
-            title:'economicCar',
+            id:15,
+            icon:<Icon7Plus/>,
+            title:'sevenplus',
             selected:false
-        }
+        },
+        {
+            id:19,
+            icon:<IconSport/>,
+            title:'sport',
+            selected:false
+        },
+        {
+            id:18,
+            icon:<IconBusiness/>,
+            title:'business',
+            selected:false
+        },
+        {
+            id:21,
+            icon:<IconCrook/>,
+            title:'crook',
+            selected:false
+        },
+        {
+            id:17,
+            icon:<IconStandard/>,
+            title:'standard',
+            selected:false
+        },
+        {
+            id:9,
+            icon:<IconSuv/>,
+            title:'suv',
+            selected:false
+        },
+        {
+            id:20,
+            icon:<IconCoupe/>,
+            title:'coupe',
+            selected:false
+        },
     ])
     function sortChangeHandler(itemId){
+        console.log(itemId)
+        dispatch(toggleSelectedCategory(itemId))
         setSortList(sortList.map((item)=>{
             if(item.id != itemId) return item
             return {...item,selected:!item.selected}
         }))
     }
     return(
-        <div className={`bg-white sticky ${isHeaderClose ? 'top-[10px]' : 'top-18'} z-30 transition-all rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap`}>
+        <div className={`bg-white overflow-hidden sticky ${isHeaderClose ? 'top-[10px]' : 'top-18'} z-30 transition-all rounded-lg shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] p-4 my-6 text-nowrap`}>
             <div className="bg-[#F4F4F4] rounded-xl flex items-center p-4 py-3 relative mb-2">
                 <span>
                     <IconSearch2/>
@@ -141,10 +177,10 @@ export function SearchBox(){
                     </button>
                 }
             </div>
-            <div className="flex md:gap-2 gap-1 overflow-auto">
+            <div className="flex md:gap-2 gap-1">
                 {sortList.filter((item)=>item.selected == true).map((item,index)=>{
-                        return(
-                            <label key={index} className="flex gap-2 mb-2 select-none">
+                    return(
+                        <label key={index} className="flex gap-2 mb-2 select-none">
                                 <input onChange={()=>sortChangeHandler(item.id)} checked={true} className="peer hidden" value={item.id} type="checkbox" />
                                 <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] peer-checked:text-white flex gap-2 cursor-pointer items-center">
                                     {t(item.title)}
@@ -156,7 +192,7 @@ export function SearchBox(){
                         )
                     })}
             </div>
-            <div className="flex md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-sm md:text-xs text-xs">
+            <div className="block md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-sm md:text-xs text-xs overflow-x-auto">
                 <div className="flex md:w-auto w-full items-center gap-2 lg:text-sm md:text-xs text-xs">
                     <div className="flex relative">
                         <span onClick={openSortPopup} className="flex items-center gap-1 p-2 py-1 rounded-lg bg-[#E3E3E3] cursor-pointer">
@@ -179,19 +215,21 @@ export function SearchBox(){
                             </div>
                         }
                     </div>
-                    <div className="flex md:gap-2 gap-1 overflow-auto">
-                        {sortList.filter((item)=>item.selected == false).map((item,index)=>{
-                            return(
-                                <label key={index} className="flex gap-2 select-none">
-                                    <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
-                                    <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] hover:bg-[#7CABF9] hover:text-white peer-checked:text-white flex gap-2 cursor-pointer items-center">
-                                        {t(item.title)}
-                                        {item.icon}
-                                    </div>
-                                </label>
-                            )
-                        })}
+                    <div className="w-full">
+                        <div className="flex md:gap-2 gap-1">
+                            {sortList.filter((item)=>item.selected == false).map((item,index)=>{
+                                return(
+                                    <label key={index} className="flex gap-2 select-none">
+                                        <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
+                                        <div className="p-2 py-1 rounded-lg bg-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] hover:bg-[#7CABF9] hover:text-white peer-checked:text-white flex gap-2 cursor-pointer items-center">
+                                            {t(item.title)}
+                                            {item.icon}
+                                        </div>
+                                    </label>
+                                )
+                            })}
 
+                        </div>
                     </div>
                 </div>
                 {/* <div className="flex gap-2 md:w-auto w-full justify-between">
