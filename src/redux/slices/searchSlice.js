@@ -13,6 +13,9 @@ const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
+    changeBranchId: (state,action) => {
+      state.branch_id = action.payload
+    },
     changeSearchTitle: (state,action) => {
       state.search_title = action.payload
     },
@@ -31,5 +34,5 @@ const searchSlice = createSlice({
   },
 })
 
-export const { changeSearchTitle, changePriceRange, changeSelectedPriceRange, changeSearchCurrency, changeSort } = searchSlice.actions
+export const { changeBranchId, changeSearchTitle, changePriceRange, changeSelectedPriceRange, changeSearchCurrency, changeSort } = searchSlice.actions
 export default searchSlice.reducer

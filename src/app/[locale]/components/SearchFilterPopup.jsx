@@ -44,12 +44,23 @@ export function PriceRange({isPriceConfirmed,closePopup}){
   const dispatch = useDispatch()
   const t = useTranslations();
   const priceRange = useSelector((state)=> state.search.priceRange)
+  const selectedPriceRange = useSelector((state)=> state.search.selectedPriceRange)
   const currency = useSelector((state)=> state.search.currency)
+  const [minValue,setMinValue] = useState(null)
+  const [maxValue,setMaxValue] = useState(null)
   const STEP = 10
   const MIN = Math.min(...priceRange)
   const MAX = Math.max(...priceRange)
-
   const [values, setValues] = useState([MIN, MAX])
+  useEffect(()=>{
+    console.log('component started')
+    if(selectedPriceRange){
+      setValues([Math.min(...selectedPriceRange),Math.max(...selectedPriceRange)])
+    }
+    else{
+      setValues([Math.min(...priceRange),Math.max(...priceRange)])
+    }
+  },[])
   useEffect(()=>{
     if(!isPriceConfirmed) return
     dispatch(changeSelectedPriceRange(values))

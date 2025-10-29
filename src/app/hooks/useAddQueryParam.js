@@ -1,24 +1,33 @@
-// hooks/useAddQueryParam.ts
 'use client';
-import { useRouter, useSearchParams } from 'next/navigation';
 
-export function useAddQueryParam() {
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
+
+export function useQueryParams() {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const addQueryParam = (key, value) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, value);
-    
-    router.push(`?${params.toString()}`, { scroll: false });
-  };
+  const updateURL = useCallback((updates = {}, removes = []) => {
+    const params = new URLSearchParams(searchParams);
 
-  const removeQueryParam = (key) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete(key);
-    
-    router.push(`?${params.toString()}`, { scroll: false });
-  };
+    Object.entries(updates).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && value !== "") {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
+    });
 
-  return { addQueryParam, removeQueryParam };
+    removes.forEach(key => params.delete(key));
+
+    const newQuery = params.toString();
+    const newURL = `${pathname}${newQuery ? '?' + newQuery : ''}`;
+    
+    console.log('🔗 URL Update:', newURL);
+    router.push(newURL, { scroll: false });
+
+  }, [router, pathname, searchParams]);
+
+  return { updateURL };
 }

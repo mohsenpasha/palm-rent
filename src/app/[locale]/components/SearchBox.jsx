@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { IconClose, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3 } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilterStatus } from "@/redux/slices/globalSlice";
@@ -7,57 +7,85 @@ import { useTranslations } from "next-intl";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { useDebounce } from "@/app/hooks/useDebounce";
 import { changeSearchTitle, changeSort } from "@/redux/slices/searchSlice";
-import { useAddQueryParam } from "@/app/hooks/useAddQueryParam";
+import { useQueryParams } from "@/app/hooks/useAddQueryParam";
+import { getUrlParamsEasy } from "../search/page";
 
 export function SearchBox(){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
     const searchOrder = useSelector((state)=> state.search.sort)
     const priceRange = useSelector((state)=> state.search.priceRange)
     const selectedPriceRange = useSelector((state)=> state.search.selectedPriceRange)
+    const notToRemove = useRef([])
     const [isSortOpen,setIsSortOpen] = useState(false)
     const t = useTranslations();
-    const searchText = useSelector((state)=> state.search.search)
+    const searchTitle = useSelector((state)=> state.search.search)
     const dispatch = useDispatch()
     const [searchValue,setSearchValue] = useState('')
     const debouncedSearchTerm = useDebounce(searchValue, 500);
-    const { addQueryParam, removeQueryParam } = useAddQueryParam();
-    useEffect(() => {
-        console.log(debouncedSearchTerm)
+    // const useEffectStatus = useRef(true)
+    // const { addQueryParam, removeQueryParam } = useAddQueryParam();
+    const { updateURL } = useQueryParams();
+    useEffect(()=>{
+        const params = getUrlParamsEasy()
+        let dontRemove = []
+        Object.entries(params).map(([key,value])=>{
+            if(key == 'search_title'){
+                setSearchValue(value)
+            }
+            dontRemove.push(key)
+        })
+        notToRemove.current = dontRemove
+    },[])
+    useLayoutEffect(() => {
+        // if(!useEffectStatus.current) return
+        // useEffectStatus.current = false
+        console.log('edited')
+        console.log('edited')
+        console.log('edited')
+        let newParams = {}
+        let paramsToRemove = []
         if(!debouncedSearchTerm) {
-            removeQueryParam('search_title')
+            paramsToRemove.push('search_title')
         }
         else{
-            addQueryParam('search_title', debouncedSearchTerm);
+            newParams.search_title = debouncedSearchTerm
         }
         if(!searchOrder) {
-            removeQueryParam('sort')
+            paramsToRemove.push('sort')
         }
         else{
-            addQueryParam('sort', searchOrder);
+            newParams.sort = searchOrder
         }
         if(!selectedPriceRange) {
-            removeQueryParam('min_p')
-            removeQueryParam('max_p')
+            paramsToRemove.push('min_p')
+            paramsToRemove.push('max_p')
         }
         else{
-            addQueryParam({
-                min_p: Math.min(...selectedPriceRange).toString(),
-                max_p: Math.max(...selectedPriceRange).toString()
-                });
-            // addQueryParam('max_p', Math.max(...selectedPriceRange));
-            // addQueryParam('min_p', Math.min(...selectedPriceRange));
+            newParams.min_p = Math.min(...selectedPriceRange).toString()
+            newParams.max_p = Math.max(...selectedPriceRange).toString()
         }
+        // removeQueryParam(paramsToRemove)
+        const filteredParamsToRemove = paramsToRemove.filter(
+            item => !notToRemove.current.includes(item)
+        );
+        console.log(newParams,filteredParamsToRemove)
+        updateURL(newParams,filteredParamsToRemove)
+        notToRemove.current = []
+        // addQueryParam(newParams);
         dispatch(changeSearchTitle(searchValue))
+        // setTimeout(()=>{
+        //     useEffectStatus.current = true
+        // },100)
     }, [debouncedSearchTerm,searchOrder,selectedPriceRange]);
-    // console.log(debouncedSearchTerm)
+    useEffect(()=>{
+        dispatch(changeSearchTitle(debouncedSearchTerm))
+    },[debouncedSearchTerm])
     function changeSortType(sortType){
+        console.log(sortType)
         let sort = ''
         dispatch(changeSort(sortType))
         closeSortPopup()
     }
-    useEffect(()=>{
-        console.log(searchValue)
-    },[searchValue])
     function openSortPopup(){
         setIsSortOpen(true)
     }
@@ -107,7 +135,7 @@ export function SearchBox(){
                     <IconSearch2/>
                 </span>
                 <input value={searchValue} onChange={(event)=>setSearchValue(event.target.value)} className="w-full px-4 outline-0" type="search" placeholder={t('carSearch')} />
-                {priceRange && 
+                {priceRange && (priceRange[0] | priceRange[1]) &&
                     <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">
                         <IconSetting/>
                     </button>

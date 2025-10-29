@@ -19,9 +19,9 @@ import { postData } from "@/app/lib/PostData";
 import { notFound } from "next/navigation";
 import { addCarList, clearCarList } from "@/redux/slices/carListSlice";
 import { changeCarDates } from "@/redux/slices/globalSlice";
-import { changePriceRange, changeSearchCurrency } from "@/redux/slices/searchSlice";
+import { changeBranchId, changePriceRange, changeSearchCurrency, changeSearchTitle, changeSelectedPriceRange, changeSort } from "@/redux/slices/searchSlice";
 
-function getUrlParamsEasy(search = window.location.search) {
+export function getUrlParamsEasy(search = window.location.search) {
     const params = {};
     const urlParams = new URLSearchParams(search);
     
@@ -43,6 +43,7 @@ export default function SearchResultPage(){
     const searchRef = useRef()
     const loadingRef = useRef(true)
     const firstTime = useRef(true)
+    const urlFirstTime = useRef(true)
     const [isLoading,setIsLoading] = useState(true)
     const [hasMore,setHasMore] = useState(true)
     const dispatch = useDispatch()
@@ -56,6 +57,7 @@ export default function SearchResultPage(){
     const carList = useSelector((state) => state.carList.carList)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
     const roadMapStep = useSelector((state) => state.global.roadMapStep)
+    const branch_id = useSelector((state) => state.search.branch_id)
     const search_title = useSelector((state) => state.search.search_title)
     const search_sort = useSelector((state) => state.search.sort)
     const priceRange = useSelector((state) => state.search.selectedPriceRange)
@@ -68,7 +70,6 @@ export default function SearchResultPage(){
     },[search_title,search_sort,priceRange])
     function fetchData(){
         if(!recivedData && !firstTime.current) return
-        firstTime.current = false
         let url = 'https://palmrentcar.com/api/car/filter/en'
         const params = getUrlParamsEasy()
         if(!params.from,!params.to,!params.branch_id){
@@ -76,21 +77,39 @@ export default function SearchResultPage(){
             return
         }
         dispatch(changeCarDates([params.from.split(' ')[0],params.to.split(' ')[0]]))
+        dispatch(changeBranchId(branch_id))
+        if(urlFirstTime.current){
+            if(params.search_title){
+                dispatch(changeSearchTitle(params.search_title))
+            }
+            if(params.sort){
+                dispatch(changeSort(params.sort))
+            }
+            if(params.min_p && params.max_p){
+                dispatch(changeSelectedPriceRange([params.min_p,params.max_p]))
+            }
+        }
         let payload = {
             from : params.from,
             to : params.to,
             branch_id : params.branch_id,
         }
-        if(search_title){
-            payload.search_title = search_title
+        if((urlFirstTime.current && params.search_title) || search_title){
+            console.log((urlFirstTime.current && params.search_title) || search_title)
+            payload.search_title = (urlFirstTime.current && params.search_title) || search_title
         }
-        if(search_sort){
-            payload.sort = search_sort
+        if((urlFirstTime.current && params.sort) || search_sort){
+            console.log(urlFirstTime.current)
+            console.log((urlFirstTime.current && params.sort))
+            console.log(search_sort)
+            payload.sort = (urlFirstTime.current && params.sort) || search_sort
         }
-        if(priceRange){
-            payload.min_p = Math.min(...priceRange)
-            payload.max_p = Math.max(...priceRange)
+        if((urlFirstTime.current && (params.min_p && params.max_p)) || priceRange){
+            payload.min_p = (urlFirstTime.current && params.min_p) || Math.min(...priceRange)
+            payload.max_p = (urlFirstTime.current && params.max_p) || Math.max(...priceRange)
         }
+        urlFirstTime.current = false
+        firstTime.current = false
         if(!!recivedData){
             const currentPage = parseInt(recivedData.data.page)
             const perPage = parseInt(recivedData.data.per_page)
@@ -103,7 +122,6 @@ export default function SearchResultPage(){
                 return
             }
             payload.page = currentPage + 1
-            console.log(currentPage)
         }
         postData(url,payload)
         .then(data => {
@@ -111,12 +129,11 @@ export default function SearchResultPage(){
             setIsLoading(false)
             loadingRef.current = false
         })
-        .catch(error => console.error('خطا:', error));
+    .catch(error => console.error('خطا:', error));
     }
     function scrollHandler(){
         if(!hasMore || loadingRef.current) return
         if(searchRef.current.getBoundingClientRect().bottom - window.innerHeight <= 100){
-            console.log('testtetet')
             if(!hasMore) return
             setIsLoading(true)
             loadingRef.current = true
@@ -124,7 +141,6 @@ export default function SearchResultPage(){
     }
     useEffect(()=>{
         if(!isLoading) return
-        console.log('----------------------------------- test -----------------------')
         fetchData()
     },[isLoading])
     function timerStart(){
@@ -139,6 +155,7 @@ export default function SearchResultPage(){
         },1000)
     }
     useEffect(()=>{
+
         fetchData()
         // dispatch(addCarList())
         timerStart()
@@ -161,7 +178,6 @@ export default function SearchResultPage(){
     // const router = useRouter();
     // const previousPage = document.referrer;
 
-    // console.log(previousPage);
     if(is404) {
             notFound()
         }
