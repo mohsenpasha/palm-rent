@@ -17,8 +17,6 @@ export default function BranchesPage(){
         .then((json) => setData(json.data.branches))
         .catch((err) => console.error(err));
         },[branches])
-    console.log(branches)
-    console.log(data)
     const t = useTranslations();
     return(
         

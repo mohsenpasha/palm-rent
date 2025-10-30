@@ -22,7 +22,6 @@ export default function CommonQuestionSection({newVersion = false,rules,setRules
 export function QBox({rules,setRules,gotTanslation}){
     const t = useTranslations();
     function toggleQItem(targetIndex){
-        console.log(targetIndex)
         setRules(rules.map((item,index)=>{
             if(index == targetIndex){
                 return {...item,toggle:!item.toggle}
@@ -32,7 +31,6 @@ export function QBox({rules,setRules,gotTanslation}){
             }
         }))
     }
-    console.log(rules)
     return(
         <div className="flex flex-wrap">
             {rules?.map((item,index)=>{

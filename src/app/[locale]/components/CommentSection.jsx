@@ -48,7 +48,6 @@ export function CommentSlider() {
         swiperInstance.pagination.render();
         swiperInstance.pagination.update();
         }
-        console.log(swiperInstance)
     }, [swiperInstance]);
 
   return (

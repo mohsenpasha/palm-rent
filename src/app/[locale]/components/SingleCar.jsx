@@ -183,7 +183,6 @@ export function SingleCarPriceList({priceList}){
         //     else{
         //         st = parseInt(splitedData[0]) <= dayD && dayD <= parseInt(splitedData[1])
         //     }
-        //     console.log(st)
         //     if(st){
         //         setFinalDayPrice(value)
         //     }

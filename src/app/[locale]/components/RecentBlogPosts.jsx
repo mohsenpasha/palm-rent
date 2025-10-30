@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 export function RecentBlogPosts(){
     const homeBlogs = useSelector((state)=>state.global.homeBlogs)
-    console.log(homeBlogs)
     const t = useTranslations();
     return(
         <section className='my-8 bg-[#F6F6F6] py-8 pb-24'>

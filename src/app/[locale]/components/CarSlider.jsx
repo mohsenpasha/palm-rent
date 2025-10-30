@@ -23,7 +23,6 @@ export default function CarSlider() {
         swiperInstance.pagination.render();
         swiperInstance.pagination.update();
         }
-        console.log(swiperInstance)
     }, [swiperInstance]);
 
   return (

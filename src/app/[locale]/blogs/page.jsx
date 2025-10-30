@@ -21,7 +21,6 @@ export default function BlogsPage(){
     const [isLoading,setIsLoading] = useState(false)
     function getData(){
         if(!hasMore) return
-        console.log(locale,pageNumber)
         fetch("https://palmrentcar.com/api/blogs/" + locale + `?page=${pageNumber}`)
         .then((res) => res.json())
         .then((json) => {
