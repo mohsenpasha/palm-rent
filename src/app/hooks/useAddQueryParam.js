@@ -24,7 +24,6 @@ export function useQueryParams() {
     const newQuery = params.toString();
     const newURL = `${pathname}${newQuery ? '?' + newQuery : ''}`;
     
-    console.log('🔗 URL Update:', newURL);
     router.push(newURL, { scroll: false });
 
   }, [router, pathname, searchParams]);

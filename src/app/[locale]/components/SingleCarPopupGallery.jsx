@@ -145,7 +145,6 @@ export function SingleCarPopupGallerySupport(){
     const [loop, setLoop] = useState(true);
     const dispatch = useDispatch()
     function closeGallery(){
-        console.log('closing gallery')
         dispatch(changeSingleGalleryStatus(false))
     }
   return (

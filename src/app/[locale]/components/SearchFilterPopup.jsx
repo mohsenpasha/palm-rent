@@ -51,7 +51,6 @@ export function PriceRange({isPriceConfirmed,closePopup}){
   const MAX = Math.max(...priceRange)
   const [values, setValues] = useState([MIN, MAX])
   useEffect(()=>{
-    console.log('component started')
     if(selectedPriceRange){
       setValues([Math.min(...selectedPriceRange),Math.max(...selectedPriceRange)])
     }
@@ -74,7 +73,6 @@ export function PriceRange({isPriceConfirmed,closePopup}){
           values={values}
           onChange={setValues}
           renderTrack={({ props, children }) => {
-            console.log(values,MAX,MIN)
             const [min, max] = values
             const percentLeft = (max / (MAX - MIN)) * 100
             const percentRight = (min / (MAX - MIN)) * 100

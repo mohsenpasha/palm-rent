@@ -59,7 +59,6 @@ export default function Home() {
           },
       ])
       // if(!data) return
-      // console.log(data.branches)
   return (
     <>
       <Header />

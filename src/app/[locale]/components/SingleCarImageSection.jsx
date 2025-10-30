@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 
 export function SingleCarImageSection(){
     const path = usePathname()
-    console.log(path)
     const dispatch = useDispatch()
     function popupGalleryHandler(){
         dispatch(changeSingleGalleryStatus(true))

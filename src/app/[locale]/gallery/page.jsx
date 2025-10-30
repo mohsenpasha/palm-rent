@@ -18,7 +18,6 @@ export default function GalleryPage(){
     const isSingleGalleryOpen = useSelector((state)=>state.global.isSingleGalleryOpen)
     const dispatch = useDispatch()
     function openPopup(){
-        console.log('test')
         dispatch(changeSingleGalleryStatus(true))
     }
     return(

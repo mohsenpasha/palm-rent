@@ -26,7 +26,6 @@ export default function VoucherPage(){
     // const { id } = router.query;
     const params = useParams();
     const { id } = params
-    console.log(id)
     useEffect(()=>{
         fetchData(id)
         setCurrentUrl(window.location.href);
@@ -35,8 +34,6 @@ export default function VoucherPage(){
     useEffect(()=>{
         if(!data) return
         let optionsHolder = []
-        console.log(data)
-        console.log(data.item.phone)
         if(data.item.insurance_complete_price == 0){
             optionsHolder.push('freeinsurance')
         }

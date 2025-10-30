@@ -96,13 +96,9 @@ export default function SearchResultPage(){
             branch_id : params.branch_id,
         }
         if((urlFirstTime.current && params.search_title) || search_title){
-            console.log((urlFirstTime.current && params.search_title) || search_title)
             payload.search_title = (urlFirstTime.current && params.search_title) || search_title
         }
         if((urlFirstTime.current && params.sort) || search_sort){
-            console.log(urlFirstTime.current)
-            console.log((urlFirstTime.current && params.sort))
-            console.log(search_sort)
             payload.sort = (urlFirstTime.current && params.sort) || search_sort
         }
         if((urlFirstTime.current && (params.min_p && params.max_p)) || priceRange){
