@@ -8,8 +8,9 @@ import Link from "next/link";
 import { getDiffInShamsiDays } from "./SearchBar";
 import { changeRoadMapStep } from "@/redux/slices/globalSlice";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { dateDifference } from "@/app/lib/getDateDiffrence";
+import { getLangUrl } from "@/app/lib/getLangUrl";
 
 export default function SingleCar({data,noBtn = false}){
     const t = useTranslations();
@@ -160,7 +161,8 @@ export function SingleCarPriceList({priceList}){
     
     // const router = useRouter();
     const pathname = usePathname()
-    const isInSearchPage = pathname == '/search'
+    const locale = useLocale();
+    const isInSearchPage = pathname == getLangUrl(locale) + '/search'
     useEffect(()=>{
         if(!isInSearchPage) return
         Object.entries(priceList).map(([key,value])=>{
@@ -188,9 +190,6 @@ export function SingleCarPriceList({priceList}){
         //     }
         // })
     },[carDates])
-    useEffect(()=>{
-        console.log(finalDayPrice)
-    },[finalDayPrice])
     // return(
     //     <div>
     //         test
