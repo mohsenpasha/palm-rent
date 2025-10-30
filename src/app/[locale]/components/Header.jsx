@@ -91,7 +91,6 @@ export default function Header({shadowLess=false}){
                 <LanguageCurrencyPopup/>
             }
         </>
-
     )
 }
 

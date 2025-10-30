@@ -189,6 +189,9 @@ export function SingleCarPriceList({priceList}){
         //     }
         // })
     },[carDates])
+    useEffect(()=>{
+        console.log(finalDayPrice)
+    },[finalDayPrice])
     // return(
     //     <div>
     //         test

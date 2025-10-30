@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeCarDates, changeDeliveryTime, changeIsDateJalili, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime, changeSelectedCity } from "@/redux/slices/globalSlice";
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 
@@ -29,6 +29,7 @@ export default function SearchBar({isPopup=false}){
     const [cityToggle,setCityToggle] = useState(false)
     
     const t = useTranslations();
+    const locale = useLocale();
     const dispatch = useDispatch()
     function closeSearchBar(){
       dispatch(changeIsSearchPopupOpen(false))
@@ -45,9 +46,6 @@ export default function SearchBar({isPopup=false}){
     function openDateSelect(){
         dispatch(changeIsDateSelectOpen(true))
     }
-    useEffect(()=>{
-      console.log(carDates,returnTime,deliveryTime)
-    },[returnTime,deliveryTime,carDates])
     return(
         <>
             <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-40 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
@@ -126,7 +124,7 @@ export default function SearchBar({isPopup=false}){
                     </div>
                     {!isPopup ?
                       (selectedCity && (carDates && (carDates[0] && carDates[1]))) ?
-                        <Link href={`/search?branch_id=${selectedCity ? selectedCity.id : 1}&from=${carDates[0] + ' ' + deliveryTime}&to=${carDates[1] + ' ' + returnTime}`} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+                        <Link href={`${locale}/search?branch_id=${selectedCity ? selectedCity.id : 1}&from=${carDates[0] + ' ' + deliveryTime}&to=${carDates[1] + ' ' + returnTime}`} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
                             <IconSearch/>
                             {t('searchCar')}
                         </Link>
@@ -164,7 +162,6 @@ export function DatePickerBox({ref,isPopup=false}){
     }
     function toggleIsJalili(){
       dispatch(changeCarDates([]))
-      console.log(carDates)
       dispatch(changeIsDateJalili(!isDateJalili))
     }
     function closeDateSelect(){
@@ -291,10 +288,6 @@ export function DatePicker2() {
     function hoverHandler(date){
         setHovered(date)
     }
-    // const goToToday = () => {
-    //   console.log('shit')
-    //   setCurrentDate(new DateObject());
-    // };
     useEffect(()=>{
       setValue([])
     },[isDateJalili])
@@ -329,13 +322,11 @@ export function DatePicker2() {
         }
         else{
             dispatch(changeCarDates(value.map((item,index)=>{
-                console.log(item)
                 return convertToEnglishDigits(item.format())
             })))
         }
     },[value])
     useEffect(()=>{
-      console.log(carDates)
         const testValue = carDates.map(
         (d) =>
             new DateObject({

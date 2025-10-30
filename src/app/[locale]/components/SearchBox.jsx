@@ -64,7 +64,6 @@ export function SearchBox(){
         const filteredParamsToRemove = paramsToRemove.filter(
             item => !notToRemove.current.includes(item)
         );
-        console.log(newParams,filteredParamsToRemove)
         updateURL(newParams,filteredParamsToRemove)
         notToRemove.current = []
         dispatch(changeSearchTitle(searchValue))
@@ -73,7 +72,6 @@ export function SearchBox(){
         dispatch(changeSearchTitle(debouncedSearchTerm))
     },[debouncedSearchTerm])
     function changeSortType(sortType){
-        console.log(sortType)
         let sort = ''
         dispatch(changeSort(sortType))
         closeSortPopup()
@@ -157,7 +155,6 @@ export function SearchBox(){
         },
     ])
     function sortChangeHandler(itemId){
-        console.log(itemId)
         dispatch(toggleSelectedCategory(itemId))
         setSortList(sortList.map((item)=>{
             if(item.id != itemId) return item

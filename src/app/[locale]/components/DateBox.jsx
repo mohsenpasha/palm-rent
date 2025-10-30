@@ -17,7 +17,6 @@ export function DateBox({isSticky=false,timerValue}){
     const t = useTranslations();
     const dispatch = useDispatch()
     useEffect(()=>{
-        console.log()
         setCarDayCount(dateDifference(carDates[0],carDates[1]).days)
     },[carDates])
     function openDateSelect(){
@@ -82,7 +81,7 @@ export function DateBox({isSticky=false,timerValue}){
                         </div>
                     </div>
 
-                    <button onClick={openDateSelect} className=" sm:bg-transparent bg-[#3B82F6] p-1 rounded-lg text-white flex items-center text-nowrap gap-2 cursor-pointer size-8 sm:ml-[100px]">
+                    <button onClick={openDateSelect} className=" sm:bg-transparent bg-[#3B82F6] p-1 rounded-lg text-white flex items-center text-nowrap gap-2 cursor-pointer size-8 rtl:sm:ml-[100px] ltr:sm:mr-[100px]">
                         <IconEdit/>
                         <span className="sm:flex hidden sm:text-[#3B82F6] text-white">
                             {t('changeSearch')}
