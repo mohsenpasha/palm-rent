@@ -3,12 +3,14 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Icon7Plus, IconBusiness, IconClose, IconCoupe, IconCrook, IconEconemy, IconLuxury, IconNoDeposite, IconSearch2, IconSetting, IconSort, IconSort1, IconSort2, IconSort3, IconSport, IconStandard, IconSuv } from "./Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilterStatus } from "@/redux/slices/globalSlice";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 import { useDebounce } from "@/app/hooks/useDebounce";
 import { changeSearchTitle, changeSort, toggleSelectedCategory } from "@/redux/slices/searchSlice";
 import { useQueryParams } from "@/app/hooks/useAddQueryParam";
 import { getUrlParamsEasy } from "../search/page";
+import { usePathname } from "next/navigation";
+import { getLangUrl } from "@/app/lib/getLangUrl";
 
 export function SearchBox(){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
@@ -23,7 +25,10 @@ export function SearchBox(){
     const [searchValue,setSearchValue] = useState('')
     const debouncedSearchTerm = useDebounce(searchValue, 500);
     const selectedCategories = useSelector((state)=> state.search.selectedCategories)
-
+    const locale = useLocale();
+    const pathname = usePathname()
+    
+    const isInSearchPage = pathname == getLangUrl(locale) + '/search'
     // const useEffectStatus = useRef(true)
     // const { addQueryParam, removeQueryParam } = useAddQueryParam();
     const { updateURL } = useQueryParams();
@@ -64,7 +69,9 @@ export function SearchBox(){
         const filteredParamsToRemove = paramsToRemove.filter(
             item => !notToRemove.current.includes(item)
         );
-        updateURL(newParams,filteredParamsToRemove)
+        if(isInSearchPage){
+            updateURL(newParams,filteredParamsToRemove)
+        }
         notToRemove.current = []
         dispatch(changeSearchTitle(searchValue))
     }, [debouncedSearchTerm,searchOrder,selectedPriceRange]);

@@ -14,7 +14,7 @@ import { changeCarDates, changeDeliveryTime, changeIsDateJalili, changeIsDateSel
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
 
 export default function SearchBar({isPopup=false}){
@@ -27,9 +27,22 @@ export default function SearchBar({isPopup=false}){
     const deliveryTime = useSelector((state) => state.global.deliveryTime)
     const returnTime = useSelector((state) => state.global.returnTime)
     const [cityToggle,setCityToggle] = useState(false)
-    
-    const t = useTranslations();
     const locale = useLocale();
+    const t = useTranslations();
+    const pathname = usePathname()
+    const isBranchPage = pathname.includes('cars-rent')
+    useEffect(()=>{
+      if(!isBranchPage) return
+      if(!carDates || (carDates && !carDates[0] || !carDates[1])){
+        const nowGregorian = new DateObject({ calendar: gregorian, locale: gregorian_en });
+        const nextWeekGregorian = new DateObject(nowGregorian).add(7, "days");
+        const nowPersian = new DateObject({ calendar: persian, locale: persian_fa });
+        const nextWeekPersian = new DateObject(nowPersian).add(7, "days");
+        dispatch(changeCarDates([convertToEnglishDigits(nowPersian.format("YYYY/MM/DD")),convertToEnglishDigits(nextWeekPersian.format("YYYY/MM/DD"))]))
+        // dispatch(changeCarDates([convertToEnglishDigits(nowGregorian.format("YYYY/MM/DD")),convertToEnglishDigits(nextWeekGregorian.format("YYYY/MM/DD"))]))
+      }
+
+    },[])
     const dispatch = useDispatch()
     function closeSearchBar(){
       dispatch(changeIsSearchPopupOpen(false))
@@ -123,6 +136,12 @@ export default function SearchBar({isPopup=false}){
                         }
                     </div>
                     {!isPopup ?
+                    isBranchPage ? 
+                        <Link href={'#search-section'} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+                            <IconSearch/>
+                            {t('searchCar')}
+                        </Link>
+                    :
                       (selectedCity && (carDates && (carDates[0] && carDates[1]))) ?
                         <Link href={`${locale}/search?branch_id=${selectedCity ? selectedCity.id : 1}&from=${carDates[0] + ' ' + deliveryTime}&to=${carDates[1] + ' ' + returnTime}`} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
                             <IconSearch/>
@@ -238,7 +257,7 @@ export function SingleCityItem({value,closeDropDown}){
 }
 
 
-function convertToEnglishDigits(str) {
+export function convertToEnglishDigits(str) {
     if(!str) return
   return str.replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
 }

@@ -163,16 +163,15 @@ export function SingleCarPriceList({priceList}){
     const pathname = usePathname()
     const locale = useLocale();
     const isInSearchPage = pathname == getLangUrl(locale) + '/search'
+    const isBranchPage = pathname.includes('cars-rent')
     useEffect(()=>{
-        if(!isInSearchPage) return
-        Object.entries(priceList).map(([key,value])=>{
-            if(key == '1'){
-                setFinalDayPrice(value)
-                setRentDay(dateDifference(carDates[0],carDates[1]).days)
-            }
-        })
-        if(isInSearchPage){
-
+        if(isInSearchPage || isBranchPage){
+            Object.entries(priceList).map(([key,value])=>{
+                if(key == '1'){
+                    setFinalDayPrice(value)
+                    setRentDay(dateDifference(carDates[0],carDates[1]).days)
+                }
+            })
         }
         // const dayD = parseInt(getDiffInShamsiDays(carDates[0],carDates[1]))
         // setRentDay(dayD)
