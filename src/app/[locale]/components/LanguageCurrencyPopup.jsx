@@ -4,34 +4,41 @@ import { IconClose, IconTick2 } from "./Icons";
 import { changeIsTranslatePopupOpen } from "@/redux/slices/globalSlice";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 export default function LanguageCurrencyPopup({params}){
     const locales = ['fa','en','ar','tr'];
     const pathname = usePathname();
     const router = useRouter();
+    const searchParams = useSearchParams();
     const t = useTranslations();
     const [currentLang,setCurrentLang] = useState('fa')
     useEffect(()=>{
         const currentLocale = locales.find(l => pathname.startsWith(`/${l}`)) || 'fa';
         setCurrentLang(currentLocale)
-        console.log(currentLocale)
     },[])
     const dispatch = useDispatch()
     function closePopup(){
         dispatch(changeIsTranslatePopupOpen(false))
     }
     function changeLanguageHandler(lang) {
-        setCurrentLang(lang);
+        
+
         const locales = ['fa', 'en', 'ar', 'tr'];
         let newPath = pathname;
+
+        // حذف زبان فعلی از مسیر
         for (const l of locales) {
             if (newPath.startsWith(`/${l}/`) || newPath === `/${l}`) {
-                newPath = newPath.replace(`/${l}`, '') || '/';
-                break;
+            newPath = newPath.replace(`/${l}`, '') || '/';
+            break;
             }
         }
-        
-        router.push(`/${lang}${newPath}`, undefined, { shallow: true });
+
+        // حفظ query string فعلی
+        const currentParams = searchParams.toString();
+        const fullPath = `/${lang}${newPath}${currentParams ? `?${currentParams}` : ''}`;
+
+        router.push(fullPath, { scroll: false, shallow: true });
     }
 
     return(
