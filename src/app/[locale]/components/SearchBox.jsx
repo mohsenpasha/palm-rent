@@ -14,6 +14,7 @@ import { getLangUrl } from "@/app/lib/getLangUrl";
 
 export function SearchBox(){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
+    const carDates = useSelector((state)=> state.global.carDates)
     const searchOrder = useSelector((state)=> state.search.sort)
     const priceRange = useSelector((state)=> state.search.priceRange)
     const selectedPriceRange = useSelector((state)=> state.search.selectedPriceRange)
@@ -75,6 +76,13 @@ export function SearchBox(){
         notToRemove.current = []
         dispatch(changeSearchTitle(searchValue))
     }, [debouncedSearchTerm,searchOrder,selectedPriceRange]);
+    useLayoutEffect(()=>{
+        console.log(carDates)
+        let newParams = {}
+        newParams.from = carDates[0]
+        newParams.to = carDates[1]
+        updateURL(newParams,[])
+    },[carDates])
     useEffect(()=>{
         dispatch(changeSearchTitle(debouncedSearchTerm))
     },[debouncedSearchTerm])

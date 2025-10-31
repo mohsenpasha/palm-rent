@@ -10,18 +10,18 @@ import gregorian from "react-date-object/calendars/gregorian"
 import persian_fa from "react-date-object/locales/persian_fa"
 import gregorian_en from "react-date-object/locales/gregorian_en"
 import { useDispatch, useSelector } from "react-redux";
-import { changeCarDates, changeDeliveryTime, changeIsDateJalili, changeIsDateSelectOpen, changeIsSearchPopupOpen, changeReturnTime, changeSelectedCity } from "@/redux/slices/globalSlice";
+import { changeCarDates, changeDeliveryTime, changeIsDateJalili, changeIsDateSelectOpen, changeIsSearchPopupOpen, changePCarDates, changeReturnTime, changeSelectedCity } from "@/redux/slices/globalSlice";
 import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams, usePathname } from "next/navigation";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
+import { getLangUrl } from "@/app/lib/getLangUrl";
 
 export default function SearchBar({isPopup=false}){
     const params = useParams()
     const carDates = useSelector((state) => state.global.carDates)
     const selectedCity = useSelector((state) => state.global.selectedCity)
-    // const cities = useSelector((state) => state.global.cities)
     const branches = useSelector((state) => state.global.branches)
     const isDateSelectOpen = useSelector((state) => state.global.isDateSelectOpen)
     const deliveryTime = useSelector((state) => state.global.deliveryTime)
@@ -171,7 +171,11 @@ export function DatePickerBox({ref,isPopup=false}){
   const isDateJalili = useSelector((state) => state.global.isDateJalili)
   const deliveryTime = useSelector((state) => state.global.deliveryTime)
   const returnTime = useSelector((state) => state.global.returnTime)
-  const carDates = useSelector((state) => state.global.carDates)
+  const pCarDates = useSelector((state) => state.global.pCarDates)
+  const locale = useLocale()
+  const pathname = usePathname()
+  const isInHomePage = pathname == (getLangUrl(locale).length == 0 ? '/' : getLangUrl(locale))
+  console.log(pathname,getLangUrl(locale),isInHomePage)
   const dispatch = useDispatch()
   function changeDeliveryTimeHandler(newTime){
         dispatch(changeDeliveryTime(newTime))
@@ -184,8 +188,19 @@ export function DatePickerBox({ref,isPopup=false}){
       dispatch(changeIsDateJalili(!isDateJalili))
     }
     function closeDateSelect(){
-        dispatch(changeIsDateSelectOpen(false))
+        changeCarDatesValue()
+        setTimeout(()=>{
+          dispatch(changeIsDateSelectOpen(false))
+        },100)
     }
+    function changeCarDatesValue(){
+      if(!pCarDates || pCarDates.length != 2) return
+      dispatch(changeCarDates(pCarDates))
+    }
+    useEffect(()=>{
+      if(!isInHomePage) return
+      changeCarDatesValue()
+    },[pCarDates])
   return(
     <div ref={ref} className={`bg-white w-[100vw] h-[100vh] md:w-auto ${!isPopup ? 'animate-opacity2 md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto xl:min-w-[642px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border-[1px] border-[#0000001f] rounded-lg`}>
       <div className="p-2 px-4 flex justify-end border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
@@ -214,10 +229,10 @@ export function DatePickerBox({ref,isPopup=false}){
       </div>
       <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
         <div className="md:flex hidden text-xs">
-          <div>{t('delivery')} <span className="font-bold text-xs">{carDates[0] || t('choose')}</span> -</div>
-          <div>{t('return')} <span className="font-bold text-xs">{carDates[1]}</span></div>
+          <div>{t('delivery')} <span className="font-bold text-xs">{pCarDates[0] || t('choose')}</span> -</div>
+          <div>{t('return')} <span className="font-bold text-xs">{pCarDates[1]}</span></div>
         </div>
-        <button onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto">
+        <button disabled={!pCarDates || (pCarDates && (!pCarDates[0] || !pCarDates[1]))} onClick={closeDateSelect} className="bg-[#3B82F6] text-white py-2 px-6 rounded-lg cursor-pointer w-full md:w-auto transition-all disabled:opacity-50">
           {t('done')}
         </button>
       </div>
@@ -293,9 +308,10 @@ export function getDiffInShamsiDays(date1, date2) {
   return getDaysSinceEpoch(date2) - getDaysSinceEpoch(date1)
 }
 
-export function DatePicker2() {
+export function DatePicker2({}) {
     const t = useTranslations();
     const carDates = useSelector((state) => state.global.carDates)
+    const pCarDates = useSelector((state) => state.global.pCarDates)
     const isDateJalili = useSelector((state) => state.global.isDateJalili)
     const [value, setValue] = useState([])
     const dispatch = useDispatch()
@@ -337,15 +353,19 @@ export function DatePicker2() {
     useEffect(()=>{
         if(!isValueSync) return
         if(value.length == 0){
-            dispatch(changeCarDates([]))
+          dispatch(changePCarDates([]))
         }
         else{
-            dispatch(changeCarDates(value.map((item,index)=>{
+          dispatch(changePCarDates(
+            value.map((item)=>{
                 return convertToEnglishDigits(item.format())
-            })))
+            })
+          ))
         }
     },[value])
     useEffect(()=>{
+        // if(!carDates || (carDates && !carDates[0] || !carDates[1])) return
+        dispatch(changeCarDates(carDates))
         const testValue = carDates.map(
         (d) =>
             new DateObject({

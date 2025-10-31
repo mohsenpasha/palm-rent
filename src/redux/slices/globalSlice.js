@@ -21,6 +21,7 @@ const initialState = {
 
   //   },
   // ],
+  pCarDates:[],
   carDates:[],
   deliveryTime:'10:00',
   returnTime:'10:00',
@@ -76,6 +77,9 @@ const globalSlice = createSlice({
   name: 'globalSlice',
   initialState,
   reducers: {
+    changePCarDates: (state,action) => {
+      state.pCarDates = action.payload
+    },
     changeCarDates: (state,action) => {
       state.carDates = action.payload
     },
@@ -146,5 +150,5 @@ const globalSlice = createSlice({
   },
 })
 
-export const { changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen, changeSelectedCity, changeIsDateJalili, changeDescriptionPopup, changeDeliveryLocation, changeReturnLocation, changeAreLocationsSame, changeIsLocationPopupOpen, changeIsInfoListOpen, changeBranches, changeHomeBlogs, changeHomeComments } = globalSlice.actions
+export const { changePCarDates, changeCarDates, changeSingleGalleryStatus, changeSearchStatus, changeFilterStatus, changeIsHeaderClose, changeRoadMapStep, changeIsDateSelectOpen, changeDeliveryTime, changeReturnTime, changeIsTranslatePopupOpen, changeIsSearchPopupOpen, changeSelectedCity, changeIsDateJalili, changeDescriptionPopup, changeDeliveryLocation, changeReturnLocation, changeAreLocationsSame, changeIsLocationPopupOpen, changeIsInfoListOpen, changeBranches, changeHomeBlogs, changeHomeComments } = globalSlice.actions
 export default globalSlice.reducer

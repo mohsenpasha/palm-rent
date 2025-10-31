@@ -70,7 +70,7 @@ export default function BranchPage(){
         setIsLoading(true)
         firstTime.current = true
         loadingRef.current = true
-    },[search_title,search_sort,priceRange,selectedCategories])
+    },[search_title,search_sort,priceRange,selectedCategories,carDates])
     function fetchData(){
         if(!recivedData && !firstTime.current) return
         let url = 'https://palmrentcar.com/api/car/filter/en'

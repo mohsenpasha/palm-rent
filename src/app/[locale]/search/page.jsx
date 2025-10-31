@@ -54,6 +54,7 @@ export default function SearchResultPage(){
     const descriptionPopup = useSelector((state)=>state.global.descriptionPopup)
     const isReelActive = useSelector((state) => state.reels.isReelActive)
     const isSearchOpen = useSelector((state) => state.global.isSearchOpen)
+    const carDates = useSelector((state) => state.global.carDates)
     const carList = useSelector((state) => state.carList.carList)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
     const roadMapStep = useSelector((state) => state.global.roadMapStep)
@@ -68,7 +69,7 @@ export default function SearchResultPage(){
         setIsLoading(true)
         firstTime.current = true
         loadingRef.current = true
-    },[search_title,search_sort,priceRange,selectedCategories])
+    },[search_title,search_sort,priceRange,selectedCategories,carDates])
     function fetchData(){
         if(!recivedData && !firstTime.current) return
         let url = 'https://palmrentcar.com/api/car/filter/en'
@@ -77,9 +78,9 @@ export default function SearchResultPage(){
             setIs404(true)
             return
         }
-        dispatch(changeCarDates([params.from.split(' ')[0],params.to.split(' ')[0]]))
         dispatch(changeBranchId(branch_id))
         if(urlFirstTime.current){
+            dispatch(changeCarDates([params.from.split(' ')[0],params.to.split(' ')[0]]))
             if(params.search_title){
                 dispatch(changeSearchTitle(params.search_title))
             }
@@ -91,8 +92,8 @@ export default function SearchResultPage(){
             }
         }
         let payload = {
-            from : params.from,
-            to : params.to,
+            from : carDates[0] || params.from,
+            to : carDates[1] || params.to,
             branch_id : params.branch_id,
         }
         if((urlFirstTime.current && params.search_title) || search_title){
