@@ -20,9 +20,22 @@ export function RecentBlogPosts(){
                     </Link>
                 </div>
                 {!homeBlogs ? 
-                    <div>
-                        Loading
+                <div className="flex gap-8 lg:flex-nowrap flex-wrap lg:flex-row flex-col-reverse">
+                    <div className="flex justify-between flex-col gap-4 lg:w-7/12 w-full">
+                        {Array(3).fill(null).map((_,index)=>{
+                            return(
+                                <div key={index} className="w-full animate-skeleton h-36 rounded-lg p-4">
+                                    {/* <SkeletonSingleBlogPost/> */}
+                                </div>
+                            )
+                        })}
                     </div>
+                    <div className="flex lg:w-5/12 w-full">
+                        <div className="w-full h-full rounded-lg animate-skeleton">
+
+                        </div>
+                    </div>
+                </div>
                 : 
                     <div className="flex gap-8 lg:flex-nowrap flex-wrap lg:flex-row flex-col-reverse">
                         <div className="flex flex-col justify-between gap-4 lg:w-7/12 w-full">

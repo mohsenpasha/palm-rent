@@ -130,7 +130,7 @@ export function SingleCarOptions({data,bigFont=false}){
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGas/>
                 </span>
-                {t(String(data.gasType).toLowerCase())}
+                {t(String(data.gasType == 'بنزین' ? 'petrol' : data.gasType).toLowerCase())}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
@@ -165,7 +165,7 @@ export function SingleCarPriceList({priceList}){
     const isInSearchPage = pathname == getLangUrl(locale) + '/search'
     const isBranchPage = pathname.includes('cars-rent')
     useEffect(()=>{
-        if(isInSearchPage || isBranchPage){
+        if(isInSearchPage){
             Object.entries(priceList).map(([key,value])=>{
                 if(key == '1'){
                     setFinalDayPrice(value)
@@ -173,72 +173,59 @@ export function SingleCarPriceList({priceList}){
                 }
             })
         }
-        // const dayD = parseInt(getDiffInShamsiDays(carDates[0],carDates[1]))
-        // setRentDay(dayD)
-        // Object.entries(priceList).map(([key,value])=>{
-        //     const splitedData = key.split(':')
-        //     let st;
-        //     if(splitedData[1].length == 0){
-        //         st = parseInt(splitedData[0]) <= dayD
-        //     }
-        //     else{
-        //         st = parseInt(splitedData[0]) <= dayD && dayD <= parseInt(splitedData[1])
-        //     }
-        //     if(st){
-        //         setFinalDayPrice(value)
-        //     }
-        // })
     },[carDates])
     // return(
     //     <div>
     //         test
     //     </div>
     // )
+    console.log(finalDayPrice)
     return(
         <div>
             {/* <div className="w-full border-b-[1px] border-[#0000001f] py-2">
                 قیمت کرایه تویوتا یاریس 2024 دبی
             </div> */}
             <div className="flex flex-col gap-2 my-4 border-t-[1px] pt-2 border-[#0000001f]">
-                {finalDayPrice ?
+                {Object.entries(priceList).length == 1 ?
                 <div className="flex justify-between items-center">
                     <span>{t('BSPrice')} {rentDay} {t('day')}</span>
                     <div className="lg:text-base text-sm flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
-                            {finalDayPrice.previousPrice != finalDayPrice.currentPrice && finalDayPrice.previousPrice}
+                            {finalDayPrice?.previousPrice != finalDayPrice?.currentPrice && finalDayPrice?.previousPrice}
                         </span>
                         <span className="text-[#10B981]">
-                            {finalDayPrice.currentPrice}
+                            {finalDayPrice?.currentPrice}
                         </span>
                         {t('AED')} {t('daily')}
                     </div>
                 </div>
                 : 
+                
                 Object.entries(priceList).map(([key, { previousPrice, currentPrice }]) => (
-                    <div key={key}>
-                        {key}
-                    </div>
-                    // <div key={key} className="flex justify-between">
-                    //     <div>
-                    //         {(() => {
-                    //             const [from, to] = key.split(":");
-                    //             return to.length === 0 ? (
-                    //                 <>{t('moreThan')} {from} {t('day')}</>
-                    //             ) : (
-                    //                 <>{t('from')} {from} {t('to')} {to} {t('day')}</>
-                    //             );
-                    //         })()}
-                    //     </div>
-                    //     <div className="lg:text-base text-sm flex gap-2">
-                    //         <span className="text-[#A7A7A7] line-through">
-                    //             {previousPrice}
-                    //         </span>
-                    //         <span className="text-[#10B981]">
-                    //             {currentPrice}
-                    //         </span>
-                    //         {t('AED')} {t('daily')}
-                    //     </div>
+                    // <div key={key}>
+                    //     {key}
                     // </div>
+                    <div key={key} className="flex justify-between">
+                        <div>
+                            {(() => {
+                                const [from, to] = key.split(":");
+                                return to.length === 0 ? (
+                                    <>{t('moreThan')} {from} {t('day')}</>
+                                ) : (
+                                    <>{t('from')} {from} {t('to')} {to} {t('day')}</>
+                                );
+                            })()}
+                        </div>
+                        <div className="lg:text-base text-sm flex gap-2">
+                            <span className="text-[#A7A7A7] line-through">
+                                {previousPrice}
+                            </span>
+                            <span className="text-[#10B981]">
+                                {currentPrice}
+                            </span>
+                            {t('AED')} {t('daily')}
+                        </div>
+                    </div>
                     ))}
             </div>
         </div>

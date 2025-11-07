@@ -119,6 +119,12 @@ const initialState = {
   // ],
 }
 
+function getFromToDay(text) {
+  const numbers = text.match(/\d+/g);
+  if (!numbers || numbers.length < 1) return null;
+  return `${numbers[0]}:${numbers[1] || ''}`;
+}
+
 const carListSlice = createSlice({
   name: 'carList',
   initialState,
@@ -139,14 +145,23 @@ const carListSlice = createSlice({
         if (car.free_delivery === "yes") options.push(2);
         if (car.insurance === "yes") options.push(3);
         if (car.km === "no") options.push(4);
-
+        console.log(car.prices)
+        let priceList = {}
         // تبدیل قیمت‌ها
-        const priceList = {
-          '1': {
-            previousPrice: car.rent_price,
-            currentPrice: car.final_price
-          }
-        };
+        if(car.rent_price){
+          priceList = {
+            '1': {
+              previousPrice: car.rent_price,
+              currentPrice: car.final_price
+            }
+          };
+        }
+        else{
+          car.prices.map((item)=>{
+            const key = getFromToDay(item.range)
+            priceList[key] = {previousPrice :item.base_price ,currentPrice:item.final_price}
+          })
+        }
 
         return {
           id: car.id,

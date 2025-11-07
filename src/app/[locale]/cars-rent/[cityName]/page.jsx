@@ -15,14 +15,16 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import BranchDescriotion from "@/app/[locale]/components/BranchDescription";
+import BranchDescriotion, { BranchDescriotionSkeleton } from "@/app/[locale]/components/BranchDescription";
 import CarBrandSection from "@/app/[locale]/components/CarBrandSection";
-import MoreTextSection from "@/app/[locale]/components/BranchMoreTextSection";
+import MoreTextSection, { MoreTextSectionSkeleton } from "@/app/[locale]/components/BranchMoreTextSection";
 import SkeletonSingleCar from "../../components/SkeletonSingleCar";
 import { addCarList, clearCarList } from "@/redux/slices/carListSlice";
-import { changeSelectedCity } from "@/redux/slices/globalSlice";
-import { postData } from "@/app/lib/PostData";
-import { changePriceRange, changeSearchCurrency } from "@/redux/slices/searchSlice";
+import { changeHomeBlogs, changeSelectedCity } from "@/redux/slices/globalSlice";
+import { changeSearchCurrency } from "@/redux/slices/searchSlice";
+import { getData } from "@/app/lib/getData";
+import { buildUrl } from "@/app/lib/buildUrl";
+import { useLocale } from "next-intl";
 
 
 export default function BranchPage(){
@@ -40,11 +42,10 @@ export default function BranchPage(){
     const carList = useSelector((state) => state.carList.carList)
     const search_title = useSelector((state) => state.search.search_title)
     const search_sort = useSelector((state) => state.search.sort)
-    const priceRange = useSelector((state) => state.search.selectedPriceRange)
     const selectedCategories = useSelector((state) => state.search.selectedCategories)
     const carDates = useSelector((state) => state.global.carDates)
-
-    // const { cityName } = await params;
+    const [branchData,setBranchData] = useState(null)
+    const locale = useLocale()
     const cityName = params['cityName']
     console.log(cities[cityName])
     const [recivedData,setRecivedData] = useState()
@@ -57,42 +58,24 @@ export default function BranchPage(){
         }
     }
     useEffect(()=>{
-        dispatch(changeSelectedCity(cities[cityName]))
-        window.addEventListener('scroll',scrollHandler)
-        return () => {
-            clearTimeout(timeout)
-            window.removeEventListener('scroll',scrollHandler)
-        }
-    },[])
-    useEffect(()=>{
         setRecivedData(null)
         dispatch(clearCarList())
         setIsLoading(true)
         firstTime.current = true
         loadingRef.current = true
-    },[search_title,search_sort,priceRange,selectedCategories,carDates])
+    },[search_title,search_sort,selectedCategories,carDates])
     function fetchData(){
         if(!recivedData && !firstTime.current) return
-        let url = 'https://palmrentcar.com/api/car/filter/en'
-        // dispatch(changeCarDates([params.from.split(' ')[0],params.to.split(' ')[0]]))
-        // dispatch(changeBranchId(branch_id))
-        let payload = {
-            from : carDates[0],
-            to : carDates[1],
-            branch_id : cities[cityName],
-        }
+        let url = `https://palmrentcar.com/api/car/branch/${cities[cityName]}/${locale}`
+        let payload = {}
         if(search_title){
             payload.search_title = search_title
         }
         if(search_sort){
             payload.sort = search_sort
         }
-        if(priceRange){
-            payload.min_p = Math.min(...priceRange)
-            payload.max_p = Math.max(...priceRange)
-        }
         if(selectedCategories.length != 0){
-            payload['cat_id'] = selectedCategories
+            payload['cat_id[]   '] = selectedCategories
         }
         firstTime.current = false
         if(!!recivedData){
@@ -100,6 +83,7 @@ export default function BranchPage(){
             const perPage = parseInt(recivedData.data.per_page)
             const carCount = parseInt(recivedData.data.count_cars)
             const carRecivedCount = (currentPage * perPage) + 3
+            // url += `?page=${currentPage + 1}`
             if(carRecivedCount >= carCount){
                 setHasMore(false)
                 setIsLoading(false)
@@ -108,7 +92,9 @@ export default function BranchPage(){
             }
             payload.page = currentPage + 1
         }
-        postData(url,payload)
+        url = buildUrl(url,payload)
+        console.log(url)
+        getData(url)
         .then(data => {
             setRecivedData(data)
             setIsLoading(false)
@@ -118,9 +104,10 @@ export default function BranchPage(){
     }
     useEffect(()=>{
             if(!recivedData) return
-            dispatch(changePriceRange([recivedData.data.max_price,recivedData.data.min_price]))
             dispatch(changeSearchCurrency(recivedData.data.currency))
             dispatch(addCarList(recivedData.data.cars))
+            setBranchData(recivedData.data.branch)
+            dispatch(changeHomeBlogs(recivedData.data.blogs))
         },[recivedData])
     useEffect(()=>{
         if(!carDates) return
@@ -150,8 +137,13 @@ export default function BranchPage(){
         NProgress.start()
         const timeout = setTimeout(() => {
         NProgress.done()
+        dispatch(changeSelectedCity(cities[cityName]))
+        window.addEventListener('scroll',scrollHandler)
         }, 300)
-        return () => clearTimeout(timeout)
+        return () => {
+            clearTimeout(timeout)
+            window.removeEventListener('scroll',scrollHandler)
+        }
     },[])
     return(
         <>
@@ -164,7 +156,11 @@ export default function BranchPage(){
                     <SearchBar/>
                 </div>
             </div>
-            <BranchDescriotion/>
+            {branchData ?
+                <BranchDescriotion data={branchData}/>
+                :
+                <BranchDescriotionSkeleton/>
+            }
             <CarCategorySection/>
             <CarBrandSection/>
             <div id="search-section">
@@ -191,7 +187,11 @@ export default function BranchPage(){
             <CommentSection/>
             <CommonQuestionSection rules={rules} setRules={setRules}/>
             <RecentBlogPosts/>
-            <MoreTextSection/>
+            {branchData ?
+                <MoreTextSection data={branchData}/>
+                :
+                <MoreTextSectionSkeleton/>
+            }
         </div>
             {isSearchOpen && 
                 <SearchPopup/>
