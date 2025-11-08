@@ -41,7 +41,7 @@ export function RecentBlogPosts(){
                         <div className="flex flex-col justify-between gap-4 lg:w-7/12 w-full">
                         {homeBlogs.map((item,index)=>{
                             if(index != 0){
-                                return <SingleBlogPost key={index} title={item.title} description={item.text} photo={item.photo}/>
+                                return <SingleBlogPost key={index} id={item.id} title={item.title} description={item.text} photo={item.photo}/>
                             }
                         })}
                             {/* <SingleBlogPost/> */}
@@ -49,7 +49,7 @@ export function RecentBlogPosts(){
  
                         </div>
                         <div className="flex lg:w-5/12 w-full">
-                            <SingleBlogPost bigPost={true} title={homeBlogs[0].title} description={homeBlogs[0].text} photo={homeBlogs[0].photo}/>
+                            <SingleBlogPost bigPost={true} id={homeBlogs[0].id} title={homeBlogs[0].title} description={homeBlogs[0].text} photo={homeBlogs[0].photo}/>
                         </div>
                     </div>
                 }
@@ -60,10 +60,10 @@ export function RecentBlogPosts(){
     )
 }
 
-export function SingleBlogPost({bigPost=false,smallFont=false,title='',description='',photo=''}){
+export function SingleBlogPost({bigPost=false,smallFont=false,id,title='',description='',photo=''}){
     const t = useTranslations();
     return(
-        <Link href={'#'} className="flex w-full cursor-pointer">
+        <Link href={`../../../blogs/${id}`} className="flex w-full cursor-pointer">
             <div className={`flex ${bigPost ? 'flex-col' : ''} gap-4 w-full`}>
                 <div className={`${bigPost ? 'w-full' : 'w-4/12 shrink-0'} relative`}>
                     <Image className="w-full h-full object-cover rounded-lg" src={photo} width={530} height={280} alt=""></Image>
