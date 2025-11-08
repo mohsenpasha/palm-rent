@@ -83,7 +83,7 @@ export default function BlogsPage(){
                         {!blogs ?
                         Array(8).fill(null).map((_,index)=>{
                             return(
-                                <div key={index} className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
+                                <div key={index} className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border border-[#0000001f] p-4 rounded-lg bg-white">
                                     <SkeletonSingleBlogPost/>
                                 </div>
                             )
@@ -91,7 +91,7 @@ export default function BlogsPage(){
                     :
                         blogs?.map((item,index)=>{
                             return(
-                                <div key={index} className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
+                                <div key={index} className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border border-[#0000001f] p-4 rounded-lg bg-white">
                                     <SingleBlogPost title={item.title} description={item.text} photo={item.photo} smallFont={true} bigPost={true}/>
                                 </div>
                         )
@@ -99,7 +99,7 @@ export default function BlogsPage(){
                         {
                             hasMore && isLoading &&  Array(4).fill(null).map((_,index)=>{
                             return(
-                                <div key={index} className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border-[1px] border-[#0000001f] p-4 rounded-lg bg-white">
+                                <div key={index} className="lg:w-[calc(25%-8px)] md:w-[calc(33%-8px)] sm:w-[calc(50%-4px)] w-full border border-[#0000001f] p-4 rounded-lg bg-white">
                                     <SkeletonSingleBlogPost/>
                                 </div>
                             )
