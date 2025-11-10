@@ -19,7 +19,8 @@ import { postData } from "@/app/lib/PostData";
 import { notFound } from "next/navigation";
 import { addCarList, clearCarList } from "@/redux/slices/carListSlice";
 import { changeCarDates } from "@/redux/slices/globalSlice";
-import { changeBranchId, changePriceRange, changeSearchCurrency, changeSearchTitle, changeSelectedPriceRange, changeSort } from "@/redux/slices/searchSlice";
+import { changeBranchId, changePriceRange, changeSearchCurrency, changeSearchTitle, changeSelectedPriceRange, changeSort, changeToman } from "@/redux/slices/searchSlice";
+import SingleCar2 from "../components/SingleCar2";
 
 export function getUrlParamsEasy(search = window.location.search) {
     const params = {};
@@ -176,8 +177,6 @@ export default function SearchResultPage(){
         dispatch(changeSearchCurrency(recivedData.data.currency))
         dispatch(addCarList(recivedData.data.cars))
     },[recivedData])
-    // const router = useRouter();
-    // const previousPage = document.referrer;
 
     if(is404) {
             notFound()
@@ -204,9 +203,10 @@ export default function SearchResultPage(){
                             <SearchBox/>
                             <div ref={searchRef} className="flex flex-wrap gap-4">
                                 {carList.map((item,index)=>{
+                                    console.log(item)
                                     return(
                                         <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                            <SingleCar data={item}/>
+                                            <SingleCar2 data={item}/>
                                         </div>
                                     )
                                 })}
@@ -238,6 +238,7 @@ export default function SearchResultPage(){
             {descriptionPopup.description && 
                 <DescriptionPopup/>
             }
+            
             <Footer/>
         </>
     )
