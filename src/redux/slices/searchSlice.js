@@ -7,6 +7,7 @@ const initialState = {
   selectedPriceRange:null,
   sort:null,
   currency:'AED',
+  toman:null,
   selectedCategories:[]
 }
 
@@ -35,6 +36,9 @@ const searchSlice = createSlice({
     changeCarCategory: (state,action) => {
       state.carCategory = action.payload
     },
+    changeToman: (state,action) => {
+      state.toman = action.payload
+    },
     toggleSelectedCategory: (state,action) => {
       if(state.selectedCategories.includes(action.payload)){
         state.selectedCategories = state.selectedCategories.filter(
@@ -50,5 +54,5 @@ const searchSlice = createSlice({
   },
 })
 
-export const { changeBranchId, changeSearchTitle, changePriceRange, changeSelectedPriceRange, changeSearchCurrency, changeSort, changeCarCategory, toggleSelectedCategory } = searchSlice.actions
+export const { changeBranchId, changeSearchTitle, changePriceRange, changeSelectedPriceRange, changeSearchCurrency, changeSort, changeCarCategory, toggleSelectedCategory, changeToman } = searchSlice.actions
 export default searchSlice.reducer
