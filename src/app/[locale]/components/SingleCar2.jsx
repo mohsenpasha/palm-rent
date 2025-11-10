@@ -44,7 +44,7 @@ export default function SingleCar2({data,noBtn = false}){
     const optionList = useSelector((state)=>state.carList.optionList)
     const [isHovering,setIsHovering] = useState(false)
     return(
-        <div className={`${isHovering && 'z-30'} flex w-full flex-col bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]`}>
+        <div className={`${isHovering && 'z-30'} flex w-full flex-col bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] max-md:pl-0 p-2.5`}>
             <SingleCarGallery2 imageList={data.images} noBtn={true}>
                 <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
                     {data.options.map((item,index)=>{
@@ -67,11 +67,14 @@ export default function SingleCar2({data,noBtn = false}){
                         {data.discount}% {t('discount')}
                     </div>
                 }
+
             </SingleCarGallery2>
-            <div className="text-left my-2 lg:text-lg sm:text-base text-sm">{data.title}</div>
-            <SingleCarOptions data={data}/>
-            <SingleCarPriceList2 priceList={data.priceList}/>
-            <SingleCarButtonHolder3/>
+            <div className="pl-2.5 flex flex-col">
+                <div className="text-left my-2 lg:text-lg sm:text-base text-sm">{data.title}</div>
+                <SingleCarOptions data={data}/>
+                <SingleCarPriceList2 priceList={data.priceList}/>
+                <SingleCarButtonHolder3/>
+            </div>
         </div>
     )
 }
@@ -109,7 +112,7 @@ export function SingleCarGallery2({children,noBtn,imageList}){
 
                         )
                     })}
-                    <Link href={'test'} className={`flex md:hidden flex-col items-center justify-center text-black text-nowrap relative gap-2 font-bold`}>
+                    <Link href={'test'} className={`flex md:hidden flex-col items-center justify-center text-black text-nowrap relative gap-2 font-bold px-4`}>
                         <span className="flex items-center justify-center bg-[#F1F1F1] rounded-full size-8">
                             <span className="flex size-4 rotate-90 items-center justify-center">
                                 <IconArrow/>

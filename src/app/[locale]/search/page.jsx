@@ -185,47 +185,51 @@ export default function SearchResultPage(){
         <>
             <Header shadowLess/>
                 <div className="w-[90vw] max-w-[1336px] m-auto relative">
-                <div className="flex flex-col max-sm:flex-col-reverse">
-                    {roadMapStep < 3 && 
-                        <div className="">
-                            <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
-                        </div>
-                    }
-                    {roadMapStep < 3 && 
-                        <>
-                            <RoadMap step={roadMapStep}/>
-                        </>
-                    }
+                    <div className="flex flex-col max-sm:flex-col-reverse">
+                        {roadMapStep < 3 && 
+                            <div className="">
+                                <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
+                            </div>
+                        }
+                        {roadMapStep < 3 && 
+                            <>
+                                <RoadMap step={roadMapStep}/>
+                            </>
+                        }
                     </div>
+                </div>
                     {
                         roadMapStep == 1 &&
                         <>
-                            <SearchBox/>
-                            <div ref={searchRef} className="flex flex-wrap gap-4">
-                                {carList.map((item,index)=>{
-                                    console.log(item)
-                                    return(
-                                        <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                            <SingleCar2 data={item}/>
-                                        </div>
-                                    )
-                                })}
-                                {hasMore && isLoading &&
-                                    Array(3).fill(null).map((_,index)=>{
+                            <div className="w-[90vw] max-w-[1336px] m-auto relative">
+                                <SearchBox/>
+                            </div>
+                            <div className="md:w-[90vw] overflow-x-hidden max-w-[1336px] m-auto relative">
+                                <div ref={searchRef} className="flex flex-wrap gap-4">
+                                    {carList.map((item,index)=>{
+                                        console.log(item)
                                         return(
                                             <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                                <SkeletonSingleCar singlePrice={true}/>
+                                                <SingleCar2 data={item}/>
                                             </div>
                                         )
-                                    })
-                                }
+                                    })}
+                                    {hasMore && isLoading &&
+                                        Array(3).fill(null).map((_,index)=>{
+                                            return(
+                                                <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
+                                                    <SkeletonSingleCar singlePrice={true}/>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                         </>
                     }
                     {roadMapStep == 2 &&
                         <InformationStep/>
                     }
-                </div>
             {isReelActive && 
                 <PopupReels/>
             }
