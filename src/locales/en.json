@@ -298,5 +298,9 @@
   "crook": "Convertible",
   "standard": "Standard",
   "suv": "SUV",
-  "coupe": "Coupe"
+  "coupe": "Coupe",
+  "sum": "Total",
+  "dayres": "Reservation day",
+  "toman": "Toman",
+  "moredetail": "More details"
 }
