@@ -103,7 +103,7 @@ export function SingleCarGallery2({children,noBtn,imageList}){
                     {imageList.map((item,index)=>{
                         return(
                             // (index != imageList.length - 1)?
-                                <Image key={index} className={`${hoverList[index] ? 'z-10' : ''} md:rounded-lg max-md:first:rounded-r-lg max-md:last:rounded-l-lg w-full h-full object-cover md:absolute ${(index != imageList.length - 1) ? '' : 'md:hidden'}`} src={item} width={395} height={253} alt=''></Image>
+                                <Image key={index} className={`${hoverList[index] ? 'z-10' : ''} md:rounded-lg max-md:first:rounded-r-lg max-md:last-of-type:rounded-l-lg w-full h-full object-cover md:absolute ${(index != imageList.length - 1) ? '' : 'md:hidden'}`} src={item} width={395} height={253} alt=''></Image>
                             // :
                                 // <Image key={index} className={`${hoverList[index] ? 'z-10' : ''} md:rounded-lg w-full h-full object-cover md:hidden md:absolute`} src={item} width={395} height={253} alt=''></Image>
 
