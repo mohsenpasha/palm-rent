@@ -17,7 +17,7 @@ export default function SingleCar({data,noBtn = false}){
     const optionList = useSelector((state)=>state.carList.optionList)
     const [isHovering,setIsHovering] = useState(false)
     return(
-        <div className={`${isHovering && 'z-30'} flex w-full flex-col hover:scale-[97%] bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-[10px]`}>
+        <div className={`${isHovering && 'z-30'} flex w-full flex-col bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-2.5`}>
             <SingleCarGallery imageList={data.images} noBtn={noBtn ? noBtn : data.video.length == 0}>
                 {!noBtn && 
                     <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
@@ -26,7 +26,7 @@ export default function SingleCar({data,noBtn = false}){
                                 <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="py-1 group px-2 rounded-4xl bg-[#3b82f6] relative hover:scale-[105%] transition-all" key={index}>
                                     <span className="text-white font-bold">{t(optionList[item].title)}</span>
                                     <div className="absolute top-0 hidden group-hover:flex animate-opacity pb-3 z-50 left-1/2 -translate-x-1/2 -translate-y-full">
-                                        <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-xs rounded-lg border-[1px] p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+                                        <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-xs rounded-lg border p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                                             {optionList[item].description}
                                             <div className="w-0 h-0 rotate-180 absolute bottom-0 left-1/2 border-l-16 border-r-16 border-t-0 border-b-16 border-l-transparent -translate-x-1/2 border-r-transparent border-b-white"></div>
                                         </div>
@@ -37,7 +37,7 @@ export default function SingleCar({data,noBtn = false}){
                     </div>
                 }
                 {data.discount && 
-                    <div className="absolute bottom-4 bg-[#DF900A] py-1.5 px-2.5 text-white right-0 rounded-lg rounded-r-[0]">
+                    <div className="absolute bottom-4 bg-[#DF900A] py-1.5 px-2.5 text-white right-0 rounded-lg rounded-r-none">
                         {data.discount}% {t('discount')}
                     </div>
                 }
