@@ -204,7 +204,7 @@ export default function SearchResultPage(){
                             <div className="w-[90vw] max-w-[1336px] m-auto relative">
                                 <SearchBox/>
                             </div>
-                            <div className="md:w-[90vw] overflow-x-hidden max-w-[1336px] m-auto relative">
+                            <div className="md:w-[90vw] max-md:overflow-x-hidden max-w-[1336px] m-auto relative">
                                 <div ref={searchRef} className="flex flex-wrap gap-4">
                                     {carList.map((item,index)=>{
                                         console.log(item)

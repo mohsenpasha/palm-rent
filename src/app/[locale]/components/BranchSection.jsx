@@ -18,11 +18,11 @@ export default function BranchSection(){
             <div className='text-center pb-6 md:text-xl sm:text-lg text-base font-bold text-[#3B82F6]'>
                 {t('branches')}
             </div>
-                {!branches ?
+                {/* {!branches ?
                     <div>loading</div>
-                 :
+                 : */}
                     <Slider/>
-                }
+                {/* } */}
             </div>
         </section>
     )
