@@ -90,7 +90,7 @@ export function SingleInputElm({title,children}){
     return(
         <div className='flex flex-col gap-1'>
             <span className='text-[#32343E] text-sm'>{title}</span>
-            <div className='bg-white border-[1px] border-[#0000001f] rounded-lg shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]'>
+            <div className='bg-white border border-[#0000001f] rounded-lg shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]'>
                 {children}
             </div>
         </div>

@@ -1,71 +1,63 @@
-'use client'
-import Image from "next/image";
-import SingleCarPopupGallery from "../components/SingleCarPopupGallery";
-import { useDispatch, useSelector } from "react-redux";
-import { changeSingleGalleryStatus } from "@/redux/slices/globalSlice";
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
-import { useEffect } from "react";
-
-export default function GalleryPage(){
-    useEffect(()=>{
-                NProgress.start()
-                const timeout = setTimeout(() => {
-                NProgress.done()
-                }, 300)
-                return () => clearTimeout(timeout)
-            },[])
-    const isSingleGalleryOpen = useSelector((state)=>state.global.isSingleGalleryOpen)
-    const dispatch = useDispatch()
-    function openPopup(){
-        dispatch(changeSingleGalleryStatus(true))
+// app/page.tsx
+import GalleryComponent from "../components/GalleryPage"
+async function getGalleryData(locale) {
+  try {
+    const res = await fetch(`https://palmrentcar.com/api/gallery/${locale}`, {
+      next: { revalidate: 60 } // ISR - هر ۶۰ ثانیه کش می‌شود
+    })
+    
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
     }
-    return(
-        <>
-            <div className="xl:w-[85vw] w-[95vw] m-auto max-w-[1336px]">
-                <div className="flex py-4 flex-wrap gap-2">
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-3.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-2.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-1.png'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-3.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-2.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-1.png'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-3.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-2.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-1.png'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-3.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-2.jpg'} width={352} height={480} alt=""/>
-                    </div>
-                    <div onClick={openPopup} className="rounded-lg p-2 lg:w-[calc(25%-8px)] md:w-[calc(33%-4px)] w-[calc(50%-4px)] border-[1px] border-[#cccccc] cursor-pointer bg-white">
-                        <Image className="rounded-lg w-full h-full object-cover" src={'/images/singlecar-1.png'} width={352} height={480} alt=""/>
-                    </div>
-                </div>
-            </div>
-            {isSingleGalleryOpen && 
-                <SingleCarPopupGallery/>
-            }
-        </>
+    
+    return res.json()
+  } catch (error) {
+    console.error('Error fetching home data:', error)
+    return { data: null, meta: null }
+  }
+}
 
-    )
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const response = await getGalleryData(locale)
+  
+  if (!response.meta) {
+    return {
+      title: "سامانه آنلاین اجاره خودرو بدون دپوزیت | پالم رنت",
+      description: "اجاره خودرو در دبی، استانبول و عمان بدون دپوزیت! رزرو آسان، پرداخت ریالی، بیمه رایگان و تحویل در محل. بهترین قیمت و پشتیبانی ۲۴/۷.",
+    }
+  }
+
+  const { meta } = response;
+
+  return {
+    title: meta.titleSeo,
+    description: meta.descriptionSeo,
+    robots: meta.robots,
+    icons: {
+      icon: meta.favIcon || '/favicon.png',
+    },
+    openGraph: {
+      title: meta.titleSeo,
+      description: meta.descriptionSeo,
+      images: [meta.imgSeo],
+      url: meta.urlPage,
+      siteName: meta.siteName,
+    },
+    alternates: {
+      canonical: meta.canonical,
+    },
+    ...(meta.schemaSeo && {
+      other: {
+        'script:ld+json': meta.schemaSeo,
+      }
+    }),
+  }
+}
+
+export default async function HomePage({ params }) {
+  const { locale } = await params;
+  const response = await getGalleryData(locale)
+  const initialData = response.data
+  return <GalleryComponent data={initialData} />
 }

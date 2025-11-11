@@ -84,7 +84,7 @@ export default function SearchBar({isPopup=false}){
                 <div className={`flex lg:gap-2 gap-4 items-end lg:flex-nowrap flex-wrap px-2 md:px-6 ${isPopup ? `bg-white rounded-lg justify-center ${isDateSelectOpen ? 'md:w-10/12 w-full md:p-8 md:my-4' : 'p-8 w-10/12 my-4'} absolute  left-1/2 -translate-x-1/2` : ''}`}>
                     <div ref={citySelectRef} className="relative w-full lg:w-3/12 grow-0 flex flex-col gap-1">
                         <span className="text-xs">{t('city')}</span>
-                        <div onClick={()=>params.cityName ? ()=>{} :setCityToggle(!cityToggle)} className={`${params.cityName && 'bg-gray-100'} border-[1px] border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1`}>
+                        <div onClick={()=>params.cityName ? ()=>{} :setCityToggle(!cityToggle)} className={`${params.cityName && 'bg-gray-100'} border border-[#B5B5B5B2] flex items-center w-full rounded-xs md:rounded-lg p-3 px-2 text-[#4C4C4C] cursor-pointer gap-1`}>
                             <span className="size-6">
                                 <IconLocation/>
                             </span>
@@ -107,7 +107,7 @@ export default function SearchBar({isPopup=false}){
                     <div className={`relative lg:w-6/12 w-full sm:flex-nowrap flex-wrap sm:gap-4 flex-col sm:flex-row flex gap-2`}>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
                             <span className="text-xs">{t('deliveryTD')}</span>
-                            <div className="border-[1px] border-[#B5B5B5B2] text-xs md:text-sm flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
+                            <div className="border border-[#B5B5B5B2] text-xs md:text-sm flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] gap-1 items-center">
                                     <IconClock/>
                                     <span>{carDates[0] || t('date')}</span>
@@ -120,7 +120,7 @@ export default function SearchBar({isPopup=false}){
                         </div>
                         <div onClick={openDateSelect} className="relative md:w-[calc(50%-8px)] w-full grow-0 md:shrink-0 flex flex-col gap-1">
                             <span className="text-xs">{t('returnTD')}</span>
-                            <div className="border-[1px] border-[#B5B5B5B2] text-xs md:text-sm flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
+                            <div className="border border-[#B5B5B5B2] text-xs md:text-sm flex items-center w-full rounded-xs md:rounded-lg text-[#4C4C4C] cursor-pointer justify-between">
                                 <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1">
                                     <IconClock/>
                                     <span>{carDates[1] || t('date')}</span>
@@ -202,12 +202,12 @@ export function DatePickerBox({ref,isPopup=false}){
       changeCarDatesValue()
     },[pCarDates])
   return(
-    <div ref={ref} className={`bg-white w-[100vw] h-[100vh] md:w-auto ${!isPopup ? 'animate-opacity2 md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto xl:min-w-[642px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border-[1px] border-[#0000001f] rounded-lg`}>
+    <div ref={ref} className={`bg-white w-[100vw] h-[100vh] md:w-auto ${!isPopup ? 'animate-opacity2 md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto xl:min-w-[642px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border border-[#0000001f] rounded-lg`}>
       <div className="p-2 px-4 flex justify-end border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
-        {/* <button onClick={goToToday} className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
+        {/* <button onClick={goToToday} className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border">
           <span>برو امروز</span>
         </button> */}
-        <button onClick={toggleIsJalili} className="flex items-center gap-0.5 cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border-[1px]">
+        <button onClick={toggleIsJalili} className="flex items-center gap-0.5 cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border">
           <span className="size-4 flex items-center">
             <IconCalender/>
           </span>
@@ -243,7 +243,7 @@ export function DatePickerBox({ref,isPopup=false}){
 
 export function CityDropDown({children}){
     return(
-        <div className="absolute z-10 animate-fade-in overflow-hidden -bottom-1 w-full translate-y-full bg-white flex flex-col min-w-32 rounded-lg border-[1px] border-[#cccccc] shadow-[0_3px_10px_0_rgba(0,0,0,.12),0_10px_10px_-6px_rgba(0,0,0,.12)]">
+        <div className="absolute z-10 animate-fade-in overflow-hidden -bottom-1 w-full translate-y-full bg-white flex flex-col min-w-32 rounded-lg border border-[#cccccc] shadow-[0_3px_10px_0_rgba(0,0,0,.12),0_10px_10px_-6px_rgba(0,0,0,.12)]">
             <div className="max-h-80 overflow-auto">
                 {children}
             </div>

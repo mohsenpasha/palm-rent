@@ -234,11 +234,11 @@ export function SingleCarPriceList({priceList}){
 export function SingleCarButtonHolder1(){
     return(
         <div className="flex w-full gap-4">
-            <button className="border-[1px] border-[#629BF8] rounded-xl text-[#629BF8] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#629BF8] transition-all hover:text-white hover:border-transparent">
+            <button className="border border-[#629BF8] rounded-xl text-[#629BF8] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#629BF8] transition-all hover:text-white hover:border-transparent">
                 <IconSend/>
                 رزرو فوری
             </button>
-            <Link href="https://wa.me/989123456789?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AE%D9%88%D8%B4%D9%85%20%D8%A7%D9%88%D9%85%D8%AF%DB%8C" target="_blank" className="border-[1px] border-[#10B981] rounded-xl text-[#10B981] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#10B981] transition-all hover:text-white hover:border-transparent">
+            <Link href="https://wa.me/989123456789?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AE%D9%88%D8%B4%D9%85%20%D8%A7%D9%88%D9%85%D8%AF%DB%8C" target="_blank" className="border border-[#10B981] rounded-xl text-[#10B981] py-2 flex justify-center gap-2 w-full cursor-pointer hover:bg-[#10B981] transition-all hover:text-white hover:border-transparent">
                 <IconWhatsapp/>
                 رزرو : واتس اپ
             </Link>

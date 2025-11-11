@@ -35,10 +35,10 @@ export function PanelSideBar(){
     const t = useTranslations();
     return(
         <>
-        <div className="flex flex-col border-[1px] border-[#0000001f] my-4 rounded-lg overflow-hidden">
+        <div className="flex flex-col border border-[#0000001f] my-4 rounded-lg overflow-hidden">
             <div className="flex bg-white p-4 items-center shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] justify-between">
                 <div className="flex gap-2">
-                    <div className="size-12 rounded-full border-[1px] border-[#0000001f] flex items-center justify-center">
+                    <div className="size-12 rounded-full border border-[#0000001f] flex items-center justify-center">
                         <Image className="w-fit h-full" src={'/images/profile-pic.png'} width={100} height={100} alt=""/>
                     </div>
                     <div className="flex flex-col">
@@ -46,7 +46,7 @@ export function PanelSideBar(){
                         <div>09370514658</div>
                     </div>
                 </div>
-                <div onClick={()=>setPopupStatus(true)} className="size-[40px] flex justify-center items-center rounded-full cursor-pointer border-[1px] border-[#0000001f]">
+                <div onClick={()=>setPopupStatus(true)} className="size-[40px] flex justify-center items-center rounded-full cursor-pointer border border-[#0000001f]">
                     <IconLogout/>
                 </div>
             </div>
@@ -108,7 +108,7 @@ export function PanelSideBar(){
                 </button>
             </div>
         </div>
-        <div className="flex flex-col border-[1px] border-[#0000001f] my-4 rounded-lg overflow-hidden bg-white">
+        <div className="flex flex-col border border-[#0000001f] my-4 rounded-lg overflow-hidden bg-white">
             <button className="relative flex py-2.5 px-4 transition-all cursor-pointer w-full justify-between items-center gap-2 bg-white hover:bg-blue-50">
                 <div className="flex items-center gap-2">
                     <span className="flex size-8 bg-[#FBFBFB] items-center justify-center rounded-full">
@@ -189,9 +189,9 @@ export function LogoutPopup({closePopup}){
 export function PanelStartElm(){
     const t = useTranslations();
     return(
-        <div className="flex items-center justify-between border-[1px] bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
+        <div className="flex items-center justify-between border bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
             <div className="flex gap-2">
-                <div className="size-12 rounded-full border-[1px] border-[#0000001f] flex items-center justify-center">
+                <div className="size-12 rounded-full border border-[#0000001f] flex items-center justify-center">
                     <Image className="w-fit h-full" src={'/images/profile-pic.png'} width={100} height={100} alt=""/>
                 </div>
                 <div className="flex flex-col">
@@ -218,7 +218,7 @@ export function PanelStartElm(){
 
 export function PanelAccountInfo(){
     return(
-        <div className="flex flex-col items-center justify-between border-[1px] bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
+        <div className="flex flex-col items-center justify-between border bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
             <div className="flex gap-2 w-full items-center font-bold lg:text-base text-sm">
                 <span className="size-6">
                     <IconPerson />
@@ -251,9 +251,9 @@ export function PanelAccountInfo(){
 
 // export function PanelStartElm(){
 //     return(
-//         <div className="flex items-center justify-between border-[1px] bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
+//         <div className="flex items-center justify-between border bg-white border-[#0000001f] my-4 rounded-lg overflow-hidden px-8 py-4">
 //             <div className="flex gap-2">
-//                 <div className="size-12 rounded-full border-[1px] border-[#0000001f] flex items-center justify-center">
+//                 <div className="size-12 rounded-full border border-[#0000001f] flex items-center justify-center">
 //                     <span className="size-8">
 //                         <IconPerson/>
 //                     </span>

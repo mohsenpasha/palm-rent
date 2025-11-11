@@ -39,7 +39,7 @@ export function LoginStage1(){
             </div>
             <div>
                 <span>شماره موبایل</span>
-                <div className="border-[1px] flex flex-row-reverse border-[#B0B0B0] rounded-xl">
+                <div className="border flex flex-row-reverse border-[#B0B0B0] rounded-xl">
                     <select dir="ltr" className="p-2 text-center outline-0" name="" id="">
                         <option value="98">+98</option>
                         <option value="98">+98</option>
@@ -97,7 +97,7 @@ export function LoginStage2(){
                 <div className="flex lg:gap-4 md:gap-2 gap-1 flex-row-reverse rounded-xl">
                     {inputValue.map((item,index)=>{
                         return(
-                            <input key={index} onClick={()=>inputRef.current[index].select()} ref={(el) => (inputRef.current[index] = el)} onInput={(event)=>inputChangeHandler(index,event)} maxLength={1} className="text-center border-[1px] ld:rounded-2xl rounded-lg max-w-[70px] lg:text-[40px] text-2xl border-[#B0B0B0] w-full outline-0 p-1" value={inputValue[index]} type="text" />
+                            <input key={index} onClick={()=>inputRef.current[index].select()} ref={(el) => (inputRef.current[index] = el)} onInput={(event)=>inputChangeHandler(index,event)} maxLength={1} className="text-center border ld:rounded-2xl rounded-lg max-w-[70px] lg:text-[40px] text-2xl border-[#B0B0B0] w-full outline-0 p-1" value={inputValue[index]} type="text" />
                         )
                     })}
                 </div>

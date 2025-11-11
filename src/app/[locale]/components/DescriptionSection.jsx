@@ -63,7 +63,7 @@ export default function DescriptionSection(){
 }
 export function DescriptionItem({icon,title,text}){
     return(
-        <div className="bg-white p-[30px] lg:w-[calc(33%-16px)] md:w-[calc(50%-16px)] rtl:md:text-right ltr:md:text-left text-center w-full border-[1px] border-[#F4F4F4] rounded-2xl flex flex-col gap-2 shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
+        <div className="bg-white p-[30px] lg:w-[calc(33%-16px)] md:w-[calc(50%-16px)] rtl:md:text-right ltr:md:text-left text-center w-full border border-[#F4F4F4] rounded-2xl flex flex-col gap-2 shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
             <div className="h-12 flex justify-center md:justify-start">
                 {icon}
             </div>

@@ -117,7 +117,7 @@ export function DeliverySpot({setIsLocationReturn}){
         dispatch(changeAreLocationsSame(!areLocationsSame))
     }
     return(
-        <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className="border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('deliveryTitle')}</div>
             </div>
@@ -152,7 +152,7 @@ export function DeliverySpot({setIsLocationReturn}){
 export function SideCarDetail(){
     const t = useTranslations();
     return(
-        <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className="border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('onlinePur')}</div>
             </div>
@@ -262,7 +262,7 @@ export function ExtraServices(){
         dispatch(changeDescriptionPopup({title:services[targetIndex].title,description:services[targetIndex].description}))
     }
     return(
-        <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+        <div className="border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4">
                 <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('extraSerTitle')}</div>
             </div>
@@ -307,7 +307,7 @@ export function FineDeposit({borderLess=false,price,currency}){
     return(
         <div className={`${!borderLess ? 'bg-white p-4 my-4 rounded-2xl' : ''}`}>
 
-            <div className={`${!borderLess ? 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] rounded-2xl' : 'bg-white p-1'} flex-1`}>
+            <div className={`${!borderLess ? 'border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] rounded-2xl' : 'bg-white p-1'} flex-1`}>
                 <div className="flex flex-col gap-4">
 
                     <div className="md:text-sm sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
@@ -336,7 +336,7 @@ export function FineDeposit({borderLess=false,price,currency}){
 export function PaymentDetail({borderLess=false,data,currency,toman}){
     const t = useTranslations();
     return(
-        <div className={`${!borderLess && 'border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
+        <div className={`${!borderLess && 'border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl' } my-4 flex-1 bg-white`}>
             <div className="mb-4 flex justify-between">
                 <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('reviewTitle')}</div>
                 <div className="text-[#3B82F6] cursor-pointer">{t('gotDiscount')}</div>
@@ -474,10 +474,10 @@ export function PersonalInfoBox(){
         dispatch(changeIsInfoListOpen(true))
     }
     return(
-        <div className="lg:text-sm md:text-xs text-xs pb-12 border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
+        <div className="lg:text-sm md:text-xs text-xs pb-12 border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 py-6 rounded-4xl my-4 flex-1 bg-white">
             <div className="mb-4 flex justify-between items-center">
                 <div className="lg:text-base sm:text-sm text-xs font-semibold">{t('personalInfoTitle')}</div>
-                <button onClick={openInfoList} className="text-[#3B82F6] hover:text-white hover:bg-[#3B82F6] transition-all cursor-pointer text-xs items-center flex gap-2 border-[1px] border-[#3B82F6] hover:border-white rounded-lg px-3 py-1 font-bold">
+                <button onClick={openInfoList} className="text-[#3B82F6] hover:text-white hover:bg-[#3B82F6] transition-all cursor-pointer text-xs items-center flex gap-2 border border-[#3B82F6] hover:border-white rounded-lg px-3 py-1 font-bold">
                     <span className="size-6 inline-block">
                         <IconPersonSearch/>
                     </span>
@@ -485,13 +485,13 @@ export function PersonalInfoBox(){
                 </button>
             </div>
             <div className="flex flex-col gap-4">
-                <label className="border-[1px] border-[#B0B0B0B2] rounded-[5px] relative">
+                <label className="border border-[#B0B0B0B2] rounded-[5px] relative">
                     <input className="p-3 outline-0 w-full peer" type="text" placeholder=" " />
                     <span className="absolute -translate-y-1/2 right-2 transition-all px-2 text-[#8A8A8A] cursor-pointer bg-white top-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:!scale-100 peer-focus:top-0 scale-75 peer-focus:!scale-75">
                         {t('nameLastname')}
                     </span>
                 </label>
-                {/* <div className="border-[1px] flex flex-row-reverse items-center border-[#B0B0B0] rounded-xl"> */}
+                {/* <div className="border flex flex-row-reverse items-center border-[#B0B0B0] rounded-xl"> */}
                     <PhoneInput
                         country={'ir'}
                         enableSearch={true}
@@ -509,7 +509,7 @@ export function PersonalInfoBox(){
                     <span className="inline-block h-8 w-[1px] bg-[#919191]"></span>
                     <input className="text-left w-full outline-0 p-3" placeholder="091*********" type="text" /> */}
                 {/* </div> */}
-                <label className="border-[1px] border-[#B0B0B0B2] rounded-[5px] relative">
+                <label className="border border-[#B0B0B0B2] rounded-[5px] relative">
                     <input className="p-3 outline-0 w-full peer" type="text" placeholder=" " />
                     <span className="absolute -translate-y-1/2 right-2 transition-all px-2 text-[#8A8A8A] cursor-pointer bg-white top-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:!scale-100 peer-focus:top-0 scale-75 peer-focus:!scale-75">
                         {t('email')}
@@ -533,7 +533,7 @@ export function PersonalInfoBox(){
 
 // export function ExtraServices(){
 //     return(
-//         <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+//         <div className="border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
 //             <div className="mb-4">
 //                 <div className="lg:text-base sm:text-sm text-xs font-semibold">خدمات مازاد خود را انتخاب کنید :</div>
 //             </div>

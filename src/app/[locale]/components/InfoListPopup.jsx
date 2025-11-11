@@ -24,7 +24,7 @@ export default function InfoListPopup(){
                     </span>
                 </div>
                 <div className="p-2 flex flex-col gap-2">
-                    <div className="bg-[#F9F9F9] text-[#353535] rounded-lg p-2 cursor-pointer text-center border-[1px] border-[#0000001F] transition-all hover:bg-[#E9E9E9]">
+                    <div className="bg-[#F9F9F9] text-[#353535] rounded-lg p-2 cursor-pointer text-center border border-[#0000001F] transition-all hover:bg-[#E9E9E9]">
                         <div>
                             محسن پاشا
                         </div>
@@ -35,7 +35,7 @@ export default function InfoListPopup(){
                             test@gmail.com
                         </div>
                     </div>
-                    <div className="bg-[#F9F9F9] text-[#353535] rounded-lg p-2 cursor-pointer text-center border-[1px] border-[#0000001F] transition-all hover:bg-[#E9E9E9]">
+                    <div className="bg-[#F9F9F9] text-[#353535] rounded-lg p-2 cursor-pointer text-center border border-[#0000001F] transition-all hover:bg-[#E9E9E9]">
                         <div>
                             محسن پاشا
                         </div>
@@ -46,7 +46,7 @@ export default function InfoListPopup(){
                             test@gmail.com
                         </div>
                     </div>
-                    <div className="bg-[#F9F9F9] text-[#353535] rounded-lg p-2 cursor-pointer text-center border-[1px] border-[#0000001F] transition-all hover:bg-[#E9E9E9]">
+                    <div className="bg-[#F9F9F9] text-[#353535] rounded-lg p-2 cursor-pointer text-center border border-[#0000001F] transition-all hover:bg-[#E9E9E9]">
                         <div>
                             محسن پاشا
                         </div>

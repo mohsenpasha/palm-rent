@@ -47,7 +47,7 @@ export function PersonalInfoShow({name,resTime,phoneNumber,resCode,email,branch}
     },[])
     const t = useTranslations();
     return(
-        <div className="border-[1px] flex flex-col border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
+        <div className="border flex flex-col border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
             <div className="flex items-center lg:text-lg md:text-sm text-xs font-semibold gap-2">
                 <IconContact/>
                 {t('personalInfo')}
@@ -119,7 +119,7 @@ export function ReservationDetail({from,to,deliveryPlace,returnPlace,resDays,car
     const t = useTranslations();
     // const [options,setOptions] = useState(['noDeposite','freeDelivery','unlimitedKilometers','freeinsurance'])
     return(
-        <div className="border-[1px] flex md:flex-nowrap flex-wrap lg:gap-12 gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
+        <div className="border flex md:flex-nowrap flex-wrap lg:gap-12 gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white">
             <div className="md:w-1/2 w-full flex flex-col gap-4">
                 <div className="flex justify-between">
                     <div className="flex gap-2 lg:text-lg md:text-sm text-xs font-semibold items-center">
@@ -215,7 +215,7 @@ export function FinalDetail({data,currency}){
     const t = useTranslations();
     return(
         
-        <div className="border-[1px] flex gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white flex-col xl:text-base lg:text-sm md:text-xs text-xs">
+        <div className="border flex gap-6 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl flex-1 bg-white flex-col xl:text-base lg:text-sm md:text-xs text-xs">
             <div className="flex gap-2 items-center text-black lg:text-lg md:text-sm text-xs font-semibold">
                 <IconInfo2/>
                 {t('additionalInformation')}

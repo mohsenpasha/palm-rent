@@ -17,7 +17,7 @@ export default function Footer({NMG=false}){
                         <p className="sm:text-xs text-[10px] text-justify font-semibold">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
                         <div className="flex flex-col gap-2 mt-2">
                             <span className="text-xs text-[#313131]">{t('subscribeTitle')}</span>
-                            <div className="border-[1px] border-[#D4D4D4] rounded-sm flex justify-between">
+                            <div className="border border-[#D4D4D4] rounded-sm flex justify-between">
                                 <input placeholder={t('email') + ' ...'} className="flex-1 px-2.5 outline-0" type="email" />
                                 <button className="text-[#152D7C] bg-[#B9C4E6] h-9 px-3">{t('subscribe')}</button>
                             </div>
@@ -91,13 +91,13 @@ export default function Footer({NMG=false}){
                             {t('licenses')}
                         </div>
                         <div className="flex lg:justify-start justify-center lg:gap-2 sm:gap-8 gap-2">
-                            <Link className="size-[79px] shrink-0 border-[1px] border-[#0000001F] rounded-2xl flex justify-center items-center" href={'#'}>
+                            <Link className="size-[79px] shrink-0 border border-[#0000001F] rounded-2xl flex justify-center items-center" href={'#'}>
                                 <Image src={'/images/cer-1.png'} width={69} height={69} alt=""></Image>
                             </Link>
-                            <Link className="size-[79px] shrink-0 border-[1px] border-[#0000001F] rounded-2xl flex justify-center items-center" href={'#'}>
+                            <Link className="size-[79px] shrink-0 border border-[#0000001F] rounded-2xl flex justify-center items-center" href={'#'}>
                                 <Image src={'/images/logo-samandehi.png'} width={69} height={69} alt=""></Image>
                             </Link>
-                            <Link className="size-[79px] shrink-0 border-[1px] border-[#0000001F] rounded-2xl flex justify-center items-center" href={'#'}>
+                            <Link className="size-[79px] shrink-0 border border-[#0000001F] rounded-2xl flex justify-center items-center" href={'#'}>
                                 <Image src={'/images/enamad.png'} width={69} height={69} alt=""></Image>
                             </Link>
                         </div>

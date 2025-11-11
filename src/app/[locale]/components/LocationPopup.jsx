@@ -97,7 +97,7 @@ export default function LocationPopup({isReturn}){
                     </label>
                     <div className={`${isDesiredChecked ? 'max-h-36 opacity-100 pt-0' : 'max-h-0 opacity-0 pt-4'} transition-all duration-300 overflow-hidden`}>
                         <div>{t('optionalTitle')}</div>
-                        <div className="w-full border-[1px] border-[#0000001F] rounded-lg">
+                        <div className="w-full border border-[#0000001F] rounded-lg">
                             <input value={isDesiredChecked ? (isReturn ? returnLocation.location : deliveryLocation.location) || "" : ''} onChange={(event)=>desiredInputChangeHandler(event.target.value)} className="w-full p-2 outline-0" type="text" placeholder={t('location')} />
                         </div>
                     </div>

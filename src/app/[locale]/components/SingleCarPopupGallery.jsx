@@ -119,27 +119,56 @@ import { useDispatch, useSelector } from "react-redux";
 import useDisableScroll from "@/app/hooks/useDisableScroll";
 import { changeSingleGalleryStatus } from "@/redux/slices/globalSlice";
 
-const slides = [
-  { src: "/images/singlecar-1.png" },
-  { src: "/images/singlecar-2.jpg" },
-  { src: "/images/singlecar-3.jpg" },
-  {
-    type: "video",
-    width: 1280,
-    height: 720,
-    poster: "/images/singlecar-2.jpg",
-    sources: [{ src: "/videos/test-vid-2.mp4", type: "video/mp4" }],
-  },
-];
 
-export default function SingleCarPopupGallery() {
-    useDisableScroll()
-    return(
-        <SingleCarPopupGallerySupport/>
-    )
+
+function transformAllGalleryData(apiData) {
+  const slides = [];
+  
+  apiData.forEach(item => {
+    if (item.galleries && item.galleries.length > 0) {
+      // تمام آیتم‌های گالری را پردازش می‌کنیم
+      item.galleries.forEach(galleryItem => {
+        if (galleryItem.type === "video") {
+          slides.push({
+            type: "video",
+            width: 1280,
+            height: 720,
+            poster: item.photo,
+            sources: [
+              { 
+                src: galleryItem.file, 
+                type: `video/${galleryItem.file.split('.').pop()}` 
+              }
+            ],
+          });
+        } else {
+          slides.push({
+            src: galleryItem.file,
+          });
+        }
+      });
+    } else {
+      // اگر گالری وجود نداشت، فقط عکس اصلی را اضافه می‌کنیم
+      slides.push({
+        src: item.photo,
+      });
+    }
+  });
+  
+  return slides;
 }
 
-export function SingleCarPopupGallerySupport(){
+
+export default function SingleCarPopupGallery({data}) {
+  console.log(data)
+  useDisableScroll()
+  return(
+    <SingleCarPopupGallerySupport data={data}/>
+  )
+}
+
+export function SingleCarPopupGallerySupport({data}){
+    const slides = transformAllGalleryData(data)
     const isSingleGalleryOpen = useSelector((state)=>state.global.isSingleGalleryOpen)
     const [autoPlay, setAutoPlay] = useState(true);
     const [loop, setLoop] = useState(true);

@@ -35,7 +35,7 @@ export function QBox({rules,setRules,gotTanslation}){
         <div className="flex flex-wrap">
             {rules?.map((item,index)=>{
                 return(
-                    <div key={index} className={`p-4 border-[1px] border-[#0000001f] bg-white text-[#4b5259] first:rounded-t-lg last:rounded-b-lg w-full h-fit`}>
+                    <div key={index} className={`p-4 border border-[#0000001f] bg-white text-[#4b5259] first:rounded-t-lg last:rounded-b-lg w-full h-fit`}>
                         <div onClick={()=>toggleQItem(index)} className="flex items-center justify-between cursor-pointer">
                             <span className="md:text-sm text-xs font-bold">
                                 {gotTanslation ?

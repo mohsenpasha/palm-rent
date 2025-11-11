@@ -3,7 +3,7 @@ import { IconMessage, IconPhone, IconWhatsapp } from "./Icons";
 export default function BranchDescriotion({data}){
     const text1 = data.text2
     return(
-        <div className="shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] bg-white sm:p-4 p-2 my-4 rounded-lg border-[1px] border-[#0000001f]">
+        <div className="shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] bg-white sm:p-4 p-2 my-4 rounded-lg border border-[#0000001f]">
             <div className="flex gap-4 lg:flex-nowrap flex-wrap">
                 <div dangerouslySetInnerHTML={{__html: text1}} className="lg:w-1/2 w-full text-justify xl:text-base sm:text-sm text-xs xl:leading-7 sm:leading-6 leading-5">
                     {/* {data.text1} */}

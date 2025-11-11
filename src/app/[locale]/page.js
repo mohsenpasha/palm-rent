@@ -1,8 +1,9 @@
 // app/page.tsx
 import HomeComponent from "./components/HomePage"
-
+// changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 async function getHomeData(locale) {
   try {
+    // changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
     const res = await fetch(`https://palmrentcar.com/api/home/${locale}`, {
       next: { revalidate: 60 } // ISR - هر ۶۰ ثانیه کش می‌شود
     })
@@ -18,35 +19,51 @@ async function getHomeData(locale) {
   }
 }
 
-export async function generateMetadata({ params } ) {
+export async function generateMetadata({ params }) {
   const { locale } = await params;
+  // changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   const response = await getHomeData(locale)
   
-  // استفاده از متاهای دریافتی از API
-  if (response.meta) {
+  if (!response.meta) {
     return {
-      title: response.meta.title || "سامانه آنلاین اجاره خودرو بدون دپوزیت | پالم رنت",
-      description: response.meta.description || "اجاره خودرو در دبی، استانبول و عمان بدون دپوزیت! رزرو آسان، پرداخت ریالی، بیمه رایگان و تحویل در محل. بهترین قیمت و پشتیبانی ۲۴/۷.",
-      icons: {
-        icon: '/favicon.png',
-      },
+      title: "سامانه آنلاین اجاره خودرو بدون دپوزیت | پالم رنت",
+      description: "اجاره خودرو در دبی، استانبول و عمان بدون دپوزیت! رزرو آسان، پرداخت ریالی، بیمه رایگان و تحویل در محل. بهترین قیمت و پشتیبانی ۲۴/۷.",
     }
   }
 
-  // فال‌بک در صورت عدم دریافت متا از API
+  const { meta } = response;
+
   return {
-    title: "سامانه آنلاین اجاره خودرو بدون دپوزیت | پالم رنت",
-    description: "اجاره خودرو در دبی، استانبول و عمان بدون دپوزیت! رزرو آسان، پرداخت ریالی، بیمه رایگان و تحویل در محل. بهترین قیمت و پشتیبانی ۲۴/۷.",
+    title: meta.titleSeo,
+    description: meta.descriptionSeo,
+    robots: meta.robots,
     icons: {
-      icon: '/favicon.png',
+      icon: meta.favIcon || '/favicon.png',
     },
+    openGraph: {
+      title: meta.titleSeo,
+      description: meta.descriptionSeo,
+      images: [meta.imgSeo],
+      url: meta.urlPage,
+      siteName: meta.siteName,
+    },
+    alternates: {
+      canonical: meta.canonical,
+    },
+    ...(meta.schemaSeo && {
+      other: {
+        'script:ld+json': meta.schemaSeo,
+      }
+    }),
   }
 }
 
 export default async function HomePage({ params }) {
   const { locale } = await params;
+  // changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   const response = await getHomeData(locale)
   const initialData = response.data
-
+  
+  // changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   return <HomeComponent data={initialData} />
 }

@@ -218,7 +218,7 @@ export function SearchBox(){
                         </span>
                         {isSortOpen && 
                             <div ref={sortRef} className=" bottom-0 left-1/2 -translate-x-1/2 translate-y-full absolute pt-2">
-                                <div className="flex flex-col bg-white p-2 border-[1px] border-[#cccccc] rounded-lg">
+                                <div className="flex flex-col bg-white p-2 border border-[#cccccc] rounded-lg">
                                     {/* <div onClick={()=>changeSortType('sort1')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('sort1')}</div> */}
                                     <div onClick={()=>changeSortType('price_min')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('price_min')}</div>
                                     <div onClick={()=>changeSortType('price_max')} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg cursor-pointer">{t('price_max')}</div>

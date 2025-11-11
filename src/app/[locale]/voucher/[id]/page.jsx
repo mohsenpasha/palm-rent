@@ -92,7 +92,7 @@ export default function VoucherPage(){
                     options={options}
                     image={data.item.photo}
                     />
-                    <div className="border-[1px] border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
+                    <div className="border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] p-4 rounded-4xl my-4 flex-1 bg-white">
                         <PaymentDetail data={data.item} currency={data.currency} borderLess={true} toman={data.toman}/>
                         {data.item.car_deposit == 'yes' && 
                             <FineDeposit price={data.item.car_deposit_price} currency={data.currency} borderLess={true}/>
