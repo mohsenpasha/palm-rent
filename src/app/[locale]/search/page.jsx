@@ -21,6 +21,7 @@ import { addCarList, clearCarList } from "@/redux/slices/carListSlice";
 import { changeCarDates } from "@/redux/slices/globalSlice";
 import { changeBranchId, changePriceRange, changeSearchCurrency, changeSearchTitle, changeSelectedPriceRange, changeSort, changeToman } from "@/redux/slices/searchSlice";
 import SingleCar2 from "../components/SingleCar2";
+import { SearchBox2 } from "../components/SearchBox2";
 
 export function getUrlParamsEasy(search = window.location.search) {
     const params = {};
@@ -64,6 +65,7 @@ export default function SearchResultPage(){
     const search_sort = useSelector((state) => state.search.sort)
     const priceRange = useSelector((state) => state.search.selectedPriceRange)
     const selectedCategories = useSelector((state) => state.search.selectedCategories)
+    const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
     useEffect(()=>{
         setRecivedData(null)
         dispatch(clearCarList())
@@ -184,26 +186,26 @@ export default function SearchResultPage(){
     return(
         <>
             <Header shadowLess/>
-                <div className="w-[90vw] max-w-[1336px] m-auto relative">
-                    <div className="flex flex-col max-sm:flex-col-reverse">
-                        {roadMapStep < 3 && 
-                            <div className="">
-                                <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
-                            </div>
-                        }
+                    <div className="sm:w-[90vw] max-w-[1336px] m-auto relative">
                         {roadMapStep < 3 && 
                             <>
                                 <RoadMap step={roadMapStep}/>
                             </>
                         }
                     </div>
-                </div>
+                    <div className={`sticky ${isHeaderClose ? 'top-0' : 'top-16'} z-50 mb-2 sm:w-[90vw] max-w-[1336px] m-auto`}>
+                            {roadMapStep < 3 && 
+                                <div className="">
+                                    <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
+                                </div>
+                            }
+                        <SearchBox2/>
+                    </div>
                     {
                         roadMapStep == 1 &&
                         <>
-                            <div className="w-[90vw] max-w-[1336px] m-auto relative">
-                                <SearchBox/>
-                            </div>
+                            {/* <div className="w-[90vw] max-w-[1336px] m-auto relative"> */}
+                            {/* </div> */}
                             <div className="md:w-[90vw] max-md:overflow-x-hidden max-w-[1336px] m-auto relative">
                                 <div ref={searchRef} className="flex flex-wrap gap-4">
                                     {carList.map((item,index)=>{
