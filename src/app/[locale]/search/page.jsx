@@ -192,10 +192,13 @@ export default function SearchResultPage(){
                                 <RoadMap step={roadMapStep}/>
                             </>
                         }
+                        <div className="max-sm:hidden">
+                            <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
+                        </div>
                     </div>
                     <div className={`sticky ${isHeaderClose ? 'top-0' : 'top-16'} z-50 mb-2 sm:w-[90vw] max-w-[1336px] m-auto`}>
                             {roadMapStep < 3 && 
-                                <div className="">
+                                <div className="sm:hidden">
                                     <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
                                 </div>
                             }
