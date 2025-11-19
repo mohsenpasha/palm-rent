@@ -49,7 +49,7 @@ export default function SingleCar2({data,noBtn = false}){
                 <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
                     {data.options.map((item,index)=>{
                         return(
-                            <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="py-1 group px-2 rounded-4xl bg-[#F1F1F1] relative hover:scale-[105%] transition-all" key={index}>
+                            <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="sm:py-1 py-0.5 group sm:px-2 px-1.5 rounded-4xl bg-[#F1F1F1] relative hover:scale-[105%] transition-all border border-white" key={index}>
                                 <span className="text-[#4E4E4E] font-bold">{t(optionList[item].title)}</span>
                                 <div className="absolute top-0 hidden group-hover:flex animate-opacity pb-3 z-50 left-1/2 -translate-x-1/2 -translate-y-full">
                                     <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-xs rounded-lg border p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
@@ -101,7 +101,7 @@ export function SingleCarGallery2({children,noBtn,imageList}){
     }
     return(
         <div className="flex relative z-10 w-full lg:h-[220px] h-[220px]">
-            <div className="flex h-full max-md:overflow-y-auto max-md:z-10">
+            <div className="flex h-full max-md:overflow-y-auto max-md:z-10 hide-scrollbar">
                 <div className="md:absolute max-md:flex w-full h-full top-0 right-0 rounded-lg -z-10 max-md:gap-2">
                     {imageList.map((item,index)=>{
                         return(

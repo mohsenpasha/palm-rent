@@ -1490,3 +1490,10 @@ export function IconBenefit({size='20'}){
         </svg>
     )
 }
+export function IconSearch3({size='18'}){
+    return(
+        <svg width={size} height={size} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.1074 15.1074L10.7911 10.791M12.2298 7.19401C12.2298 9.97521 9.97521 12.2298 7.19401 12.2298C4.41281 12.2298 2.1582 9.97521 2.1582 7.19401C2.1582 4.41281 4.41281 2.1582 7.19401 2.1582C9.97521 2.1582 12.2298 4.41281 12.2298 7.19401Z" stroke="currentColor" strokeWidth="1.4388" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}

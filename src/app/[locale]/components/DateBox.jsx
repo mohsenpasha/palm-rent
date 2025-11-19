@@ -27,10 +27,12 @@ export function DateBox({isSticky=false,timerValue}){
             <div className={`${isSticky ? 'sticky mb-10' : ''} ${isHeaderClose ? 'top-0' : 'top-16'} transition-all z-30 w-full p-4 py-4 bg-white text-xs items-center justify-center gap-2 md:gap-0`}>
                 <div className="lg:w-[90vw] md:w-[90vw] max-w-[1200px] m-auto flex items-center">
                     <div className="w-full flex md:flex-row flex-col items-center sm:gap-0 gap-2 md:justify-between justify-center">
-                        <div className="flex xl:w-2/3 w-full gap-4">
+                        <div className="flex xl:w-2/3 w-full gap-4 text-[#1A1A1A]">
                             <div className="flex items-center lg:w-full w-fit gap-2">
                                 <span className="flex items-center gap-2">
-                                    <IconCalender/>
+                                    <span className="max-sm:hidden">
+                                        <IconCalender/>
+                                    </span>
                                     <span className="xl:block hidden">
                                         {t('deliveryTD')}
                                     </span>
@@ -70,9 +72,11 @@ export function DateBox({isSticky=false,timerValue}){
                             </div>
                         </div>
 
-                        <div className="items-center xl:w-1/3 w-full gap-2 flex">
+                        <div className="items-center xl:w-1/3 w-full gap-2 flex text-[#A1A1A1]">
                             <span className="flex items-center gap-2">
-                                <IconVideoTime/>
+                                <span className="max-sm:hidden">
+                                    <IconVideoTime/>
+                                </span>
                                 {t('rentDurationB')}
                             </span>
                             <span>

@@ -20,6 +20,15 @@ html{
 *{
   font-family: iranYekan;
 }
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer و Edge قدیمی */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 /* .sp-date-btn{
   background-color: #A5C6FB;
   border-radius: 0;
