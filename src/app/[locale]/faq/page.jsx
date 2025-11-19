@@ -55,7 +55,7 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default async function HomePage({ params }) {
+export default async function FaqPage({ params }) {
   const { locale } = await params;
   const response = await getFaqData(locale)
   const initialData = response.data

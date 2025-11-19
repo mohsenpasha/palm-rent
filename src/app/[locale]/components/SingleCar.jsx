@@ -136,7 +136,7 @@ export function SingleCarOptions({data,bigFont=false}){
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGearBox/>
                 </span>
-                {t(data.gearBox)}
+                {t(data.gearbox == "اتوماتیک" ? 'automatic':data.gearBox)}
             </div>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>

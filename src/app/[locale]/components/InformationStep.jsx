@@ -307,7 +307,7 @@ export function FineDeposit({borderLess=false,price,currency}){
     return(
         <div className={`${!borderLess ? 'bg-white p-4 my-4 rounded-2xl' : ''}`}>
 
-            <div className={`${!borderLess ? 'border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] rounded-2xl' : 'bg-white p-1'} flex-1`}>
+            <div className={`${!borderLess ? 'border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] rounded-2xl' : 'bg-white'} flex-1`}>
                 <div className="flex flex-col gap-4">
 
                     <div className="md:text-sm sm:text-xs text-xs bg-[#F4F4F4] rounded-2xl p-4 flex items-center justify-between cursor-pointer">
