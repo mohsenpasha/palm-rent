@@ -30,7 +30,7 @@ export default function RoadMap({step}){
                 return(
                     <div key={index} className="flex flex-col items-center justify-center gap-0.5 xl:w-[280px] lg:w-[260px] w-60">
                         <div className="relative">
-                            <div className={`p-2 bg-[#F6F6F6] ${index <= step ? 'text-[#10B981]' : 'text-[#BEC6CC]' }`}>
+                            <div className={`p-2 bg-[#F6F6F6] ${index <= step ? 'text-[#28a754]' : 'text-[#BEC6CC]' }`}>
                                 {index < step ?
                                     <IconCircledTick/>
                                     :

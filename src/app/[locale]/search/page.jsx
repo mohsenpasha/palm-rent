@@ -190,18 +190,11 @@ export default function SearchResultPage(){
                         {roadMapStep < 3 && 
                             <>
                                 <RoadMap step={roadMapStep}/>
+                                <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
                             </>
                         }
-                        <div className="max-sm:hidden">
-                            <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
-                        </div>
                     </div>
-                    <div className={`sticky ${isHeaderClose ? 'top-0' : 'top-16'} z-50 mb-2 sm:w-[90vw] max-w-[1336px] m-auto`}>
-                            {roadMapStep < 3 && 
-                                <div className="sm:hidden">
-                                    <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
-                                </div>
-                            }
+                    <div className={`sticky ${isHeaderClose ? 'top-0' : 'top-16'} z-20 mb-2 sm:w-[90vw] max-w-[1336px] max-sm:pt-2 pt-1 max-sm:bg-white m-auto`}>
                         <SearchBox2/>
                     </div>
                     {
@@ -210,7 +203,7 @@ export default function SearchResultPage(){
                             {/* <div className="w-[90vw] max-w-[1336px] m-auto relative"> */}
                             {/* </div> */}
                             <div className="md:w-[90vw] max-md:overflow-x-hidden max-w-[1336px] m-auto relative">
-                                <div ref={searchRef} className="flex flex-wrap gap-4">
+                                <div ref={searchRef} className="flex flex-wrap sm:gap-4 gap-1">
                                     {carList.map((item,index)=>{
                                         console.log(item)
                                         return(

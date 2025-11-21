@@ -125,7 +125,7 @@ export function SingleCarGallery({children,noBtn,imageList}){
 export function SingleCarOptions({data,bigFont=false}){
     const t = useTranslations();
     return(
-        <div className={`flex w-full text-[#787878] border-[#0000001F] pt-4 text-nowrap ${bigFont ? 'xl:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs border-t-[1px]'}`}>
+        <div className={`flex w-full text-[#787878] border-[#0000001F] pt-2 text-nowrap ${bigFont ? 'xl:text-base sm:text-sm text-xs filter-[brightness(0.5)]' :'text-xs border-t-[1px]'}`}>
             <div className="w-full flex items-center gap-1 justify-center">
                 <span className={bigFont ? 'xl:size-5 size-4' :`size-4`}>
                     <IconGas/>

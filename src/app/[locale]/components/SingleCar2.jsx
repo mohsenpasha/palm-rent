@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SingleCarButtonHolder2, SingleCarGallery, SingleCarOptions, SingleCarPriceList } from "./SingleCar";
 import { useLocale, useTranslations } from "next-intl";
-import { IconArrow, IconArrowHandle, IconDiscount, IconWhatsapp } from "./Icons";
+import { IconArrow, IconArrowHandle, IconDiscount, IconInfo, IconInfoCircle, IconWhatsapp } from "./Icons";
 import Link from "next/link";
 import Image from "next/image";
 import { getDiffInShamsiDays } from "./SearchBar";
@@ -11,35 +11,6 @@ import { getLangUrl } from "@/app/lib/getLangUrl";
 import { dateDifference } from "@/app/lib/getDateDiffrence";
 
 export default function SingleCar2({data,noBtn = false}){
-    // const data = recivedData.data
-    // console.log(data)
-    // console.log(data.options)
-    // const data = {
-    //     id:1164,
-    //     title:"Kia seltos 2023",
-    //     gearBox:"automatic",
-    //     passengers:5,
-    //     priceList:{'1':{
-    //             previousPrice:143,
-    //             currentPrice:129
-    //         }
-    //     },
-    //     images:[
-    //         "https://palmrentcar.com/assets/uploads/car/car/1402-12-16/photos/photos-d09c69e08ef87a34a0598847639001ba.webp",
-    //         "https://palmrentcar.com/assets/uploads/car/car/1402-12-16/photos/photos-8a80a5d2651f49fd84e670b2f996c878.webp",
-    //         "https://palmrentcar.com/assets/uploads/car/car/1402-12-16/photos/photos-8e30c86302c67a2fb50928960266de57.webp",
-    //         "https://palmrentcar.com/assets/uploads/car/car/1402-12-16/photos/photos-05878cdd7f8aca9e36dd838c01a0e507.webp"
-    //     ],
-    //     options:[
-    //         1,2
-    //     ],
-    //     suitcase:4,
-    //     gasType:"petrol",
-    //     discount:10,
-    //     video:"https://palmrentcar.com/assets/uploads/car/car/1404-08-08/video/video-68a2a978ac99a28577c4679ec255d3c7.mp4",
-    // }
-    // if(!data) return
-    // console.log(data)
     const t = useTranslations();
     const optionList = useSelector((state)=>state.carList.optionList)
     const [isHovering,setIsHovering] = useState(false)
@@ -49,8 +20,15 @@ export default function SingleCar2({data,noBtn = false}){
                 <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
                     {data.options.map((item,index)=>{
                         return(
-                            <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className="sm:py-1 py-0.5 group sm:px-2 px-1.5 rounded-4xl bg-[#F1F1F1] relative hover:scale-[105%] transition-all border border-white" key={index}>
-                                <span className="text-[#4E4E4E] font-bold">{t(optionList[item].title)}</span>
+                            <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className={`sm:py-1 py-2 group sm:px-2 px-3 rounded-4xl ${optionList[item].title == 'noDeposite' ? 'bg-[#aefaee] border-[#aefaee]' : 'bg-[#cffc03]'} relative hover:scale-[105%] transition-all border border-white`} key={index}>
+                                <span className={`${optionList[item].title == 'noDeposite' ? 'text-[#1e7b33]' : 'text-[#4b5259]'} font-bold flex items-center gap-1`}>
+                                    {t(optionList[item].title)}
+                                    {optionList[item].title == 'noDeposite' && 
+                                        <div>
+                                            <IconInfoCircle/>
+                                        </div>
+                                    }
+                                </span>
                                 <div className="absolute top-0 hidden group-hover:flex animate-opacity pb-3 z-50 left-1/2 -translate-x-1/2 -translate-y-full">
                                     <div className="bg-white min-w-64 max-w-64 whitespace-break-spaces text-justify text-xs rounded-lg border p-2 border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]">
                                         {optionList[item].description}
@@ -62,7 +40,7 @@ export default function SingleCar2({data,noBtn = false}){
                     })}
                 </div>
                 {data.discount && 
-                    <div className="absolute bottom-6 left-2 bg-[#81A800] py-1.5 px-2.5 text-white rounded-lg flex items-center gap-1">
+                    <div className="absolute bottom-2 left-2 bg-[#cffc03] py-1.5 px-2.5 text-[#cbcd40] rounded-lg flex items-center gap-1">
                         <IconDiscount size="20"/>
                         {data.discount}% {t('discount')}
                     </div>
@@ -176,10 +154,10 @@ export function SingleCarButtonHolder3(){
     }
     return(
         <div className="flex w-full gap-2">
-            <button onClick={nextStep} className="rounded-xl py-2 flex justify-center gap-2 w-full cursor-pointer bg-[#3B82F6] text-white">
+            <button onClick={nextStep} className="rounded-xl py-1 flex justify-center items-center gap-2 w-full cursor-pointer bg-[#0077db] text-white">
                 {t('chooseCar')}
             </button>
-            <Link href={`https://wa.me/971556061134?text=${encodeURIComponent(whatsappText)}`} target="_blank" className="rounded-xl py-2 flex justify-center gap-2 w-fit items-center text-nowrap px-2 cursor-pointer bg-[#10B9811A] border border-[#10B98180] text-[#10B981]">
+            <Link href={`https://wa.me/971556061134?text=${encodeURIComponent(whatsappText)}`} target="_blank" className="rounded-xl py-1 flex justify-center gap-2 w-fit items-center text-nowrap px-2 cursor-pointer bg-[#10B9811A] border border-[#10B98180] text-[#10B981]">
                 <IconWhatsapp/>
                 {t('whatsapp')}
             </Link>
@@ -210,12 +188,14 @@ export function SingleCarPriceList2({priceList}){
     console.log(finalDayPrice)
     return(
         <div>
-            <div className="flex flex-col gap-2 my-4 border-t pt-2 border-[#0000001f]">
+            <div className="flex flex-col gap-2 my-4 mt-2 border-t pt-2 border-[#0000001f]">
                 <div className="flex justify-between items-center">
                     <span>{t('BSPrice')} {rentDay} {t('day')} :</span>
-                    <div className="lg:text-base text-sm flex gap-2">
+                    <div className="flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
-                            {finalDayPrice?.previousPrice != finalDayPrice?.currentPrice && finalDayPrice?.previousPrice}
+                            {finalDayPrice?.previousPrice != 0 && 
+                                finalDayPrice?.previousPrice != finalDayPrice?.currentPrice && finalDayPrice?.previousPrice
+                            }
                         </span>
                         <span className="text-[#3B82F6] font-bold">
                             {finalDayPrice?.currentPrice}
@@ -223,12 +203,14 @@ export function SingleCarPriceList2({priceList}){
                         {t('AED')}
                     </div>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center text-[#4b5259]">
                     <span>{t('sum')} {rentDay} {t('dayres')} :</span>
-                    <div className="lg:text-base text-sm flex gap-2">
-                        <span className="text-[#A7A7A7] line-through">
-                            {(finalDayPrice?.previousPrice != finalDayPrice?.currentPrice && finalDayPrice?.previousPrice) * rentDay}
-                        </span>
+                    <div className="flex gap-2">
+                        {finalDayPrice?.previousPrice != finalDayPrice?.currentPrice && 
+                            <span className="text-[#A7A7A7] line-through">
+                                    {(finalDayPrice?.previousPrice) * rentDay}
+                            </span>
+                        }
                         <span>
                             {(finalDayPrice?.currentPrice) * rentDay}
                         </span>

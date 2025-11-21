@@ -121,7 +121,7 @@
   "rentDurationB": "Rental duration:",
   "rentDurationA": "Unforgettable days at",
   "changeSearch": "Change search",
-  "roadMap1": "Select date & time",
+  "roadMap1": "Select date",
   "roadMap2": "Select vehicle",
   "roadMap3": "Submit information",
   "roadMap4": "Issue voucher",
@@ -302,5 +302,7 @@
   "sum": "Total",
   "dayres": "Reservation day",
   "toman": "Toman",
-  "moredetail": "More details"
+  "moredetail": "More details",
+  "price": "Price",
+  "hour": "Hour"
 }

@@ -1,11 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IconCalender, IconClock, IconEdit, IconVideoTime } from "./Icons";
+import { IconCalender, IconClock, IconEdit, IconSearch3, IconVideoTime } from "./Icons";
 import { DatePickerBox, getDiffInShamsiDays } from "./SearchBar";
 import { useEffect, useState } from "react";
 import { changeIsDateSelectOpen } from "@/redux/slices/globalSlice";
 import useDisableScroll from "@/app/hooks/useDisableScroll";
 import { useTranslations } from "next-intl";
 import { dateDifference } from "@/app/lib/getDateDiffrence";
+
+function formatJalaaliDate(dateString) {
+    try{
+
+        const [year, month, day] = dateString.split('/').map(Number);
+        
+        const monthNames = [
+            'فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+            'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'
+        ];
+        
+        return `${day} ${monthNames[month - 1]} ${year}`;
+    }
+    catch(err){
+        return null
+    }
+}
 
 export function DateBox({isSticky=false,timerValue}){
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
@@ -40,10 +57,11 @@ export function DateBox({isSticky=false,timerValue}){
                                         {t('from')}
                                     </span>
                                 </span>
-                                <span className="flex gap-2">
+                                <span className="flex sm:gap-2 gap-1">
                                     <div>
-                                        {carDates[0]}
+                                        {formatJalaaliDate(carDates[0]) || carDates[0]}
                                     </div>
+                                    {t('hour')}
                                     <div>
                                         {deliveryTime}
                                     </div>
@@ -60,10 +78,11 @@ export function DateBox({isSticky=false,timerValue}){
                                         {t('to')}
                                     </span>
                                 </span>
-                                <span className="flex gap-2">
+                                <span className="flex sm:gap-2 gap-1">
                                     <div>
-                                        {carDates[1]}
+                                        {formatJalaaliDate(carDates[1]) || carDates[1]}
                                     </div>
+                                    {t('hour')}
                                     <div>
                                         {returnTime}
                                     </div>
@@ -72,7 +91,7 @@ export function DateBox({isSticky=false,timerValue}){
                             </div>
                         </div>
 
-                        <div className="items-center xl:w-1/3 w-full gap-2 flex text-[#A1A1A1]">
+                        <div className="items-center xl:w-1/3 w-full gap-2 flex text-[#6c7680] sm:text-xs text-[10px]">
                             <span className="flex items-center gap-2">
                                 <span className="max-sm:hidden">
                                     <IconVideoTime/>
@@ -85,8 +104,8 @@ export function DateBox({isSticky=false,timerValue}){
                         </div>
                     </div>
 
-                    <button onClick={openDateSelect} className=" sm:bg-transparent bg-[#3B82F6] p-1 rounded-lg text-white flex items-center text-nowrap gap-2 cursor-pointer size-8 rtl:sm:ml-[100px] ltr:sm:mr-[100px]">
-                        <IconEdit/>
+                    <button onClick={openDateSelect} className=" sm:bg-transparent bg-[#3B82F6] size-8 rounded-full text-white flex items-center justify-center text-nowrap gap-2 cursor-pointer rtl:sm:ml-[100px] ltr:sm:mr-[100px] shrink-0">
+                        <IconSearch3/>
                         <span className="sm:flex hidden sm:text-[#3B82F6] text-white">
                             {t('changeSearch')}
                         </span>

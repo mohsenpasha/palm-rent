@@ -185,37 +185,37 @@ export function SearchBox2(){
                     <span className="text-black size">
                         <IconSearch3 size="20"/>
                     </span>
-                    <input value={searchValue} onChange={(event)=>setSearchValue(event.target.value)} className="w-full px-2 outline-0" type="search" placeholder={t('carSearch')} />
+                    <input value={searchValue} onChange={(event)=>setSearchValue(event.target.value)} className="w-full px-2 outline-0 placeholder:text-[#2b2f33]" type="search" placeholder={t('carSearch')} />
                     {/* {priceRange && (priceRange[0] | priceRange[1]) &&
                         <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">
                             <IconSetting/>
                         </button>
                     } */}
-                    <div className="flex items-center gap-2 text-[#75736F]">
-                        <button onClick={()=>setFilterPopup(true)} className="flex items-center gap-2 rtl:border-l-2 ltr:border-r-2 border-black px-2 cursor-pointer">
+                    <div className="flex items-center gap-1 text-[#75736F]">
+                        <button onClick={()=>setFilterPopup(true)} className="flex items-center gap-1 rtl:border-l-2 ltr:border-r-2 border-black px-2 cursor-pointer">
                             <span className="text-[#626262]">
                                 <span className="sm:hidden">
-                                    <IconFilter size="24"/>
+                                    <IconFilter size="22"/>
                                 </span>
                                 <span className="max-sm:hidden">
-                                    <IconFilter size="32"/>
+                                    <IconFilter size="20"/>
                                 </span>
                             </span>
-                            <span className="max-sm:hidden">
+                            <span className="max-sm:hidden text-sm">
                                 {t('filters')}
                             </span>
                         </button>
                         <div className="flex relative">
-                            <button onClick={openSortPopup} className="flex items-center gap-2 cursor-pointer">
+                            <button onClick={openSortPopup} className="flex items-center gap-1 cursor-pointer">
                                 <span className="text-[#626262]">
                                     <span className="max-sm:hidden">
-                                        <IconSort size='32'/>
+                                        <IconSort size='22'/>
                                     </span>
                                     <span className="sm:hidden">
-                                        <IconSort size='24'/>
+                                        <IconSort size='20'/>
                                     </span>
                                 </span>
-                                <span className="max-sm:hidden">
+                                <span className="max-sm:hidden text-sm">
                                     {searchOrder ? t(searchOrder) : t('sort')}
                                 </span>
                                 {searchOrder && 
@@ -243,9 +243,9 @@ export function SearchBox2(){
                             return(
                                 <label key={index} className="flex gap-2 mb-2 select-none">
                                     <input onChange={()=>sortChangeHandler(item.id)} checked={true} className="peer hidden" value={item.id} type="checkbox" />
-                                    <div className="p-2 py-1 rounded-lg transition-all peer-checked:bg-[#3B82F61A] border-2 border-[#3B82F6] peer-checked:text-[#3B82F6] flex gap-2 cursor-pointer items-center">
+                                    <div className="p-2 h-[33px] rounded-lg transition-all text-xs peer-checked:bg-[#3B82F61A] border border-[#0077db] peer-checked:text-[#0077db] flex gap-2 cursor-pointer items-center">
                                         {t(item.title)}
-                                        <span className="size-3 flex items-center text-black">
+                                        <span className="size-3 flex items-center text-[#0077db]">
                                             <IconClose/>
                                         </span>
                                     </div>
@@ -262,7 +262,7 @@ export function SearchBox2(){
                                     return(
                                         <label key={index} className="flex gap-2 select-none">
                                             <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
-                                            <div className="p-2 py-1 rounded-lg border border-[#E3E3E3] transition-all peer-checked:bg-[#7CABF9] hover:bg-[#3B82F61A] hover:text-[#3B82F6] peer-checked:text-white flex gap-2 cursor-pointer items-center">
+                                            <div className="p-2 h-[33px] rounded-lg border text-xs border-[#0000001f] text-[#4b5259] transition-all peer-checked:bg-[#7CABF9] hover:bg-[#3B82F61A] hover:text-[#3B82F6] peer-checked:text-white flex gap-2 cursor-pointer items-center">
                                                 {item.icon}
                                                 {t(item.title)}
                                             </div>

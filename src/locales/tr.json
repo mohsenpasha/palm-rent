@@ -121,7 +121,7 @@
   "rentDurationB": "Kiralama süresi:",
   "rentDurationA": "Unutulmaz günler",
   "changeSearch": "Aramayı değiştir",
-  "roadMap1": "Tarih ve saati seçin",
+  "roadMap1": "Tarih seçin",
   "roadMap2": "Aracı seçin",
   "roadMap3": "Bilgileri gönderin",
   "roadMap4": "Voucheri oluştur",
@@ -302,5 +302,7 @@
   "sum": "Toplam",
   "dayres": "Rezervasyon günü",
   "toman": "Tümen",
-  "moredetail": "Daha fazla detay"
+  "moredetail": "Daha fazla detay",
+  "price": "Fiyat",
+  "hour": "Saat"
   }
