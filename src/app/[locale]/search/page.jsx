@@ -65,20 +65,20 @@ export default function SearchResultPage(){
     const priceRange = useSelector((state) => state.search.selectedPriceRange)
     const selectedCategories = useSelector((state) => state.search.selectedCategories)
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
-
+    const [searchDisable,setSearchDisable] = useState(false)
     const [isSticky, setIsSticky] = useState(false);
     const [hasAnimated, setHasAnimated] = useState(false);
     const stickyRef = useRef(null);
     // function scrollHandler(){
     //     console.log(stickyRef.current)
     // }
-
     useEffect(()=>{
         setRecivedData(null)
         dispatch(clearCarList())
         setIsLoading(true)
         firstTime.current = true
         loadingRef.current = true
+        setSearchDisable(true)
     },[search_title,search_sort,priceRange,selectedCategories,carDates])
     function fetchData(){
         if(!recivedData && !firstTime.current) return
@@ -136,6 +136,7 @@ export default function SearchResultPage(){
         }
         postData(url,payload)
         .then(data => {
+            setSearchDisable(false)
             setRecivedData(data)
             setIsLoading(false)
             loadingRef.current = false
@@ -211,7 +212,7 @@ export default function SearchResultPage(){
                             </>
                         }
                     </div>
-                    <div 
+                    <div
                         ref={stickyRef}
                         className={`
                             sticky 
@@ -224,6 +225,9 @@ export default function SearchResultPage(){
                         `}
                         >
                         <SearchBox2/>
+                        {searchDisable &&
+                            <div className="w-full h-full bg-white opacity-50 absolute top-0 z-20"></div>
+                        }
                     </div>
                     {
                         roadMapStep == 1 &&
