@@ -48,8 +48,8 @@ export default function Header({shadowLess=false}){
     }
     return(
         <>
-            <header className={`min-h-[64px] flex items-center`}>
-                <div className={`p-4 px-3 2xl:px-6 text-xs text-[#4b5952] fixed z-50 transition-all right-0 bg-white w-full ${shadowLess ? '' : 'shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]'} ${isHeaderClose ? '-top-16' : 'top-0'}`}>
+            <header className={`min-h-16 flex items-center`}>
+                <div className={`p-4 px-3 2xl:px-6 text-xs text-[#4b5952] duration-500 fixed z-50 transition-all right-0 bg-white w-full ${shadowLess ? '' : 'shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)]'} ${isHeaderClose ? '-top-16' : 'top-0'}`}>
                     <div className="lg:w-[90vw] md:w-[90vw] max-w-[1200px] m-auto flex justify-between">
 
                     {/* {t("greeting")} */}
@@ -111,17 +111,17 @@ export function HeaderMenu({ isActive, closeMenu }){
     return(
         <>  
             <div className={`${isUnderLg && isActive && 'block!'} hidden animate-fade-in fixed top-0 right-0`}>
-                <div onClick={closeMenu} className={`absolute w-[100vw] h-[100vh] bg-black opacity-40 z-40 top-0 right-0 lg:hidden`}>
+                <div onClick={closeMenu} className={`absolute w-screen h-screen bg-black opacity-40 z-40 top-0 right-0 lg:hidden`}>
                 </div>
             </div>
-            <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0!' : '')} translate-x-full lg:translate-x-0 pt-15 lg:pt-0 fixed transition-all h-[100vh] lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible rounded-tl-4xl`}>
-                <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
-                    <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='/'>
+            <ul className={`lg:static ${isUnderLg && (isActive ? 'translate-x-0!' : '')} translate-x-full lg:translate-x-0 pt-15 lg:pt-0 fixed transition-all h-screen lg:h-auto bg-white top-0 right-0 lg:flex-row flex-col z-40 flex p-0 overflow-auto lg:overflow-visible rounded-tl-4xl`}>
+                <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
+                    <Link className="h-full w-full lg:border-0 border-b border-[#cccccc] lg:p-0 p-3" href='/'>
                         {t('home')}
                     </Link>
                 </li>
-                <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:gap-2 flex-wrap">
-                    <div onClick={()=>toggleMenu(0)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
+                <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:gap-2 flex-wrap">
+                    <div onClick={()=>toggleMenu(0)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b border-[#cccccc] lg:p-0 p-3">
                         {t('branches')}
                         <IconArrow/>
                     </div>
@@ -138,8 +138,8 @@ export function HeaderMenu({ isActive, closeMenu }){
                         <DropDownItem text={t('georgia')} href={'/cars-rent/georgia'}/>
                     </DropDown>
                 </li>
-                <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
-                    <div onClick={()=>toggleMenu(1)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
+                <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
+                    <div onClick={()=>toggleMenu(1)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b border-[#cccccc] lg:p-0 p-3">
                         {t('carList')}
                         <IconArrow/>
                     </div>
@@ -156,13 +156,13 @@ export function HeaderMenu({ isActive, closeMenu }){
                         <DropDownItem text={t('georgia')} href={'/cars-list/georgia'}/>
                     </DropDown>
                 </li>
-                <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
-                    <Link className="h-full w-full lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3" href='/documents'>
+                <li className="lg:p-1 lg:px-2 2xl:px-3 lg:border-l border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center lg:hover:decoration-black">
+                    <Link className="h-full w-full lg:border-0 border-b border-[#cccccc] lg:p-0 p-3" href='/documents'>
                         {t('documents')}
                     </Link>
                 </li>
-                <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l-[1px] border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
-                    <div onClick={()=>toggleMenu(2)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
+                <li className="relative group lg:p-1 lg:px-2 2xl:px-3 lg:border-l border-[#D5D5D5] underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
+                    <div onClick={()=>toggleMenu(2)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b border-[#cccccc] lg:p-0 p-3">
                         {t('contactUs')}
                         <IconArrow/>
                     </div>
@@ -172,7 +172,7 @@ export function HeaderMenu({ isActive, closeMenu }){
                     </DropDown>
                 </li>
                 <li className="relative group lg:p-1 lg:px-2 2xl:px-3 underline decoration-transparent decoration-o cursor-pointer underline-offset-8 flex items-center gap-2 flex-wrap">
-                    <div onClick={()=>toggleMenu(3)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b-[1px] border-[#cccccc] lg:p-0 p-3">
+                    <div onClick={()=>toggleMenu(3)} className="flex items-center justify-between w-full lg:gap-2 lg:border-0 border-b border-[#cccccc] lg:p-0 p-3">
                         {t('more')}
                         <IconArrow/>
                     </div>
@@ -201,6 +201,6 @@ export function DropDown({ children, isActive }){
 }
 export function DropDownItem({text,href}){
     return(
-        <Link href={href} className="text-[#4b5259] p-2 px-3 text-nowrap border-b-[1px] lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg">{text}</Link>
+        <Link href={href} className="text-[#4b5259] p-2 px-3 text-nowrap border-b lg:border-b-0 hover:bg-[#f8fafb] lg:rounded-lg">{text}</Link>
     )
 }

@@ -69,35 +69,9 @@ export default function SearchResultPage(){
     const [isSticky, setIsSticky] = useState(false);
     const [hasAnimated, setHasAnimated] = useState(false);
     const stickyRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.intersectionRatio < 1) {
-            setIsSticky(true);
-            if (!hasAnimated) {
-                setHasAnimated(true);
-            }
-            } else {
-            setIsSticky(false);
-            }
-        },
-        {
-            threshold: [1],
-            rootMargin: '-1px 0px 0px 0px'
-        }
-        );
-
-        if (stickyRef.current) {
-        observer.observe(stickyRef.current);
-        }
-
-        return () => {
-        if (stickyRef.current) {
-            observer.unobserve(stickyRef.current);
-        }
-        };
-    }, [hasAnimated]);
+    // function scrollHandler(){
+    //     console.log(stickyRef.current)
+    // }
 
     useEffect(()=>{
         setRecivedData(null)
@@ -169,6 +143,16 @@ export default function SearchResultPage(){
     .catch(error => console.error('خطا:', error));
     }
     function scrollHandler(){
+        const scrollPoint = stickyRef.current.offsetTop - window.pageYOffset
+        if(scrollPoint <= 4 && scrollPoint != 0){
+            if(hasAnimated) return
+            setIsSticky(true)
+            setHasAnimated(true)
+        }
+        else if(stickyRef.current.getBoundingClientRect().top > 65){
+            setIsSticky(false)
+            setHasAnimated(false)
+        }
         if(!hasMore || loadingRef.current) return
         if(searchRef.current.getBoundingClientRect().bottom - window.innerHeight <= 100){
             if(!hasMore) return
@@ -235,7 +219,8 @@ export default function SearchResultPage(){
                             transition-all z-21 mb-2 sm:w-[90vw] 
                             max-w-[1336px] max-sm:pt-2 max-sm:bg-white 
                             m-auto
-                            ${isSticky ? 'animate-fade-in' : ''}
+                            duration-500
+                            ${isSticky ? 'animate-fade-in [animation-duration:.4s]' : ''}
                         `}
                         >
                         <SearchBox2/>
