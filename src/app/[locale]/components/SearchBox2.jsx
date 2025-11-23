@@ -79,7 +79,6 @@ export function SearchBox2(){
         dispatch(changeSearchTitle(searchValue))
     }, [debouncedSearchTerm,searchOrder,selectedPriceRange]);
     useLayoutEffect(()=>{
-        console.log(carDates)
         let newParams = {}
         newParams.from = carDates[0]
         newParams.to = carDates[1]
@@ -180,19 +179,19 @@ export function SearchBox2(){
     }
     return(
         <>
-            <div className={`bg-white z-30 transition-all sm:rounded-lg rounded-none sm:shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] max-sm:pt-0 p-4 sm:my-6 max-sm:border-t-0 text-nowrap border border-[#E0E0E0]`}>
-                <div className="sm:rounded-xl rounded-lg flex items-center p-4 sm:py-2 py-1 relative mb-2 border border-[#B5B5B5CC]">
-                    <span className="text-black size">
+            <div className={`bg-white z-30 transition-all sm:rounded-lg rounded-none sm:shadow-[0_4px_20px_0px_rgba(0,0,0,.06)] max-sm:pt-0 sm:p-4 p-2 m-0 max-sm:border-t-0 text-nowrap border border-[#E0E0E0]`}>
+                <div className="rounded-md flex items-center p-4 sm:py-2 py-1 relative mb-2 border border-[#0000001f]">
+                    <span className="text-[#4b5259] size">
                         <IconSearch3 size="20"/>
                     </span>
-                    <input value={searchValue} onChange={(event)=>setSearchValue(event.target.value)} className="w-full px-2 outline-0 placeholder:text-[#2b2f33]" type="search" placeholder={t('carSearch')} />
+                    <input value={searchValue} onChange={(event)=>setSearchValue(event.target.value)} className="w-full px-2 outline-0 placeholder:text-[#4b5259] text-xs" type="search" placeholder={t('carSearch')} />
                     {/* {priceRange && (priceRange[0] | priceRange[1]) &&
                         <button onClick={openFilterPopup} className="flex items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">
                             <IconSetting/>
                         </button>
                     } */}
                     <div className="flex items-center gap-1 text-[#75736F]">
-                        <button onClick={()=>setFilterPopup(true)} className="flex items-center gap-1 rtl:border-l-2 ltr:border-r-2 border-black px-2 cursor-pointer">
+                        <button onClick={()=>setFilterPopup(true)} className="flex items-center gap-1 rtl:border-l ltr:border-r border-[#4b5259] px-2 cursor-pointer">
                             <span className="text-[#626262]">
                                 <span className="sm:hidden">
                                     <IconFilter size="22"/>
@@ -262,7 +261,7 @@ export function SearchBox2(){
                                     return(
                                         <label key={index} className="flex gap-2 select-none">
                                             <input checked={false} onChange={()=>sortChangeHandler(item.id)} className="peer hidden" value={item.id} type="checkbox" />
-                                            <div className="p-2 h-[33px] rounded-lg border text-xs border-[#0000001f] text-[#4b5259] transition-all peer-checked:bg-[#7CABF9] hover:bg-[#3B82F61A] hover:text-[#3B82F6] peer-checked:text-white flex gap-2 cursor-pointer items-center">
+                                            <div className="p-2 h-[33px] rounded-lg border text-xs border-[#0000001f] text-[#4b5259] transition-all peer-checked:bg-[#7CABF9] sm:hover:bg-[#3B82F61A] sm:hover:text-[#3B82F6] peer-checked:text-white flex gap-2 cursor-pointer items-center">
                                                 {item.icon}
                                                 {t(item.title)}
                                             </div>

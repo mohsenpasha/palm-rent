@@ -30,7 +30,6 @@ export function getUrlParamsEasy(search = window.location.search) {
     for (const [key, value] of urlParams) {
         params[key] = value;
     }
-    
     return params;
 }
 
@@ -66,6 +65,40 @@ export default function SearchResultPage(){
     const priceRange = useSelector((state) => state.search.selectedPriceRange)
     const selectedCategories = useSelector((state) => state.search.selectedCategories)
     const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
+
+    const [isSticky, setIsSticky] = useState(false);
+    const [hasAnimated, setHasAnimated] = useState(false);
+    const stickyRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.intersectionRatio < 1) {
+            setIsSticky(true);
+            if (!hasAnimated) {
+                setHasAnimated(true);
+            }
+            } else {
+            setIsSticky(false);
+            }
+        },
+        {
+            threshold: [1],
+            rootMargin: '-1px 0px 0px 0px'
+        }
+        );
+
+        if (stickyRef.current) {
+        observer.observe(stickyRef.current);
+        }
+
+        return () => {
+        if (stickyRef.current) {
+            observer.unobserve(stickyRef.current);
+        }
+        };
+    }, [hasAnimated]);
+
     useEffect(()=>{
         setRecivedData(null)
         dispatch(clearCarList())
@@ -186,15 +219,25 @@ export default function SearchResultPage(){
     return(
         <>
             <Header shadowLess/>
-                    <div className="sm:w-[90vw] max-w-[1336px] m-auto relative">
+                    <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
+                    <div className="sm:w-[90vw] max-w-[1336px] m-auto relative my-4">
                         {roadMapStep < 3 && 
                             <>
                                 <RoadMap step={roadMapStep}/>
-                                <DateBox timerValue={timerValue} isSticky={roadMapStep == 2 ? true : false}/>
                             </>
                         }
                     </div>
-                    <div className={`sticky ${isHeaderClose ? 'top-0' : 'top-16'} z-20 mb-2 sm:w-[90vw] max-w-[1336px] max-sm:pt-2 pt-1 max-sm:bg-white m-auto`}>
+                    <div 
+                        ref={stickyRef}
+                        className={`
+                            sticky 
+                            ${isHeaderClose ? 'top-0' : 'top-16'} 
+                            transition-all z-21 mb-2 sm:w-[90vw] 
+                            max-w-[1336px] max-sm:pt-2 max-sm:bg-white 
+                            m-auto
+                            ${isSticky ? 'animate-fade-in' : ''}
+                        `}
+                        >
                         <SearchBox2/>
                     </div>
                     {
@@ -205,7 +248,6 @@ export default function SearchResultPage(){
                             <div className="md:w-[90vw] max-md:overflow-x-hidden max-w-[1336px] m-auto relative">
                                 <div ref={searchRef} className="flex flex-wrap sm:gap-4 gap-1">
                                     {carList.map((item,index)=>{
-                                        console.log(item)
                                         return(
                                             <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
                                                 <SingleCar2 data={item}/>

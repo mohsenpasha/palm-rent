@@ -9,6 +9,7 @@ import { getDiffInShamsiDays } from "./SearchBar";
 import { usePathname } from "next/navigation";
 import { getLangUrl } from "@/app/lib/getLangUrl";
 import { dateDifference } from "@/app/lib/getDateDiffrence";
+import { capitalizeWords } from "@/app/lib/capitalizeFirstLetter";
 
 export default function SingleCar2({data,noBtn = false}){
     const t = useTranslations();
@@ -17,10 +18,10 @@ export default function SingleCar2({data,noBtn = false}){
     return(
         <div className={`${isHovering && 'z-30'} flex w-full flex-col bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] max-md:pl-0 p-2.5`}>
             <SingleCarGallery2 imageList={data.images} noBtn={true}>
-                <div className="flex text-[#0B835C] text-[10px] absolute gap-2 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full flex-wrap">
+                <div className="flex text-[#0B835C] text-[10px] absolute gap-2 max-[380px]:gap-1 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full">
                     {data.options.map((item,index)=>{
                         return(
-                            <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className={`sm:py-1 py-2 group sm:px-2 px-3 rounded-4xl ${optionList[item].title == 'noDeposite' ? 'bg-[#aefaee] border-[#aefaee]' : 'bg-[#cffc03]'} relative hover:scale-[105%] transition-all border border-white`} key={index}>
+                            <div onMouseEnter={()=>setIsHovering(true)} onMouseLeave={()=>setIsHovering(false)} className={`sm:py-1 py-2 group sm:px-2 max-[405px]:px-2 max-[405px]:text-[9px] font-bold px-3 rounded-4xl ${optionList[item].title == 'noDeposite' ? 'bg-[#eafaee] border-[#eafaee]' : 'bg-[#e2e6e9]'} relative hover:scale-[105%] transition-all border border-white`} key={index}>
                                 <span className={`${optionList[item].title == 'noDeposite' ? 'text-[#1e7b33]' : 'text-[#4b5259]'} font-bold flex items-center gap-1`}>
                                     {t(optionList[item].title)}
                                     {optionList[item].title == 'noDeposite' && 
@@ -40,7 +41,7 @@ export default function SingleCar2({data,noBtn = false}){
                     })}
                 </div>
                 {data.discount && 
-                    <div className="absolute bottom-2 left-2 bg-[#cffc03] py-1.5 px-2.5 text-[#cbcd40] rounded-lg flex items-center gap-1">
+                    <div className="absolute bottom-2 left-2 bg-[#e1ff00] py-1.5 px-2.5 text-[#3b3d40] opacity-85 rounded-lg flex items-center gap-1">
                         <IconDiscount size="20"/>
                         {data.discount}% {t('discount')}
                     </div>
@@ -48,10 +49,10 @@ export default function SingleCar2({data,noBtn = false}){
 
             </SingleCarGallery2>
             <div className="pl-2.5 flex flex-col">
-                <div className="text-left my-2 lg:text-lg sm:text-base text-sm">{data.title}</div>
+                <div className="text-left my-2 text-lg">{capitalizeWords(data.title)}</div>
                 <SingleCarOptions data={data}/>
                 <SingleCarPriceList2 priceList={data.priceList}/>
-                <SingleCarButtonHolder3/>
+                <SingleCarButtonHolder3 data={data}/>
             </div>
         </div>
     )
@@ -137,7 +138,7 @@ export function SingleCarGallery2({children,noBtn,imageList}){
         </div>
     )
 }
-export function SingleCarButtonHolder3(){
+export function SingleCarButtonHolder3({data}){
     const t = useTranslations();
     const [whatsappText,setWhatsappText] = useState()
     const text = ''
@@ -145,7 +146,7 @@ export function SingleCarButtonHolder3(){
     const deliveryTime = useSelector((state)=> state.global.deliveryTime)
     const returnTime = useSelector((state)=> state.global.returnTime)
     useEffect(()=>{
-        setWhatsappText('سلام ، مایل هستم یک خودروی تویوتا یاریس در دبی از تاریخ ' + carDates[0] +' ساعت '+ deliveryTime +' تا '+ carDates[1] +' ساعت '+ returnTime +' به مدت '+ getDiffInShamsiDays(carDates[0],carDates[1]) +' روز رزرو کنم. لطفاً راهنمایی بفرمایید.')
+        setWhatsappText(`سلام ، مایل هستم یک خودروی ${data?.title} در دبی از تاریخ ${carDates[0]} ساعت ${deliveryTime} تا ${carDates[1]} ساعت ${returnTime} به مدت ${getDiffInShamsiDays(carDates[0],carDates[1])} روز رزرو کنم. لطفاً راهنمایی بفرمایید.`)
     },[])
     // this is test for showing
     const dispatch = useDispatch()
@@ -154,7 +155,7 @@ export function SingleCarButtonHolder3(){
     }
     return(
         <div className="flex w-full gap-2">
-            <button onClick={nextStep} className="rounded-xl py-1 flex justify-center items-center gap-2 w-full cursor-pointer bg-[#0077db] text-white">
+            <button onClick={nextStep} className="rounded-xl py-1 flex justify-center items-center gap-2 w-full cursor-pointer bg-[#0077db] text-white font-bold">
                 {t('chooseCar')}
             </button>
             <Link href={`https://wa.me/971556061134?text=${encodeURIComponent(whatsappText)}`} target="_blank" className="rounded-xl py-1 flex justify-center gap-2 w-fit items-center text-nowrap px-2 cursor-pointer bg-[#10B9811A] border border-[#10B98180] text-[#10B981]">
@@ -185,11 +186,10 @@ export function SingleCarPriceList2({priceList}){
             })
         }
     },[carDates])
-    console.log(finalDayPrice)
     return(
         <div>
             <div className="flex flex-col gap-2 my-4 mt-2 border-t pt-2 border-[#0000001f]">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center text-sm">
                     <span>{t('BSPrice')} {rentDay} {t('day')} :</span>
                     <div className="flex gap-2">
                         <span className="text-[#A7A7A7] line-through">

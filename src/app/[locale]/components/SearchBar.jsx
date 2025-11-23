@@ -175,7 +175,6 @@ export function DatePickerBox({ref,isPopup=false}){
   const locale = useLocale()
   const pathname = usePathname()
   const isInHomePage = pathname == (getLangUrl(locale).length == 0 ? '/' : getLangUrl(locale))
-  console.log(pathname,getLangUrl(locale),isInHomePage)
   const dispatch = useDispatch()
   function changeDeliveryTimeHandler(newTime){
         dispatch(changeDeliveryTime(newTime))
