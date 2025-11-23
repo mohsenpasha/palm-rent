@@ -14,7 +14,6 @@ import { getLangUrl } from "@/app/lib/getLangUrl";
 import useDisableScroll from "@/app/hooks/useDisableScroll";
 
 export function SearchBox2(){
-    const isHeaderClose = useSelector((state)=> state.global.isHeaderClose)
     const carDates = useSelector((state)=> state.global.carDates)
     const searchOrder = useSelector((state)=> state.search.sort)
     const priceRange = useSelector((state)=> state.search.priceRange)
@@ -23,14 +22,12 @@ export function SearchBox2(){
     const notToRemove = useRef([])
     const [isSortOpen,setIsSortOpen] = useState(false)
     const t = useTranslations();
-    const searchTitle = useSelector((state)=> state.search.search)
     const dispatch = useDispatch()
     const [searchValue,setSearchValue] = useState('')
     const debouncedSearchTerm = useDebounce(searchValue, 500);
     const selectedCategories = useSelector((state)=> state.search.selectedCategories)
     const locale = useLocale();
     const pathname = usePathname()
-    
     const isInSearchPage = pathname == getLangUrl(locale) + '/search'
     // const useEffectStatus = useRef(true)
     // const { addQueryParam, removeQueryParam } = useAddQueryParam();
@@ -49,6 +46,12 @@ export function SearchBox2(){
     useLayoutEffect(() => {
         let newParams = {}
         let paramsToRemove = []
+        if(selectedCategories.length != 0){
+            newParams.categories = selectedCategories.join(',')
+        }
+        else{
+            paramsToRemove.push('categories')
+        }
         if(!debouncedSearchTerm) {
             paramsToRemove.push('search_title')
         }
@@ -73,11 +76,12 @@ export function SearchBox2(){
             item => !notToRemove.current.includes(item)
         );
         if(isInSearchPage){
+            console.log(newParams)
             updateURL(newParams,filteredParamsToRemove)
         }
         notToRemove.current = []
         dispatch(changeSearchTitle(searchValue))
-    }, [debouncedSearchTerm,searchOrder,selectedPriceRange]);
+    }, [debouncedSearchTerm,searchOrder,selectedPriceRange,selectedCategories]);
     useLayoutEffect(()=>{
         let newParams = {}
         newParams.from = carDates[0]
@@ -238,7 +242,7 @@ export function SearchBox2(){
                 </div>
                 <div className="w-full block overflow-auto hide-scrollbar">
                     <div className="flex md:gap-2 gap-1">
-                        {sortList.filter((item)=>item.selected == true).map((item,index)=>{
+                        {sortList.filter((item)=>selectedCategories.includes(item.id)).map((item,index)=>{
                             return(
                                 <label key={index} className="flex gap-2 mb-2 select-none">
                                     <input onChange={()=>sortChangeHandler(item.id)} checked={true} className="peer hidden" value={item.id} type="checkbox" />

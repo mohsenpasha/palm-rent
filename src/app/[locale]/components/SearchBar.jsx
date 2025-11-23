@@ -61,14 +61,14 @@ export default function SearchBar({isPopup=false}){
     }
     return(
         <>
-            <div className={`${isPopup ? 'fixed w-[100vw] h-[100vh] top-0 right-0 z-50' : 'relative md:z-40 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
+            <div className={`${isPopup ? 'fixed w-screen h-screen top-0 right-0 z-50' : 'relative md:z-40 bg-white py-2 md:py-6'} border-2 border-[#0000001f] rounded-2xl`}>
               {isPopup &&
                 <div onClick={closeSearchBar} className="absolute top-0 right-0 w-full h-full bg-[#00000066]">
 
                 </div>
               }
               {!isPopup &&
-                <div className="md:text-lg sm:text-base text-center md:text-right ltr:md:text-left text-sm font-bold border-b-[1px] border-[#00000066] px-2 pb-4 md:px-6 mb-4">
+                <div className="md:text-lg sm:text-base text-center md:text-right ltr:md:text-left text-sm font-bold border-b border-[#00000066] px-2 pb-4 md:px-6 mb-4">
                     {params.cityName ?
                         <h2>
                           {t('searchBarB')} {t(params.cityName)} {t('searchBarA')}
@@ -112,7 +112,7 @@ export default function SearchBar({isPopup=false}){
                                     <IconClock/>
                                     <span>{carDates[0] || t('date')}</span>
                                 </div>
-                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 rtl:border-r-[1px] ltr:border-l-[1px] border-[#B5B5B5B2]">
+                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 rtl:border-r ltr:border-l border-[#B5B5B5B2]">
                                     <IconCalender/> 
                                     <span>{deliveryTime || t('time')}</span>
                                 </div>
@@ -125,7 +125,7 @@ export default function SearchBar({isPopup=false}){
                                     <IconClock/>
                                     <span>{carDates[1] || t('date')}</span>
                                 </div>
-                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 rtl:border-r-[1px] ltr:border-l-[1px] border-[#B5B5B5B2]">
+                                <div className="flex flex-1 p-3 px-2 text-[#4C4C4C] items-center gap-1 rtl:border-r ltr:border-l border-[#B5B5B5B2]">
                                     <IconCalender/> 
                                     <span>{returnTime || t('time')}</span>
                                 </div>
@@ -201,8 +201,8 @@ export function DatePickerBox({ref,isPopup=false}){
       changeCarDatesValue()
     },[pCarDates])
   return(
-    <div ref={ref} className={`bg-white w-[100vw] h-[100vh] md:w-auto ${!isPopup ? 'animate-opacity2 md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto xl:min-w-[642px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border border-[#0000001f] rounded-lg`}>
-      <div className="p-2 px-4 flex justify-end border-b-[1px] border-[#0000001f] text-[#3b82f6] text-xs">
+    <div ref={ref} className={`bg-white w-screen h-screen md:w-auto ${!isPopup ? 'animate-opacity2 md:absolute fixed md:z-auto z-50 md:translate-y-full md:left-1/2 md:-translate-x-1/2 md:top-auto md:bottom-0 md:h-auto xl:min-w-[642px] bottom-[unset] md:right-auto top-0 right-0' : 'md:h-fit fixed top-1/2 left-1/2 -translate-1/2 animate-fade-in2'} border border-[#0000001f] rounded-lg`}>
+      <div className="p-2 px-4 flex justify-end border-b border-[#0000001f] text-[#3b82f6] text-xs">
         {/* <button onClick={goToToday} className="cursor-pointer bg-transparent border-transparent p-1 rounded-sm transition-all hover:bg-[#F2F9FF] hover:border-[#C9E3F8] border">
           <span>برو امروز</span>
         </button> */}
@@ -213,7 +213,7 @@ export function DatePickerBox({ref,isPopup=false}){
           <span>{isDateJalili ? t('gregorianDate') : t('jaliliDate')}</span>
         </button>
       </div>
-      <div className="relative z-20 flex w-full justify-center gap-8 border-b-[1px] border-[#0000001f] p-4 px-2">
+      <div className="relative z-20 flex w-full justify-center gap-8 border-b border-[#0000001f] p-4 px-2">
           <div className="w-full md:w-auto">
               <span>{t('deliveryT')}</span>
               <TimeSelectBox selected={deliveryTime} setSelected={changeDeliveryTimeHandler}/>
@@ -226,7 +226,7 @@ export function DatePickerBox({ref,isPopup=false}){
       <div dir={isDateJalili ? "rtl" : "ltr"} className="date-picker-holder flex relative z-10 m-auto sm:w-8/12 w-11/12 justify-center md:my-auto p-4 my-6">
           <DatePicker2/>
       </div>
-      <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t-[1px] items-center border-[#0000001f] px-4 py-2">
+      <div className="w-10/12 md:w-full left-1/2 bottom-8 -translate-x-1/2 justify-between md:translate-x-0 absolute md:static flex border-t items-center border-[#0000001f] px-4 py-2">
         <div className="md:flex hidden text-xs">
           <div>{t('delivery')} <span className="font-bold text-xs">{pCarDates[0] || t('choose')}</span> -</div>
           <div>{t('return')} <span className="font-bold text-xs">{pCarDates[1]}</span></div>
@@ -260,7 +260,7 @@ export function SingleCityItem({value,closeDropDown}){
   const t = useTranslations();
     return(
         <div onClick={changeCity} className="text-[#4b5259] text-nowrap px-3 transition-all hover:bg-[#f2f9ff] last-of-type:border-0 flex items-center cursor-pointer">
-            <div className="flex border-b-[1px] border-[#0000001f] w-full gap-1 py-4">
+            <div className="flex border-b border-[#0000001f] w-full gap-1 py-4">
                 <span className="size-6">
                     <IconLocation/>
                 </span>

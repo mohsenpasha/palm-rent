@@ -19,7 +19,7 @@ import { postData } from "@/app/lib/PostData";
 import { notFound } from "next/navigation";
 import { addCarList, clearCarList } from "@/redux/slices/carListSlice";
 import { changeCarDates } from "@/redux/slices/globalSlice";
-import { changeBranchId, changePriceRange, changeSearchCurrency, changeSearchTitle, changeSelectedPriceRange, changeSort, changeToman } from "@/redux/slices/searchSlice";
+import { changeBranchId, changePriceRange, changeSearchCurrency, changeSearchTitle, changeSelectedCategories, changeSelectedPriceRange, changeSort, changeToman } from "@/redux/slices/searchSlice";
 import SingleCar2 from "../components/SingleCar2";
 import { SearchBox2 } from "../components/SearchBox2";
 
@@ -40,6 +40,11 @@ function pad(num, size) {
     while (num.length < size) num = "0" + num;
     return num;
 }
+
+function convertToInt(array) {
+    return array.map(Number);
+}
+
 export default function SearchResultPage(){
     const searchRef = useRef()
     const loadingRef = useRef(true)
@@ -100,6 +105,9 @@ export default function SearchResultPage(){
             if(params.min_p && params.max_p){
                 dispatch(changeSelectedPriceRange([params.min_p,params.max_p]))
             }
+            if(params.categories){
+                dispatch(changeSelectedCategories(convertToInt(params.categories?.split(','))))
+            }
         }
         let payload = {
             from : carDates[0] || params.from,
@@ -116,8 +124,12 @@ export default function SearchResultPage(){
             payload.min_p = (urlFirstTime.current && params.min_p) || Math.min(...priceRange)
             payload.max_p = (urlFirstTime.current && params.max_p) || Math.max(...priceRange)
         }
+        if((urlFirstTime.current && (params.categories)) || selectedCategories.length != 0){
+            console.log((urlFirstTime.current && params.categories?.split(',')),selectedCategories)
+            payload['cat_id'] = (urlFirstTime.current && params.categories?.split(',')) || selectedCategories
+        }
         if(selectedCategories.length != 0){
-            payload['cat_id'] = selectedCategories
+            payload['cat_id'] = convertToInt(selectedCategories)
         }
         urlFirstTime.current = false
         firstTime.current = false
