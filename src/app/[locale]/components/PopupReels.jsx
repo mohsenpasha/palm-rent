@@ -123,19 +123,19 @@ export default function PopupReels(){
     },[isMuted])
 
     return(
-        <div className="fixed z-50 w-[100vw] h-[100vh] top-0 right-0">
+        <div className="fixed z-50 w-screen h-screen top-0 right-0">
             <div onClick={closePopupReels} className="absolute w-full h-full bg-black opacity-85"></div>
-            <div className="sm:h-[90vh] h-[100vh] absolute left-1/2 top-1/2 -translate-1/2 flex gap-2">
+            <div className="sm:h-[90vh] h-screen absolute left-1/2 top-1/2 -translate-1/2 flex gap-2">
                 <div className="text-white z-20 flex flex-col h-full sm:static right-2 top-6 absolute justify-between">
                     <div className="flex flex-col gap-2">
                         <div onClick={closePopupReels} className="text-white w-[50px] h-[50px] flex items-center justify-center transition-all p-3 bg-[#ffffff26] rounded-lg hover:bg-[#ffffff46] cursor-pointer">
-                            <IconClose className={'w-[16px]'}/>
+                            <IconClose className={'w-4'}/>
                         </div>
                         <div onClick={()=>setIsmuted(!isMuted )} className="text-white w-[50px] h-[50px] flex items-center justify-center transition-all p-3 bg-[#ffffff26] rounded-lg hover:bg-[#ffffff46] cursor-pointer">
                             {isMuted ? 
-                                <IconMute className={'w-[16px]'}/>
+                                <IconMute className={'w-4'}/>
                                 :
-                                <IconUnMute className={'w-[16px]'}/>
+                                <IconUnMute className={'w-4'}/>
                             }
                         </div>
                     </div>

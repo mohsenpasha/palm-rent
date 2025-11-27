@@ -78,7 +78,7 @@ export function SingleFavCarOption({icon,text}){
 
 export function PageNavBar({text,backUrl}){
     return(
-        <div className='flex p-3 gap-2 border-b-[1px] border-[#0000001f] bg-white items-center text-[#333333] font-bold'>
+        <div className='flex p-3 gap-2 border-b border-[#0000001f] bg-white items-center text-[#333333] font-bold'>
             <Link href={backUrl} className='size-[42px] rounded-full border border-[#0000001f] flex items-center justify-center -rotate-90'>
                 <IconArrow/>
             </Link>

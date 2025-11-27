@@ -132,7 +132,7 @@ export function DatePopup(){
         dispatch(changeIsDateSelectOpen(false))
     }
     return(
-        <div className="fixed w-[100vw] h-[100vw] top-0 right-0 z-50">
+        <div className="fixed w-screen h-[100vw] top-0 right-0 z-50">
             <div className="animate-opacity">
                 <div onClick={closeDateSelect} className="absolute top-0 right-0 w-full h-full bg-black opacity-60"></div>
             </div>
