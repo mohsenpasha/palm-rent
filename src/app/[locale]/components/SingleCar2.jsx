@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SingleCarButtonHolder2, SingleCarGallery, SingleCarOptions, SingleCarPriceList } from "./SingleCar";
 import { useLocale, useTranslations } from "next-intl";
-import { IconArrow, IconArrowHandle, IconDiscount, IconInfo, IconInfoCircle, IconWhatsapp } from "./Icons";
+import { IconArrow, IconArrowHandle, IconDiscount, IconHeart, IconInfo, IconInfoCircle, IconLike, IconPlay, IconWhatsapp } from "./Icons";
 import Link from "next/link";
 import Image from "next/image";
 import { getDiffInShamsiDays } from "./SearchBar";
@@ -10,14 +10,29 @@ import { usePathname } from "next/navigation";
 import { getLangUrl } from "@/app/lib/getLangUrl";
 import { dateDifference } from "@/app/lib/getDateDiffrence";
 import { capitalizeWords } from "@/app/lib/capitalizeFirstLetter";
+import { addReelItem, changeReelActive } from "@/redux/slices/reelsSlice";
 
-export default function SingleCar2({data,noBtn = false}){
+export default function SingleCar2({data}){
+    const dispatch = useDispatch()
+    const [noBtn,setNoBtn] = useState(!!!data.video)
+    useEffect(()=>{
+        console.log(!!data.video)
+        if(!!data.video){
+            const videoData = {
+                id:data.id,
+                title:data.title,
+                video:data.video,
+                price:Object.values(data.priceList)[0]
+            }
+            dispatch(addReelItem(videoData))
+        }
+    },[])
     const t = useTranslations();
     const optionList = useSelector((state)=>state.carList.optionList)
     const [isHovering,setIsHovering] = useState(false)
     return(
         <div className={`${isHovering && 'z-30'} flex w-full flex-col bg-white cursor-pointer transition-all rounded-2xl md:text-sm text-xs border border-[#0000001f] shadow-[0_2px_5px_-1px_rgba(0,0,0,.08)] max-md:pl-0 p-2.5`}>
-            <SingleCarGallery2 imageList={data.images} noBtn={true}>
+            <SingleCarGallery2 imageList={data.images} noBtn={noBtn}>
                 <div className="flex text-[#0B835C] text-[10px] absolute gap-2 max-[380px]:gap-1 text-nowrap top-2 rtl:right-2 ltr:left-2 w-full">
                     {data.options.map((item,index)=>{
                         return(
@@ -49,7 +64,12 @@ export default function SingleCar2({data,noBtn = false}){
 
             </SingleCarGallery2>
             <div className="pl-2.5 flex flex-col">
-                <div className="text-left my-2 text-lg font-bold">{capitalizeWords(data.title)}</div>
+                <div className="flex items-center justify-between">
+                    <div className="text-left my-2 text-lg font-bold">{capitalizeWords(data.title)}</div>
+                    <span className="size-6 text-[#333333]">
+                        <IconHeart active={false}/>
+                    </span>
+                </div>
                 <SingleCarOptions data={data}/>
                 <SingleCarPriceList2 priceList={data.priceList}/>
                 <SingleCarButtonHolder3 data={data}/>
@@ -131,7 +151,7 @@ export function SingleCarGallery2({children,noBtn,imageList}){
                 </div>
             </div>
             {!noBtn && 
-                <div onClick={activateReel} className="absolute left-2 bottom-2 cursor-pointer">
+                <div onClick={activateReel} className="absolute right-2 bottom-2 cursor-pointer">
                     <IconPlay/>
                 </div>
             }

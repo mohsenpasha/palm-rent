@@ -152,7 +152,7 @@ export default function PopupReels(){
                 <div style={{transform: `translateY(${sliderTransition}px)`}} className="transition-all duration-200">
                     {reelList.map((item,index)=>{
                         return(
-                            <SingleReel video={item} key={index} activeIndex={sliderIndex} reelIndex={index} ref={reelsRef}/>
+                            <SingleReel data={item} key={index} activeIndex={sliderIndex} reelIndex={index} ref={reelsRef}/>
                         )
                     })}
                 </div>
@@ -162,7 +162,7 @@ export default function PopupReels(){
     )
 }
 
-export function SingleReel({ref,reelIndex,activeIndex,video}){
+export function SingleReel({ref,reelIndex,activeIndex,data}){
     const t = useTranslations();
     const [isPaused,setIsPaused] = useState(false)
     function videoToggle(){
@@ -181,24 +181,24 @@ export function SingleReel({ref,reelIndex,activeIndex,video}){
         }
     },[activeIndex])
     return(
-        <div onClick={videoToggle} ref={(el) => (ref.current[reelIndex] = el)} className="relative sm:h-[90vh] sm:w-[410px] h-[100vh] w-[100vw] sm:rounded-lg bg-white first:mt-0 my-4">
+        <div onClick={videoToggle} ref={(el) => (ref.current[reelIndex] = el)} className="relative sm:h-[90vh] sm:w-[410px] h-screen w-screen sm:rounded-lg bg-white first:mt-0 my-4">
             {isPaused &&
                 <span className="absolute top-1/2 left-1/2 -translate-1/2 size-[60px] flex items-center justify-center bg-[#00000066] rounded-full text-white">
                     <IconPlay2/>
                 </span>
             }
-            <video loop muted className="w-full h-full object-cover sm:rounded-lg" src={video}>Your browser does not support the video tag.</video>
+            <video loop muted className="w-full h-full object-cover sm:rounded-lg" src={data.video}>Your browser does not support the video tag.</video>
             <div onClick={(event)=>event.stopPropagation()} className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[#21262d] w-[calc(100%-16px)] rounded-lg p-2 flex justify-between">
-                <Link href={'#'} className="flex w-auto bg-[#3B82F6] outline-0 py-2 px-8 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">{t('rent')}</Link>
+                <Link href={`/cars/${data.id}/`} className="flex w-auto bg-[#3B82F6] outline-0 py-2 px-8 rounded-lg text-white justify-center items-center text-nowrap left-6 gap-2 text-xs cursor-pointer">{t('rent')}</Link>
                 <div className="flex flex-col items-end gap-1">
                     <div>
                         <div className="text-white gap-1 flex">
-                            <span>100</span>
+                            <span>{data.price.currentPrice}</span>
                             <span>{t('AED')}</span>
                         </div>
                     </div>
                     <div className="text-[#8c98ab] sm:text-xs text-[10px]">
-                        Bentley Continental GTC V12 (White), 2021
+                        {data.title}
                     </div>
                 </div>
             </div>
