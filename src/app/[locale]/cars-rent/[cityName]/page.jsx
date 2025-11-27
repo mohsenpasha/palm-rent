@@ -25,6 +25,7 @@ import { changeSearchCurrency } from "@/redux/slices/searchSlice";
 import { getData } from "@/app/lib/getData";
 import { buildUrl } from "@/app/lib/buildUrl";
 import { useLocale } from "next-intl";
+import SingleCar2 from "../../components/SingleCar2";
 
 
 export default function BranchPage(){
@@ -38,6 +39,7 @@ export default function BranchPage(){
     const isUnderLg = useMediaQuery("(max-width: 1023.9px)");
     const isSearchOpen = useSelector((state) => state.global.isSearchOpen)
     const isFilterOpen = useSelector((state) => state.global.isFilterOpen)
+    const homeBlogs = useSelector((state)=>state.global.homeBlogs)
     const cities = useSelector((state) => state.global.cities)
     const carList = useSelector((state) => state.carList.carList)
     const search_title = useSelector((state) => state.search.search_title)
@@ -93,7 +95,6 @@ export default function BranchPage(){
             payload.page = currentPage + 1
         }
         url = buildUrl(url,payload)
-        console.log(url)
         getData(url)
         .then(data => {
             setRecivedData(data)
@@ -169,7 +170,7 @@ export default function BranchPage(){
                     {carList.map((item,index)=>{
                         return(
                             <div key={index} className="flex xl:w-[calc(33%-12px)] md:w-[calc(50%-8px)] w-full">
-                                <SingleCar data={item}/>
+                                <SingleCar2 data={item}/>
                             </div>
                         )
                     })}
@@ -186,7 +187,9 @@ export default function BranchPage(){
             </div>
             <CommentSection/>
             <CommonQuestionSection rules={rules} setRules={setRules}/>
-            <RecentBlogPosts/>
+            {homeBlogs && homeBlogs.length != 0 && 
+                <RecentBlogPosts/>
+            }
             {branchData ?
                 <MoreTextSection data={branchData}/>
                 :

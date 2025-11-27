@@ -236,10 +236,7 @@ export default function SearchResultPage(){
                             ${isSticky ? 'animate-fade-in [animation-duration:.4s]' : ''}
                         `}
                         >
-                        <SearchBox2/>
-                        {searchDisable &&
-                            <div className="w-full h-full bg-white opacity-50 absolute top-0 z-20"></div>
-                        }
+                        <SearchBox2 searchDisable={searchDisable}/>
                     </div>
                     {
                         roadMapStep == 1 &&

@@ -41,7 +41,6 @@ export default function SearchBar({isPopup=false}){
         dispatch(changeCarDates([convertToEnglishDigits(nowPersian.format("YYYY/MM/DD")),convertToEnglishDigits(nextWeekPersian.format("YYYY/MM/DD"))]))
         // dispatch(changeCarDates([convertToEnglishDigits(nowGregorian.format("YYYY/MM/DD")),convertToEnglishDigits(nextWeekGregorian.format("YYYY/MM/DD"))]))
       }
-
     },[])
     const dispatch = useDispatch()
     function closeSearchBar(){
@@ -136,14 +135,8 @@ export default function SearchBar({isPopup=false}){
                         }
                     </div>
                     {!isPopup ?
-                    isBranchPage ? 
-                        <Link href={'#search-section'} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
-                            <IconSearch/>
-                            {t('searchCar')}
-                        </Link>
-                    :
                       (selectedCity && (carDates && (carDates[0] && carDates[1]))) ?
-                        <Link href={`${locale}/search?branch_id=${selectedCity ? selectedCity.id : 1}&from=${carDates[0] + ' ' + deliveryTime}&to=${carDates[1] + ' ' + returnTime}`} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+                        <Link href={`../../../${locale}/search?branch_id=${selectedCity?.id || 1}&from=${carDates[0] + ' ' + deliveryTime}&to=${carDates[1] + ' ' + returnTime}`} className="cursor-pointer lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] rounded-xs md:rounded-lg flex items-center justify-center gap-2">
                             <IconSearch/>
                             {t('searchCar')}
                         </Link>

@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import { getLangUrl } from "@/app/lib/getLangUrl";
 import useDisableScroll from "@/app/hooks/useDisableScroll";
 
-export function SearchBox2(){
+export function SearchBox2({searchDisable=false}){
     const carDates = useSelector((state)=> state.global.carDates)
     const searchOrder = useSelector((state)=> state.search.sort)
     const priceRange = useSelector((state)=> state.search.priceRange)
@@ -81,6 +81,10 @@ export function SearchBox2(){
         }
         notToRemove.current = []
         dispatch(changeSearchTitle(searchValue))
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+            });
     }, [debouncedSearchTerm,searchOrder,selectedPriceRange,selectedCategories]);
     useLayoutEffect(()=>{
         let newParams = {}
@@ -239,6 +243,9 @@ export function SearchBox2(){
                             }
                         </div>
                     </div>
+                    {searchDisable &&
+                        <div className="w-full h-full bg-white opacity-50 absolute top-0 z-20"></div>
+                    }
                 </div>
                 <div className="w-full block overflow-auto hide-scrollbar">
                     <div className="flex md:gap-2 gap-1">
@@ -257,7 +264,7 @@ export function SearchBox2(){
                             })}
                     </div>
                 </div>
-                <div className="block md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-sm md:text-xs text-xs">
+                <div className="block md:flex-nowrap flex-wrap items-center justify-between gap-2 lg:text-sm md:text-xs text-xs relative">
                     <div className="flex md:w-auto w-full items-start gap-2 lg:text-sm md:text-xs text-xs">
                         <div className="w-full block overflow-auto hide-scrollbar">
                             <div className="flex md:gap-2 gap-1">
@@ -276,6 +283,9 @@ export function SearchBox2(){
                             </div>
                         </div>
                     </div>
+                    {searchDisable &&
+                        <div className="w-full h-full bg-white opacity-50 absolute top-0 z-20"></div>
+                    }
                 </div>
             </div>
             {filterPopup &&

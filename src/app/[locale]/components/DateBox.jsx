@@ -42,7 +42,7 @@ export function DateBox({isSticky=false,timerValue}){
         <>
             <div className={`${isSticky ? 'sticky mb-10' : ''} ${isHeaderClose ? 'top-0' : 'top-16'} transition-all z-30 w-full p-4 py-4 bg-white text-xs items-center justify-center gap-2 md:gap-0`}>
                 <div className="lg:w-[90vw] md:w-[90vw] max-w-[1200px] m-auto flex items-center">
-                    <div className="w-full flex lg:flex-row flex-col items-center sm:gap-0 gap-2 md:justify-between justify-center text-nowrap">
+                    <div className="w-full flex lg:flex-row flex-col items-center sm:gap-0 gap-2 md:justify-between justify-center text-nowrap font-bold">
                         <div className="flex xl:w-2/3 w-full max-[400px]:gap-2 gap-4 gap-y-1 text-[#1A1A1A] max-[380px]:flex-wrap">
                             <div className="flex items-center lg:w-full w-fit gap-2">
                                 <span className="flex items-center gap-2">

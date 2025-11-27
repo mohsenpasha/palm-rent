@@ -49,7 +49,7 @@ export function RecentBlogPosts(){
  
                         </div>
                         <div className="flex lg:w-5/12 w-full">
-                            <SingleBlogPost bigPost={true} id={homeBlogs[0].id} title={homeBlogs[0].title} description={homeBlogs[0].text} photo={homeBlogs[0].photo}/>
+                            <SingleBlogPost bigPost={true} id={homeBlogs[0]?.id} title={homeBlogs[0]?.title} description={homeBlogs[0]?.text} photo={homeBlogs[0]?.photo}/>
                         </div>
                     </div>
                 }

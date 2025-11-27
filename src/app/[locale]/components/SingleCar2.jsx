@@ -49,7 +49,7 @@ export default function SingleCar2({data,noBtn = false}){
 
             </SingleCarGallery2>
             <div className="pl-2.5 flex flex-col">
-                <div className="text-left my-2 text-lg">{capitalizeWords(data.title)}</div>
+                <div className="text-left my-2 text-lg font-bold">{capitalizeWords(data.title)}</div>
                 <SingleCarOptions data={data}/>
                 <SingleCarPriceList2 priceList={data.priceList}/>
                 <SingleCarButtonHolder3 data={data}/>
@@ -155,7 +155,7 @@ export function SingleCarButtonHolder3({data}){
     }
     return(
         <div className="flex w-full gap-2">
-            <button onClick={nextStep} className="rounded-xl py-1 flex justify-center items-center gap-2 w-full cursor-pointer bg-[#0077db] text-white font-bold">
+            <button onClick={nextStep} className="rounded-xl py-1 flex justify-center items-center gap-2 w-full cursor-pointer bg-[#0077db] text-white font-bold text-base">
                 {t('chooseCar')}
             </button>
             <Link href={`https://wa.me/971556061134?text=${encodeURIComponent(whatsappText)}`} target="_blank" className="rounded-xl py-1 flex justify-center gap-2 w-fit items-center text-nowrap px-2 cursor-pointer bg-[#10B9811A] border border-[#10B98180] text-[#10B981]">
@@ -189,7 +189,7 @@ export function SingleCarPriceList2({priceList}){
     return(
         <div>
             <div className="flex flex-col gap-2 my-4 mt-2 border-t pt-2 border-[#0000001f]">
-                <div className="flex justify-between items-center text-sm">
+                <div className="flex justify-between items-center text-sm font-bold">
                     <span>{t('BSPrice')} {rentDay} {t('day')} :</span>
                     <div className="flex gap-2">
                         <span className="text-[#A7A7A7] line-through">
