@@ -1,14 +1,23 @@
 'use client'
+import { postData } from "@/app/lib/PostData"
+import { removeLeadingZero } from "@/app/lib/removeLeadingZero"
+import { changeIsStage2, changePhoneNumber } from "@/redux/slices/loginSlice"
 import Image from "next/image"
 import Link from "next/link"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 export default function LoginComponent(){
+    const  isStage2 = useSelector((state)=> state.login.isStage2)
+    // const [isLoginStage2,setIsLoginStage2] = useState(false)
     return(
-        <div className="flex items-center justify-center w-[100vw] h-[100vh] bg-[#F6F6F6]">
+        <div className="flex items-center justify-center w-screen h-screen bg-[#F6F6F6]">
             <LoginBox>
-                {/* <LoginStage1/> */}
-                <LoginStage2/>
+                {!isStage2 ?
+                    <LoginStage1/>
+                :
+                    <LoginStage2/>
+                }
             </LoginBox>
         </div>
     )
@@ -28,9 +37,49 @@ export function LoginBox({children}){
     )
 }
 
+
 export function LoginStage1(){
+    const  phoneNumber = useSelector((state)=> state.login.phoneNumber)
+    const dispacth = useDispatch()
+    const [isPhoneValid,setIsPhoneValid] = useState(false)
+    function isOnlyDigits(value){
+        return /^\d+$/.test(value);
+    }
+    
+    function isValidIranianPhoneNumber(phone) {
+        if (!phone) return false;
+        const cleaned = phone.toString().replace(/[\s\-\(\)\.]/g, '');
+        const patterns = [
+            /^9\d{9}$/,
+            /^09\d{9}$/,
+            /^989\d{9}$/,
+            /^\+989\d{9}$/,
+            /^00989\d{9}$/
+        ];
+        
+        return patterns.some(pattern => pattern.test(cleaned));
+    }
+    function inputHandler(newData){
+        if(newData.length == 0){
+         dispacth(changePhoneNumber(newData))
+         setIsPhoneValid(false)
+         return
+        }
+        if(!isOnlyDigits(newData)) return
+        setIsPhoneValid(isValidIranianPhoneNumber(newData))
+        dispacth(changePhoneNumber(newData))
+    }
+    function submitHandler(){
+        setIsPhoneValid(false)
+        let url = 'https://palmrentcar.com/api/login/post/1?mobile=' + removeLeadingZero(phoneNumber)
+        postData(url).then(data => {
+            setIsPhoneValid(true)
+            dispacth(changeIsStage2(true))
+        })
+        .catch(error => setIsPhoneValid(true));
+    }
     return(
-        <div className="text-[#1A1A1A] flex flex-col gap-2">
+        <form onSubmit={(event)=>event.preventDefault()} className="text-[#1A1A1A] flex flex-col gap-2">
             <div className="text-xl font-bold">
                 ورود به حساب کاربری
             </div>
@@ -46,21 +95,26 @@ export function LoginStage1(){
                         <option value="98">+98</option>
                         <option value="98">+98</option>
                     </select>
-                    <input className="text-left border-l-[1px] w-full outline-0 border-[#919191] p-3" placeholder="091*********" type="text" />
+                    <input dir="ltr" maxLength={11} value={phoneNumber} onChange={(event)=>inputHandler(event.target.value)} className="text-left border-l w-full outline-0 border-[#919191] p-3" placeholder="091*********" type="text" />
                 </div>
             </div>
-            <button className="lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] py-3 my-3 rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+            <button disabled={!isPhoneValid} onClick={submitHandler} type="submit" className="lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] py-3 my-3 rounded-xs md:rounded-lg flex items-center justify-center gap-2 cursor-pointer transition-all disabled:opacity-50  disabled:cursor-not-allowed">
                 ورود به حساب کاربری
             </button>
-        </div>
+        </form>
     )
 }
 
 export function LoginStage2(){
+    const  phoneNumber = useSelector((state)=> state.login.phoneNumber)
+    const [isBtnDisabled,setIsBtnDisabled] = useState(true)
+    const dispacth = useDispatch()
     const [inputValue,setInputValue] = useState(['','','','',''])
     const submitButton = useRef()
     const inputRef = useRef([])
+    const targetIndexRef = useRef()
     function inputChangeHandler(targetIndex,event){
+        targetIndexRef.current = targetIndex
         setInputValue(
             inputValue.map((item,index)=>{
                 if(index == targetIndex && /^\d+$/.test(event.target.value)){
@@ -83,7 +137,34 @@ export function LoginStage2(){
             }
         }
     }
+    useEffect(()=>{
+        if(inputValue.join('').length == 5){
+            console.log('test')
+            setIsBtnDisabled(false)
+            if(targetIndexRef.current == 4){
+                submitHandler()
+            }
+        }
+    },[inputValue])
+    function submitHandler(){
+        setIsBtnDisabled(true)
+        let url = 'https://palmrentcar.com/api/login/post/2?mobile=' + removeLeadingZero(phoneNumber) + '&verify_code=' + inputValue.join('')
+        postData(url).then(data => {
+            console.log(data.status)
+            if(data.status == 200){
 
+            }
+            else{
+                alert(data.message)
+                setIsBtnDisabled(false)
+                dispacth(changeIsStage2(true))
+            }
+        })
+        .catch(error =>{
+            alert(error)
+            setIsBtnDisabled(false)
+        });
+    }
     return(
         <div className="text-[#1A1A1A] flex flex-col gap-2">
             <div className="text-xl font-bold">
@@ -102,7 +183,7 @@ export function LoginStage2(){
                     })}
                 </div>
             </div>
-            <button ref={submitButton} className="lg:flex-1 w-full bg-[#3B82F6] text-white h-[52px] py-3 my-3 rounded-xs md:rounded-lg flex items-center justify-center gap-2">
+            <button disabled={isBtnDisabled} ref={submitButton} onClick={submitHandler} className="lg:flex-1 w-full cursor-pointer bg-[#3B82F6] text-white h-[52px] py-3 my-3 rounded-xs md:rounded-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
                 تایید
             </button>
         </div>

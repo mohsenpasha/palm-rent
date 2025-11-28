@@ -4,6 +4,7 @@ import carListReducer from './slices/carListSlice'
 import globalReducer from './slices/globalSlice'
 import blogReducer from './slices/blogSlice'
 import searchReducer from './slices/searchSlice'
+import loginReducer from './slices/loginSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     carList: carListReducer,
     global:globalReducer,
     blog:blogReducer,
-    search:searchReducer
+    search:searchReducer,
+    login:loginReducer
   },
 })
